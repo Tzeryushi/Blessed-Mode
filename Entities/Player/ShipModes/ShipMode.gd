@@ -15,7 +15,6 @@ func process_physics(_delta:float, player:Player) -> void:
 
 #action funcs
 func idle(_delta:float, player:Player) -> void:
-	print("IDLE!")
 	player.velocity.x = move_toward(player.velocity.x, 0, player.decceleration)
 	player.velocity.y = move_toward(player.velocity.y, 0, player.decceleration)
 func move(_direction:Vector2, _delta:float, player:Player) -> void:
