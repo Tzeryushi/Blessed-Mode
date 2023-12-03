@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://ds7bcbfgwevuw"]
+
+[ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_xoc56"]
+[ext_resource type="Script" path="res://Entities/Player/States/PlayerStateManager.gd" id="2_6hjy0"]
+[ext_resource type="Texture2D" uid="uid://dar6qfufss5my" path="res://Entities/Player/PlayerSprites/RedProto.svg" id="2_gaso7"]
+[ext_resource type="Script" path="res://Entities/Player/States/IdleState.gd" id="3_itbs4"]
+[ext_resource type="Script" path="res://Entities/Player/ShipModes/RedMode.gd" id="4_5e48n"]
+[ext_resource type="Script" path="res://Entities/Player/States/MoveState.gd" id="4_rbr0h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftxv2"]
+radius = 65.123
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qx6ur"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gaso7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "first_ship_mode")]
+script = ExtResource("1_xoc56")
+state_manager = NodePath("StateManager")
+first_ship_mode = NodePath("ModeManager/Red")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ftxv2")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_qx6ur")
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("first_state")]
+script = ExtResource("2_6hjy0")
+first_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateManager" node_paths=PackedStringArray("move_state")]
+script = ExtResource("3_itbs4")
+move_state = NodePath("../MoveState")
+
+[node name="MoveState" type="Node" parent="StateManager" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("4_rbr0h")
+idle_state = NodePath("../IdleState")
+
+[node name="ModeManager" type="Node" parent="."]
+
+[node name="Red" type="Node" parent="ModeManager"]
+script = ExtResource("4_5e48n")
+
+[node name="Blue" type="Node" parent="ModeManager"]
+
+[node name="Green" type="Node" parent="ModeManager"]
