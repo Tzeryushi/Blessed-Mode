@@ -27,6 +27,8 @@ func _ready() -> void:
 	state_manager.init_state(self)
 	
 func _unhandled_input(_event) -> void:
+	if Input.is_action_just_pressed("shoot"):
+		print(get_viewport().get_mouse_position())
 	state_manager.process_input(_event)
 
 func _process(_delta) -> void:

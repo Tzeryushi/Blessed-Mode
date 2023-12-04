@@ -1,6 +1,11 @@
 class_name ShipMode
 extends Node
 
+#shipmode attributes
+@export var acceleration : float = 30.0
+@export var decceleration : float = 10.0
+@export var max_movement_speed : float = 600.0
+
 #contains "prototype" functions for state-called actions
 
 #boilerplate funcs

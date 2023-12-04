@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Entities/Player/States/MoveState.gd" id="4_rbr0h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftxv2"]
-radius = 65.123
+radius = 15.0333
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qx6ur"]
 animations = [{
@@ -30,7 +30,7 @@ first_ship_mode = NodePath("ModeManager/Red")
 shape = SubResource("CircleShape2D_ftxv2")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.0929535, 0.0929535)
 sprite_frames = SubResource("SpriteFrames_qx6ur")
 
 [node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("first_state")]
