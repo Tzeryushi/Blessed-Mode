@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://bam4o0be7jx0h"]
+
+[ext_resource type="Texture2D" uid="uid://dar6qfufss5my" path="res://Entities/Player/PlayerSprites/RedProto.svg" id="1_ras0d"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ras0d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

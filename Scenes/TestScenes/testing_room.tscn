@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://6ii61ff3ecgs"]
+[gd_scene load_steps=4 format=3 uid="uid://6ii61ff3ecgs"]
 
+[ext_resource type="Script" path="res://Scenes/TestScenes/testing_room.gd" id="1_0mq1j"]
 [ext_resource type="PackedScene" uid="uid://ds7bcbfgwevuw" path="res://Entities/Player/Player.tscn" id="1_nee7j"]
 [ext_resource type="Texture2D" uid="uid://gwe475foxqna" path="res://Entities/Flock/FlockSprites/PlaceHolderEnemy.svg" id="2_bfl8r"]
 
 [node name="TestingRoom" type="Node2D"]
+script = ExtResource("1_0mq1j")
 
 [node name="Player" parent="." instance=ExtResource("1_nee7j")]
 

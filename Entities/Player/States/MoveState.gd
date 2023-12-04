@@ -13,7 +13,7 @@ func on_exit() -> void:
 func process_input(_event:InputEvent) -> PlayerState:
 	if Input.is_action_just_pressed("shoot"):
 		player.shoot(get_move_direction())
-	if Input.is_action_pressed("shift_mode"):
+	if Input.is_action_just_pressed("shift_mode"):
 		player.shift_mode()
 	return null
 

@@ -2,23 +2,22 @@ class_name Player
 extends Node2D
 
 #TODO:
-#Establish movement (states!)
-#Create modes and mode shifts
-#Create distinct mode behaviour
+#Create distinct mode behaviour - Shooting, movement, visual changes. Interactions with enemies later.
 #Flashy stuff and animations
 
 #states will govern movement systems and things like invincibility
 #the way these states are interpreted will be defined by the modes being passed to the player
 
-
+@export_category("Manager References")
 @export var state_manager : PlayerStateManager
 @export var mode_manager : ModeManager
 
-#deprecated, phase out
-@export var health : int = 1: get = get_health, set = set_health
-@export var acceleration : float = 30.0
-@export var decceleration : float = 10.0
-@export var max_movement_speed : float = 600.0
+@export_category("Camera Propeties")
+@export var player_camera : Camera2D
+@export_range(0.0, 1.0, 0.05) var cursor_ratio: float
+
+@export_category("Ship Properties")
+@export var health : int = 10: get = get_health, set = set_health
 
 #onreadies, pay attention to pathing
 @onready var sprite = $PlayerSprite
@@ -34,6 +33,7 @@ signal health_changed(value:int)
 func _ready() -> void:
 	current_ship_mode = mode_manager.get_ship_mode()
 	state_manager.init_state(self)
+	mode_manager.init_modes(self)
 	
 func _unhandled_input(_event) -> void:
 	if _event is InputEventMouseMotion:
@@ -48,12 +48,12 @@ func _process(_delta) -> void:
 
 func _physics_process(_delta) -> void:
 	state_manager.process_physics(_delta)
-	current_ship_mode.process_physics(_delta, self)
+	current_ship_mode.process_physics(_delta)
 
 func idle(_delta:float) -> void:
-	current_ship_mode.idle(_delta, self)
+	current_ship_mode.idle(_delta)
 func move(_direction:Vector2, _delta:float) -> void:
-	current_ship_mode.move(_direction, _delta, self)
+	current_ship_mode.move(_direction, _delta)
 func shoot(_direction:Vector2) -> void:
 	#toggles on shooting status if not already on. Ship modes decide behaviour.
 	if !is_shooting:
@@ -61,6 +61,7 @@ func shoot(_direction:Vector2) -> void:
 func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
 	pass
 func shift_mode() -> void:
+	#print("shift hit")
 	current_ship_mode = mode_manager.swap_ship_mode()
 
 func get_health() -> int:
