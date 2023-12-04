@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ds7bcbfgwevuw"]
+[gd_scene load_steps=12 format=3 uid="uid://ds7bcbfgwevuw"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_xoc56"]
 [ext_resource type="Script" path="res://Entities/Player/States/PlayerStateManager.gd" id="2_6hjy0"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://Entities/Player/States/IdleState.gd" id="3_itbs4"]
 [ext_resource type="Script" path="res://Entities/Player/ShipModes/RedMode.gd" id="4_5e48n"]
 [ext_resource type="Script" path="res://Entities/Player/States/MoveState.gd" id="4_rbr0h"]
+[ext_resource type="Script" path="res://Entities/Player/ModeManager.gd" id="6_absnu"]
+[ext_resource type="Script" path="res://Entities/Player/BlueMode.gd" id="7_qbroj"]
+[ext_resource type="Script" path="res://Entities/Player/GreenMode.gd" id="8_3rm7t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftxv2"]
 radius = 15.0333
@@ -21,15 +24,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "first_ship_mode")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "mode_manager")]
 script = ExtResource("1_xoc56")
 state_manager = NodePath("StateManager")
-first_ship_mode = NodePath("ModeManager/Red")
+mode_manager = NodePath("ModeManager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ftxv2")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+rotation = 1.57079
 scale = Vector2(0.0929535, 0.0929535)
 sprite_frames = SubResource("SpriteFrames_qx6ur")
 
@@ -45,11 +49,23 @@ move_state = NodePath("../MoveState")
 script = ExtResource("4_rbr0h")
 idle_state = NodePath("../IdleState")
 
-[node name="ModeManager" type="Node" parent="."]
+[node name="ModeManager" type="Node" parent="." node_paths=PackedStringArray("swap_array")]
+script = ExtResource("6_absnu")
+swap_array = [NodePath("Red"), NodePath("Green"), NodePath("Blue")]
 
 [node name="Red" type="Node" parent="ModeManager"]
 script = ExtResource("4_5e48n")
-
-[node name="Blue" type="Node" parent="ModeManager"]
+acceleration = 60.0
+decceleration = 8.0
+max_movement_speed = 1000.0
 
 [node name="Green" type="Node" parent="ModeManager"]
+script = ExtResource("8_3rm7t")
+acceleration = 15.0
+decceleration = 15.0
+max_movement_speed = 300.0
+
+[node name="Blue" type="Node" parent="ModeManager"]
+script = ExtResource("7_qbroj")
+
+[node name="Camera2D" type="Camera2D" parent="."]

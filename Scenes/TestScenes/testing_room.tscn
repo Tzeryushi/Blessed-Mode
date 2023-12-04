@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://6ii61ff3ecgs"]
+
+[ext_resource type="PackedScene" uid="uid://ds7bcbfgwevuw" path="res://Entities/Player/Player.tscn" id="1_nee7j"]
+[ext_resource type="Texture2D" uid="uid://gwe475foxqna" path="res://Entities/Flock/FlockSprites/PlaceHolderEnemy.svg" id="2_bfl8r"]
+
+[node name="TestingRoom" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_nee7j")]
+
+[node name="PlaceHolderEnemy" type="Sprite2D" parent="."]
+position = Vector2(238, 159)
+scale = Vector2(0.0937032, 0.0937032)
+texture = ExtResource("2_bfl8r")
+
+[node name="PlaceHolderEnemy2" type="Sprite2D" parent="."]
+position = Vector2(-100, -283)
+scale = Vector2(0.0937032, 0.0937032)
+texture = ExtResource("2_bfl8r")
+
+[node name="PlaceHolderEnemy3" type="Sprite2D" parent="."]
+position = Vector2(333, 324)
+scale = Vector2(0.0937032, 0.0937032)
+texture = ExtResource("2_bfl8r")
+
+[node name="PlaceHolderEnemy4" type="Sprite2D" parent="."]
+position = Vector2(473, -208)
+scale = Vector2(0.0937032, 0.0937032)
+texture = ExtResource("2_bfl8r")
+
+[node name="PlaceHolderEnemy5" type="Sprite2D" parent="."]
+position = Vector2(-551, 151)
+scale = Vector2(0.0937032, 0.0937032)
+texture = ExtResource("2_bfl8r")
+
+[node name="PlaceHolderEnemy6" type="Sprite2D" parent="."]
+position = Vector2(-341, -108)
+scale = Vector2(0.0937032, 0.0937032)
+texture = ExtResource("2_bfl8r")

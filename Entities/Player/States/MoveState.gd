@@ -11,8 +11,10 @@ func on_exit() -> void:
 	pass
 
 func process_input(_event:InputEvent) -> PlayerState:
-	#execute when actor receives input
-	#returns the state of the actor, which may have changed
+	if Input.is_action_just_pressed("shoot"):
+		player.shoot(get_move_direction())
+	if Input.is_action_pressed("shift_mode"):
+		player.shift_mode()
 	return null
 
 func process_frame(_delta:float) -> PlayerState:
