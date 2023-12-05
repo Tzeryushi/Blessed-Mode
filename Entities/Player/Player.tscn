@@ -17,10 +17,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftxv2"]
 radius = 15.0333
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "mode_manager", "player_camera") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "mode_manager", "reticle", "player_camera") groups=["player"]]
 script = ExtResource("1_xoc56")
 state_manager = NodePath("StateManager")
 mode_manager = NodePath("ModeManager")
+reticle = NodePath("Reticle")
 player_camera = NodePath("PlayerCamera")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

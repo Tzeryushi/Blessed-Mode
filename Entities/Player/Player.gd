@@ -8,13 +8,15 @@ extends Node2D
 #states will govern movement systems and things like invincibility
 #the way these states are interpreted will be defined by the modes being passed to the player
 
-@export_category("Manager References")
+@export_category("General References")
 @export var state_manager : PlayerStateManager
 @export var mode_manager : ModeManager
+@export var reticle : PlayerReticle
 
-@export_category("Camera Propeties")
+@export_category("Camera Properties")
 @export var player_camera : Camera2D
-@export_range(0.0, 1.0, 0.05) var cursor_ratio: float
+@export_range(0.0, 1.0, 0.05) var cursor_ratio: float = 0.5
+@export var max_camera_length : float = 300.0
 
 @export_category("Ship Properties")
 @export var health : int = 10: get = get_health, set = set_health
@@ -36,8 +38,8 @@ func _ready() -> void:
 	mode_manager.init_modes(self)
 	
 func _unhandled_input(_event) -> void:
-	if _event is InputEventMouseMotion:
-		look_at(get_global_mouse_position())
+	#if _event is InputEventMouseMotion:
+	#	look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("shoot"):
 		print(MainPort.main_subviewport.get_mouse_position() - get_global_transform_with_canvas().origin, get_global_mouse_position())
 	state_manager.process_input(_event)
@@ -45,8 +47,13 @@ func _unhandled_input(_event) -> void:
 func _process(_delta) -> void:
 	state_manager.process_frame(_delta)
 	current_ship_mode.process_frame(_delta)
+	
+	#camera operations
+	reticle.update_reticle_position()
+	player_camera.position = (reticle.position*cursor_ratio).limit_length(max_camera_length)
 
 func _physics_process(_delta) -> void:
+	look_at(get_global_mouse_position())
 	state_manager.process_physics(_delta)
 	current_ship_mode.process_physics(_delta)
 
