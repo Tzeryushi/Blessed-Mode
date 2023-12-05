@@ -2,16 +2,30 @@ class_name ShipMode
 extends Node
 
 #shipmode attributes
+@export_category("General Attributes")
 @export var acceleration : float = 30.0
 @export var decceleration : float = 10.0
 @export var max_movement_speed : float = 600.0
-@export var shoot_cooldown : float = 0.3
+
+@export_category("Bullet Attributes")
+@export var bullet_scene : PackedScene
+@export var bullet_spawn_distance : float = 20.0
+#@export var shot_cooldown : float = 0.3
+@export var shot_timer : Timer
+
+@export_category("Visuals")
 @export var ship_sprites : SpriteFrames
+
+
 
 @export var mode_name : String = "Default Mode"
 #contains "prototype" functions for state-called actions
 
 var player : Player	#set by mode manager
+var can_shoot : bool = true
+
+func _ready() -> void:
+	shot_timer.timeout.connect(on_shot_timer_timeout)
 
 #boilerplate funcs
 func swap_in() -> void:
@@ -26,6 +40,9 @@ func process_frame(_delta:float) -> void:
 func process_physics(_delta:float) -> void:
 	player.move_and_slide()
 
+func on_shot_timer_timeout() -> void:
+	can_shoot = true
+
 #action funcs
 func idle(_delta:float) -> void:
 	player.velocity.x = move_toward(player.velocity.x, 0, decceleration)
@@ -34,6 +51,14 @@ func move(_direction:Vector2, _delta:float) -> void:
 	player.velocity.x = move_toward(player.velocity.x, max_movement_speed*_direction.x, acceleration)
 	player.velocity.y = move_toward(player.velocity.y, max_movement_speed*_direction.y, acceleration)
 func shoot(_direction:Vector2, _mouse_location:Vector2) -> void:
-	pass
+	#TODO: Handle proper bullet location spawning
+	if !can_shoot: return
+	#handle timer logic
+	can_shoot = false
+	shot_timer.start()
+	#spawn bullet
+	var bullet : BaseBullet = bullet_scene.instantiate()
+	bullet.spawn(player.global_position, _mouse_location)
+	player.get_parent().add_child(bullet)
 func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
 	pass

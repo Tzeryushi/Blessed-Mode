@@ -65,6 +65,7 @@ func shoot(_direction:Vector2) -> void:
 	#toggles on shooting status if not already on. Ship modes decide behaviour.
 	if !is_shooting:
 		is_shooting = true
+	current_ship_mode.shoot(_direction, reticle.global_position-global_position)
 func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
 	pass
 func shift_mode() -> void:

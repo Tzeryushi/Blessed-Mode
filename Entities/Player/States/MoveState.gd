@@ -11,8 +11,6 @@ func on_exit() -> void:
 	pass
 
 func process_input(_event:InputEvent) -> PlayerState:
-	if Input.is_action_just_pressed("shoot"):
-		player.shoot(get_move_direction())
 	if Input.is_action_just_pressed("shift_mode"):
 		player.shift_mode()
 	return null
@@ -23,6 +21,8 @@ func process_frame(_delta:float) -> PlayerState:
 	return null
 
 func process_physics(_delta:float) -> PlayerState:
+	if Input.is_action_pressed("shoot"):
+		player.shoot(get_move_direction())
 	var direction : Vector2 = get_move_direction()
 	player.move(direction, _delta)
 	if direction == Vector2.ZERO:
