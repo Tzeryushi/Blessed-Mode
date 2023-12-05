@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MainPort="*res://Globals/MainPort.gd"
+Shake="*res://Globals/Shake.gd"
 
 [display]
 
@@ -64,3 +65,4 @@ shift_mode={
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Environment"
 2d_physics/layer_4="PlayerBullets"
+2d_physics/layer_5="EnemyBullets"

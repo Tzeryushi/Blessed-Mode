@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ds7bcbfgwevuw"]
+[gd_scene load_steps=17 format=3 uid="uid://ds7bcbfgwevuw"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_xoc56"]
 [ext_resource type="Script" path="res://Entities/Player/States/PlayerStateManager.gd" id="2_6hjy0"]
@@ -15,16 +15,26 @@
 [ext_resource type="Script" path="res://Entities/Player/Reticle.gd" id="12_rg2be"]
 [ext_resource type="Texture2D" uid="uid://gwe475foxqna" path="res://Entities/Flock/FlockSprites/PlaceHolderEnemy.svg" id="13_unq7x"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bcwqn"]
+radius = 14.0357
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftxv2"]
-radius = 15.0333
+radius = 13.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "mode_manager", "reticle", "player_camera") groups=["player"]]
-collision_mask = 6
+collision_mask = 4
 script = ExtResource("1_xoc56")
 state_manager = NodePath("StateManager")
 mode_manager = NodePath("ModeManager")
 reticle = NodePath("Reticle")
 player_camera = NodePath("PlayerCamera")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_bcwqn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ftxv2")
@@ -55,7 +65,7 @@ swap_timer = NodePath("SwapTimer")
 script = ExtResource("4_5e48n")
 acceleration = 70.0
 decceleration = 8.0
-max_movement_speed = 1200.0
+max_movement_speed = 1100.0
 bullet_scene = ExtResource("8_efr0n")
 shot_timer = NodePath("RedTimer")
 ship_sprites = ExtResource("2_x5h3b")
@@ -104,4 +114,6 @@ script = ExtResource("12_rg2be")
 scale = Vector2(0.035982, 0.035982)
 texture = ExtResource("13_unq7x")
 
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="ModeManager/SwapTimer" to="ModeManager" method="_on_swap_timer_timeout"]

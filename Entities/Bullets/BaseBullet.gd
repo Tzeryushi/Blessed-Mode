@@ -2,7 +2,8 @@ class_name BaseBullet
 extends Node2D
 
 @export var damage : int = 1
-@export var speed : float = 500.0
+@export var speed : float = 700.0
+@export var top_speed : float = 700.0
 @export var acceleration : float = 5.0
 
 @export var life_timer : Timer
@@ -15,17 +16,23 @@ var has_hit : bool = false
 func _ready():
 	life_timer.wait_time = lifetime
 	life_timer.start()
+func _process(_delta) -> void:
+	speed = minf(speed + (acceleration), top_speed)
+func _physics_process(_delta) -> void:
+	global_position += direction * speed * _delta
+	rotation = direction.angle()
 	
 func spawn(_position:Vector2, _direction:Vector2) -> void:
 	global_position = _position
-	print(direction)
 	direction = _direction.normalized()
 
-func _physics_process(_delta) -> void:
-	global_position += direction * speed * _delta
-	#print(global_position)
-	rotation = direction.angle()
+func destroy() -> void:
+	queue_free()
 
 func _on_life_timer_timeout():
-	print("dead")
-	queue_free()
+	destroy()
+
+func _on_body_entered(body) -> void:
+	if body.is_in_group("enemy") and body is BaseEnemy:
+		body.take_damage(damage)
+	destroy()

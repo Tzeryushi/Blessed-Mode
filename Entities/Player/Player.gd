@@ -19,13 +19,14 @@ extends Node2D
 @export var max_camera_length : float = 300.0
 
 @export_category("Ship Properties")
-@export var health : int = 10: get = get_health, set = set_health
+@export var max_health : int = 10
 
 #onreadies, pay attention to pathing
 @onready var sprite = $PlayerSprite
-
+@onready var health : float = max_health : get = get_health, set = set_health
 
 var current_ship_mode : ShipMode
+
 
 #flags
 var is_shooting : bool = false
@@ -40,8 +41,8 @@ func _ready() -> void:
 func _unhandled_input(_event) -> void:
 	#if _event is InputEventMouseMotion:
 	#	look_at(get_global_mouse_position())
-	if Input.is_action_just_pressed("shoot"):
-		print(MainPort.main_subviewport.get_mouse_position() - get_global_transform_with_canvas().origin, get_global_mouse_position())
+	#if Input.is_action_just_pressed("shoot"):
+		#print(MainPort.main_subviewport.get_mouse_position() - get_global_transform_with_canvas().origin, get_global_mouse_position())
 	state_manager.process_input(_event)
 
 func _process(_delta) -> void:
@@ -69,12 +70,25 @@ func shoot(_direction:Vector2) -> void:
 func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
 	pass
 func shift_mode() -> void:
-	#print("shift hit")
 	current_ship_mode = mode_manager.swap_ship_mode()
+func take_damage(damage:int=1) -> void:
+	Shake.set_camera(player_camera)
+	Shake.add_trauma(0.5)
+	pass
 
 func get_health() -> int:
 	return health
-
 func set_health(value:int) -> void:
 	health = value
 	health_changed.emit(health)
+
+
+func _on_hitbox_area_entered(area) -> void:
+	pass # Replace with function body.
+
+
+func _on_hitbox_body_entered(body) -> void:
+	print("ratling")
+	if body.is_in_group("enemy") and body is BaseEnemy:
+		take_damage(body.body_damage)
+	pass # Replace with function body.

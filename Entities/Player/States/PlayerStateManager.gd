@@ -13,7 +13,7 @@ func swap_state(new_state:PlayerState) -> void:
 			assert(current_state == new_state)  #this shouldn't ever happen#,"ERROR: Actor state swapped to itself!")
 		current_state.on_exit()
 	current_state = new_state
-	print("Swapped to ", current_state)
+	#print("Swapped to ", current_state)
 	current_state.on_enter()
 
 func init_state(player:Player) -> void:
