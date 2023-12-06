@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://Entities/Bullets/BaseBullet.gd" id="1_yv4m2"]
 
-[node name="BaseBullet" type="Area2D" node_paths=PackedStringArray("life_timer") groups=["bullet"]]
+[node name="BaseBullet" type="Area2D" node_paths=PackedStringArray("trail", "life_timer") groups=["bullet"]]
 collision_layer = 8
 collision_mask = 6
 script = ExtResource("1_yv4m2")
+trail = NodePath("Trail")
 speed = 1000.0
 top_speed = 1600.0
 acceleration = 10.0

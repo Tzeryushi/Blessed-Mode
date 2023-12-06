@@ -4,4 +4,4 @@ extends Control
 
 func _ready() -> void:
 	MainPort.main_subviewport = subviewport
-	print(MainPort.main_subviewport.get_visible_rect())
+	#print(MainPort.main_subviewport.get_visible_rect())

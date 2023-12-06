@@ -19,14 +19,13 @@ extends Node2D
 @export var max_camera_length : float = 300.0
 
 @export_category("Ship Properties")
-@export var max_health : int = 10
+@export var max_health : int = 20
 
 #onreadies, pay attention to pathing
 @onready var sprite = $PlayerSprite
 @onready var health : float = max_health : get = get_health, set = set_health
 
 var current_ship_mode : ShipMode
-
 
 #flags
 var is_shooting : bool = false
@@ -72,6 +71,8 @@ func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
 func shift_mode() -> void:
 	current_ship_mode = mode_manager.swap_ship_mode()
 func take_damage(damage:int=1) -> void:
+	health = get_health()-damage
+	
 	Shake.set_camera(player_camera)
 	Shake.add_trauma(0.5)
 	pass
@@ -81,14 +82,19 @@ func get_health() -> int:
 func set_health(value:int) -> void:
 	health = value
 	health_changed.emit(health)
-
+func get_mode_color() -> Globals.MODECOLOR:
+	return current_ship_mode.mode_color
 
 func _on_hitbox_area_entered(area) -> void:
 	pass # Replace with function body.
 
-
 func _on_hitbox_body_entered(body) -> void:
-	print("ratling")
+	#we manage this from the player class for clarity, don't @ me
 	if body.is_in_group("enemy") and body is BaseEnemy:
-		take_damage(body.body_damage)
+		var damage_to_take : int = body.body_damage
+		match Globals.get_mode_color_effectiveness(body.get_mode_color(), get_mode_color()):
+			0: pass
+			1: damage_to_take = damage_to_take * 2
+			2: damage_to_take = max(int(damage_to_take/2), 1)
+		take_damage(damage_to_take)
 	pass # Replace with function body.

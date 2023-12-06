@@ -16,8 +16,7 @@ extends Node
 @export_category("Visuals")
 @export var ship_sprites : SpriteFrames
 
-
-
+@export var mode_color : Globals.MODECOLOR
 @export var mode_name : String = "Default Mode"
 #contains "prototype" functions for state-called actions
 
@@ -58,7 +57,7 @@ func shoot(_direction:Vector2, _mouse_location:Vector2) -> void:
 	shot_timer.start()
 	#spawn bullet
 	var bullet : BaseBullet = bullet_scene.instantiate()
-	bullet.spawn(player.global_position, _mouse_location)
 	player.get_parent().add_child(bullet)
+	bullet.spawn(player.global_position+(_mouse_location.normalized()*bullet_spawn_distance), _mouse_location)
 func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
 	pass
