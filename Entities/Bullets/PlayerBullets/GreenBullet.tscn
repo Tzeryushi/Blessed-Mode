@@ -11,6 +11,7 @@ point_count = 2
 script = ExtResource("2_0507a")
 laser_cast = NodePath("LaserRayCast")
 laser_length = 2000.0
+shake = 0.35
 mode_color = 1
 damage = 10
 lifetime = 1.0

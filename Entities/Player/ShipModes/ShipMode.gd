@@ -29,7 +29,7 @@ func _ready() -> void:
 #boilerplate funcs
 func swap_in() -> void:
 	#print("Swapped in ", mode_name)
-	player.sprite.sprite_frames = ship_sprites
+	player.player_sprite.sprite_frames = ship_sprites
 	pass
 func swap_out() -> void:
 	#print("Swapped out ", mode_name)
@@ -39,6 +39,8 @@ func process_frame(_delta:float) -> void:
 func process_physics(_delta:float) -> void:
 	player.move_and_slide()
 
+func get_mode_color() -> Globals.MODECOLOR:
+	return mode_color
 func on_shot_timer_timeout() -> void:
 	can_shoot = true
 
@@ -50,7 +52,6 @@ func move(_direction:Vector2, _delta:float) -> void:
 	player.velocity.x = move_toward(player.velocity.x, max_movement_speed*_direction.x, acceleration)
 	player.velocity.y = move_toward(player.velocity.y, max_movement_speed*_direction.y, acceleration)
 func shoot(_direction:Vector2, _mouse_location:Vector2) -> void:
-	#TODO: Handle proper bullet location spawning
 	if !can_shoot: return
 	#handle timer logic
 	can_shoot = false

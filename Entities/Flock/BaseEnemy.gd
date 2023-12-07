@@ -12,16 +12,7 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func take_damage(_damage:int, _attacking_color:Globals.MODECOLOR=mode_color) -> void:
-	var damage_to_take : int = _damage
-	#augment damage based on modes
-	match Globals.get_mode_color_effectiveness(_attacking_color, get_mode_color()):
-			0: pass
-			1: damage_to_take = damage_to_take * 2
-			2: 
-				@warning_ignore("integer_division")
-				damage_to_take = max(int(damage_to_take/2), 1)
-	#print(damage_to_take)
-	health = get_health()-damage_to_take
+	health = get_health()-Globals.multiply_by_mode(_damage, _attacking_color, get_mode_color())
 	if get_health() <= 0:
 		destruct()
 

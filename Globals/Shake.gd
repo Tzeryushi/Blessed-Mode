@@ -40,7 +40,7 @@ func _process(_delta) -> void:
 	#var noise_y : float = noise.get_noise_1d(time_msecs*0.1+100)
 	#shake_camera.offset = Vector2(noise_x, noise_y) * shake_intensity * 2.0
 func add_trauma(amount):
-	trauma = min(trauma + amount, 0.5)
+	trauma = max(trauma + amount, 0.0)
 
 func set_camera(camera:Camera2D) -> void:
 	shake_camera = camera

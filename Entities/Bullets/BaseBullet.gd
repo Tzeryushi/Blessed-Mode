@@ -3,6 +3,7 @@ extends Node2D
 
 @export var trail : Line2D
 @export var trail_length : int = 15
+@export var shake : float = 0.2
 
 @export_category("Bullet Attributes")
 @export var mode_color : Globals.MODECOLOR
@@ -35,6 +36,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	global_position = _position
 	direction = _direction.normalized()
 	rotation = direction.angle()
+	Shake.add_trauma(shake)
 
 func destroy() -> void:
 	queue_free()

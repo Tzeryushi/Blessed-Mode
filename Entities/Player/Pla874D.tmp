@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ds7bcbfgwevuw"]
+[gd_scene load_steps=22 format=3 uid="uid://ds7bcbfgwevuw"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_xoc56"]
 [ext_resource type="Script" path="res://Entities/Player/States/PlayerStateManager.gd" id="2_6hjy0"]
@@ -28,9 +28,6 @@ radius = 13.0
 [sub_resource type="Gradient" id="Gradient_kum5c"]
 offsets = PackedFloat32Array(0, 0.889241, 0.981013)
 colors = PackedColorArray(0.784314, 0, 0, 0.121569, 1, 0, 0, 0.603922, 1, 0, 0, 0.341176)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ty3ig"]
-radius = 37.1214
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "mode_manager", "reticle", "player_camera") groups=["player"]]
 z_index = 5
@@ -93,19 +90,11 @@ one_shot = true
 [node name="RedTrail" parent="ModeManager/Red" instance=ExtResource("18_a2ex0")]
 z_index = 2
 position = Vector2(53, 0)
-width = 56.0
+width = 50.0
 gradient = SubResource("Gradient_kum5c")
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
-
-[node name="DashHitbox" type="Area2D" parent="ModeManager/Red"]
-visible = false
-collision_layer = 0
-collision_mask = 2
-
-[node name="CircleShape" type="CollisionShape2D" parent="ModeManager/Red/DashHitbox"]
-shape = SubResource("CircleShape2D_ty3ig")
 
 [node name="Green" type="Node2D" parent="ModeManager" node_paths=PackedStringArray("shot_timer") groups=["greenmode"]]
 script = ExtResource("8_3rm7t")
@@ -151,5 +140,4 @@ texture = ExtResource("13_unq7x")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="body_entered" from="ModeManager/Red/DashHitbox" to="ModeManager/Red" method="_on_dash_hitbox_body_entered"]
 [connection signal="timeout" from="ModeManager/SwapTimer" to="ModeManager" method="_on_swap_timer_timeout"]

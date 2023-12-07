@@ -15,5 +15,7 @@ func process_input(_event:InputEvent) -> PlayerState:
 func process_physics(_delta:float) -> PlayerState:
 	if Input.is_action_pressed("shoot"):
 		player.shoot(Vector2.ZERO)
+	if Input.is_action_pressed("special_action"):
+		player.special_action(Vector2.ZERO)
 	player.idle(_delta)
 	return null

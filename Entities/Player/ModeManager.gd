@@ -1,5 +1,5 @@
 class_name ModeManager
-extends Node
+extends Node2D
 
 #the first element of the swap array is the current mode.
 

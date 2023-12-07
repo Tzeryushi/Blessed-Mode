@@ -31,7 +31,7 @@ polygon = PackedVector2Array(3, 0, -4, -2, -1, 0, -4, 2)
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
 scale = Vector2(8, 8)
-polygon = PackedVector2Array(-0.875, 0, -1.75, -1.125, 2.25, 0, -1.75, 1.125)
+polygon = PackedVector2Array(-0.875, 0, -1.75, -1.375, 2.75, 0, -1.75, 1.375)
 
 [node name="LifeTimer" type="Timer" parent="."]
 one_shot = true

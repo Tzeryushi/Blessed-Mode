@@ -23,6 +23,8 @@ func process_frame(_delta:float) -> PlayerState:
 func process_physics(_delta:float) -> PlayerState:
 	if Input.is_action_pressed("shoot"):
 		player.shoot(get_move_direction())
+	if Input.is_action_pressed("special_action"):
+		player.special_action(Vector2.ZERO)
 	var direction : Vector2 = get_move_direction()
 	player.move(direction, _delta)
 	if direction == Vector2.ZERO:

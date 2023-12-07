@@ -50,6 +50,8 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	else:
 		trail.add_point(Vector2.RIGHT*laser_length)
 	
+	Shake.add_trauma(shake)
+	
 	#handle application of damage
 	for enemy in collision_exception_array:
 		enemy.take_damage(damage, get_mode_color())
@@ -78,4 +80,6 @@ func update_trail() -> void:
 func _on_body_entered(body) -> void:
 	#this is specifically for enemies within the base radius of the initial explosion VFX
 	if body.is_in_group("enemy") and body is BaseEnemy:
+		if body is BaseEnemy:
+			Shake.add_trauma(shake)
 		body.take_damage(damage, get_mode_color())
