@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpmfww0ri4kjd"]
+
+[ext_resource type="PackedScene" uid="uid://q570k1lo1j5p" path="res://Entities/Bullets/PlayerBullets/GreenBullet.tscn" id="1_bqcub"]
+
+[node name="GreenEnemyLaser" instance=ExtResource("1_bqcub")]
+collision_layer = 16
+collision_mask = 5

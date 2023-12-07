@@ -23,7 +23,7 @@ extends Node2D
 
 #onreadies, pay attention to pathing
 @onready var sprite = $PlayerSprite
-@onready var health : float = max_health : get = get_health, set = set_health
+@onready var health : int = max_health : get = get_health, set = set_health
 
 var current_ship_mode : ShipMode
 
@@ -70,8 +70,16 @@ func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
 	pass
 func shift_mode() -> void:
 	current_ship_mode = mode_manager.swap_ship_mode()
-func take_damage(damage:int=1) -> void:
-	health = get_health()-damage
+func take_damage(_damage:int=1, _attacking_color:Globals.MODECOLOR=get_mode_color()) -> void:
+	var damage_to_take : int = _damage
+	#augment damage based on modes
+	match Globals.get_mode_color_effectiveness(_attacking_color, get_mode_color()):
+			0: pass
+			1: damage_to_take = damage_to_take * 2
+			2: 
+				@warning_ignore("integer_division")
+				damage_to_take = max(int(damage_to_take/2), 1)
+	health = get_health()-damage_to_take
 	
 	Shake.set_camera(player_camera)
 	Shake.add_trauma(0.5)
@@ -85,16 +93,11 @@ func set_health(value:int) -> void:
 func get_mode_color() -> Globals.MODECOLOR:
 	return current_ship_mode.mode_color
 
-func _on_hitbox_area_entered(area) -> void:
+func _on_hitbox_area_entered(_area) -> void:
 	pass # Replace with function body.
 
 func _on_hitbox_body_entered(body) -> void:
 	#we manage this from the player class for clarity, don't @ me
 	if body.is_in_group("enemy") and body is BaseEnemy:
-		var damage_to_take : int = body.body_damage
-		match Globals.get_mode_color_effectiveness(body.get_mode_color(), get_mode_color()):
-			0: pass
-			1: damage_to_take = damage_to_take * 2
-			2: damage_to_take = max(int(damage_to_take/2), 1)
-		take_damage(damage_to_take)
+		take_damage(body.body_damage, body.get_mode_color())
 	pass # Replace with function body.

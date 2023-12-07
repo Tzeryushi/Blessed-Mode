@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://te32ux48rni8"]
+
+[ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_qfct7"]
+
+[node name="BlueBullet" instance=ExtResource("1_qfct7")]
+mode_color = 2
+damage = 2
+
+[node name="Trail" parent="." index="0"]
+default_color = Color(0, 0, 1, 1)

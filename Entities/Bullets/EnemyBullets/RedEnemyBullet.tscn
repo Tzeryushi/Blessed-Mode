@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cavd0ctnmul3e"]
+
+[ext_resource type="PackedScene" uid="uid://cu8nfgjkwxb20" path="res://Entities/Bullets/PlayerBullets/RedBullet.tscn" id="1_v42xq"]
+
+[node name="RedEnemyBullet" instance=ExtResource("1_v42xq")]
+collision_layer = 16
+collision_mask = 5
+damage = 3

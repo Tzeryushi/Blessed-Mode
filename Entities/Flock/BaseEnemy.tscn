@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://gwe475foxqna" path="res://Entities/Flock/FlockSprites/PlaceHolderEnemy.svg" id="2_i4am0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aaoeg"]
-radius = 25.0
+radius = 26.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a8dwn"]
 animations = [{
@@ -21,7 +21,7 @@ animations = [{
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_4nhy6")
-health = 3.0
+health = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aaoeg")

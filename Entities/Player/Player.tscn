@@ -10,11 +10,11 @@
 [ext_resource type="Script" path="res://Entities/Player/BlueMode.gd" id="7_qbroj"]
 [ext_resource type="Script" path="res://Entities/Player/GreenMode.gd" id="8_3rm7t"]
 [ext_resource type="PackedScene" uid="uid://cu8nfgjkwxb20" path="res://Entities/Bullets/PlayerBullets/RedBullet.tscn" id="8_beqr1"]
-[ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="8_efr0n"]
 [ext_resource type="SpriteFrames" uid="uid://blxt3ycyrxym1" path="res://Entities/Player/PlayerSprites/GreenSpriteFrames.tres" id="9_2ghl3"]
 [ext_resource type="PackedScene" uid="uid://q570k1lo1j5p" path="res://Entities/Bullets/PlayerBullets/GreenBullet.tscn" id="10_xeyoa"]
 [ext_resource type="SpriteFrames" uid="uid://d01oxu78mo703" path="res://Entities/Player/PlayerSprites/BlueSpriteFrames.tres" id="11_47w8v"]
 [ext_resource type="Script" path="res://Entities/Player/Reticle.gd" id="12_rg2be"]
+[ext_resource type="PackedScene" uid="uid://te32ux48rni8" path="res://Entities/Bullets/PlayerBullets/BlueBullet.tscn" id="13_edsgn"]
 [ext_resource type="Texture2D" uid="uid://gwe475foxqna" path="res://Entities/Flock/FlockSprites/PlaceHolderEnemy.svg" id="13_unq7x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bcwqn"]
@@ -67,9 +67,9 @@ swap_timer = NodePath("SwapTimer")
 
 [node name="Red" type="Node" parent="ModeManager" node_paths=PackedStringArray("shot_timer") groups=["redmode"]]
 script = ExtResource("4_5e48n")
-acceleration = 70.0
+acceleration = 60.0
 decceleration = 8.0
-max_movement_speed = 1100.0
+max_movement_speed = 1000.0
 bullet_scene = ExtResource("8_beqr1")
 bullet_spawn_distance = 60.0
 shot_timer = NodePath("RedTimer")
@@ -98,7 +98,7 @@ one_shot = true
 script = ExtResource("7_qbroj")
 acceleration = 35.0
 decceleration = 15.0
-bullet_scene = ExtResource("8_efr0n")
+bullet_scene = ExtResource("13_edsgn")
 shot_timer = NodePath("BlueTimer")
 ship_sprites = ExtResource("11_47w8v")
 mode_color = 2

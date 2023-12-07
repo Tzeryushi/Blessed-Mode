@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw01ap17bst3k"]
+
+[ext_resource type="PackedScene" uid="uid://te32ux48rni8" path="res://Entities/Bullets/PlayerBullets/BlueBullet.tscn" id="1_cs3ht"]
+
+[node name="BlueEnemyBullet" instance=ExtResource("1_cs3ht")]
+collision_layer = 16
+collision_mask = 5
