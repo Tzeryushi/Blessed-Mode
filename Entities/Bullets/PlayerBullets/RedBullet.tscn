@@ -3,9 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_dme7n"]
 
 [node name="RedBullet" instance=ExtResource("1_dme7n")]
-damage = 5
+shake = 0.3
+damage = 10
 speed = 1300.0
 top_speed = 2000.0
 
 [node name="Trail" parent="." index="0"]
 default_color = Color(1, 0, 0, 1)
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(1, 0, 0, 1)

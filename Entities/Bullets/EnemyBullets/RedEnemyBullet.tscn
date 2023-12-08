@@ -5,4 +5,6 @@
 [node name="RedEnemyBullet" instance=ExtResource("1_v42xq")]
 collision_layer = 16
 collision_mask = 5
+shake = 0.0
 damage = 3
+speed = 300.0

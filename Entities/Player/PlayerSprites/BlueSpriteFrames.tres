@@ -1,12 +1,12 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://d01oxu78mo703"]
 
-[ext_resource type="Texture2D" uid="uid://vyljcp0htyju" path="res://Entities/Player/PlayerSprites/BlueProto.svg" id="1_dspfp"]
+[ext_resource type="Texture2D" uid="uid://ds0uwsl6eluc" path="res://Entities/Player/PlayerSprites/BlueMode.svg" id="1_wc1hi"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_dspfp")
+"texture": ExtResource("1_wc1hi")
 }],
 "loop": true,
 "name": &"default",

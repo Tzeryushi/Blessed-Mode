@@ -62,3 +62,5 @@ func shoot(_direction:Vector2, _mouse_location:Vector2) -> void:
 	bullet.spawn(player.global_position+(_mouse_location.normalized()*bullet_spawn_distance), _mouse_location)
 func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
 	pass
+func end_special_action() -> void:
+	pass

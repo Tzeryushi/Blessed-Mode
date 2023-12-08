@@ -29,6 +29,8 @@ func swap_ship_mode() -> ShipMode:
 	swap_array.front().swap_out()
 	swap_array.push_back(swap_array.pop_front())
 	swap_array.front().swap_in()
+	if Input.is_action_pressed("special_action"):
+		swap_array.back().end_special_action()
 	return swap_array.front()
 
 func _on_swap_timer_timeout():

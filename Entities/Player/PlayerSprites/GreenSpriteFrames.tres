@@ -1,12 +1,12 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://blxt3ycyrxym1"]
 
-[ext_resource type="Texture2D" uid="uid://cu778wu5avocm" path="res://Entities/Player/PlayerSprites/GreenProto.svg" id="1_go6g1"]
+[ext_resource type="Texture2D" uid="uid://cclmnn3u3jks0" path="res://Entities/Player/PlayerSprites/GreenMode.svg" id="1_ah8d8"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_go6g1")
+"texture": ExtResource("1_ah8d8")
 }],
 "loop": true,
 "name": &"default",

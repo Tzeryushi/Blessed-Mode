@@ -11,9 +11,10 @@ point_count = 2
 script = ExtResource("2_0507a")
 laser_cast = NodePath("LaserRayCast")
 laser_length = 2000.0
-shake = 0.35
+shake = 0.46
+shake_ceiling = 0.5
 mode_color = 1
-damage = 10
+damage = 20
 lifetime = 1.0
 
 [node name="Trail" parent="." index="0"]
@@ -25,6 +26,9 @@ width_curve = SubResource("Curve_xwn00")
 default_color = Color(0, 0.92549, 0, 1)
 joint_mode = 2
 end_cap_mode = 2
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0, 1, 0, 1)
 
 [node name="LaserRayCast" type="RayCast2D" parent="." index="4"]
 enabled = false

@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://ds7bcbfgwevuw"]
+[gd_scene load_steps=28 format=3 uid="uid://ds7bcbfgwevuw"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_xoc56"]
 [ext_resource type="Script" path="res://Entities/Player/States/PlayerStateManager.gd" id="2_6hjy0"]
 [ext_resource type="PackedScene" uid="uid://bdh5e7vxyhxog" path="res://Effects/Visual Effects/GhostTrail.tscn" id="2_wrykh"]
 [ext_resource type="SpriteFrames" uid="uid://bam4o0be7jx0h" path="res://Entities/Player/PlayerSprites/RedSpriteFrames.tres" id="2_x5h3b"]
 [ext_resource type="Script" path="res://Entities/Player/States/IdleState.gd" id="3_itbs4"]
+[ext_resource type="Shader" path="res://Effects/Shaders/Outline.gdshader" id="3_k7mvo"]
 [ext_resource type="Script" path="res://Entities/Player/ShipModes/RedMode.gd" id="4_5e48n"]
 [ext_resource type="Script" path="res://Entities/Player/States/MoveState.gd" id="4_rbr0h"]
 [ext_resource type="Script" path="res://Entities/Player/ModeManager.gd" id="6_absnu"]
@@ -17,6 +18,8 @@
 [ext_resource type="Script" path="res://Entities/Player/Reticle.gd" id="12_rg2be"]
 [ext_resource type="PackedScene" uid="uid://te32ux48rni8" path="res://Entities/Bullets/PlayerBullets/BlueBullet.tscn" id="13_edsgn"]
 [ext_resource type="Texture2D" uid="uid://gwe475foxqna" path="res://Entities/Flock/FlockSprites/PlaceHolderEnemy.svg" id="13_unq7x"]
+[ext_resource type="PackedScene" uid="uid://bf0qecyc6hadi" path="res://Entities/Bullets/PlayerBullets/BlueMissile.tscn" id="15_1fav8"]
+[ext_resource type="Texture2D" uid="uid://bm071hdbldvpq" path="res://Entities/Player/PlayerSprites/ShieldRingWhite.svg" id="15_wc4d4"]
 [ext_resource type="PackedScene" uid="uid://cou1lncdkg7t7" path="res://Effects/Visual Effects/GenericTrail.tscn" id="18_a2ex0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bcwqn"]
@@ -25,6 +28,14 @@ radius = 14.0357
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftxv2"]
 radius = 13.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fbdrk"]
+shader = ExtResource("3_k7mvo")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 4.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
 [sub_resource type="Gradient" id="Gradient_kum5c"]
 offsets = PackedFloat32Array(0, 0.889241, 0.981013)
 colors = PackedColorArray(0.784314, 0, 0, 0.121569, 1, 0, 0, 0.603922, 1, 0, 0, 0.341176)
@@ -32,15 +43,21 @@ colors = PackedColorArray(0.784314, 0, 0, 0.121569, 1, 0, 0, 0.603922, 1, 0, 0, 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ty3ig"]
 radius = 37.1214
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "mode_manager", "reticle", "player_camera") groups=["player"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_teapf"]
+radius = 62.0081
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "mode_manager", "reticle", "hit_invincible_timer", "player_camera") groups=["player"]]
 z_index = 5
 collision_mask = 4
 script = ExtResource("1_xoc56")
 state_manager = NodePath("StateManager")
 mode_manager = NodePath("ModeManager")
 reticle = NodePath("Reticle")
+hit_invincible_timer = NodePath("HitInvincibleTimer")
 player_camera = NodePath("PlayerCamera")
 cursor_ratio = 0.3
+max_health = 40
+hit_invincible_time = 0.2
 ghost_scene = ExtResource("2_wrykh")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -51,11 +68,14 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_bcwqn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_ftxv2")
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
-rotation = 1.57079
-scale = Vector2(0.0929535, 0.0929535)
+[node name="SpriteGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_fbdrk")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="SpriteGroup"]
+scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_x5h3b")
 
 [node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("first_state")]
@@ -121,8 +141,21 @@ mode_name = "Green"
 [node name="GreenTimer" type="Timer" parent="ModeManager/Green"]
 one_shot = true
 
-[node name="Blue" type="Node2D" parent="ModeManager" node_paths=PackedStringArray("shot_timer") groups=["bluemode"]]
+[node name="ShieldHitbox" type="Area2D" parent="ModeManager/Green"]
+collision_mask = 18
+
+[node name="ShieldCollision" type="CollisionShape2D" parent="ModeManager/Green/ShieldHitbox"]
+shape = SubResource("CircleShape2D_teapf")
+
+[node name="ShieldSprite" type="Sprite2D" parent="ModeManager/Green"]
+modulate = Color(0, 1, 0, 0)
+scale = Vector2(0.485075, 0.485075)
+texture = ExtResource("15_wc4d4")
+
+[node name="Blue" type="Node2D" parent="ModeManager" node_paths=PackedStringArray("missile_timer", "shot_timer") groups=["bluemode"]]
 script = ExtResource("7_qbroj")
+missile_timer = NodePath("MissileTimer")
+missile_scene = ExtResource("15_1fav8")
 acceleration = 35.0
 decceleration = 15.0
 bullet_scene = ExtResource("13_edsgn")
@@ -132,7 +165,11 @@ mode_color = 2
 mode_name = "Blue"
 
 [node name="BlueTimer" type="Timer" parent="ModeManager/Blue"]
-wait_time = 0.07
+wait_time = 0.12
+one_shot = true
+
+[node name="MissileTimer" type="Timer" parent="ModeManager/Blue"]
+wait_time = 0.08
 one_shot = true
 
 [node name="SwapTimer" type="Timer" parent="ModeManager"]
@@ -149,7 +186,12 @@ script = ExtResource("12_rg2be")
 scale = Vector2(0.035982, 0.035982)
 texture = ExtResource("13_unq7x")
 
+[node name="HitInvincibleTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="ModeManager/Red/DashHitbox" to="ModeManager/Red" method="_on_dash_hitbox_body_entered"]
+[connection signal="area_entered" from="ModeManager/Green/ShieldHitbox" to="ModeManager/Green" method="_on_shield_hitbox_area_entered"]
+[connection signal="body_entered" from="ModeManager/Green/ShieldHitbox" to="ModeManager/Green" method="_on_shield_hitbox_body_entered"]
 [connection signal="timeout" from="ModeManager/SwapTimer" to="ModeManager" method="_on_swap_timer_timeout"]
+[connection signal="timeout" from="HitInvincibleTimer" to="." method="_on_hit_invincible_timer_timeout"]

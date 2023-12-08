@@ -12,6 +12,7 @@ extends Node2D
 @export var state_manager : PlayerStateManager
 @export var mode_manager : ModeManager
 @export var reticle : PlayerReticle
+@export var hit_invincible_timer : Timer
 
 @export_category("Camera Properties")
 @export var player_camera : Camera2D
@@ -20,12 +21,13 @@ extends Node2D
 
 @export_category("Ship Properties")
 @export var max_health : int = 20
+@export var hit_invincible_time : float = 0.5
 
 @export_category("VFX Properties")
 @export var ghost_scene : PackedScene
 
 #onreadies, pay attention to pathing
-@onready var player_sprite = $PlayerSprite
+@onready var player_sprite = $SpriteGroup/PlayerSprite
 @onready var health : int = max_health : get = get_health, set = set_health
 
 var current_ship_mode : ShipMode
@@ -35,6 +37,8 @@ var combo_count : int = 2
 var is_shooting : bool = false
 var has_killstreak : bool = false
 var is_invincible : bool = false
+var is_dash_invincible : bool = false
+var is_hit_invincible : bool = false
 
 signal health_changed(value:int)
 
@@ -42,6 +46,7 @@ func _ready() -> void:
 	current_ship_mode = mode_manager.get_ship_mode()
 	state_manager.init_state(self)
 	mode_manager.init_modes(self)
+	hit_invincible_timer.wait_time = hit_invincible_time
 	Shake.set_camera(player_camera)
 	
 func _unhandled_input(_event) -> void:
@@ -108,13 +113,22 @@ func take_damage(_damage:int=1, _attacking_color:Globals.MODECOLOR=get_mode_colo
 	
 	Shake.set_camera(player_camera)
 	Shake.add_trauma(0.6)
-	pass
+	
+	set_hit_invincibility(true)
+	hit_invincible_timer.start()
 
 func get_health() -> int:
 	return health
 func set_health(value:int) -> void:
 	health = value
+	Events.health_changed.emit(health)
 	health_changed.emit(health)
+func set_hit_invincibility(value:bool) -> void:
+	is_hit_invincible = value
+	is_invincible = is_hit_invincible or is_dash_invincible
+func set_dash_invincibility(value:bool) -> void:
+	is_dash_invincible = value
+	is_invincible = is_hit_invincible or is_dash_invincible
 func get_mode_color() -> Globals.MODECOLOR:
 	return current_ship_mode.mode_color
 
@@ -126,3 +140,6 @@ func _on_hitbox_body_entered(body) -> void:
 	if body.is_in_group("enemy") and body is BaseEnemy:
 		take_damage(body.body_damage, body.get_mode_color())
 	pass # Replace with function body.
+
+func _on_hit_invincible_timer_timeout():
+	set_hit_invincibility(false)

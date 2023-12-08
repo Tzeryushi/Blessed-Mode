@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://deo1k2y517tdi"]
+
+[ext_resource type="Script" path="res://GUI/HUD/HUD.gd" id="1_eahme"]
+[ext_resource type="Texture2D" uid="uid://44t5chdgl323" path="res://GUI/HUD/ModeWheelSelect.svg" id="1_oo67i"]
+[ext_resource type="Texture2D" uid="uid://beeeje2xphwv2" path="res://GUI/HUD/ModeWheel.svg" id="2_vlata"]
+[ext_resource type="Texture2D" uid="uid://b0yog2ja1k7qm" path="res://GUI/HUD/ModeWheelSelectOnly.svg" id="3_1vo6j"]
+[ext_resource type="Texture2D" uid="uid://cp11smnc7ifml" path="res://GUI/HUD/LifeBar/LifeBack.svg" id="4_1sc3k"]
+[ext_resource type="Texture2D" uid="uid://ckeg5sh2up1n5" path="res://GUI/HUD/LifeBar/LifeOver.svg" id="5_nqr72"]
+[ext_resource type="Texture2D" uid="uid://bywvarpt6td4p" path="res://GUI/HUD/LifeBar/LifeRedFill.svg" id="6_mm52q"]
+[ext_resource type="Texture2D" uid="uid://c6klb5m6d0knh" path="res://GUI/HUD/ProgressBar/ProgressBack.svg" id="7_dnjft"]
+[ext_resource type="Texture2D" uid="uid://dk3xakxd5dvnx" path="res://GUI/HUD/ProgressBar/ProgressOver.svg" id="8_6wvp1"]
+[ext_resource type="Texture2D" uid="uid://wwstnbvqbjrm" path="res://GUI/HUD/ProgressBar/ProgressBlueFill.svg" id="9_s5o28"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eahme")
+
+[node name="ModeHUD" type="Node2D" parent="."]
+
+[node name="ModeWheelSelect" type="Sprite2D" parent="ModeHUD"]
+visible = false
+modulate = Color(1, 1, 1, 0.219608)
+position = Vector2(118, 149)
+texture = ExtResource("1_oo67i")
+
+[node name="ModeWheel" type="Sprite2D" parent="ModeHUD"]
+position = Vector2(118, 149)
+texture = ExtResource("2_vlata")
+
+[node name="ModeWheelSelectOnly" type="Sprite2D" parent="ModeHUD"]
+position = Vector2(118, 78)
+texture = ExtResource("3_1vo6j")
+
+[node name="LifeBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 52.0
+offset_right = 800.0
+offset_bottom = 118.0
+scale = Vector2(0.8, 0.8)
+value = 40.0
+texture_under = ExtResource("4_1sc3k")
+texture_over = ExtResource("5_nqr72")
+texture_progress = ExtResource("6_mm52q")
+
+[node name="JuiceBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 120.0
+offset_right = 752.0
+offset_bottom = 171.0
+scale = Vector2(0.8, 0.8)
+value = 60.0
+texture_under = ExtResource("7_dnjft")
+texture_over = ExtResource("8_6wvp1")
+texture_progress = ExtResource("9_s5o28")

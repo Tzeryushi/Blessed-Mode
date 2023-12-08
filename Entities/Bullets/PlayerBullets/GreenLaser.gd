@@ -50,7 +50,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	else:
 		trail.add_point(Vector2.RIGHT*laser_length)
 	
-	Shake.add_trauma(shake)
+	Shake.add_trauma(shake, shake_ceiling)
 	
 	#handle application of damage
 	for enemy in collision_exception_array:

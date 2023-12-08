@@ -1,6 +1,6 @@
 extends Node
 
-@export var decay = 0.8
+@export var decay = 1.2
 @export var max_offset : Vector2 = Vector2(100, 75)
 @export var max_roll = 0.1
 
@@ -39,8 +39,10 @@ func _process(_delta) -> void:
 	#var noise_x : float = noise.get_noise_1d(time_msecs*0.1)
 	#var noise_y : float = noise.get_noise_1d(time_msecs*0.1+100)
 	#shake_camera.offset = Vector2(noise_x, noise_y) * shake_intensity * 2.0
-func add_trauma(amount):
-	trauma = max(trauma + amount, 0.0)
+func add_trauma(amount, trauma_max:float = 40):
+	var new_trauma = clampf(trauma + amount, 0.0, trauma_max)
+	if trauma < new_trauma:
+		trauma = new_trauma
 
 func set_camera(camera:Camera2D) -> void:
 	shake_camera = camera

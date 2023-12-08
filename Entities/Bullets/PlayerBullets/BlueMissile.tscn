@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf0qecyc6hadi"]
+
+[ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_3dxbv"]
+[ext_resource type="Script" path="res://Entities/Bullets/PlayerBullets/BlueMissile.gd" id="2_1y81u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cfsud"]
+radius = 1400.0
+
+[node name="BlueMissile" node_paths=PackedStringArray("seek_area") instance=ExtResource("1_3dxbv")]
+script = ExtResource("2_1y81u")
+seek_area = NodePath("SeekArea")
+float_time = 0.5
+float_distance = 70.0
+turning_power = 20.0
+turning_acceleration = 3.0
+mode_color = 2
+damage = 2
+top_speed = 2500.0
+acceleration = 100.0
+
+[node name="SeekArea" type="Area2D" parent="." index="4"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeekArea" index="0"]
+shape = SubResource("CircleShape2D_cfsud")
