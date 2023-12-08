@@ -6,6 +6,7 @@ extends Node
 @export var acceleration : float = 30.0
 @export var decceleration : float = 10.0
 @export var max_movement_speed : float = 600.0
+@export var special_depletion_rate: float = 0.2
 
 @export_category("Bullet Attributes")
 @export var bullet_scene : PackedScene
@@ -30,6 +31,7 @@ func _ready() -> void:
 func swap_in() -> void:
 	#print("Swapped in ", mode_name)
 	player.player_sprite.sprite_frames = ship_sprites
+	player.mode_changed.emit(get_mode_color())
 	pass
 func swap_out() -> void:
 	#print("Swapped out ", mode_name)

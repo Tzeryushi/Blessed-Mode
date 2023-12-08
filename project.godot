@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 MainPort="*res://Globals/MainPort.gd"
 Shake="*res://Globals/Shake.gd"
 Globals="*res://Globals/Globals.gd"
+Events="*res://Globals/Events.gd"
 
 [display]
 
