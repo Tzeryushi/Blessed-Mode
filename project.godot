@@ -13,6 +13,7 @@ config_version=5
 config/name="Blessed Mode"
 run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0.478431, 0.478431, 0.478431, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -79,3 +80,7 @@ escape={
 2d_physics/layer_3="Environment"
 2d_physics/layer_4="PlayerBullets"
 2d_physics/layer_5="EnemyBullets"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.423529, 0.423529, 0.423529, 1)

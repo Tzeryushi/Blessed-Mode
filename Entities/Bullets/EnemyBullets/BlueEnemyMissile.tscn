@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt4ibyvrimcaq"]
+[gd_scene load_steps=6 format=3 uid="uid://dt4ibyvrimcaq"]
 
 [ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_158nn"]
 [ext_resource type="Script" path="res://Entities/Bullets/EnemyBullets/BlueEnemyMissile.gd" id="2_pwx00"]
 [ext_resource type="Texture2D" uid="uid://iq8r0l5jrdyg" path="res://Effects/ParticleSources/TinyCircle.svg" id="3_jbwp3"]
+[ext_resource type="Texture2D" uid="uid://quoia6l5jmlu" path="res://Effects/ParticleSources/LargeThinRing.svg" id="4_ug3ve"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itavq"]
-radius = 346.575
+radius = 283.016
 
 [node name="BlueEnemyMissile" node_paths=PackedStringArray("seek_area") instance=ExtResource("1_158nn")]
 collision_layer = 16
@@ -27,10 +28,12 @@ visible = false
 modulate = Color(0.117647, 0.117647, 0.117647, 1)
 
 [node name="Trail" parent="VisualsGroup" index="0"]
-modulate = Color(1, 1, 1, 0.890196)
+modulate = Color(1, 1, 1, 1)
+
+[node name="Sprite2D" parent="VisualsGroup" index="1"]
+scale = Vector2(0.60241, 0.60241)
 
 [node name="SeekArea" type="Area2D" parent="." index="3"]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SeekArea" index="0"]
@@ -40,3 +43,8 @@ shape = SubResource("CircleShape2D_itavq")
 modulate = Color(0, 0.2, 1, 1)
 scale = Vector2(0.823529, 0.823529)
 texture = ExtResource("3_jbwp3")
+
+[node name="LargeThinRing" type="Sprite2D" parent="." index="5"]
+modulate = Color(0, 0.2, 1, 0.403922)
+scale = Vector2(0.815562, 0.815562)
+texture = ExtResource("4_ug3ve")
