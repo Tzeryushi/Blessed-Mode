@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://6ii61ff3ecgs"]
+[gd_scene load_steps=7 format=3 uid="uid://6ii61ff3ecgs"]
 
 [ext_resource type="Script" path="res://Scenes/TestScenes/testing_room.gd" id="1_0mq1j"]
 [ext_resource type="PackedScene" uid="uid://ds7bcbfgwevuw" path="res://Entities/Player/Player.tscn" id="1_nee7j"]
 [ext_resource type="PackedScene" uid="uid://dhl2vb5p2xx6p" path="res://Entities/Flock/BaseEnemy.tscn" id="3_3lnbx"]
 [ext_resource type="PackedScene" uid="uid://deo1k2y517tdi" path="res://GUI/HUD/HUD.tscn" id="4_8rfl1"]
 [ext_resource type="PackedScene" uid="uid://dq2vu4dl2uv8k" path="res://Entities/Flock/RedFlock/EnemyRed1.tscn" id="5_5po75"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_28ty1"]
+vertices = PackedVector2Array(1910, 1078, -1910, 1078, -1910, -1078, 1910, -1078, 2235, -1412, 2208, 1480, 2058, 1226, 2058, -1226, -2183, -1384, -2058, -1226, -2268, 1399, -2058, 1226)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 4, 7, 9), PackedInt32Array(10, 8, 9, 11), PackedInt32Array(5, 10, 11, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2193, -1394, 2246, -1423, 2218, 1491, -2279, 1409)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="TestingRoom" type="Node2D"]
 script = ExtResource("1_0mq1j")
@@ -52,3 +58,9 @@ position = Vector2(462, -711)
 
 [node name="EnemyRed3" parent="." instance=ExtResource("5_5po75")]
 position = Vector2(1086, 714)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_28ty1")
+
+[node name="TileMap" type="TileMap" parent="NavigationRegion2D"]
+format = 2

@@ -68,7 +68,7 @@ func _process(_delta) -> void:
 	state_manager.process_frame(_delta)
 	current_ship_mode.process_frame(_delta)
 	
-	make_single_ghost(0.02*min(combo_count,10))
+	make_single_ghost(0.02*min(combo_count,20))
 	
 	#camera operations
 	reticle.update_reticle_position()

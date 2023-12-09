@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://Entities/Flock/BaseEnemy.gd" id="1_4nhy6"]
 [ext_resource type="PackedScene" uid="uid://cavd0ctnmul3e" path="res://Entities/Bullets/EnemyBullets/RedEnemyBullet.tscn" id="2_1leni"]
-[ext_resource type="Texture2D" uid="uid://gwe475foxqna" path="res://Entities/Flock/FlockSprites/PlaceHolderEnemy.svg" id="2_i4am0"]
+[ext_resource type="Texture2D" uid="uid://brbs2fcftaaqj" path="res://Entities/Flock/FlockSprites/EnemyRedBasic.svg" id="3_vqkig"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a8dwn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_i4am0")
+"texture": ExtResource("3_vqkig")
 }],
 "loop": true,
 "name": &"default",
@@ -20,16 +20,12 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_4nhy6")
 health = 40
-enemy_sprite = NodePath("EnemySprite")
+enemy_sprite = NodePath("VisualsGroup/EnemySprite")
 shot_timer = NodePath("ShotTimer")
 bullet_scene = ExtResource("2_1leni")
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(1, -24, 10, -22, 16, -18, 21, -12, 23, -6, 24, -1, 24, -1, 23, 6, 21, 11, 17, 17, 11, 21, 3, 24, -4, 24, -12, 21, -18, 16, -22, 9, -24, 1, -23, -8, -18, -16, -12, -21, -7, -23)
-
-[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.077961, 0.077961)
-sprite_frames = SubResource("SpriteFrames_a8dwn")
 
 [node name="ShotTimer" type="Timer" parent="."]
 one_shot = true
@@ -37,3 +33,10 @@ one_shot = true
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(27, 0)
 polygon = PackedVector2Array(0, -12, 44, 0, 0, 12)
+
+[node name="VisualsGroup" type="CanvasGroup" parent="."]
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="VisualsGroup"]
+position = Vector2(9, 0)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_a8dwn")
