@@ -34,7 +34,8 @@ script = ExtResource("1_0mq1j")
 [node name="Player" parent="." instance=ExtResource("1_nee7j")]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-z_index = -5
+self_modulate = Color(0.509804, 0.509804, 0.509804, 1)
+z_index = -10
 navigation_polygon = SubResource("NavigationPolygon_28ty1")
 
 [node name="TileMap" type="TileMap" parent="NavigationRegion2D"]

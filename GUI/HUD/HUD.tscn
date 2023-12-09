@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://deo1k2y517tdi"]
+[gd_scene load_steps=13 format=3 uid="uid://deo1k2y517tdi"]
 
 [ext_resource type="Script" path="res://GUI/HUD/HUD.gd" id="1_eahme"]
 [ext_resource type="Texture2D" uid="uid://44t5chdgl323" path="res://GUI/HUD/ModeWheelSelect.svg" id="1_oo67i"]
+[ext_resource type="Shader" path="res://Effects/Shaders/Glitch.gdshader" id="2_bfl4u"]
 [ext_resource type="Texture2D" uid="uid://beeeje2xphwv2" path="res://GUI/HUD/ModeWheel.svg" id="2_vlata"]
 [ext_resource type="Texture2D" uid="uid://b0yog2ja1k7qm" path="res://GUI/HUD/ModeWheelSelectOnly.svg" id="3_1vo6j"]
 [ext_resource type="Texture2D" uid="uid://cp11smnc7ifml" path="res://GUI/HUD/LifeBar/LifeBack.svg" id="4_1sc3k"]
@@ -10,6 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://c6klb5m6d0knh" path="res://GUI/HUD/ProgressBar/ProgressBack.svg" id="7_dnjft"]
 [ext_resource type="Texture2D" uid="uid://dk3xakxd5dvnx" path="res://GUI/HUD/ProgressBar/ProgressOver.svg" id="8_6wvp1"]
 [ext_resource type="Texture2D" uid="uid://wwstnbvqbjrm" path="res://GUI/HUD/ProgressBar/ProgressBlueFill.svg" id="9_s5o28"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdr8s"]
+shader = ExtResource("2_bfl4u")
+shader_parameter/shake_power = 0.006
+shader_parameter/shake_rate = 0.001
+shader_parameter/shake_speed = 1.0
+shader_parameter/shake_block_size = 49.54
+shader_parameter/shake_color_rate = 0.01
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -20,7 +29,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eahme")
 
-[node name="ModeHUD" type="Node2D" parent="."]
+[node name="ModeHUD" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_tdr8s")
 
 [node name="ModeWheelSelect" type="Sprite2D" parent="ModeHUD"]
 visible = false

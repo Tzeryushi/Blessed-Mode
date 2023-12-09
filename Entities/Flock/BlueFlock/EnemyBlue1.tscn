@@ -24,7 +24,7 @@ missile_timer = NodePath("MissileTimer")
 missile_release_time = 1.2
 mode_color = 2
 body_damage = 2
-fire_distance_threshold = 1000.0
+fire_distance_threshold = 750.0
 shot_cooldown = 0.7
 bullet_scene = ExtResource("4_leqmp")
 
