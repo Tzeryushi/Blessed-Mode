@@ -1,14 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpmfww0ri4kjd"]
+[gd_scene load_steps=4 format=3 uid="uid://bpmfww0ri4kjd"]
 
 [ext_resource type="PackedScene" uid="uid://q570k1lo1j5p" path="res://Entities/Bullets/PlayerBullets/GreenBullet.tscn" id="1_bqcub"]
 [ext_resource type="Script" path="res://Entities/Bullets/EnemyBullets/GreenEnemyLaser.gd" id="2_hltxq"]
+[ext_resource type="PackedScene" uid="uid://2vihwlqd70kn" path="res://Entities/Bullets/EnemyBullets/GreenEnemyLaserEx.tscn" id="3_2gfsl"]
 
 [node name="GreenEnemyLaser" instance=ExtResource("1_bqcub")]
 collision_layer = 16
 collision_mask = 5
 script = ExtResource("2_hltxq")
+endpoint_explosion = ExtResource("3_2gfsl")
+laser_length = null
 shake = 0.0
 damage = 7
 
 [node name="LaserRayCast" parent="." index="3"]
-collision_mask = 5
+collision_mask = 37
+collide_with_areas = true

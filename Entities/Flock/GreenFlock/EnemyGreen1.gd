@@ -21,7 +21,7 @@ func look_and_fire() -> void:
 		if !is_firing_laser and (player_ref.global_position-global_position).length() <= fire_distance_threshold:
 			set_movement_target(global_position)
 			if shot_timer.is_stopped():
-				laser_timer.start()
+				laser_timer.start() 
 				set_firing(true)
 		elif is_firing_laser:
 			if !laser_timer.is_stopped():
@@ -31,7 +31,7 @@ func look_and_fire() -> void:
 					rotation = move_toward(rotation, rotation+get_angle_to(player_ref.global_position), laser_turn_speed)
 				#rotation = rotation-get_angle_to(player_ref.global_position)
 				laser_sights.clear_points()
-				laser_sights.add_point(Vector2.ZERO)
+				laser_sights.add_point(Vector2(bullet_spawn_distance,0))
 				laser_sights.add_point(Vector2(2000.0, 0.0))
 			else:
 				laser_sights.clear_points()

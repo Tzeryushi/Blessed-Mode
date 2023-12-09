@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://djnebbcu5ui4u"]
+
+[ext_resource type="PackedScene" uid="uid://dhl2vb5p2xx6p" path="res://Entities/Flock/BaseEnemy.tscn" id="1_nh41j"]
+[ext_resource type="Texture2D" uid="uid://c7dkdknoiw6vc" path="res://Entities/Flock/FlockSprites/EnemyBlueBasic.svg" id="2_0ysfk"]
+[ext_resource type="PackedScene" uid="uid://dt4ibyvrimcaq" path="res://Entities/Bullets/EnemyBullets/BlueEnemyMissile.tscn" id="2_6ksv6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xe7p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0ysfk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyBlue1" instance=ExtResource("1_nh41j")]
+mode_color = 2
+bullet_scene = ExtResource("2_6ksv6")
+
+[node name="Hitbox" parent="." index="0"]
+polygon = PackedVector2Array(-32, 0, 9, -41, 36, -15, 51, -15, 51, 15, 36, 15, 9, 41)
+
+[node name="Polygon2D" parent="VisualsGroup" index="0"]
+visible = false
+
+[node name="EnemySprite" parent="VisualsGroup" index="1"]
+sprite_frames = SubResource("SpriteFrames_4xe7p")

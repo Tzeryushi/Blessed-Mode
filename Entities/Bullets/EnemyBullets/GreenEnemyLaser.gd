@@ -1,5 +1,6 @@
 extends GreenLaser
 
+@export var endpoint_explosion : PackedScene
 	
 func _process(_delta) -> void:
 	#speed = minf(speed + (acceleration), top_speed)
@@ -32,13 +33,17 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 			break
 		laser_cast.force_raycast_update()
 	
+	var explosion : BaseBullet = endpoint_explosion.instantiate()
+	add_child(explosion)
 	#current collision is the endpoint, though any collisions in the array must be handled as well
 	#draw the line to the end
 	trail.add_point(Vector2.ZERO)
 	if laser_cast.is_colliding():
 		trail.add_point(to_local(laser_cast.get_collision_point()))
+		explosion.spawn(laser_cast.get_collision_point(), Vector2.ZERO)
 	else:
 		trail.add_point(Vector2.RIGHT*laser_length)
+		explosion.spawn(to_global(Vector2.RIGHT*laser_length), Vector2.ZERO)
 	
 	#handle application of damage
 	for enemy in collision_exception_array:
@@ -69,6 +74,4 @@ func update_trail() -> void:
 func _on_body_entered(body) -> void:
 	#this is specifically for enemies within the base radius of the initial explosion VFX
 	if body.is_in_group("player") and body is Player:
-		if body is Player:
-			Shake.add_trauma(shake)
 		body.take_damage(damage, get_mode_color())

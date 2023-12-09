@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://6ii61ff3ecgs"]
+[gd_scene load_steps=9 format=3 uid="uid://6ii61ff3ecgs"]
 
 [ext_resource type="Script" path="res://Scenes/TestScenes/testing_room.gd" id="1_0mq1j"]
 [ext_resource type="PackedScene" uid="uid://ds7bcbfgwevuw" path="res://Entities/Player/Player.tscn" id="1_nee7j"]
 [ext_resource type="PackedScene" uid="uid://deo1k2y517tdi" path="res://GUI/HUD/HUD.tscn" id="4_8rfl1"]
-[ext_resource type="PackedScene" uid="uid://dq2vu4dl2uv8k" path="res://Entities/Flock/RedFlock/EnemyRed1.tscn" id="5_5po75"]
 [ext_resource type="Texture2D" uid="uid://b88f4c3elbl8c" path="res://Scenes/Levels/TilemapAssets/WallBeta.svg" id="6_gjvp6"]
 [ext_resource type="PackedScene" uid="uid://cu6kx0jojqcgl" path="res://Entities/Flock/GreenFlock/EnemyGreen1.tscn" id="6_us3m6"]
 
@@ -44,18 +43,6 @@ layer_0/tile_data = PackedInt32Array(-1179680, 0, 0, -1114144, 0, 0, -1048608, 0
 layer = 0
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("4_8rfl1")]
-
-[node name="EnemyRed1" parent="." instance=ExtResource("5_5po75")]
-position = Vector2(-761, -387)
-collision_mask = 4
-
-[node name="EnemyRed2" parent="." instance=ExtResource("5_5po75")]
-position = Vector2(462, -711)
-collision_mask = 4
-
-[node name="EnemyRed3" parent="." instance=ExtResource("5_5po75")]
-position = Vector2(1086, 714)
-collision_mask = 4
 
 [node name="EnemyGreen1" parent="." instance=ExtResource("6_us3m6")]
 position = Vector2(-136, -401)

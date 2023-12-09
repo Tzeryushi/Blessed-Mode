@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://2vihwlqd70kn"]
+
+[ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_5j3d7"]
+[ext_resource type="Script" path="res://Entities/Bullets/EnemyBullets/GreenEnemyLaserEx.gd" id="2_2hynj"]
+
+[node name="GreenEnemyLaserEx" instance=ExtResource("1_5j3d7")]
+collision_layer = 16
+collision_mask = 5
+script = ExtResource("2_2hynj")
+mode_color = 1
+damage = 6
+
+[node name="Hitbox" parent="." index="0"]
+visible = false
+
+[node name="VisualsGroup" parent="." index="2"]
+modulate = Color(0, 1, 0, 1)
+
+[node name="Trail" parent="VisualsGroup" index="0"]
+visible = false

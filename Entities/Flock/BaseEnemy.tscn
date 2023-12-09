@@ -7,8 +7,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yowbj"]
 shader = ExtResource("3_vlqqi")
-shader_parameter/color = Color(0.25098, 0, 0, 1)
-shader_parameter/width = 6.0
+shader_parameter/color = Color(0.227451, 0.227451, 0.227451, 1)
+shader_parameter/width = 8.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true

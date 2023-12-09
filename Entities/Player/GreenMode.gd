@@ -5,6 +5,7 @@ extends ShipMode
 
 @onready var shield_sprite := $ShieldSprite
 @onready var shield_hitbox := $ShieldHitbox
+@onready var shield_collision := $ShieldHitbox/ShieldCollision
 
 var shield_active : bool = false
 var shield_normal_scale : Vector2 = Vector2.ZERO
@@ -14,6 +15,8 @@ func _ready() -> void:
 	shot_timer.timeout.connect(on_shot_timer_timeout)
 	shield_sprite.modulate.a = 0.0
 	shield_hitbox.monitoring = false
+	shield_hitbox.monitorable = false
+	shield_collision.disabled = true
 	shield_normal_scale = shield_sprite.scale
 
 func _unhandled_input(_event) -> void:
@@ -35,7 +38,9 @@ func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
 	if shield_active:
 		return
 	shield_active = true
+	shield_hitbox.monitorable = true
 	shield_hitbox.monitoring = true
+	shield_collision.disabled = false
 	if opacity_tween and opacity_tween.is_running():
 		opacity_tween.kill()
 	shield_sprite.scale = Vector2(1,1)
@@ -46,7 +51,9 @@ func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
 	
 func end_special_action() -> void:
 	shield_active = false
+	shield_hitbox.monitorable = false
 	shield_hitbox.monitoring = false
+	shield_collision.disabled = true
 	if opacity_tween and opacity_tween.is_running():
 		opacity_tween.kill()
 	opacity_tween = get_tree().create_tween()

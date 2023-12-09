@@ -44,7 +44,7 @@ colors = PackedColorArray(0.784314, 0, 0, 0.121569, 1, 0, 0, 0.603922, 1, 0, 0, 
 radius = 41.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_teapf"]
-radius = 62.0081
+radius = 62.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "mode_manager", "reticle", "hit_invincible_timer", "player_camera") groups=["player"]]
 z_index = 5
@@ -146,6 +146,7 @@ mode_name = "Green"
 one_shot = true
 
 [node name="ShieldHitbox" type="Area2D" parent="ModeManager/Green"]
+collision_layer = 32
 collision_mask = 18
 
 [node name="ShieldCollision" type="CollisionShape2D" parent="ModeManager/Green/ShieldHitbox"]

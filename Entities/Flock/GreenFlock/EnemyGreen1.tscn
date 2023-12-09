@@ -27,6 +27,7 @@ laser_timer = NodePath("LaserTimer")
 laser_charge_time = 5.0
 laser_turn_speed = 0.01
 mode_color = 1
+bullet_spawn_distance = 55.0
 fire_distance_threshold = 800.0
 acceleration = 15.0
 max_movement_speed = 300.0

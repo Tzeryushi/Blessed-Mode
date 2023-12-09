@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt4ibyvrimcaq"]
+
+[ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_158nn"]
+[ext_resource type="Script" path="res://Entities/Bullets/EnemyBullets/BlueEnemyMissile.gd" id="2_pwx00"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_itavq"]
+radius = 346.575
+
+[node name="BlueEnemyMissile" node_paths=PackedStringArray("seek_area") instance=ExtResource("1_158nn")]
+script = ExtResource("2_pwx00")
+seek_area = NodePath("SeekArea")
+float_time = 0.5
+float_distance = 50.0
+turning_power = 20.0
+turning_acceleration = 3.0
+
+[node name="SeekArea" type="Area2D" parent="." index="3"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeekArea" index="0"]
+shape = SubResource("CircleShape2D_itavq")
