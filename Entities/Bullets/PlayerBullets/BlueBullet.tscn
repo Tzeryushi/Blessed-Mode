@@ -1,12 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://te32ux48rni8"]
+[gd_scene load_steps=3 format=3 uid="uid://te32ux48rni8"]
 
 [ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_qfct7"]
+[ext_resource type="Texture2D" uid="uid://iq8r0l5jrdyg" path="res://Effects/ParticleSources/TinyCircle.svg" id="2_icjoj"]
 
 [node name="BlueBullet" instance=ExtResource("1_qfct7")]
-modulate = Color(0, 0, 1, 1)
 shake_ceiling = 0.31
 mode_color = 2
 damage = 2
 
+[node name="Hitbox" parent="." index="0"]
+visible = false
+
 [node name="VisualsGroup" parent="." index="2"]
 modulate = Color(0, 0, 1, 1)
+
+[node name="Trail" parent="VisualsGroup" index="0"]
+modulate = Color(1, 1, 1, 1)
+
+[node name="TinyCircle" type="Sprite2D" parent="." index="3"]
+scale = Vector2(0.705882, 0.705882)
+texture = ExtResource("2_icjoj")

@@ -7,12 +7,14 @@ extends ShipMode
 @onready var shield_hitbox := $ShieldHitbox
 
 var shield_active : bool = false
+var shield_normal_scale : Vector2 = Vector2.ZERO
 var opacity_tween : Tween
 
 func _ready() -> void:
 	shot_timer.timeout.connect(on_shot_timer_timeout)
 	shield_sprite.modulate.a = 0.0
 	shield_hitbox.monitoring = false
+	shield_normal_scale = shield_sprite.scale
 
 func _unhandled_input(_event) -> void:
 	if Input.is_action_just_released("special_action"):
@@ -36,8 +38,10 @@ func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
 	shield_hitbox.monitoring = true
 	if opacity_tween and opacity_tween.is_running():
 		opacity_tween.kill()
+	shield_sprite.scale = Vector2(1,1)
 	opacity_tween = get_tree().create_tween()
 	opacity_tween.tween_property(shield_sprite, "modulate:a", 1.0, 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	opacity_tween.parallel().tween_property(shield_sprite, "scale", shield_normal_scale, 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	#shield_sprite.modulate.a = 1.0
 	
 func end_special_action() -> void:
@@ -47,6 +51,7 @@ func end_special_action() -> void:
 		opacity_tween.kill()
 	opacity_tween = get_tree().create_tween()
 	opacity_tween.tween_property(shield_sprite, "modulate:a", 0.0, 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	opacity_tween.parallel().tween_property(shield_sprite, "scale", Vector2(1,1), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	#shield_sprite.modulate.a = 0.0
 
 func _on_shield_hitbox_area_entered(area):

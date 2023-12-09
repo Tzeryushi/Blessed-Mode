@@ -17,6 +17,7 @@ extends CharacterBody2D
 @export var enemy_sprite : AnimatedSprite2D
 @export var shot_timer : Timer
 @export var bullet_scene : PackedScene
+@export var navigation_agent : NavigationAgent2D
 
 var player_ref : Player
 
@@ -24,7 +25,10 @@ signal health_changed(value:int)
 
 func _ready() -> void:
 	shot_timer.wait_time = shot_cooldown
-	reference_setup()
+	navigation_agent.path_desired_distance = 4.0
+	navigation_agent.target_desired_distance = 4.0
+	
+	call_deferred("reference_setup")
 
 func _physics_process(_delta) -> void:
 	look_and_fire()
@@ -37,9 +41,13 @@ func look_and_fire() -> void:
 		if (player_ref.global_position-global_position).length() <= fire_distance_threshold:
 			if shot_timer.is_stopped(): #probably icky, but w/e
 				shoot(player_ref.global_position-global_position)
+		set_movement_target(player_ref.global_position)
 
 func set_movement_values(_delta:float) -> void:
 	pass
+
+func set_movement_target(_position:Vector2) -> void:
+	navigation_agent.target_position = _position
 
 func shoot(_direction_to_shoot:Vector2) -> void:
 	var bullet : BaseBullet = bullet_scene.instantiate()
@@ -54,7 +62,7 @@ func take_damage(_damage:int, _attacking_color:Globals.MODECOLOR=mode_color) -> 
 
 func reference_setup() -> void:
 	#requires us to wait a frame upon creation, beware putting essentials in here
-	await get_tree().process_frame
+	await get_tree().physics_frame
 	var tree = get_tree()
 	if tree.has_group("player"):
 		player_ref = tree.get_first_node_in_group("player")

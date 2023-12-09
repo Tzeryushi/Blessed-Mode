@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu6kx0jojqcgl"]
+
+[ext_resource type="PackedScene" uid="uid://dhl2vb5p2xx6p" path="res://Entities/Flock/BaseEnemy.tscn" id="1_2nux6"]
+[ext_resource type="Script" path="res://Entities/Flock/GreenFlock/EnemyGreen1.gd" id="2_hkwae"]
+[ext_resource type="PackedScene" uid="uid://bpmfww0ri4kjd" path="res://Entities/Bullets/EnemyBullets/GreenEnemyLaser.tscn" id="3_xh043"]
+[ext_resource type="Texture2D" uid="uid://8bwo7mqpmn3w" path="res://Entities/Flock/FlockSprites/EnemyGreenBasic.svg" id="4_twjp6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y5khp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_twjp6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_3qoxs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.142857), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="EnemyGreen1" node_paths=PackedStringArray("laser_sights", "laser_timer") instance=ExtResource("1_2nux6")]
+script = ExtResource("2_hkwae")
+laser_sights = NodePath("LaserSights")
+laser_timer = NodePath("LaserTimer")
+laser_charge_time = 5.0
+laser_turn_speed = 0.007
+mode_color = 1
+fire_distance_threshold = 800.0
+acceleration = 15.0
+max_movement_speed = 300.0
+bullet_scene = ExtResource("3_xh043")
+
+[node name="Hitbox" parent="." index="0"]
+polygon = PackedVector2Array(-26, 18, -26, -18, 5, -35, 36, -18, 36, 18, 5, 35)
+
+[node name="Polygon2D" parent="VisualsGroup" index="0"]
+visible = false
+
+[node name="EnemySprite" parent="VisualsGroup" index="1"]
+sprite_frames = SubResource("SpriteFrames_y5khp")
+
+[node name="LaserSights" type="Line2D" parent="." index="4"]
+width = 6.0
+width_curve = SubResource("Curve_3qoxs")
+default_color = Color(0, 1, 0, 0.462745)
+
+[node name="LaserTimer" type="Timer" parent="." index="5"]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]

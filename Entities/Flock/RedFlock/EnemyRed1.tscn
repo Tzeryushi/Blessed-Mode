@@ -25,10 +25,9 @@ max_movement_speed = 1000.0
 position = Vector2(-21, -23)
 polygon = PackedVector2Array(0, -13, 61, 23, 0, 59)
 
-[node name="Polygon2D" parent="." index="2"]
+[node name="Polygon2D" parent="VisualsGroup" index="0"]
 visible = false
 
-[node name="EnemySprite" parent="VisualsGroup" index="0"]
+[node name="EnemySprite" parent="VisualsGroup" index="1"]
 position = Vector2(10, 0)
-scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_2qppi")

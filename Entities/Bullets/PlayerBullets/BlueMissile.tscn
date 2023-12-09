@@ -15,7 +15,7 @@ float_distance = 70.0
 turning_power = 20.0
 turning_acceleration = 3.0
 mode_color = 2
-damage = 2
+damage = 3
 top_speed = 2500.0
 acceleration = 100.0
 

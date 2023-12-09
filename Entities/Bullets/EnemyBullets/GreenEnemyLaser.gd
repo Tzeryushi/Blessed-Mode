@@ -1,16 +1,5 @@
-class_name GreenLaser
-extends BaseBullet
+extends GreenLaser
 
-@export var laser_cast : RayCast2D
-@export var laser_length : float = 2000
-
-func _ready():
-	laser_cast.target_position.x = laser_length
-	
-	#timer calulates laser fade time in this case
-	life_timer.wait_time = lifetime
-	#life_timer.start()
-	
 	
 func _process(_delta) -> void:
 	#speed = minf(speed + (acceleration), top_speed)
@@ -36,7 +25,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	#we scan the raycast and add exception to pierce if enemies are weak to the attack
 	while laser_cast.is_colliding():
 		var body = laser_cast.get_collider()
-		if (body is BaseEnemy or body is Player) and Globals.is_mode_color_effective(get_mode_color(), body.get_mode_color()):
+		if (body is Player) and Globals.is_mode_color_effective(get_mode_color(), body.get_mode_color()):
 			collision_exception_array.append(body)
 			laser_cast.add_exception(body)
 		else:
@@ -51,12 +40,10 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	else:
 		trail.add_point(Vector2.RIGHT*laser_length)
 	
-	Shake.add_trauma(shake, shake_ceiling)
-	
 	#handle application of damage
 	for enemy in collision_exception_array:
 		enemy.take_damage(damage, get_mode_color())
-	if laser_cast.get_collider() is BaseEnemy or laser_cast.get_collider() is Player:
+	if laser_cast.get_collider() is Player:
 		laser_cast.get_collider().take_damage(damage, get_mode_color())
 	
 	#clean out exceptions - probably unnecessary
@@ -80,7 +67,7 @@ func update_trail() -> void:
 
 func _on_body_entered(body) -> void:
 	#this is specifically for enemies within the base radius of the initial explosion VFX
-	if body.is_in_group("enemy") and body is BaseEnemy:
-		if body is BaseEnemy:
+	if body.is_in_group("player") and body is Player:
+		if body is Player:
 			Shake.add_trauma(shake)
 		body.take_damage(damage, get_mode_color())

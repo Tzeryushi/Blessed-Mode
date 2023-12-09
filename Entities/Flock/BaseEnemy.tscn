@@ -1,8 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhl2vb5p2xx6p"]
+[gd_scene load_steps=7 format=3 uid="uid://dhl2vb5p2xx6p"]
 
 [ext_resource type="Script" path="res://Entities/Flock/BaseEnemy.gd" id="1_4nhy6"]
 [ext_resource type="PackedScene" uid="uid://cavd0ctnmul3e" path="res://Entities/Bullets/EnemyBullets/RedEnemyBullet.tscn" id="2_1leni"]
+[ext_resource type="Shader" path="res://Effects/Shaders/Outline.gdshader" id="3_vlqqi"]
 [ext_resource type="Texture2D" uid="uid://brbs2fcftaaqj" path="res://Entities/Flock/FlockSprites/EnemyRedBasic.svg" id="3_vqkig"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yowbj"]
+shader = ExtResource("3_vlqqi")
+shader_parameter/color = Color(0.25098, 0, 0, 1)
+shader_parameter/width = 6.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a8dwn"]
 animations = [{
@@ -15,28 +24,32 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="BaseEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemy_sprite", "shot_timer") groups=["enemy"]]
+[node name="BaseEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemy_sprite", "shot_timer", "navigation_agent") groups=["enemy"]]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 7
 script = ExtResource("1_4nhy6")
 health = 40
 enemy_sprite = NodePath("VisualsGroup/EnemySprite")
 shot_timer = NodePath("ShotTimer")
 bullet_scene = ExtResource("2_1leni")
+navigation_agent = NodePath("NavigationAgent2D")
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(1, -24, 10, -22, 16, -18, 21, -12, 23, -6, 24, -1, 24, -1, 23, 6, 21, 11, 17, 17, 11, 21, 3, 24, -4, 24, -12, 21, -18, 16, -22, 9, -24, 1, -23, -8, -18, -16, -12, -21, -7, -23)
+polygon = PackedVector2Array(-22, 36, -22, -36, 40, 0)
 
 [node name="ShotTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="VisualsGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_yowbj")
+
+[node name="Polygon2D" type="Polygon2D" parent="VisualsGroup"]
 position = Vector2(27, 0)
 polygon = PackedVector2Array(0, -12, 44, 0, 0, 12)
-
-[node name="VisualsGroup" type="CanvasGroup" parent="."]
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="VisualsGroup"]
 position = Vector2(9, 0)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_a8dwn")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
