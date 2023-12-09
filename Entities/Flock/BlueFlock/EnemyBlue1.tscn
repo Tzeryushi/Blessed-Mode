@@ -17,15 +17,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyBlue1" node_paths=PackedStringArray("missile_timer") instance=ExtResource("1_nh41j")]
+[node name="EnemyBlue1" node_paths=PackedStringArray("missile_timer", "sight_cast") instance=ExtResource("1_nh41j")]
 script = ExtResource("2_tqduu")
 missile_scene = ExtResource("2_6ksv6")
 missile_timer = NodePath("MissileTimer")
+sight_cast = NodePath("SightCast")
 missile_release_time = 1.2
 mode_color = 2
 body_damage = 2
 fire_distance_threshold = 750.0
 shot_cooldown = 0.7
+acceleration = 3.0
+max_movement_speed = 400.0
 bullet_scene = ExtResource("4_leqmp")
 
 [node name="Hitbox" parent="." index="0"]
@@ -39,3 +42,8 @@ sprite_frames = SubResource("SpriteFrames_4xe7p")
 
 [node name="MissileTimer" type="Timer" parent="." index="4"]
 one_shot = true
+
+[node name="SightCast" type="RayCast2D" parent="." index="5"]
+collision_mask = 5
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

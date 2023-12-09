@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://te32ux48rni8"]
+[gd_scene load_steps=4 format=3 uid="uid://te32ux48rni8"]
 
 [ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_qfct7"]
 [ext_resource type="Texture2D" uid="uid://iq8r0l5jrdyg" path="res://Effects/ParticleSources/TinyCircle.svg" id="2_icjoj"]
+
+[sub_resource type="Gradient" id="Gradient_y4ab8"]
+offsets = PackedFloat32Array(0.516779, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
 [node name="BlueBullet" instance=ExtResource("1_qfct7")]
 shake_ceiling = 0.31
@@ -16,6 +20,7 @@ modulate = Color(0, 0, 1, 1)
 
 [node name="Trail" parent="VisualsGroup" index="0"]
 modulate = Color(1, 1, 1, 1)
+gradient = SubResource("Gradient_y4ab8")
 
 [node name="TinyCircle" type="Sprite2D" parent="." index="3"]
 scale = Vector2(0.705882, 0.705882)

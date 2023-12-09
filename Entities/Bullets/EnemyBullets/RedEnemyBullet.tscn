@@ -10,3 +10,6 @@ script = ExtResource("2_b6m3o")
 shake = 0.0
 damage = 3
 speed = 300.0
+
+[node name="TinyCircle" parent="." index="3"]
+modulate = Color(0.172549, 0.172549, 0.172549, 1)

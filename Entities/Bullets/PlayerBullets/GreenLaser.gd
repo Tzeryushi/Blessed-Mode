@@ -4,6 +4,8 @@ extends BaseBullet
 @export var laser_cast : RayCast2D
 @export var laser_length : float = 2000
 
+@onready var tiny_circle := $TinyCircle
+
 func _ready():
 	laser_cast.target_position.x = laser_length
 	
@@ -68,6 +70,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(visuals_group, "self_modulate:a", 0.0, life_timer.wait_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.parallel().tween_property(tiny_circle, "self_modulate:a", 0.0, life_timer.wait_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	await tween.finished
 	destroy()
 

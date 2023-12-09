@@ -5,6 +5,18 @@
 [node name="BlueEnemyBullet" instance=ExtResource("1_cs3ht")]
 collision_layer = 16
 collision_mask = 5
+speed = 500.0
+top_speed = 700.0
+
+[node name="Hitbox" parent="." index="0"]
+visible = true
+
+[node name="VisualsGroup" parent="." index="2"]
+modulate = Color(0.231373, 0.231373, 0.741176, 1)
+
+[node name="Sprite2D" parent="VisualsGroup" index="1"]
+scale = Vector2(0.481928, 0.481928)
 
 [node name="TinyCircle" parent="." index="3"]
 modulate = Color(0.172549, 0.172549, 0.172549, 1)
+scale = Vector2(0.941176, 0.941176)

@@ -2,14 +2,21 @@ extends BaseEnemy
 
 @export var missile_scene : PackedScene
 @export var missile_timer : Timer
+@export var sight_cast : RayCast2D
 @export var missile_release_time : float
+
+func _ready() -> void:
+	sight_cast.target_position = Vector2(fire_distance_threshold, 0.0)
+	super()
 
 func look_and_fire() -> void:
 	if player_ref:
 		look_at(player_ref.global_position)
 		if (player_ref.global_position-global_position).length() <= fire_distance_threshold:
-			if shot_timer.is_stopped(): #probably icky, but w/e
-				shoot(player_ref.global_position-global_position)
+			sight_cast.force_raycast_update()
+			if sight_cast.is_colliding() and sight_cast.get_collider() is Player:
+				if shot_timer.is_stopped(): #probably icky, but w/e
+					shoot(player_ref.global_position-global_position)
 		if missile_timer.is_stopped():
 			fire_missile()
 		set_movement_target(player_ref.global_position)

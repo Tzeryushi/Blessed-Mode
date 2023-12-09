@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://q570k1lo1j5p"]
+[gd_scene load_steps=5 format=3 uid="uid://q570k1lo1j5p"]
 
 [ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_lgsf5"]
 [ext_resource type="Script" path="res://Entities/Bullets/PlayerBullets/GreenLaser.gd" id="2_0507a"]
+[ext_resource type="Texture2D" uid="uid://iq8r0l5jrdyg" path="res://Effects/ParticleSources/TinyCircle.svg" id="3_5ime8"]
 
 [sub_resource type="Curve" id="Curve_6nl3h"]
 _data = [Vector2(0, 0.852941), 0.0, 0.0, 0, 0, Vector2(0.994652, 1), 0.0, 0.0, 0, 0]
@@ -34,3 +35,7 @@ scale = Vector2(0.53012, 0.530121)
 enabled = false
 target_position = Vector2(150, 0)
 collision_mask = 6
+
+[node name="TinyCircle" type="Sprite2D" parent="." index="4"]
+scale = Vector2(1.05882, 1.05882)
+texture = ExtResource("3_5ime8")
