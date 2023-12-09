@@ -60,17 +60,11 @@ collision_mask = 4
 [node name="EnemyGreen1" parent="." instance=ExtResource("6_us3m6")]
 position = Vector2(-136, -401)
 collision_mask = 4
-laser_charge_time = 5.0
-laser_turn_speed = 0.007
 
 [node name="EnemyGreen2" parent="." instance=ExtResource("6_us3m6")]
 position = Vector2(-1755, -226)
 collision_mask = 4
-laser_charge_time = 5.0
-laser_turn_speed = 0.007
 
 [node name="EnemyGreen3" parent="." instance=ExtResource("6_us3m6")]
 position = Vector2(-1078, 907)
 collision_mask = 4
-laser_charge_time = 5.0
-laser_turn_speed = 0.007

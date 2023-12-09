@@ -5,7 +5,6 @@ extends BaseEnemy
 @export var laser_charge_time : float = 5.0
 @export var laser_turn_speed : float = 0.007
 
-var wait_position : Vector2 = Vector2.ZERO
 var is_firing_laser : bool = false : set = set_firing
 
 func _ready() -> void:
@@ -20,15 +19,16 @@ func look_and_fire() -> void:
 			#if shot_timer.is_stopped(): #probably icky, but w/e
 				#shoot(player_ref.global_position-global_position)
 		if !is_firing_laser and (player_ref.global_position-global_position).length() <= fire_distance_threshold:
+			set_movement_target(global_position)
 			if shot_timer.is_stopped():
-				wait_position = global_position
-				set_movement_target(wait_position)
 				laser_timer.start()
-				print(laser_timer.wait_time)
 				set_firing(true)
 		elif is_firing_laser:
 			if !laser_timer.is_stopped():
-				rotation = move_toward(rotation, rotation+get_angle_to(player_ref.global_position), laser_turn_speed)
+				if player_ref.get_mode_color() == Globals.MODECOLOR.BLUE:
+					look_at(player_ref.global_position)
+				else:
+					rotation = move_toward(rotation, rotation+get_angle_to(player_ref.global_position), laser_turn_speed)
 				#rotation = rotation-get_angle_to(player_ref.global_position)
 				laser_sights.clear_points()
 				laser_sights.add_point(Vector2.ZERO)
@@ -58,5 +58,4 @@ func set_firing(value:bool) -> void:
 
 
 func _on_laser_timer_timeout():
-	print("abodogo")
 	pass # Replace with function body.
