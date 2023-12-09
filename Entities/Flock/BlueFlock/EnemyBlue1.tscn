@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://djnebbcu5ui4u"]
+[gd_scene load_steps=7 format=3 uid="uid://djnebbcu5ui4u"]
 
 [ext_resource type="PackedScene" uid="uid://dhl2vb5p2xx6p" path="res://Entities/Flock/BaseEnemy.tscn" id="1_nh41j"]
 [ext_resource type="Texture2D" uid="uid://c7dkdknoiw6vc" path="res://Entities/Flock/FlockSprites/EnemyBlueBasic.svg" id="2_0ysfk"]
 [ext_resource type="PackedScene" uid="uid://dt4ibyvrimcaq" path="res://Entities/Bullets/EnemyBullets/BlueEnemyMissile.tscn" id="2_6ksv6"]
+[ext_resource type="Script" path="res://Entities/Flock/BlueFlock/EnemyBlue1.gd" id="2_tqduu"]
+[ext_resource type="PackedScene" uid="uid://bw01ap17bst3k" path="res://Entities/Bullets/EnemyBullets/BlueEnemyBullet.tscn" id="4_leqmp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4xe7p"]
 animations = [{
@@ -15,9 +17,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyBlue1" instance=ExtResource("1_nh41j")]
+[node name="EnemyBlue1" node_paths=PackedStringArray("missile_timer") instance=ExtResource("1_nh41j")]
+script = ExtResource("2_tqduu")
+missile_scene = ExtResource("2_6ksv6")
+missile_timer = NodePath("MissileTimer")
+missile_release_time = 1.2
 mode_color = 2
-bullet_scene = ExtResource("2_6ksv6")
+body_damage = 2
+fire_distance_threshold = 1000.0
+shot_cooldown = 0.7
+bullet_scene = ExtResource("4_leqmp")
 
 [node name="Hitbox" parent="." index="0"]
 polygon = PackedVector2Array(-32, 0, 9, -41, 36, -15, 51, -15, 51, 15, 36, 15, 9, 41)
@@ -27,3 +36,6 @@ visible = false
 
 [node name="EnemySprite" parent="VisualsGroup" index="1"]
 sprite_frames = SubResource("SpriteFrames_4xe7p")
+
+[node name="MissileTimer" type="Timer" parent="." index="4"]
+one_shot = true

@@ -45,6 +45,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 func seek() -> void:
 	#await get_tree().process_frame
 	var target_array = seek_area.get_overlapping_bodies()
+	monitoring = true
 	if target_array.is_empty():
 		if life_timer.is_stopped():
 			life_timer.start()
@@ -53,7 +54,6 @@ func seek() -> void:
 	if target_array.front() and target_array.front() is BaseEnemy:
 		target_body = target_array.front()
 		target_body.tree_exiting.connect(clear_body_ref)
-	monitoring = true
 
 func sort_color(a, b):
 	if a.get_mode_color() < b.get_mode_color():

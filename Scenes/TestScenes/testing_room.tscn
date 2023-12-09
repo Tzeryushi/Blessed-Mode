@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scenes/TestScenes/testing_room.gd" id="1_0mq1j"]
 [ext_resource type="PackedScene" uid="uid://ds7bcbfgwevuw" path="res://Entities/Player/Player.tscn" id="1_nee7j"]
 [ext_resource type="PackedScene" uid="uid://deo1k2y517tdi" path="res://GUI/HUD/HUD.tscn" id="4_8rfl1"]
+[ext_resource type="PackedScene" uid="uid://djnebbcu5ui4u" path="res://Entities/Flock/BlueFlock/EnemyBlue1.tscn" id="5_ukktj"]
 [ext_resource type="Texture2D" uid="uid://b88f4c3elbl8c" path="res://Scenes/Levels/TilemapAssets/WallBeta.svg" id="6_gjvp6"]
-[ext_resource type="PackedScene" uid="uid://cu6kx0jojqcgl" path="res://Entities/Flock/GreenFlock/EnemyGreen1.tscn" id="6_us3m6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_28ty1"]
 vertices = PackedVector2Array(2235, -1412, 2208, 1480, 2058, 1226, 2058, -1226, -2183, -1384, -2058, -1226, -2268, 1399, -2058, 1226, 1546, 842, 1910, 1078, -1910, 1078, 502, 842, 1910, -1078, 1546, 758, -886, -54, -586, -202, -586, 10, -886, -842, 694, -458, 694, 138, 502, 374, -374, 10, -374, -202, 586, 758, 586, 586, 1546, 586, 1546, -458, -1910, -1078, -1334, -246, -1334, -758, -970, -758, -970, -138, -1526, -138, -1418, -246, -1526, -906, -1418, -842, 778, 138, 778, -374, 1462, -374, 1462, 374, -1610, -54, -1610, -906)
@@ -44,14 +44,5 @@ layer = 0
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("4_8rfl1")]
 
-[node name="EnemyGreen1" parent="." instance=ExtResource("6_us3m6")]
-position = Vector2(-136, -401)
-collision_mask = 4
-
-[node name="EnemyGreen2" parent="." instance=ExtResource("6_us3m6")]
-position = Vector2(-1755, -226)
-collision_mask = 4
-
-[node name="EnemyGreen3" parent="." instance=ExtResource("6_us3m6")]
-position = Vector2(-1078, 907)
-collision_mask = 4
+[node name="EnemyBlue1" parent="." instance=ExtResource("5_ukktj")]
+position = Vector2(-452, 378)

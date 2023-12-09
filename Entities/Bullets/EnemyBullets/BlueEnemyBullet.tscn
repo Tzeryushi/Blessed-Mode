@@ -5,3 +5,6 @@
 [node name="BlueEnemyBullet" instance=ExtResource("1_cs3ht")]
 collision_layer = 16
 collision_mask = 5
+
+[node name="TinyCircle" parent="." index="3"]
+modulate = Color(0.172549, 0.172549, 0.172549, 1)

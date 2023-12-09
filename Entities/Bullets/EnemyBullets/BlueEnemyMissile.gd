@@ -32,18 +32,20 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	#life_timer.start()
 	monitoring = false
 	global_position = _position
-	direction = _direction.normalized()
+	direction = Vector2.RIGHT
 	rotation = direction.angle()
 	randomize()
 	var rand_position = global_position + (direction.rotated(randf_range(-PI,PI))*float_distance)
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", rand_position, float_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	direction = Vector2.ZERO
 	await tween.finished
 	seek()
 
 func seek() -> void:
 	#await get_tree().process_frame
 	var target_array = seek_area.get_overlapping_bodies()
+	monitoring = true
 	if target_array.is_empty():
 		if life_timer.is_stopped():
 			life_timer.start()
@@ -51,7 +53,6 @@ func seek() -> void:
 	if target_array.front() and target_array.front() is Player:
 		target_body = target_array.front()
 		target_body.tree_exiting.connect(clear_body_ref)
-	monitoring = true
 
 func _on_body_entered(body) -> void:
 	if target_body and body == target_body:
