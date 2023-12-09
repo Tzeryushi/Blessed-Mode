@@ -8,5 +8,5 @@ shake_ceiling = 0.31
 mode_color = 2
 damage = 2
 
-[node name="Trail" parent="." index="0"]
-default_color = Color(0, 0, 1, 1)
+[node name="VisualsGroup" parent="." index="2"]
+modulate = Color(0, 0, 1, 1)

@@ -21,7 +21,8 @@ extends Node2D
 
 @export_category("Ship Properties")
 @export var max_health : int = 20
-@export var max_juice : float = 20.0
+@export var max_juice : float = 30.0
+@export var juice_regen_rate : float = 0.1
 @export var hit_invincible_time : float = 0.5
 
 @export_category("VFX Properties")
@@ -33,7 +34,7 @@ extends Node2D
 @onready var juice : float = max_juice : set = set_juice
 
 var current_ship_mode : ShipMode
-var combo_count : int = 2 : set = set_combo
+var combo_count : int = 0 : set = set_combo
 
 #flags
 var is_shooting : bool = false
@@ -44,7 +45,7 @@ var is_hit_invincible : bool = false
 var can_use_special : bool = true
 
 signal health_changed(value:int, max_health:int)
-signal juice_changed(value:float, max_juice:float)
+signal juice_changed(value:float, max_juice:float, is_recharging:bool)
 signal mode_changed(mode:Globals.MODECOLOR)
 signal combo_changed(value:int)
 
@@ -67,9 +68,7 @@ func _process(_delta) -> void:
 	state_manager.process_frame(_delta)
 	current_ship_mode.process_frame(_delta)
 	
-	make_single_ghost(0.05*min(combo_count,10))
-	if Input.is_action_pressed("special_action"):
-		set_juice(juice-current_ship_mode.special_depletion_rate)
+	make_single_ghost(0.02*min(combo_count,10))
 	
 	#camera operations
 	reticle.update_reticle_position()
@@ -119,6 +118,7 @@ func take_damage(_damage:int=1, _attacking_color:Globals.MODECOLOR=get_mode_colo
 	if is_invincible:
 		return
 	health = get_health()-Globals.multiply_by_mode(_damage, _attacking_color, get_mode_color())
+	set_combo(0)
 	
 	Shake.set_camera(player_camera)
 	Shake.add_trauma(0.6)
@@ -130,12 +130,16 @@ func set_combo(value:int) -> void:
 	combo_count = value
 	combo_changed.emit(combo_count)
 func set_juice(value:float) -> void:
-	juice = value
-	juice_changed.emit(juice, max_juice)
+	juice = clamp(value, 0.0, max_juice)
+	if can_use_special and juice <= 0.0:
+		can_use_special = false
+	elif !can_use_special and juice >= max_juice:
+		can_use_special = true
+	juice_changed.emit(juice, max_juice, !can_use_special)
 func get_health() -> int:
 	return health
 func set_health(value:int) -> void:
-	health = value
+	health = clamp(value, 0, max_health)
 	health_changed.emit(health, max_health)
 func set_hit_invincibility(value:bool) -> void:
 	is_hit_invincible = value

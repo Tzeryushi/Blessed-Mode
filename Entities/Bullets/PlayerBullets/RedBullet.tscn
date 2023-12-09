@@ -8,8 +8,5 @@ damage = 10
 speed = 1300.0
 top_speed = 2000.0
 
-[node name="Trail" parent="." index="0"]
-default_color = Color(1, 0, 0, 1)
-
-[node name="Sprite2D" parent="." index="1"]
+[node name="VisualsGroup" parent="." index="2"]
 modulate = Color(1, 0, 0, 1)

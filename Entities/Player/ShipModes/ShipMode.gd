@@ -23,6 +23,7 @@ extends Node
 
 var player : Player	#set by mode manager
 var can_shoot : bool = true
+var is_special_activated : bool = false
 
 func _ready() -> void:
 	shot_timer.timeout.connect(on_shot_timer_timeout)

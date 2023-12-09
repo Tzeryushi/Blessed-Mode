@@ -3,34 +3,24 @@
 [ext_resource type="Script" path="res://Entities/Bullets/BaseBullet.gd" id="1_yv4m2"]
 [ext_resource type="Texture2D" uid="uid://bcdtpygg5g5hx" path="res://Effects/ParticleSources/CircleWhite.svg" id="2_oqlqx"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_g5050"]
+radius = 1.875
+
 [sub_resource type="Curve" id="Curve_v5ys2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.994652, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g5050"]
-radius = 1.875
-
-[node name="BaseBullet" type="Area2D" node_paths=PackedStringArray("trail", "life_timer") groups=["bullet"]]
+[node name="BaseBullet" type="Area2D" node_paths=PackedStringArray("visuals_group", "trail", "life_timer") groups=["bullet"]]
 collision_layer = 8
 collision_mask = 6
 script = ExtResource("1_yv4m2")
-trail = NodePath("Trail")
+visuals_group = NodePath("VisualsGroup")
+trail = NodePath("VisualsGroup/Trail")
 trail_length = 8
 speed = 1000.0
 top_speed = 1600.0
 acceleration = 10.0
 life_timer = NodePath("LifeTimer")
-
-[node name="Trail" type="Line2D" parent="."]
-modulate = Color(1, 1, 1, 0.65098)
-z_index = -1
-width = 15.0
-width_curve = SubResource("Curve_v5ys2")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
-scale = Vector2(0.361446, 0.361446)
-texture = ExtResource("2_oqlqx")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 scale = Vector2(8, 8)
@@ -38,6 +28,20 @@ shape = SubResource("CircleShape2D_g5050")
 
 [node name="LifeTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="VisualsGroup" type="CanvasGroup" parent="."]
+
+[node name="Trail" type="Line2D" parent="VisualsGroup"]
+modulate = Color(1, 1, 1, 0.65098)
+z_index = -1
+width = 15.0
+width_curve = SubResource("Curve_v5ys2")
+joint_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="VisualsGroup"]
+z_index = -1
+scale = Vector2(0.361446, 0.361446)
+texture = ExtResource("2_oqlqx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

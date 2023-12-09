@@ -16,6 +16,12 @@ func _ready() -> void:
 func _unhandled_input(_event) -> void:
 	if is_rocketing and Input.is_action_just_released("special_action"):
 		end_special_action()
+func process_physics(_delta) -> void:
+	super(_delta)
+	if is_rocketing:
+		player.set_juice(player.juice-special_depletion_rate)
+	else:
+		player.set_juice(player.juice+player.juice_regen_rate)
 func idle(_delta:float) -> void:
 	if is_rocketing:
 		return
@@ -39,6 +45,12 @@ func shoot(_direction:Vector2, _mouse_location:Vector2) -> void:
 	bullet.spawn(player.global_position+(_mouse_location.normalized()*bullet_spawn_distance), _mouse_location)
 
 func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
+	if !player.can_use_special:
+		if is_rocketing:
+			end_special_action()
+		return #TODO: visual feedback for inability
+	if !is_special_activated:
+		is_special_activated = true
 	is_rocketing = true
 	red_trail.generate = true
 	player.set_dash_invincibility(true)

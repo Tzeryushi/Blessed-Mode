@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://daw2cee4dghi8"]
+[gd_scene load_steps=6 format=3 uid="uid://daw2cee4dghi8"]
 
 [ext_resource type="PackedScene" uid="uid://6ii61ff3ecgs" path="res://Scenes/TestScenes/testing_room.tscn" id="1_iedkw"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_x3nv7"]
@@ -27,6 +27,12 @@ shader_parameter/warp_amount = 0.266
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.1
 shader_parameter/vignette_opacity = 0.676
+
+[sub_resource type="Environment" id="Environment_dvqw5"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 0
+glow_hdr_threshold = 0.8
 
 [node name="Main" type="Control" node_paths=PackedStringArray("subviewport")]
 layout_mode = 3
@@ -66,6 +72,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_dvqw5")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 

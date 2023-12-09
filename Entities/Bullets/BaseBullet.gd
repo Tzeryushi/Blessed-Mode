@@ -1,6 +1,7 @@
 class_name BaseBullet
 extends Area2D
 
+@export var visuals_group : CanvasGroup
 @export var trail : Line2D
 @export var trail_length : int = 15
 @export var shake : float = 0.2

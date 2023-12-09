@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_lgsf5"]
 [ext_resource type="Script" path="res://Entities/Bullets/PlayerBullets/GreenLaser.gd" id="2_0507a"]
 
-[sub_resource type="Curve" id="Curve_xwn00"]
-_data = [Vector2(0, 0.818213), 0.0, 0.0, 0, 0, Vector2(0.994652, 1), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_6nl3h"]
+_data = [Vector2(0, 0.852941), 0.0, 0.0, 0, 0, Vector2(0.994652, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="GreenLaser" node_paths=PackedStringArray("laser_cast") instance=ExtResource("1_lgsf5")]
@@ -17,20 +17,20 @@ mode_color = 1
 damage = 20
 lifetime = 1.0
 
-[node name="Trail" parent="." index="0"]
-modulate = Color(1, 1, 1, 1)
-z_index = -3
-points = PackedVector2Array(0, 0, 72, 0)
-width = 10.0
-width_curve = SubResource("Curve_xwn00")
-default_color = Color(0, 0.92549, 0, 1)
-joint_mode = 2
-end_cap_mode = 2
-
-[node name="Sprite2D" parent="." index="1"]
+[node name="VisualsGroup" parent="." index="2"]
 modulate = Color(0, 1, 0, 1)
 
-[node name="LaserRayCast" type="RayCast2D" parent="." index="4"]
+[node name="Trail" parent="VisualsGroup" index="0"]
+z_index = 0
+width_curve = SubResource("Curve_6nl3h")
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Sprite2D" parent="VisualsGroup" index="1"]
+z_index = 0
+scale = Vector2(0.53012, 0.530121)
+
+[node name="LaserRayCast" type="RayCast2D" parent="." index="3"]
 enabled = false
 target_position = Vector2(150, 0)
 collision_mask = 6

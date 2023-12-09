@@ -17,10 +17,10 @@
 [ext_resource type="SpriteFrames" uid="uid://d01oxu78mo703" path="res://Entities/Player/PlayerSprites/BlueSpriteFrames.tres" id="11_47w8v"]
 [ext_resource type="Script" path="res://Entities/Player/Reticle.gd" id="12_rg2be"]
 [ext_resource type="PackedScene" uid="uid://te32ux48rni8" path="res://Entities/Bullets/PlayerBullets/BlueBullet.tscn" id="13_edsgn"]
-[ext_resource type="Texture2D" uid="uid://gwe475foxqna" path="res://Entities/Flock/FlockSprites/PlaceHolderEnemy.svg" id="13_unq7x"]
 [ext_resource type="PackedScene" uid="uid://bf0qecyc6hadi" path="res://Entities/Bullets/PlayerBullets/BlueMissile.tscn" id="15_1fav8"]
 [ext_resource type="Texture2D" uid="uid://bm071hdbldvpq" path="res://Entities/Player/PlayerSprites/ShieldRingWhite.svg" id="15_wc4d4"]
 [ext_resource type="PackedScene" uid="uid://cou1lncdkg7t7" path="res://Effects/Visual Effects/GenericTrail.tscn" id="18_a2ex0"]
+[ext_resource type="Texture2D" uid="uid://ixxjge24lmag" path="res://GUI/Cursors/Reticle.svg" id="21_60h0n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bcwqn"]
 radius = 14.0357
@@ -41,7 +41,7 @@ offsets = PackedFloat32Array(0, 0.889241, 0.981013)
 colors = PackedColorArray(0.784314, 0, 0, 0.121569, 1, 0, 0, 0.603922, 1, 0, 0, 0.341176)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ty3ig"]
-radius = 37.1214
+radius = 41.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_teapf"]
 radius = 62.0081
@@ -57,7 +57,8 @@ hit_invincible_timer = NodePath("HitInvincibleTimer")
 player_camera = NodePath("PlayerCamera")
 cursor_ratio = 0.3
 max_health = 40
-hit_invincible_time = 0.2
+juice_regen_rate = 0.07
+hit_invincible_time = 0.3
 ghost_scene = ExtResource("2_wrykh")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -97,11 +98,13 @@ swap_timer = NodePath("SwapTimer")
 
 [node name="Red" type="Node2D" parent="ModeManager" node_paths=PackedStringArray("shot_timer") groups=["redmode"]]
 script = ExtResource("4_5e48n")
+rocket_damage = 20
 acceleration = 60.0
 decceleration = 8.0
 max_movement_speed = 1000.0
+special_depletion_rate = 0.3
 bullet_scene = ExtResource("8_beqr1")
-bullet_spawn_distance = 60.0
+bullet_spawn_distance = 40.0
 shot_timer = NodePath("RedTimer")
 ship_sprites = ExtResource("2_x5h3b")
 mode_name = "Red"
@@ -113,14 +116,13 @@ one_shot = true
 [node name="RedTrail" parent="ModeManager/Red" instance=ExtResource("18_a2ex0")]
 z_index = 2
 position = Vector2(53, 0)
-width = 56.0
+width = 68.0
 gradient = SubResource("Gradient_kum5c")
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="DashHitbox" type="Area2D" parent="ModeManager/Red"]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -132,7 +134,9 @@ script = ExtResource("8_3rm7t")
 acceleration = 15.0
 decceleration = 15.0
 max_movement_speed = 250.0
+special_depletion_rate = 0.01
 bullet_scene = ExtResource("10_xeyoa")
+bullet_spawn_distance = 48.0
 shot_timer = NodePath("GreenTimer")
 ship_sprites = ExtResource("9_2ghl3")
 mode_color = 1
@@ -148,7 +152,7 @@ collision_mask = 18
 shape = SubResource("CircleShape2D_teapf")
 
 [node name="ShieldSprite" type="Sprite2D" parent="ModeManager/Green"]
-modulate = Color(0, 1, 0, 0)
+modulate = Color(0, 1, 0, 1)
 scale = Vector2(0.485075, 0.485075)
 texture = ExtResource("15_wc4d4")
 
@@ -158,7 +162,9 @@ missile_timer = NodePath("MissileTimer")
 missile_scene = ExtResource("15_1fav8")
 acceleration = 35.0
 decceleration = 15.0
+special_depletion_rate = 1.5
 bullet_scene = ExtResource("13_edsgn")
+bullet_spawn_distance = 35.0
 shot_timer = NodePath("BlueTimer")
 ship_sprites = ExtResource("11_47w8v")
 mode_color = 2
@@ -183,8 +189,8 @@ position_smoothing_speed = 8.0
 script = ExtResource("12_rg2be")
 
 [node name="Sprite2D" type="Sprite2D" parent="Reticle"]
-scale = Vector2(0.035982, 0.035982)
-texture = ExtResource("13_unq7x")
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("21_60h0n")
 
 [node name="HitInvincibleTimer" type="Timer" parent="."]
 

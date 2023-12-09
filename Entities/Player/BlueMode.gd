@@ -14,9 +14,14 @@ func _unhandled_input(_event) -> void:
 	if Input.is_action_just_released("special_action"):
 		end_special_action()
 
+func process_physics(_delta) -> void:
+	super(_delta)
+	player.set_juice(player.juice+player.juice_regen_rate)
+
 func special_action(_direction:Vector2, _mouse_location:Vector2) -> void:
-	if !can_shoot_missiles:
+	if !can_shoot_missiles or !player.can_use_special:
 		return
+	player.set_juice(player.juice-special_depletion_rate)
 	can_shoot_missiles = false
 	missile_timer.start()
 	var bullet : BaseBullet = missile_scene.instantiate()

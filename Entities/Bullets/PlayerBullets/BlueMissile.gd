@@ -43,8 +43,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	seek()
 
 func seek() -> void:
-	await get_tree().process_frame
-	var tree = get_tree()
+	#await get_tree().process_frame
 	var target_array = seek_area.get_overlapping_bodies()
 	if target_array.is_empty():
 		if life_timer.is_stopped():
@@ -58,7 +57,11 @@ func seek() -> void:
 
 func sort_color(a, b):
 	if a.get_mode_color() < b.get_mode_color():
-		return true
+		if a.get_mode_color() != 1:
+			return true
+	elif a.get_mode_color() == b.get_mode_color():
+		if (a.global_position-global_position).length() < (b.global_position-global_position).length():
+			return true
 	return false
 
 func _on_body_entered(body) -> void:

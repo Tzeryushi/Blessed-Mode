@@ -9,6 +9,10 @@ extends CharacterBody2D
 @export var fire_distance_threshold : float = 600.0
 @export var shot_cooldown : float = 1.0
 
+@export_category("Movement Attributes")
+@export var acceleration : float = 2.0
+@export var max_movement_speed : float = 500.0
+
 @export_category("References")
 @export var enemy_sprite : AnimatedSprite2D
 @export var shot_timer : Timer
@@ -24,6 +28,7 @@ func _ready() -> void:
 
 func _physics_process(_delta) -> void:
 	look_and_fire()
+	set_movement_values(_delta)
 	move_and_slide()
 
 func look_and_fire() -> void:
@@ -33,7 +38,7 @@ func look_and_fire() -> void:
 			if shot_timer.is_stopped(): #probably icky, but w/e
 				shoot(player_ref.global_position-global_position)
 
-func set_movement_values() -> void:
+func set_movement_values(_delta:float) -> void:
 	pass
 
 func shoot(_direction_to_shoot:Vector2) -> void:
@@ -55,6 +60,7 @@ func reference_setup() -> void:
 		player_ref = tree.get_first_node_in_group("player")
 
 func destruct() -> void:
+	Events.combo_up.emit()
 	queue_free()
 
 func get_health() -> int:

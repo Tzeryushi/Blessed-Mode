@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bf0qecyc6hadi"]
+[gd_scene load_steps=5 format=3 uid="uid://bf0qecyc6hadi"]
 
 [ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_3dxbv"]
 [ext_resource type="Script" path="res://Entities/Bullets/PlayerBullets/BlueMissile.gd" id="2_1y81u"]
+[ext_resource type="Texture2D" uid="uid://bcdtpygg5g5hx" path="res://Effects/ParticleSources/CircleWhite.svg" id="3_23s5l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cfsud"]
 radius = 1400.0
@@ -18,7 +19,12 @@ damage = 2
 top_speed = 2500.0
 acceleration = 100.0
 
-[node name="SeekArea" type="Area2D" parent="." index="4"]
+[node name="Sprite2D2" type="Sprite2D" parent="VisualsGroup" index="2"]
+modulate = Color(0, 0, 1, 1)
+scale = Vector2(0.192771, 0.192771)
+texture = ExtResource("3_23s5l")
+
+[node name="SeekArea" type="Area2D" parent="." index="3"]
 collision_layer = 0
 collision_mask = 2
 

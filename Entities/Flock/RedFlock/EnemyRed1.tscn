@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq2vu4dl2uv8k"]
+
+[ext_resource type="PackedScene" uid="uid://dhl2vb5p2xx6p" path="res://Entities/Flock/BaseEnemy.tscn" id="1_65ft4"]
+[ext_resource type="Texture2D" uid="uid://brbs2fcftaaqj" path="res://Entities/Flock/FlockSprites/EnemyRedBasic.svg" id="2_6e2vd"]
+[ext_resource type="Script" path="res://Entities/Flock/RedFlock/EnemyRed1.gd" id="2_pk28a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n1nqu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6e2vd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyRed1" instance=ExtResource("1_65ft4")]
+script = ExtResource("2_pk28a")
+body_damage = 3
+acceleration = 5.0
+max_movement_speed = 1000.0
+
+[node name="Hitbox" parent="." index="0"]
+position = Vector2(-24, -23)
+polygon = PackedVector2Array(0, -13, 61, 23, 0, 59)
+
+[node name="EnemySprite" parent="." index="1"]
+position = Vector2(7, 0)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_n1nqu")
+
+[node name="Polygon2D" parent="." index="3"]
+visible = false
