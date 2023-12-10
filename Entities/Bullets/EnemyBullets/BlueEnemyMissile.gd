@@ -50,7 +50,7 @@ func seek() -> void:
 		if life_timer.is_stopped():
 			life_timer.start()
 		return
-	if target_array.front() and target_array.front() is Player:
+	if target_array.front() and target_array.front() is Player and target_array.front().get_mode_color() == Globals.MODECOLOR.RED:
 		target_body = target_array.front()
 		target_body.tree_exiting.connect(clear_body_ref)
 

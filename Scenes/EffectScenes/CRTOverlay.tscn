@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://6qujdhm2pn43"]
+
+[ext_resource type="Shader" path="res://Scenes/MainShader.gdshader" id="1_fnd6g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b4x2e"]
+shader = ExtResource("1_fnd6g")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.595
+shader_parameter/scanlines_width = 0.068
+shader_parameter/grille_opacity = 0.536
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 2.0
+shader_parameter/roll_size = 19.895
+shader_parameter/roll_variation = 1.814
+shader_parameter/distort_intensity = 0.023
+shader_parameter/noise_opacity = 0.232
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.266
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.1
+shader_parameter/vignette_opacity = 0.676
+
+[node name="CRTOverlay" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_b4x2e")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

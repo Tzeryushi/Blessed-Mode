@@ -12,6 +12,9 @@ endpoint_explosion = ExtResource("3_2gfsl")
 shake = 0.0
 damage = 7
 
+[node name="Trail" parent="VisualsGroup" index="0"]
+width = 20.0
+
 [node name="LaserRayCast" parent="." index="3"]
 collision_mask = 37
 collide_with_areas = true

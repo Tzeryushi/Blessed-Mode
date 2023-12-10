@@ -1,6 +1,8 @@
 extends Node
 
 enum MODECOLOR {RED=0, GREEN=1, BLUE=2}
+enum AFTEREFFECT {NONE=0, CRT=1}
+var scene_manager : SceneManager
 
 func is_mode_color_effective(attacking_mode:MODECOLOR, defending_mode:MODECOLOR) -> bool:
 	return (defending_mode-attacking_mode)%3 == 1
@@ -17,3 +19,6 @@ func multiply_by_mode(value:int, attacking_mode:MODECOLOR, defending_mode:MODECO
 				@warning_ignore("integer_division")
 				damage_to_take = max(int(damage_to_take/2), 1)
 	return damage_to_take
+
+func set_scene_manager(manager:SceneManager) -> void:
+	scene_manager = manager

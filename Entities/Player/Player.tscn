@@ -22,12 +22,6 @@
 [ext_resource type="PackedScene" uid="uid://cou1lncdkg7t7" path="res://Effects/Visual Effects/GenericTrail.tscn" id="18_a2ex0"]
 [ext_resource type="Texture2D" uid="uid://ixxjge24lmag" path="res://GUI/Cursors/Reticle.svg" id="21_60h0n"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bcwqn"]
-radius = 14.0357
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ftxv2"]
-radius = 13.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fbdrk"]
 shader = ExtResource("3_k7mvo")
 shader_parameter/color = Color(1, 1, 1, 1)
@@ -35,6 +29,12 @@ shader_parameter/width = 4.0
 shader_parameter/pattern = 1
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bcwqn"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftxv2"]
+radius = 15.0
 
 [sub_resource type="Gradient" id="Gradient_kum5c"]
 offsets = PackedFloat32Array(0, 0.889241, 0.981013)
@@ -61,7 +61,15 @@ juice_regen_rate = 0.07
 hit_invincible_time = 0.3
 ghost_scene = ExtResource("2_wrykh")
 
+[node name="SpriteGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_fbdrk")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="SpriteGroup"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("2_x5h3b")
+
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -71,13 +79,6 @@ shape = SubResource("CircleShape2D_bcwqn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_ftxv2")
-
-[node name="SpriteGroup" type="CanvasGroup" parent="."]
-material = SubResource("ShaderMaterial_fbdrk")
-
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="SpriteGroup"]
-scale = Vector2(0.5, 0.5)
-sprite_frames = ExtResource("2_x5h3b")
 
 [node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("first_state")]
 script = ExtResource("2_6hjy0")
@@ -123,6 +124,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="DashHitbox" type="Area2D" parent="ModeManager/Red"]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -146,11 +148,13 @@ mode_name = "Green"
 one_shot = true
 
 [node name="ShieldHitbox" type="Area2D" parent="ModeManager/Green"]
+visible = false
 collision_layer = 32
 collision_mask = 18
 
 [node name="ShieldCollision" type="CollisionShape2D" parent="ModeManager/Green/ShieldHitbox"]
 shape = SubResource("CircleShape2D_teapf")
+disabled = true
 
 [node name="ShieldSprite" type="Sprite2D" parent="ModeManager/Green"]
 modulate = Color(0, 1, 0, 1)

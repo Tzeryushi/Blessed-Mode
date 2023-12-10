@@ -141,6 +141,8 @@ func get_health() -> int:
 func set_health(value:int) -> void:
 	health = clamp(value, 0, max_health)
 	health_changed.emit(health, max_health)
+	if health == 0:
+		Globals.scene_manager.restart_scene()
 func set_hit_invincibility(value:bool) -> void:
 	is_hit_invincible = value
 	is_invincible = is_hit_invincible or is_dash_invincible
