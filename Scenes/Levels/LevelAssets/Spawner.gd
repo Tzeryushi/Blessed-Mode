@@ -1,5 +1,7 @@
-extends Node
+extends Node2D
 
+#Spawners run down a list of spawner info, spawning mobs, setting colors and waiting in correspondence to each timer
+#Levels can choose to pause the spawn timers they contain, and resume them whenever
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

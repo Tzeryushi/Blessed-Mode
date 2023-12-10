@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://6ii61ff3ecgs"]
+[gd_scene load_steps=12 format=3 uid="uid://6ii61ff3ecgs"]
 
 [ext_resource type="Script" path="res://Scenes/TestScenes/testing_room.gd" id="1_0mq1j"]
 [ext_resource type="PackedScene" uid="uid://ds7bcbfgwevuw" path="res://Entities/Player/Player.tscn" id="1_nee7j"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://djnebbcu5ui4u" path="res://Entities/Flock/BlueFlock/EnemyBlue1.tscn" id="5_ukktj"]
 [ext_resource type="Texture2D" uid="uid://b88f4c3elbl8c" path="res://Scenes/Levels/TilemapAssets/WallBeta.svg" id="6_gjvp6"]
 [ext_resource type="PackedScene" uid="uid://cu6kx0jojqcgl" path="res://Entities/Flock/GreenFlock/EnemyGreen1.tscn" id="6_qg6a2"]
+[ext_resource type="PackedScene" uid="uid://c1kt45x0yh3ny" path="res://Scenes/PauseMenu/Pause.tscn" id="7_de4rm"]
+[ext_resource type="PackedScene" uid="uid://dq2vu4dl2uv8k" path="res://Entities/Flock/RedFlock/EnemyRed1.tscn" id="8_0y62u"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_28ty1"]
 vertices = PackedVector2Array(2235, -1412, 2208, 1480, 2058, 1226, 2058, -1226, -2183, -1384, -2058, -1226, -2268, 1399, -2058, 1226, 1546, 842, 1910, 1078, -1910, 1078, 502, 842, 1910, -1078, 1546, 758, -886, -54, -586, -202, -586, 10, -886, -842, 694, -458, 694, 138, 502, 374, -374, 10, -374, -202, 586, 758, 586, 586, 1546, 586, 1546, -458, -1910, -1078, -1334, -246, -1334, -758, -970, -758, -970, -138, -1526, -138, -1418, -246, -1526, -906, -1418, -842, 778, 138, 778, -374, 1462, -374, 1462, 374, -1610, -54, -1610, -906)
@@ -28,6 +30,7 @@ physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_0qqk2")
 
 [node name="TestingRoom" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_0mq1j")
 
 [node name="Player" parent="." instance=ExtResource("1_nee7j")]
@@ -54,9 +57,43 @@ position = Vector2(-1140, -496)
 
 [node name="EnemyGreen2" parent="." instance=ExtResource("6_qg6a2")]
 position = Vector2(-607, 282)
+laser_charge_time = 4.0
 
 [node name="EnemyGreen3" parent="." instance=ExtResource("6_qg6a2")]
 position = Vector2(-686, 541)
+laser_charge_time = 4.0
 
 [node name="EnemyBlue2" parent="." instance=ExtResource("5_ukktj")]
 position = Vector2(-1109, -359)
+
+[node name="Pause" parent="." instance=ExtResource("7_de4rm")]
+
+[node name="EnemyRed1" parent="." instance=ExtResource("8_0y62u")]
+position = Vector2(910, -212)
+
+[node name="EnemyRed2" parent="." instance=ExtResource("8_0y62u")]
+position = Vector2(1126, -204)
+
+[node name="EnemyRed3" parent="." instance=ExtResource("8_0y62u")]
+position = Vector2(963, -52)
+
+[node name="EnemyRed4" parent="." instance=ExtResource("8_0y62u")]
+position = Vector2(1307, -121)
+
+[node name="EnemyRed5" parent="." instance=ExtResource("8_0y62u")]
+position = Vector2(1110, -28)
+
+[node name="EnemyRed6" parent="." instance=ExtResource("8_0y62u")]
+position = Vector2(744, 663)
+
+[node name="EnemyRed7" parent="." instance=ExtResource("8_0y62u")]
+position = Vector2(984, 663)
+
+[node name="EnemyRed8" parent="." instance=ExtResource("8_0y62u")]
+position = Vector2(1198, 692)
+
+[node name="EnemyRed9" parent="." instance=ExtResource("8_0y62u")]
+position = Vector2(1456, 705)
+
+[node name="EnemyRed10" parent="." instance=ExtResource("8_0y62u")]
+position = Vector2(1664, 652)

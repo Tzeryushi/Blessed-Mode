@@ -9,11 +9,6 @@ var current_scenes : Array[String] = []
 #var scene_reference : Array[Node2D] = []
 #var effect_reference : Array[Node2D] = []
 
-func _unhandled_input(event):
-	if Input.is_action_just_pressed("escape"):
-		remove_all_scenes()
-		add_scene("testing_room", Globals.AFTEREFFECT.NONE)
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Globals.set_scene_manager(self)
@@ -58,6 +53,7 @@ func _load_and_instance(scene_name:String) -> void:
 	assert(scenes.has(scene_name), "SceneManager: Bad scene_name string! Key not in dictionary.")
 	var scene_instance = load(scenes[scene_name]).instantiate()
 	add_child(scene_instance)
+	scene_instance.process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func _get_effect_name(type:Globals.AFTEREFFECT) -> String:
 	return effects[type]

@@ -33,10 +33,22 @@ grow_vertical = 2
 script = ExtResource("2_cd3fs")
 primary_focus_node = NodePath("VBoxContainer/StoryButton")
 
+[node name="ColorRect" type="ColorRect" parent="MainContext"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -357.0
+offset_right = 357.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.568627)
+
 [node name="ColorWheelSplash" type="Sprite2D" parent="MainContext"]
 modulate = Color(0.635294, 0.635294, 0.635294, 1)
 material = SubResource("ShaderMaterial_7ft1q")
-position = Vector2(494, 294)
+position = Vector2(494, 334)
 rotation = -0.406394
 scale = Vector2(1.05241, 1.05241)
 texture = ExtResource("2_gtoqx")

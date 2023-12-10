@@ -46,7 +46,7 @@ radius = 41.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_teapf"]
 radius = 62.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "mode_manager", "reticle", "hit_invincible_timer", "player_camera") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_manager", "mode_manager", "reticle", "hit_invincible_timer", "blessed_mode_timer", "player_camera") groups=["player"]]
 z_index = 5
 collision_mask = 4
 script = ExtResource("1_xoc56")
@@ -54,6 +54,7 @@ state_manager = NodePath("StateManager")
 mode_manager = NodePath("ModeManager")
 reticle = NodePath("Reticle")
 hit_invincible_timer = NodePath("HitInvincibleTimer")
+blessed_mode_timer = NodePath("BlessedTimer")
 player_camera = NodePath("PlayerCamera")
 cursor_ratio = 0.3
 max_health = 40
@@ -111,7 +112,7 @@ ship_sprites = ExtResource("2_x5h3b")
 mode_name = "Red"
 
 [node name="RedTimer" type="Timer" parent="ModeManager/Red"]
-wait_time = 0.25
+wait_time = 0.4
 one_shot = true
 
 [node name="RedTrail" parent="ModeManager/Red" instance=ExtResource("18_a2ex0")]
@@ -176,7 +177,7 @@ mode_color = 2
 mode_name = "Blue"
 
 [node name="BlueTimer" type="Timer" parent="ModeManager/Blue"]
-wait_time = 0.12
+wait_time = 0.08
 one_shot = true
 
 [node name="MissileTimer" type="Timer" parent="ModeManager/Blue"]
@@ -199,6 +200,9 @@ texture = ExtResource("21_60h0n")
 
 [node name="HitInvincibleTimer" type="Timer" parent="."]
 
+[node name="BlessedTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="ModeManager/Red/DashHitbox" to="ModeManager/Red" method="_on_dash_hitbox_body_entered"]
@@ -206,3 +210,4 @@ texture = ExtResource("21_60h0n")
 [connection signal="body_entered" from="ModeManager/Green/ShieldHitbox" to="ModeManager/Green" method="_on_shield_hitbox_body_entered"]
 [connection signal="timeout" from="ModeManager/SwapTimer" to="ModeManager" method="_on_swap_timer_timeout"]
 [connection signal="timeout" from="HitInvincibleTimer" to="." method="_on_hit_invincible_timer_timeout"]
+[connection signal="timeout" from="BlessedTimer" to="." method="_on_blessed_timer_timeout"]

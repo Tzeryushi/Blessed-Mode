@@ -39,7 +39,7 @@ func _process(_delta) -> void:
 	#var noise_x : float = noise.get_noise_1d(time_msecs*0.1)
 	#var noise_y : float = noise.get_noise_1d(time_msecs*0.1+100)
 	#shake_camera.offset = Vector2(noise_x, noise_y) * shake_intensity * 2.0
-func add_trauma(amount, trauma_max:float = 40):
+func add_trauma(amount, trauma_max:float = 10):
 	var new_trauma = clampf(trauma + amount, 0.0, trauma_max)
 	if trauma < new_trauma:
 		trauma = new_trauma

@@ -13,12 +13,9 @@ func _ready():
 	main_context.position = center_position
 	options_context.position = right_position
 	main_context.primary_focus_node.grab_focus()
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	#set_focus(options_context, false)
 	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func set_focus(node:Node, value:bool) -> void:
 	if node.has_method("set_focus_mode"):

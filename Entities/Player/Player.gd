@@ -13,6 +13,7 @@ extends Node2D
 @export var mode_manager : ModeManager
 @export var reticle : PlayerReticle
 @export var hit_invincible_timer : Timer
+@export var blessed_mode_timer : Timer
 
 @export_category("Camera Properties")
 @export var player_camera : Camera2D
@@ -24,6 +25,9 @@ extends Node2D
 @export var max_juice : float = 30.0
 @export var juice_regen_rate : float = 0.1
 @export var hit_invincible_time : float = 0.5
+@export var blessed_combo_rate : int = 10
+@export var blessed_mode_time : float = 10.0
+@export var blessed_regen_rate : float = 4.0
 
 @export_category("VFX Properties")
 @export var ghost_scene : PackedScene
@@ -43,17 +47,20 @@ var is_invincible : bool = false
 var is_dash_invincible : bool = false
 var is_hit_invincible : bool = false
 var can_use_special : bool = true
+var is_in_blessed_mode : bool = false
 
 signal health_changed(value:int, max_health:int)
 signal juice_changed(value:float, max_juice:float, is_recharging:bool)
 signal mode_changed(mode:Globals.MODECOLOR)
 signal combo_changed(value:int)
+signal blessed_mode_engaged(value:bool)
 
 func _ready() -> void:
 	current_ship_mode = mode_manager.get_ship_mode()
 	state_manager.init_state(self)
 	mode_manager.init_modes(self)
 	hit_invincible_timer.wait_time = hit_invincible_time
+	blessed_mode_timer.wait_time = blessed_mode_time
 	Shake.set_camera(player_camera)
 	Events.combo_up.connect(_on_combo_up)
 	
@@ -73,12 +80,21 @@ func _process(_delta) -> void:
 	#camera operations
 	reticle.update_reticle_position()
 	player_camera.position = (reticle.position*cursor_ratio).limit_length(max_camera_length)
+	if is_in_blessed_mode:
+		set_juice(juice+blessed_regen_rate)
 
 func _physics_process(_delta) -> void:
 	#make_single_ghost()
 	look_at(get_global_mouse_position())
 	state_manager.process_physics(_delta)
 	current_ship_mode.process_physics(_delta)
+
+func engage_blessed_mode() -> void:
+	blessed_mode_timer.start()
+	if is_in_blessed_mode:
+		return
+	is_in_blessed_mode = true
+	blessed_mode_engaged.emit(true)
 
 func make_single_ghost(ghost_length:float=0.5) -> void:
 	var ghost_instance = ghost_scene.instantiate()
@@ -129,6 +145,8 @@ func take_damage(_damage:int=1, _attacking_color:Globals.MODECOLOR=get_mode_colo
 func set_combo(value:int) -> void:
 	combo_count = value
 	combo_changed.emit(combo_count)
+	if combo_count != 0 and combo_count%blessed_combo_rate==0:
+		engage_blessed_mode()
 func set_juice(value:float) -> void:
 	juice = clamp(value, 0.0, max_juice)
 	if can_use_special and juice <= 0.0:
@@ -142,7 +160,7 @@ func set_health(value:int) -> void:
 	health = clamp(value, 0, max_health)
 	health_changed.emit(health, max_health)
 	if health == 0:
-		Globals.scene_manager.restart_scene()
+		Globals.scene_manager.call_deferred("restart_scene")
 func set_hit_invincibility(value:bool) -> void:
 	is_hit_invincible = value
 	is_invincible = is_hit_invincible or is_dash_invincible
@@ -164,3 +182,6 @@ func _on_hitbox_body_entered(body) -> void:
 
 func _on_hit_invincible_timer_timeout():
 	set_hit_invincibility(false)
+func _on_blessed_timer_timeout():
+	is_in_blessed_mode = false
+	blessed_mode_engaged.emit(false)

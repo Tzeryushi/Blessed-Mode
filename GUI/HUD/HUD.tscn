@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://deo1k2y517tdi"]
+[gd_scene load_steps=18 format=3 uid="uid://deo1k2y517tdi"]
 
 [ext_resource type="Script" path="res://GUI/HUD/HUD.gd" id="1_eahme"]
 [ext_resource type="Texture2D" uid="uid://44t5chdgl323" path="res://GUI/HUD/ModeWheelSelect.svg" id="1_oo67i"]
@@ -10,7 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://bywvarpt6td4p" path="res://GUI/HUD/LifeBar/LifeRedFill.svg" id="6_mm52q"]
 [ext_resource type="Texture2D" uid="uid://c6klb5m6d0knh" path="res://GUI/HUD/ProgressBar/ProgressBack.svg" id="7_dnjft"]
 [ext_resource type="Texture2D" uid="uid://dk3xakxd5dvnx" path="res://GUI/HUD/ProgressBar/ProgressOver.svg" id="8_6wvp1"]
+[ext_resource type="Shader" path="res://Effects/Shaders/Rainbow.gdshader" id="9_nrkj8"]
 [ext_resource type="Texture2D" uid="uid://wwstnbvqbjrm" path="res://GUI/HUD/ProgressBar/ProgressBlueFill.svg" id="9_s5o28"]
+[ext_resource type="Script" path="res://GUI/HUD/ComboText.gd" id="13_t3vts"]
+[ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="14_adb1w"]
+[ext_resource type="FontFile" uid="uid://c22ki2fe4smkl" path="res://Art/Fonts/Nihonium113.ttf" id="15_06u5s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tdr8s"]
 shader = ExtResource("2_bfl4u")
@@ -19,6 +23,12 @@ shader_parameter/shake_rate = 0.001
 shader_parameter/shake_speed = 1.0
 shader_parameter/shake_block_size = 49.54
 shader_parameter/shake_color_rate = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sjkrd"]
+shader = ExtResource("9_nrkj8")
+shader_parameter/strength = 0.0
+shader_parameter/speed = 1.0
+shader_parameter/angle = 180.0
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -60,6 +70,7 @@ texture_over = ExtResource("5_nqr72")
 texture_progress = ExtResource("6_mm52q")
 
 [node name="JuiceBar" type="TextureProgressBar" parent="."]
+material = SubResource("ShaderMaterial_sjkrd")
 layout_mode = 0
 offset_left = 215.0
 offset_top = 120.0
@@ -71,3 +82,116 @@ value = 60.0
 texture_under = ExtResource("7_dnjft")
 texture_over = ExtResource("8_6wvp1")
 texture_progress = ExtResource("9_s5o28")
+
+[node name="ComboText" type="Node2D" parent="."]
+position = Vector2(1668, 189)
+script = ExtResource("13_t3vts")
+combo_text_source = [{
+"color": Color(0.152941, 0.152941, 0.152941, 1),
+"scale": Vector2(1, 1),
+"text": "Combo"
+}, {
+"color": Color(0.25098, 0.25098, 0.25098, 1),
+"scale": Vector2(1, 1),
+"text": "Good"
+}, {
+"color": Color(0, 0, 0.866667, 1),
+"scale": Vector2(1, 1),
+"text": "Decent"
+}, {
+"color": Color(0, 0.607843, 0, 1),
+"scale": Vector2(1, 1),
+"text": "Noble"
+}, {
+"color": Color(0.682353, 0, 0, 1),
+"scale": Vector2(0.8, 1),
+"text": "Righteous"
+}, {
+"color": Color(0.6, 0.6, 0, 1),
+"scale": Vector2(1, 1),
+"text": "Blessed"
+}, {
+"color": Color(0.92549, 0.34902, 0, 1),
+"scale": Vector2(0.7, 1),
+"text": "Enlightened"
+}, {
+"color": Color(0, 0.807843, 0.913725, 1),
+"scale": Vector2(1, 1),
+"text": "Divine"
+}, {
+"color": Color(0.741176, 0, 0.913725, 1),
+"scale": Vector2(1, 1),
+"text": "Exalted"
+}]
+
+[node name="Phrase" type="RichTextLabel" parent="ComboText"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -64.0
+offset_right = 320.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 1)
+pivot_offset = Vector2(320, 25)
+theme = ExtResource("14_adb1w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 18
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]ENLIGHTENED"
+scroll_active = false
+
+[node name="Count" type="RichTextLabel" parent="ComboText"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = 7.0
+offset_right = 84.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_adb1w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 18
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]15"
+scroll_active = false
+
+[node name="Score" type="Node2D" parent="."]
+position = Vector2(1668, 59)
+
+[node name="Count" type="RichTextLabel" parent="Score"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -34.5
+offset_right = 224.0
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_adb1w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 18
+theme_override_fonts/normal_font = ExtResource("15_06u5s")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center]15.000.000.000"
+scroll_active = false

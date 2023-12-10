@@ -8,7 +8,8 @@ offsets = PackedFloat32Array(0.376582, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
 [node name="RedBullet" instance=ExtResource("1_dme7n")]
-shake = 0.3
+shake = 0.1
+shake_ceiling = 0.3
 damage = 10
 speed = 1300.0
 top_speed = 2000.0
@@ -19,6 +20,9 @@ modulate = Color(1, 0, 0, 1)
 [node name="Trail" parent="VisualsGroup" index="0"]
 gradient = SubResource("Gradient_3dcw5")
 
+[node name="Sprite2D" parent="VisualsGroup" index="1"]
+scale = Vector2(0.53012, 0.53012)
+
 [node name="TinyCircle" type="Sprite2D" parent="." index="3"]
-scale = Vector2(0.705882, 0.705882)
+scale = Vector2(1.05882, 1.05882)
 texture = ExtResource("2_56bul")

@@ -2,7 +2,7 @@ extends BaseEnemy
 
 @export var laser_sights : Line2D
 @export var laser_timer : Timer
-@export var laser_charge_time : float = 5.0
+@export var laser_charge_time : float = 4.0
 @export var laser_turn_speed : float = 0.007
 
 var is_firing_laser : bool = false : set = set_firing
@@ -14,7 +14,7 @@ func _ready() -> void:
 func look_and_fire() -> void:
 	if player_ref:
 		if !is_firing_laser:
-			look_at(player_ref.global_position)
+			rotation = move_toward(rotation, rotation+get_angle_to(player_ref.global_position), laser_turn_speed*2.0)
 		#if (player_ref.global_position-global_position).length() <= fire_distance_threshold:
 			#if shot_timer.is_stopped(): #probably icky, but w/e
 				#shoot(player_ref.global_position-global_position)
