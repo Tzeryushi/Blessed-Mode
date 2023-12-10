@@ -7,8 +7,10 @@ uniform float width : hint_range(0, 10) = 1.0;
 uniform int pattern : hint_range(0, 2) = 0; // diamond, circle, square
 uniform bool inside = false;
 uniform bool add_margins = true; // only useful when inside is false
+varying flat vec4 modulate;
 
 void vertex() {
+	modulate = COLOR;
 	if (add_margins) {
 		VERTEX += (UV * 2.0 - 1.0) * width;
 	}
@@ -42,7 +44,6 @@ bool hasContraryNeighbour(vec2 uv, vec2 texture_pixel_size, sampler2D texture) {
 
 void fragment() {
 	vec2 uv = SCREEN_UV;
-	
     vec4 base_color = vec4(0.15);
 	
    	if (base_color.a > 0.0001) {

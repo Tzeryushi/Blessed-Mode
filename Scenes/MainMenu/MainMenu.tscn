@@ -1,17 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://8cnunv0ts34r"]
+[gd_scene load_steps=7 format=3 uid="uid://8cnunv0ts34r"]
 
 [ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="1_5wjh7"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/MainMenu.gd" id="1_krask"]
 [ext_resource type="Shader" path="res://Effects/Shaders/SpriteOutline.gdshader" id="2_b8a7c"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/MenuContext.gd" id="2_cd3fs"]
 [ext_resource type="Texture2D" uid="uid://drsmx1gyivn70" path="res://Art/Icons/ColorWheelSplashCentered.png" id="2_gtoqx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ft1q"]
 shader = ExtResource("2_b8a7c")
 shader_parameter/Smooth = true
 shader_parameter/width = 42.366
-shader_parameter/outline_color = Color(0.0901961, 0.0901961, 0.0901961, 0.568627)
+shader_parameter/outline_color = Color(0.156863, 0.0117647, 0, 0.584314)
 shader_parameter/pixel_size = 4
-shader_parameter/width_speed = 6.903
+shader_parameter/width_speed = 2.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -22,13 +23,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_krask")
 
-[node name="MainContext" type="Control" parent="."]
+[node name="MainContext" type="Control" parent="." node_paths=PackedStringArray("primary_focus_node")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_cd3fs")
+primary_focus_node = NodePath("VBoxContainer/StoryButton")
 
 [node name="ColorWheelSplash" type="Sprite2D" parent="MainContext"]
 modulate = Color(0.635294, 0.635294, 0.635294, 1)
@@ -81,22 +84,127 @@ grow_vertical = 0
 theme = ExtResource("1_5wjh7")
 
 [node name="StoryButton" type="Button" parent="MainContext/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../TutorialButton")
+focus_next = NodePath("../TutorialButton")
+focus_previous = NodePath("../QuitButton")
 theme = ExtResource("1_5wjh7")
 text = "RUN ./SHEPHERD"
 
 [node name="TutorialButton" type="Button" parent="MainContext/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../StoryButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../OptionsButton")
+focus_next = NodePath("../OptionsButton")
+focus_previous = NodePath("../StoryButton")
 text = "RUN ./TUTORIAL"
 
 [node name="OptionsButton" type="Button" parent="MainContext/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../TutorialButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../TutorialButton")
 text = "set --options"
 
 [node name="QuitButton" type="Button" parent="MainContext/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../OptionsButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../StoryButton")
+focus_next = NodePath("../StoryButton")
+focus_previous = NodePath("../OptionsButton")
 text = ":quit!"
+
+[node name="OptionsContext" type="Control" parent="." node_paths=PackedStringArray("primary_focus_node")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_cd3fs")
+primary_focus_node = NodePath("HBoxContainer/VBoxContainer3/BaseButton")
+
+[node name="Title" type="RichTextLabel" parent="OptionsContext"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -623.0
+offset_top = 71.0
+offset_right = 624.0
+offset_bottom = 232.0
+grow_horizontal = 2
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "[center]OPTIONS"
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsContext"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 92.0
+offset_top = -813.0
+offset_right = -92.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_5wjh7")
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsContext/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsContext/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="OptionsContext/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+alignment = 2
+
+[node name="BaseButton" type="Button" parent="OptionsContext/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+text = "DO NOTHING"
+
+[node name="ReturnButton" type="Button" parent="OptionsContext/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+text = "RETURN"
 
 [connection signal="timeout" from="MainContext/ColorWheelSplash/SpinTimer" to="." method="_on_spin_timer_timeout"]
 [connection signal="pressed" from="MainContext/VBoxContainer/StoryButton" to="." method="_on_story_button_pressed"]
+[connection signal="pressed" from="MainContext/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MainContext/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OptionsContext/HBoxContainer/VBoxContainer3/ReturnButton" to="." method="_on_return_button_pressed"]
