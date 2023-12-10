@@ -17,8 +17,8 @@ func _unhandled_input(event):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Globals.set_scene_manager(self)
-	#assert(scenes.has(main_scene), "SceneManager: Main scene not in scene dictionary!")
-	#current_scene_name = scenes.find_key(main_scene)
+	assert(scenes.has(main_scene), "SceneManager: Main scene not in scene dictionary!")
+	add_scene(main_scene)
 	pass
 
 func add_scene_to_dictionary(scene_name:String, scene_path:String) -> void:
@@ -40,12 +40,9 @@ func remove_all_scenes() -> void:
 		child.queue_free()
 	current_scenes.clear()
 
-func switch_scene(scene_name:String) -> void:
-	assert(scenes.has(scene_name), "SceneManager: Bad scene_name string! Key not in dictionary.")
-	var scene_instance = load(scenes[scene_name]).instantiate()
+func switch_scene(scene_name:String, effect_type:Globals.AFTEREFFECT=Globals.AFTEREFFECT.NONE) -> void:
 	remove_all_scenes()
-	add_child(scene_instance)
-	current_scenes.append(scene_name)
+	add_scene(scene_name, effect_type)
 
 func restart_scene() -> void:
 	for child in get_children():
@@ -63,5 +60,4 @@ func _load_and_instance(scene_name:String) -> void:
 	add_child(scene_instance)
 
 func _get_effect_name(type:Globals.AFTEREFFECT) -> String:
-	print(effects[type])
 	return effects[type]

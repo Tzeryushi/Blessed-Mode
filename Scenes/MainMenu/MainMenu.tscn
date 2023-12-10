@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://8cnunv0ts34r"]
+
+[ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="1_5wjh7"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/MainMenu.gd" id="1_krask"]
+[ext_resource type="Shader" path="res://Effects/Shaders/SpriteOutline.gdshader" id="2_b8a7c"]
+[ext_resource type="Texture2D" uid="uid://drsmx1gyivn70" path="res://Art/Icons/ColorWheelSplashCentered.png" id="2_gtoqx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ft1q"]
+shader = ExtResource("2_b8a7c")
+shader_parameter/Smooth = true
+shader_parameter/width = 42.366
+shader_parameter/outline_color = Color(0.0901961, 0.0901961, 0.0901961, 0.568627)
+shader_parameter/pixel_size = 4
+shader_parameter/width_speed = 6.903
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_krask")
+
+[node name="MainContext" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorWheelSplash" type="Sprite2D" parent="MainContext"]
+modulate = Color(0.635294, 0.635294, 0.635294, 1)
+material = SubResource("ShaderMaterial_7ft1q")
+position = Vector2(494, 294)
+rotation = -0.406394
+scale = Vector2(1.05241, 1.05241)
+texture = ExtResource("2_gtoqx")
+
+[node name="SpinTimer" type="Timer" parent="MainContext/ColorWheelSplash"]
+autostart = true
+
+[node name="Title" type="RichTextLabel" parent="MainContext"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -623.5
+offset_top = 154.0
+offset_right = 623.5
+offset_bottom = 450.0
+grow_horizontal = 2
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 180
+bbcode_enabled = true
+text = "[center]BLESSED SHEEP"
+scroll_active = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContext"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -308.0
+offset_top = -450.0
+offset_right = 310.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_5wjh7")
+
+[node name="StoryButton" type="Button" parent="MainContext/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+text = "RUN ./SHEPHERD"
+
+[node name="TutorialButton" type="Button" parent="MainContext/VBoxContainer"]
+layout_mode = 2
+text = "RUN ./TUTORIAL"
+
+[node name="OptionsButton" type="Button" parent="MainContext/VBoxContainer"]
+layout_mode = 2
+text = "set --options"
+
+[node name="QuitButton" type="Button" parent="MainContext/VBoxContainer"]
+layout_mode = 2
+text = ":quit!"
+
+[connection signal="timeout" from="MainContext/ColorWheelSplash/SpinTimer" to="." method="_on_spin_timer_timeout"]
+[connection signal="pressed" from="MainContext/VBoxContainer/StoryButton" to="." method="_on_story_button_pressed"]
+[connection signal="pressed" from="MainContext/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

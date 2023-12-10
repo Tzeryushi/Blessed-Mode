@@ -4,8 +4,10 @@
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_8vgy3")
+main_scene = "main_menu"
 scenes = {
 "crt_overlay": "res://Scenes/EffectScenes/CRTOverlay.tscn",
+"main_menu": "res://Scenes/MainMenu/MainMenu.tscn",
 "testing_room": "res://Scenes/TestScenes/testing_room.tscn"
 }
 effects = {

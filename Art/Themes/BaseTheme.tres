@@ -1,0 +1,28 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://uabuugcc4jy6"]
+
+[ext_resource type="FontFile" uid="uid://bh266l8u8ii6l" path="res://Art/Fonts/Gemsbuck01Black-axn2g.ttf" id="1_amtb7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee0qb"]
+bg_color = Color(0.294118, 0.294118, 0.294118, 0.541176)
+expand_margin_left = 5.0
+expand_margin_top = 10.0
+expand_margin_right = 5.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xled"]
+bg_color = Color(0, 0, 0, 0.541176)
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[resource]
+default_font = ExtResource("1_amtb7")
+Button/colors/font_color = Color(0, 1, 0, 1)
+Button/colors/font_hover_color = Color(1, 0.584314, 0.52549, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("1_amtb7")
+Button/styles/hover = SubResource("StyleBoxFlat_ee0qb")
+Button/styles/normal = SubResource("StyleBoxFlat_1xled")
+RichTextLabel/font_sizes/normal_font_size = 32
+VBoxContainer/constants/separation = 32
