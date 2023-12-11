@@ -49,9 +49,8 @@ signal all_spawners_finished
 
 #TODO: User all_spawners_stopped, all_spawners_finished, their bools and the monitored enemies
 #to deal with continuing the chain and creating win conditions.
-#Solution: two signal functions; one from defeating all enemies that checks if the spawners are done
-#one from the spawners finishing that checks that all the enemies are defeated (fringe case like if there is
-#a wait in the spawner or something)
+#TODO: Bake win conditions in with combat logic
+#TODO: Other win conditions?
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -18,9 +18,10 @@ func play_cutscene(info_array:Array[CutsceneInfo]) -> void:
 		scene_text.text = "[center]" + line.line_text
 		var tween : Tween = get_tree().create_tween()
 		tween.tween_property(box, "modulate:a", 1.0, fadein_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-		stream_player.stream = line.sound
-		stream_player.play()
-		await stream_player.finished
+		#stream_player.stream = line.sound
+		#stream_player.play()
+		var streamer : AudioStreamPlayer = SoundManager.play_and_get(line.sound)
+		await streamer.finished
 		var timer : SceneTreeTimer = get_tree().create_timer(line.wait_time-fadeout_time)
 		await timer.timeout
 		tween = get_tree().create_tween()
