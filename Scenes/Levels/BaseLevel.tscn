@@ -1,6 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk6dasaa78yc7"]
+[gd_scene load_steps=5 format=3 uid="uid://bk6dasaa78yc7"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/BaseLevel.gd" id="1_t4hrk"]
+[ext_resource type="PackedScene" uid="uid://ds7bcbfgwevuw" path="res://Entities/Player/Player.tscn" id="2_gpuq8"]
+[ext_resource type="PackedScene" uid="uid://deo1k2y517tdi" path="res://GUI/HUD/HUD.tscn" id="2_sxy01"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_j2ys4"]
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_t4hrk")
+player_scene = ExtResource("2_gpuq8")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Map" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_j2ys4")
+
+[node name="TileMap" type="TileMap" parent="Map"]
+format = 2
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="HUD" parent="HUDLayer" instance=ExtResource("2_sxy01")]

@@ -35,6 +35,8 @@ func _on_options_button_pressed():
 	tween.parallel().tween_property(options_context, "position", center_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 func _on_quit_button_pressed():
 	Globals.scene_manager.quit_game()
+func _on_tutorial_button_pressed():
+	Globals.scene_manager.switch_scene("base_level", Globals.AFTEREFFECT.CRT)
 
 #options menu
 func _on_return_button_pressed():
@@ -50,3 +52,5 @@ func _on_spin_timer_timeout():
 	randomize()
 	var shift_tween : Tween = get_tree().create_tween()
 	shift_tween.tween_property(color_wheel, "rotation", randf_range(-PI, PI), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+
+

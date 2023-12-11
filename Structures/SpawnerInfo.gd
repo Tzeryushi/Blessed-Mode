@@ -6,5 +6,11 @@ extends Resource
 #very importantly, the spawners have flags that keep them from spawning until
 #they are cleared by the active level, such as for waves
 
-@export var spawn_title : String = "Basic Spawn"
+##Spawner mode. Types other than Wait are executed after the wait time.
 @export var spawn_type : Globals.SPAWNTYPE = Globals.SPAWNTYPE.WAIT
+##Spawner will wait for this amount of time before its action. Always used.
+@export var wait_time : float = 1.0
+##Utilized to spawn enemies. Non-functional if spawn type is not set to enemy.
+@export var enemy_type : Globals.ENEMYTYPE = Globals.ENEMYTYPE.NONE 
+
+signal spawn_requested(enemy_type:Globals.ENEMYTYPE, position:Vector2)

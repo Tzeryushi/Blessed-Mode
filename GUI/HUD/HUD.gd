@@ -7,21 +7,21 @@ extends Control
 var player_ref : Player = null
 
 func _ready() -> void:
-	call_deferred("player_setup")
+	#call_deferred("player_setup")
+	pass
 
-func player_setup() -> void:
+func connect_player(player:Player) -> void:
 	await get_tree().process_frame
 	var tree = get_tree()
-	if tree.has_group("player"):
-		player_ref = tree.get_first_node_in_group("player")
-	if player_ref:
-		player_ref.health_changed.connect(_on_health_changed)
-		player_ref.juice_changed.connect(_on_juice_changed)
-		player_ref.mode_changed.connect(shift_mode_indicator)
-		player_ref.blessed_mode_engaged.connect(_on_blessed_mode_changed)
-		player_ref.combo_changed.connect(_on_combo_changed)
-		_on_health_changed(player_ref.health, player_ref.max_health)
-		_on_juice_changed(player_ref.juice, player_ref.max_juice, player_ref.can_use_special)
+	player_ref = player
+	assert(player_ref, "Did not successfully pass player info to the HUD!")
+	player_ref.health_changed.connect(_on_health_changed)
+	player_ref.juice_changed.connect(_on_juice_changed)
+	player_ref.mode_changed.connect(shift_mode_indicator)
+	player_ref.blessed_mode_engaged.connect(_on_blessed_mode_changed)
+	player_ref.combo_changed.connect(_on_combo_changed)
+	_on_health_changed(player_ref.health, player_ref.max_health)
+	_on_juice_changed(player_ref.juice, player_ref.max_juice, player_ref.can_use_special)
 	pass
 
 func shift_mode_indicator(mode:Globals.MODECOLOR) -> void:

@@ -217,6 +217,7 @@ text = "RETURN"
 
 [connection signal="timeout" from="MainContext/ColorWheelSplash/SpinTimer" to="." method="_on_spin_timer_timeout"]
 [connection signal="pressed" from="MainContext/VBoxContainer/StoryButton" to="." method="_on_story_button_pressed"]
+[connection signal="pressed" from="MainContext/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="MainContext/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MainContext/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="OptionsContext/HBoxContainer/VBoxContainer3/ReturnButton" to="." method="_on_return_button_pressed"]
