@@ -22,6 +22,7 @@ extends CharacterBody2D
 var player_ref : Player
 
 signal health_changed(value:int)
+signal defeated(enemy:BaseEnemy)
 
 func _ready() -> void:
 	shot_timer.wait_time = shot_cooldown
@@ -69,6 +70,7 @@ func reference_setup() -> void:
 
 func destruct() -> void:
 	Events.combo_up.emit()
+	defeated.emit(self)
 	queue_free()
 
 func get_health() -> int:

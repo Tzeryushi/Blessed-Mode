@@ -7,9 +7,9 @@ extends Resource
 #they are cleared by the active level, such as for waves
 
 ##Spawner mode. Types other than Wait are executed after the wait time.
-@export var spawn_type : Globals.SPAWNTYPE = Globals.SPAWNTYPE.WAIT
+@export var spawn_type : Globals.SPAWNTYPE = Globals.SPAWNTYPE.ENEMY
 ##Spawner will wait for this amount of time before its action. Always used.
-@export var wait_time : float = 1.0
+@export var wait_time : float = 0.0
 ##Utilized to spawn enemies. Non-functional if spawn type is not set to enemy.
 @export var enemy_type : Globals.ENEMYTYPE = Globals.ENEMYTYPE.NONE 
 

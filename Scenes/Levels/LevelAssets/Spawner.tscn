@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelAssets/Spawner.gd" id="1_s2hte"]
 
-[node name="Spawner" type="Node2D"]
+[node name="Spawner" type="Node2D" groups=["spawner"]]
 script = ExtResource("1_s2hte")

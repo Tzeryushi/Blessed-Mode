@@ -27,6 +27,7 @@ shader_parameter/vignette_intensity = 0.1
 shader_parameter/vignette_opacity = 0.676
 
 [node name="CRTOverlay" type="CanvasLayer"]
+layer = 3
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_b4x2e")
