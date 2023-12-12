@@ -4,7 +4,7 @@ enum MODECOLOR {RED=0, GREEN=1, BLUE=2}
 enum AFTEREFFECT {NONE=0, CRT=1}
 enum SPAWNTYPE {WAIT, ENEMY, STOP}
 enum ENEMYTYPE {NONE, RED1, GREEN1, BLUE1}
-enum LINKTYPE {WAIT, CUTSCENE, COMBAT, TRANSITION, PSPAWN, RESUMECOMBAT, END}
+enum LINKTYPE {WAIT, CUTSCENE, COMBAT, TRANSITION, PSPAWN, RESUMECOMBAT, STARTGAMEPLAY, PAUSEGAMEPLAY, ENDSCREEN}
 enum COMBATTYPE {NONE, ELIMINATION}
 var scene_manager : SceneManager
 
@@ -21,6 +21,9 @@ func multiply_by_mode(value:int, attacking_mode:MODECOLOR, defending_mode:MODECO
 			1: damage_to_take = damage_to_take * 2
 			2: damage_to_take = max(int(damage_to_take/2), 1)
 	return damage_to_take
+
+func get_center_scene() -> Node:
+	return scene_manager.scene_references[0]
 
 func set_scene_manager(manager:SceneManager) -> void:
 	scene_manager = manager

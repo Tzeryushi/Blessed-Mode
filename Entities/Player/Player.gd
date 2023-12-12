@@ -133,11 +133,14 @@ func shift_mode() -> void:
 func take_damage(_damage:int=1, _attacking_color:Globals.MODECOLOR=get_mode_color()) -> void:
 	if is_invincible:
 		return
-	health = get_health()-Globals.multiply_by_mode(_damage, _attacking_color, get_mode_color())
+	var altered_damage = Globals.multiply_by_mode(_damage, _attacking_color, get_mode_color())
+	health = get_health()-altered_damage
 	set_combo(0)
 	
 	Shake.set_camera(player_camera)
 	Shake.add_trauma(0.6)
+	
+	TextPopper.root_pop_text("[center]-"+str(altered_damage), global_position, 1.0, 1.0, 40, 10, Color(0.1,0.1,0.1,1.0))
 	
 	set_hit_invincibility(true)
 	hit_invincible_timer.start()
@@ -150,6 +153,7 @@ func set_combo(value:int) -> void:
 func set_juice(value:float) -> void:
 	juice = clamp(value, 0.0, max_juice)
 	if can_use_special and juice <= 0.0:
+		TextPopper.root_jolt_text("[center]SPECIAL\ndepleted!", global_position, 80.0, 1.0, 1.0, 50, 10, Color(0.1,0.1,0.1,1.0))
 		can_use_special = false
 	elif !can_use_special and juice >= max_juice:
 		can_use_special = true

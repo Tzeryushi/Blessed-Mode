@@ -12,6 +12,7 @@ script = ExtResource("1_t4hrk")
 player_scene = ExtResource("2_gpuq8")
 
 [node name="Map" type="NavigationRegion2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.164706)
 z_index = -5
 
 [node name="TileMap" type="TileMap" parent="Map"]

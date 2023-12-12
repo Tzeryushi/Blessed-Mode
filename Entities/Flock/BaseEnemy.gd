@@ -59,7 +59,9 @@ func shoot(_direction_to_shoot:Vector2) -> void:
 	shot_timer.start()
 
 func take_damage(_damage:int, _attacking_color:Globals.MODECOLOR=mode_color) -> void:
-	health = get_health()-Globals.multiply_by_mode(_damage, _attacking_color, get_mode_color())
+	var altered_damage = Globals.multiply_by_mode(_damage, _attacking_color, get_mode_color())
+	health = get_health()-altered_damage
+	TextPopper.root_pop_text("[center]-"+str(altered_damage), global_position, 1.0, 1.0, 40, 10, explosion_color)
 	if get_health() <= 0:
 		destruct()
 

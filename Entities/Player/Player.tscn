@@ -177,7 +177,7 @@ mode_color = 2
 mode_name = "Blue"
 
 [node name="BlueTimer" type="Timer" parent="ModeManager/Blue"]
-wait_time = 0.08
+wait_time = 0.05
 one_shot = true
 
 [node name="MissileTimer" type="Timer" parent="ModeManager/Blue"]

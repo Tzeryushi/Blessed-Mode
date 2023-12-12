@@ -25,7 +25,7 @@ func set_focus(node:Node, value:bool) -> void:
 
 #main menu buttons
 func _on_story_button_pressed():
-	Globals.scene_manager.switch_scene("testing_room", Globals.AFTEREFFECT.CRT)
+	Globals.scene_manager.switch_scene("level_1", Globals.AFTEREFFECT.CRT)
 func _on_options_button_pressed():
 	#set_focus(options_context, true)
 	#set_focus(main_context, false)

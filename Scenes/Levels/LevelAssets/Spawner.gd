@@ -47,6 +47,12 @@ func get_random_coords(radius:float) -> Vector2:
 #signals 
 func spawn(event:SpawnerInfo) -> void:
 	#TODO: visual flair!
+	var timer : SceneTreeTimer
+	if event.enemy_count > 1:
+		for i in range(0, event.enemy_count-1):
+			spawn_requested.emit(event.enemy_type, global_position+get_random_coords(spawn_radius))
+			timer = get_tree().create_timer(event.wait_time)
+			await timer.timeout
 	spawn_requested.emit(event.enemy_type, global_position+get_random_coords(spawn_radius))
 
 ##stop simply does nothing (other than visuals) so the  

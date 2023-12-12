@@ -11,6 +11,8 @@ extends Resource
 ##Spawner will wait for this amount of time before its action. Always used.
 @export var wait_time : float = 0.0
 ##Utilized to spawn enemies. Non-functional if spawn type is not set to enemy.
-@export var enemy_type : Globals.ENEMYTYPE = Globals.ENEMYTYPE.NONE 
+@export var enemy_type : Globals.ENEMYTYPE = Globals.ENEMYTYPE.NONE
+##Number of instances to spawn. If more than one, will spawn them space apart based on wait_time.
+@export_range(1, 15) var enemy_count : int = 1
 
 signal spawn_requested(enemy_type:Globals.ENEMYTYPE, position:Vector2)

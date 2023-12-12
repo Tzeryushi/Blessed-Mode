@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://hwm40ik5yimi"]
+
+[ext_resource type="Script" path="res://Globals/TextPopper/TextPopper.gd" id="1_kce2y"]
+
+[node name="TextPopper" type="Node2D"]
+script = ExtResource("1_kce2y")
