@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dona415hmk70j"]
+
+[ext_resource type="Script" path="res://Effects/Particles/ParticleCompiler.gd" id="1_cgxbl"]
+
+[node name="ParticleCompiler" type="Node2D"]
+script = ExtResource("1_cgxbl")

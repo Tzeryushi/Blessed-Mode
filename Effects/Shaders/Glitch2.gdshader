@@ -1,49 +1,47 @@
+/*
+	グリッチ トランジション シェーダー by あるる（きのもと 結衣） @arlez80
+	Glitch Transition Shader by Yui Kinomoto @arlez80
+
+	MIT License
+*/
+
 shader_type canvas_item;
 
-uniform float range : hint_range(0.0, 0.1, 0.005)= 0.05;
-uniform float noiseQuality : hint_range(0.0, 300.0, 0.1)= 250.0;
-uniform float noiseIntensity : hint_range(-0.6, 0.6, 0.0010)= 0.0088;
-uniform float offsetIntensity : hint_range(-0.1, 0.1, 0.001) = 0.03;
-uniform float colorOffsetIntensity : hint_range(0.0, 5.0, 0.001) = 1.3;
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
-float rand(vec2 co)
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+// 振動の強さ
+uniform float shake_power = 0.03;
+// 振動ブロックサイズ
+uniform float shake_block_size = 30.5;
+// 色の分離率
+uniform float fade : hint_range( 0.0, 1.0 ) = 0.01;
+// R方向
+uniform vec2 direction_r = vec2( 1.0, 0.0 );
+// G方向
+uniform vec2 direction_g = vec2( 0.4, 1.0 );
+// B方向
+uniform vec2 direction_b = vec2( -0.7, -0.3 );
+
+float random( float seed )
 {
-    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+	return fract( 543.2543 * sin( dot( vec2( seed, seed ), vec2( 3525.46, -54.3415 ) ) ) );
 }
 
-float verticalBar(float pos, float UVY, float offset)
+void fragment( )
 {
-    float edge0 = (pos - range);
-    float edge1 = (pos + range);
+	vec2 fixed_uv = SCREEN_UV;
+	fixed_uv.x += (
+		random(
+			( trunc( SCREEN_UV.y * shake_block_size ) / shake_block_size )
+		+	TIME
+		) - 0.5
+	) * shake_power * ( fade * 12.0 );
 
-    float x = smoothstep(edge0, pos, UVY) * offset;
-    x -= smoothstep(pos, edge1, UVY) * offset;
-    return x;
-}
-const float saturation = 0.2;
-void fragment()
-{
-    vec2 uv = SCREEN_UV;
-    for (float i = 0.0; i < 0.71; i += 0.1313)
-    {
-        float d = mod(TIME * i, 1.7);
-        float o = sin(1.0 - tan(TIME * 0.24 * i));
-    	o *= offsetIntensity;
-        uv.x += verticalBar(d, UV.y, o);
-    }
-    
-    float UVY = uv.y;
-    UVY *= noiseQuality;
-    UVY = float(int(UVY)) * (1.0 / noiseQuality);
-    float noise = rand(vec2(TIME * 0.00001, UVY));
-    uv.x += noise * noiseIntensity;
-
-    vec2 offsetR = vec2(0.009 * sin(TIME), 0.0) * colorOffsetIntensity;
-    vec2 offsetG = vec2(0.0073 * (cos(TIME * 0.97)), 0.0) * colorOffsetIntensity;
-    
-    float r = texture(SCREEN_TEXTURE, uv + offsetR).r;
-    float g = texture(SCREEN_TEXTURE, uv + offsetG).g;
-    float b = texture(SCREEN_TEXTURE, uv).b;
-    vec4 tex = vec4(r, g, b, 1.0);
-    COLOR = tex;
+	COLOR = vec4(
+		textureLod( SCREEN_TEXTURE, fixed_uv + normalize( direction_r ) * fade, 0.0 ).r
+	,	textureLod( SCREEN_TEXTURE, fixed_uv + normalize( direction_g ) * fade, 0.0 ).g
+	,	textureLod( SCREEN_TEXTURE, fixed_uv + normalize( direction_b ) * fade, 0.0 ).b
+	,	0.0
+	) * ( 1.0 - fade );
+	COLOR.a = 1.0;
 }

@@ -20,8 +20,10 @@ func play_cutscene(info_array:Array[CutsceneInfo]) -> void:
 		tween.tween_property(box, "modulate:a", 1.0, fadein_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		#stream_player.stream = line.sound
 		#stream_player.play()
-		var streamer : AudioStreamPlayer = SoundManager.play_and_get(line.sound)
-		await streamer.finished
+		#var streamer : AudioStreamPlayer = SoundManager.play_and_get(line.sound)
+		#await streamer.finished
+		VoiceManager.play(line.sound)
+		await VoiceManager.finished
 		var timer : SceneTreeTimer = get_tree().create_timer(line.wait_time-fadeout_time)
 		await timer.timeout
 		tween = get_tree().create_tween()

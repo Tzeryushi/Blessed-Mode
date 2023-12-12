@@ -127,7 +127,6 @@ func start_combat(_link:ObjectiveLink) -> void:
 		link_function_finished.emit()
 		return
 	has_combat_started = true
-	print("combat!")
 	assert(!spawners.is_empty(), "Combat called with no spawners in scene!")
 	
 	are_all_spawners_stopped = false
@@ -138,7 +137,6 @@ func start_combat(_link:ObjectiveLink) -> void:
 		spawner.process_events()
 
 func resume_combat(_link:ObjectiveLink) -> void:
-	print("Resuming with ", spawners.size(), " spawners")
 	are_all_spawners_stopped = false
 	spawner_wait_list.clear()
 	var temp_spawners : Array[Spawner] = []
@@ -146,34 +144,25 @@ func resume_combat(_link:ObjectiveLink) -> void:
 		spawner_wait_list.append(spawner)
 		temp_spawners.append(spawner)
 	for spawner in temp_spawners:
-		print("One resume")
 		spawner.resume_events()
 
 func on_spawner_stopped(_spawner:Spawner) -> void:
-	print("Spawner stopped!")
 	var index : int = spawner_wait_list.find(_spawner)
 	assert(!index < 0, "Spawner stopped outside of monitoring! Nasty!")
-	print("Removing ", spawner_wait_list[index], " from spawner_wait_list")
 	spawner_wait_list.remove_at(index)
-	print(spawner_wait_list.size())
-	print(spawners.size())
 	if spawner_wait_list.is_empty():
-		print("All spawners stopped!")
 		are_all_spawners_stopped = true
 		all_spawners_stopped.emit()
 		if are_all_enemies_defeated:
 			link_function_finished.emit()
 
 func on_spawner_finished(_spawner:Spawner) -> void:
-	print("Spawner finished!")
 	var index : int = spawners.find(_spawner)
 	assert(!index < 0, "Spawner finished outside of monitoring! Nasty!")
-	print("Removing ", spawners[index], " from spawners")
 	spawners.remove_at(index)
 	if spawner_wait_list.has(_spawner):
 		on_spawner_stopped(_spawner)
 	if spawners.is_empty():
-		print("All spawners finished!")
 		are_all_spawners_finished = true
 		all_spawners_finished.emit()
 		if are_all_enemies_defeated:

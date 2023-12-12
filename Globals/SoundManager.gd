@@ -32,7 +32,6 @@ func return_player(player:AudioStreamPlayer):
 
 func play(sound:AudioStream):
 	var player : AudioStreamPlayer = get_player()
-	player.finished.connect(return_player.bind(player))
 	player.stream = sound
 	player.play()
 

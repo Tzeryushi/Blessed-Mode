@@ -15,7 +15,9 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="TextBack" type="Sprite2D" parent="BoxControl"]
+show_behind_parent = true
 position = Vector2(960, 540)
+scale = Vector2(1, 1.10448)
 texture = ExtResource("2_jl215")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BoxControl"]
@@ -24,17 +26,19 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -849.0
-offset_right = 849.0
-offset_bottom = -27.0
+offset_left = -767.0
+offset_right = 767.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_1ymp5")
+theme_override_constants/separation = -17
 alignment = 1
+
+[node name="Label" type="Label" parent="BoxControl/VBoxContainer"]
+layout_mode = 2
 
 [node name="CutsceneText" type="RichTextLabel" parent="BoxControl/VBoxContainer"]
 clip_contents = false
-custom_minimum_size = Vector2(1000, 40)
 layout_mode = 2
 theme = ExtResource("3_1ymp5")
 theme_override_colors/default_color = Color(1, 0.694118, 0.647059, 1)
@@ -44,6 +48,7 @@ theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[center]TESTING THE TEXT AND THERE SHOULD BE A LOT
 "
+fit_content = true
 scroll_active = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

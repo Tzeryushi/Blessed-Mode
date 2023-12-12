@@ -1,4 +1,21 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://cjetm8r58qaxe"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://cjetm8r58qaxe"]
+
+[sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_h3jrp"]
+resource_name = "Phaser"
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_6wa4h"]
+resource_name = "Chorus"
+voice_count = 3
+voice/3/delay_ms = 12.0
+voice/3/rate_hz = 1.0
+voice/3/depth_ms = 0.0
+voice/3/level_db = 0.0
+voice/3/cutoff_hz = 16000.0
+voice/3/pan = 0.0
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_c78rr"]
+resource_name = "Amplify"
+volume_db = -6.84
 
 [resource]
 bus/1/name = &"SFX"
@@ -13,3 +30,15 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/3/name = &"Voice"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.000600815
+bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectPhaser_h3jrp")
+bus/3/effect/0/enabled = true
+bus/3/effect/1/effect = SubResource("AudioEffectChorus_6wa4h")
+bus/3/effect/1/enabled = true
+bus/3/effect/2/effect = SubResource("AudioEffectAmplify_c78rr")
+bus/3/effect/2/enabled = true

@@ -4,10 +4,12 @@ extends Node
 @export var main_scene : String = ""
 @export var scenes : Dictionary = {}
 @export var effects : Dictionary = {}
-
+@onready var transition_layer := $CanvasLayer/BaseLayer
 var current_scenes : Array[String] = []
 var scene_references : Array[Node] = []
 #var effect_reference : Array[Node2D] = []
+
+signal transition_finished
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,9 +39,12 @@ func remove_all_scenes() -> void:
 	current_scenes.clear()
 
 func switch_scene(scene_name:String, effect_type:Globals.AFTEREFFECT=Globals.AFTEREFFECT.NONE) -> void:
+	transition(true)
+	await transition_finished
 	remove_all_scenes()
 	add_scene(scene_name, effect_type)
-
+	transition(false)
+	
 func restart_scene() -> void:
 	for child in scene_references:
 		child.queue_free()
@@ -47,9 +52,21 @@ func restart_scene() -> void:
 	for scene in current_scenes:
 		_load_and_instance(scene)
 
+func transition(is_transitioning_out:bool) -> void:
+	var tween : Tween = get_tree().create_tween()
+	if is_transitioning_out:
+		tween.tween_method(change_glitch_shader, 0.0, 1.0, 1.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	else:
+		tween.tween_method(change_glitch_shader, 1.0, 0.0, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	transition_finished.emit()
+
+func change_glitch_shader(value:float) -> void:
+	(transition_layer.material as ShaderMaterial).set_shader_parameter("fade", value)
+
 func quit_game() -> void:
 	get_tree().quit()
-	
+
 func _load_and_instance(scene_name:String) -> void:
 	print(scene_name)
 	assert(scenes.has(scene_name), "SceneManager: Bad scene_name string! Key not in dictionary.")

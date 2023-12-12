@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://mumsic338bln"
-path="res://.godot/imported/lamb2.wav-a25906f3c424b4cf3e3dd8f7406c5880.sample"
+uid="uid://nqc2pay5elmh"
+path="res://.godot/imported/7 (11).wav-d2bb328a33184f427635c71f04b4ab5f.sample"
 
 [deps]
 
-source_file="res://SFX/lamb2.wav"
-dest_files=["res://.godot/imported/lamb2.wav-a25906f3c424b4cf3e3dd8f7406c5880.sample"]
+source_file="res://Voices/Tutorial/7 (11).wav"
+dest_files=["res://.godot/imported/7 (11).wav-d2bb328a33184f427635c71f04b4ab5f.sample"]
 
 [params]
 

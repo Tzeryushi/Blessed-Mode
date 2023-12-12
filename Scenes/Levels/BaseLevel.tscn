@@ -1,185 +1,31 @@
-[gd_scene load_steps=36 format=3 uid="uid://bk6dasaa78yc7"]
+[gd_scene load_steps=7 format=3 uid="uid://bk6dasaa78yc7"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/BaseLevel.gd" id="1_t4hrk"]
 [ext_resource type="PackedScene" uid="uid://ds7bcbfgwevuw" path="res://Entities/Player/Player.tscn" id="2_gpuq8"]
 [ext_resource type="PackedScene" uid="uid://deo1k2y517tdi" path="res://GUI/HUD/HUD.tscn" id="2_sxy01"]
-[ext_resource type="Script" path="res://Structures/ObjectiveLink.gd" id="3_pxldj"]
+[ext_resource type="TileSet" uid="uid://bji0xmkb7r0pl" path="res://Scenes/Levels/TilemapAssets/BasicTilemap.tres" id="3_ix43e"]
 [ext_resource type="PackedScene" uid="uid://c1kt45x0yh3ny" path="res://Scenes/PauseMenu/Pause.tscn" id="4_ae0yb"]
-[ext_resource type="Script" path="res://Structures/CutsceneInfo.gd" id="4_xvsdu"]
-[ext_resource type="AudioStream" uid="uid://c4plhg0rw4cmv" path="res://SFX/lamb1.wav" id="5_7as2c"]
-[ext_resource type="AudioStream" uid="uid://mumsic338bln" path="res://SFX/lamb2.wav" id="6_aixt6"]
-[ext_resource type="PackedScene" uid="uid://b6gkul1xvx5qn" path="res://Scenes/Levels/LevelAssets/Spawner.tscn" id="7_ewucv"]
-[ext_resource type="AudioStream" uid="uid://cjjtknqhqmts1" path="res://SFX/GoodWork.wav" id="7_t3wfe"]
-[ext_resource type="Script" path="res://Structures/SpawnerInfo.gd" id="8_0ty5l"]
 [ext_resource type="PackedScene" uid="uid://3fiukknm56dq" path="res://Scenes/Cutscenes/CutscenePlayer.tscn" id="9_gkgck"]
-
-[sub_resource type="Resource" id="Resource_bq8ed"]
-script = ExtResource("3_pxldj")
-link_type = 3
-wait_time = 1.0
-combat_type = 1
-cutscene_list = Array[ExtResource("4_xvsdu")]([])
-
-[sub_resource type="Resource" id="Resource_xbwa3"]
-script = ExtResource("3_pxldj")
-link_type = 4
-wait_time = 0.0
-combat_type = 1
-cutscene_list = Array[ExtResource("4_xvsdu")]([])
-
-[sub_resource type="Resource" id="Resource_llvtv"]
-script = ExtResource("4_xvsdu")
-line_text = "The lamb needs not know why."
-wait_time = 1.0
-sound = ExtResource("5_7as2c")
-
-[sub_resource type="Resource" id="Resource_rrluf"]
-script = ExtResource("4_xvsdu")
-line_text = "The lamb should not know at all."
-wait_time = 1.0
-sound = ExtResource("6_aixt6")
-
-[sub_resource type="Resource" id="Resource_ks6f0"]
-script = ExtResource("3_pxldj")
-link_type = 1
-wait_time = 0.0
-combat_type = 1
-cutscene_list = Array[ExtResource("4_xvsdu")]([SubResource("Resource_llvtv"), SubResource("Resource_rrluf")])
-
-[sub_resource type="Resource" id="Resource_y0o57"]
-script = ExtResource("3_pxldj")
-link_type = 2
-wait_time = 0.0
-combat_type = 1
-cutscene_list = Array[ExtResource("4_xvsdu")]([])
-
-[sub_resource type="Resource" id="Resource_20ec7"]
-script = ExtResource("3_pxldj")
-link_type = 0
-wait_time = 2.0
-combat_type = 1
-cutscene_list = Array[ExtResource("4_xvsdu")]([])
-
-[sub_resource type="Resource" id="Resource_uoxlg"]
-script = ExtResource("3_pxldj")
-link_type = 5
-wait_time = 0.0
-combat_type = 1
-cutscene_list = Array[ExtResource("4_xvsdu")]([])
-
-[sub_resource type="Resource" id="Resource_ducg0"]
-script = ExtResource("4_xvsdu")
-line_text = "Good work, Shepherd."
-wait_time = 1.0
-sound = ExtResource("7_t3wfe")
-
-[sub_resource type="Resource" id="Resource_watk0"]
-script = ExtResource("3_pxldj")
-link_type = 1
-wait_time = 0.0
-combat_type = 1
-cutscene_list = Array[ExtResource("4_xvsdu")]([SubResource("Resource_ducg0")])
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_j2ys4"]
-vertices = PackedVector2Array(3836, 2380, -2762, 2543, -2970, -1985, 4460, -2199)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-2981, -1995, -2772, 2554, 3845, 2390, 4472, -2210)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-
-[sub_resource type="Resource" id="Resource_5ny5i"]
-script = ExtResource("8_0ty5l")
-spawn_type = 1
-wait_time = 0.0
-enemy_type = 1
-
-[sub_resource type="Resource" id="Resource_8uui0"]
-script = ExtResource("8_0ty5l")
-spawn_type = 0
-wait_time = 2.0
-enemy_type = 0
-
-[sub_resource type="Resource" id="Resource_eo34l"]
-script = ExtResource("8_0ty5l")
-spawn_type = 1
-wait_time = 0.0
-enemy_type = 1
-
-[sub_resource type="Resource" id="Resource_kt3o8"]
-script = ExtResource("8_0ty5l")
-spawn_type = 0
-wait_time = 2.0
-enemy_type = 0
-
-[sub_resource type="Resource" id="Resource_xgghx"]
-script = ExtResource("8_0ty5l")
-spawn_type = 2
-wait_time = 0.0
-enemy_type = 0
-
-[sub_resource type="Resource" id="Resource_jm86h"]
-script = ExtResource("8_0ty5l")
-spawn_type = 1
-wait_time = 0.0
-enemy_type = 2
-
-[sub_resource type="Resource" id="Resource_fhqus"]
-script = ExtResource("8_0ty5l")
-spawn_type = 0
-wait_time = 3.0
-enemy_type = 0
-
-[sub_resource type="Resource" id="Resource_tmqba"]
-script = ExtResource("8_0ty5l")
-spawn_type = 1
-wait_time = 0.0
-enemy_type = 2
-
-[sub_resource type="Resource" id="Resource_d6ib2"]
-script = ExtResource("8_0ty5l")
-spawn_type = 0
-wait_time = 3.0
-enemy_type = 0
-
-[sub_resource type="Resource" id="Resource_txljq"]
-script = ExtResource("8_0ty5l")
-spawn_type = 1
-wait_time = 0.0
-enemy_type = 2
-
-[sub_resource type="Resource" id="Resource_g6r8m"]
-script = ExtResource("8_0ty5l")
-spawn_type = 2
-wait_time = 0.0
-enemy_type = 0
-
-[sub_resource type="Resource" id="Resource_xxjjx"]
-script = ExtResource("8_0ty5l")
-spawn_type = 1
-wait_time = 0.0
-enemy_type = 2
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_t4hrk")
 player_scene = ExtResource("2_gpuq8")
-objective_chain = Array[ExtResource("3_pxldj")]([SubResource("Resource_bq8ed"), SubResource("Resource_xbwa3"), SubResource("Resource_ks6f0"), SubResource("Resource_y0o57"), SubResource("Resource_20ec7"), SubResource("Resource_uoxlg"), SubResource("Resource_watk0")])
 
 [node name="Map" type="NavigationRegion2D" parent="."]
 z_index = -5
-navigation_polygon = SubResource("NavigationPolygon_j2ys4")
 
 [node name="TileMap" type="TileMap" parent="Map"]
 z_index = 5
+tile_set = ExtResource("3_ix43e")
 format = 2
+layer_0/name = "Wall"
+layer_0/z_index = 12
+layer_1/name = "Floor"
+layer_1/z_index = -12
+layer_1/navigation_enabled = false
+layer_1/tile_data = PackedInt32Array()
 
 [node name="Spawners" type="Node2D" parent="."]
-
-[node name="Spawner" parent="Spawners" instance=ExtResource("7_ewucv")]
-position = Vector2(769, 462)
-spawn_list = Array[ExtResource("8_0ty5l")]([SubResource("Resource_5ny5i"), SubResource("Resource_8uui0"), SubResource("Resource_eo34l"), SubResource("Resource_kt3o8"), SubResource("Resource_eo34l"), SubResource("Resource_xgghx")])
-
-[node name="Spawner2" parent="Spawners" instance=ExtResource("7_ewucv")]
-position = Vector2(-660, 503)
-spawn_list = Array[ExtResource("8_0ty5l")]([SubResource("Resource_jm86h"), SubResource("Resource_fhqus"), SubResource("Resource_tmqba"), SubResource("Resource_d6ib2"), SubResource("Resource_txljq"), SubResource("Resource_g6r8m"), SubResource("Resource_xxjjx")])
 
 [node name="Enemies" type="Node2D" parent="."]
 

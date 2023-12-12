@@ -13,7 +13,7 @@ config_version=5
 config/name="Blessed Mode"
 run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/bg_color=Color(0.478431, 0.478431, 0.478431, 1)
+boot_splash/bg_color=Color(0.0627451, 0.0627451, 0.0627451, 1)
 boot_splash/image="res://Art/Icons/ColorWheelSplashCentered.png"
 config/icon="res://Art/Icons/ColorWheelIcon.svg"
 
@@ -24,6 +24,9 @@ Shake="*res://Globals/Shake.gd"
 Globals="*res://Globals/Globals.gd"
 Events="*res://Globals/Events.gd"
 SoundManager="*res://Globals/SoundManager.gd"
+ParticleCompiler="*res://Effects/Particles/ParticleCompiler.gd"
+VoiceManager="*res://Globals/VoiceManager.gd"
+MusicManager="*res://Globals/MusicManager.gd"
 
 [debug]
 
@@ -121,4 +124,4 @@ pause={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.423529, 0.423529, 0.423529, 1)
+environment/defaults/default_clear_color=Color(0.0509804, 0.0509804, 0.0509804, 1)

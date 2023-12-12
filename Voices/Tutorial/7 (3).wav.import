@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cjjtknqhqmts1"
-path="res://.godot/imported/GoodWork.wav-e378a0d3bdf08d62a94654e19953dfbf.sample"
+uid="uid://bbexbkf2upsxi"
+path="res://.godot/imported/7 (3).wav-a4bc4cb3dd37be2f830e47f752d80212.sample"
 
 [deps]
 
-source_file="res://SFX/GoodWork.wav"
-dest_files=["res://.godot/imported/GoodWork.wav-e378a0d3bdf08d62a94654e19953dfbf.sample"]
+source_file="res://Voices/Tutorial/7 (3).wav"
+dest_files=["res://.godot/imported/7 (3).wav-a4bc4cb3dd37be2f830e47f752d80212.sample"]
 
 [params]
 

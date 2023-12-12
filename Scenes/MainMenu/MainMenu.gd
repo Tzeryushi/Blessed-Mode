@@ -36,7 +36,7 @@ func _on_options_button_pressed():
 func _on_quit_button_pressed():
 	Globals.scene_manager.quit_game()
 func _on_tutorial_button_pressed():
-	Globals.scene_manager.switch_scene("base_level", Globals.AFTEREFFECT.CRT)
+	Globals.scene_manager.switch_scene("tutorial", Globals.AFTEREFFECT.CRT)
 
 #options menu
 func _on_return_button_pressed():
