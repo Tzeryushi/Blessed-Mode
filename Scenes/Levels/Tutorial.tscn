@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bsjd50t2a8c83"]
+[gd_scene load_steps=98 format=3 uid="uid://bsjd50t2a8c83"]
 
 [ext_resource type="PackedScene" uid="uid://bk6dasaa78yc7" path="res://Scenes/Levels/BaseLevel.tscn" id="1_7pw3e"]
 [ext_resource type="Script" path="res://Structures/ObjectiveLink.gd" id="2_ipkoh"]
@@ -16,7 +16,20 @@
 [ext_resource type="AudioStream" uid="uid://bbexbkf2upsxi" path="res://Voices/Tutorial/7 (3).wav" id="13_mo7by"]
 [ext_resource type="AudioStream" uid="uid://buxa2530g1y47" path="res://Voices/Tutorial/7 (4).wav" id="14_btlkw"]
 [ext_resource type="AudioStream" uid="uid://bcaoigm0h1ojy" path="res://Voices/Tutorial/7 (5).wav" id="15_2p75x"]
+[ext_resource type="AudioStream" uid="uid://bs80b2kj5sngw" path="res://Voices/Tutorial/7 (6).wav" id="16_48v5m"]
 [ext_resource type="Script" path="res://Structures/SpawnerInfo.gd" id="16_m4dl8"]
+[ext_resource type="AudioStream" uid="uid://d2tk51bq8jla5" path="res://Voices/Tutorial/7 (7).wav" id="17_koef7"]
+[ext_resource type="AudioStream" uid="uid://ciegupfdejx6j" path="res://Voices/Tutorial/7 (8).wav" id="18_t4bve"]
+[ext_resource type="AudioStream" uid="uid://daylfj50mew0w" path="res://Voices/Tutorial/7 (9).wav" id="19_ul2ix"]
+[ext_resource type="AudioStream" uid="uid://1t0uqe585x4f" path="res://Voices/Tutorial/7 (10).wav" id="20_2inyc"]
+[ext_resource type="AudioStream" uid="uid://nqc2pay5elmh" path="res://Voices/Tutorial/7 (11).wav" id="21_c8egy"]
+[ext_resource type="AudioStream" uid="uid://bkhkm3cixupvh" path="res://Voices/Tutorial/7 (12).wav" id="22_lr8e5"]
+[ext_resource type="AudioStream" uid="uid://w3nc841dofw" path="res://Voices/Tutorial/7 (13).wav" id="23_i33ay"]
+[ext_resource type="AudioStream" uid="uid://ckg1qpolkqvvy" path="res://Voices/Tutorial/7 (14).wav" id="24_808sb"]
+[ext_resource type="AudioStream" uid="uid://cm1frkussvbbe" path="res://Voices/Tutorial/7 (15).wav" id="25_3rda7"]
+[ext_resource type="AudioStream" uid="uid://dvrs61gxlothu" path="res://Voices/Tutorial/7 (16).wav" id="26_sidgx"]
+[ext_resource type="AudioStream" uid="uid://cp1b3ootohiy7" path="res://Voices/Tutorial/7 (17).wav" id="27_ewrlk"]
+[ext_resource type="AudioStream" uid="uid://dwuc3elbnu6qe" path="res://Voices/Tutorial/7 (18).wav" id="28_iognc"]
 
 [sub_resource type="Resource" id="Resource_osvm1"]
 script = ExtResource("2_ipkoh")
@@ -162,10 +175,158 @@ cutscene_list = Array[ExtResource("3_dgh15")]([SubResource("Resource_fgwn3")])
 
 [sub_resource type="Resource" id="Resource_uaw4o"]
 script = ExtResource("2_ipkoh")
-link_type = 2
+link_type = 5
 wait_time = 0.0
 combat_type = 1
 cutscene_list = Array[ExtResource("3_dgh15")]([])
+
+[sub_resource type="Resource" id="Resource_lcx73"]
+script = ExtResource("3_dgh15")
+line_text = "Blues leave mines that track reds."
+wait_time = 1.0
+sound = ExtResource("16_48v5m")
+
+[sub_resource type="Resource" id="Resource_5jhy6"]
+script = ExtResource("3_dgh15")
+line_text = "Red kills green. Green kills blue. Blue kills red."
+wait_time = 1.0
+sound = ExtResource("17_koef7")
+
+[sub_resource type="Resource" id="Resource_reqmt"]
+script = ExtResource("2_ipkoh")
+link_type = 1
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_dgh15")]([SubResource("Resource_lcx73"), SubResource("Resource_5jhy6")])
+
+[sub_resource type="Resource" id="Resource_ewvdg"]
+script = ExtResource("2_ipkoh")
+link_type = 5
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_dgh15")]([])
+
+[sub_resource type="Resource" id="Resource_6mwlm"]
+script = ExtResource("3_dgh15")
+line_text = "A tale as old as time."
+wait_time = 2.0
+sound = ExtResource("18_t4bve")
+
+[sub_resource type="Resource" id="Resource_v8cnm"]
+script = ExtResource("3_dgh15")
+line_text = "Each mode has a special move."
+wait_time = 1.0
+sound = ExtResource("19_ul2ix")
+
+[sub_resource type="Resource" id="Resource_jbxqs"]
+script = ExtResource("3_dgh15")
+line_text = "Activate it with space."
+wait_time = 1.0
+sound = ExtResource("20_2inyc")
+
+[sub_resource type="Resource" id="Resource_ltu2b"]
+script = ExtResource("3_dgh15")
+line_text = "Keep an eye on your special meter in the top left."
+wait_time = 1.0
+sound = ExtResource("21_c8egy")
+
+[sub_resource type="Resource" id="Resource_1q7ee"]
+script = ExtResource("2_ipkoh")
+link_type = 1
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_dgh15")]([SubResource("Resource_6mwlm"), SubResource("Resource_v8cnm"), SubResource("Resource_jbxqs"), SubResource("Resource_ltu2b")])
+
+[sub_resource type="Resource" id="Resource_ch6cn"]
+script = ExtResource("2_ipkoh")
+link_type = 5
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_dgh15")]([])
+
+[sub_resource type="Resource" id="Resource_rc1nk"]
+script = ExtResource("3_dgh15")
+line_text = "Get used to switching. Each color has a purpose."
+wait_time = 1.0
+sound = ExtResource("22_lr8e5")
+
+[sub_resource type="Resource" id="Resource_xt1d4"]
+script = ExtResource("2_ipkoh")
+link_type = 1
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_dgh15")]([SubResource("Resource_rc1nk")])
+
+[sub_resource type="Resource" id="Resource_bvqxd"]
+script = ExtResource("2_ipkoh")
+link_type = 5
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_dgh15")]([])
+
+[sub_resource type="Resource" id="Resource_vhkrw"]
+script = ExtResource("3_dgh15")
+line_text = "Kill enemies without getting hit to build your combo."
+wait_time = 1.0
+sound = ExtResource("23_i33ay")
+
+[sub_resource type="Resource" id="Resource_u1d6p"]
+script = ExtResource("2_ipkoh")
+link_type = 1
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_dgh15")]([SubResource("Resource_vhkrw")])
+
+[sub_resource type="Resource" id="Resource_k8mf0"]
+script = ExtResource("2_ipkoh")
+link_type = 5
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_dgh15")]([])
+
+[sub_resource type="Resource" id="Resource_bh443"]
+script = ExtResource("2_ipkoh")
+link_type = 0
+wait_time = 1.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_dgh15")]([])
+
+[sub_resource type="Resource" id="Resource_efex5"]
+script = ExtResource("3_dgh15")
+line_text = "Getting big combos feels nice."
+wait_time = 1.0
+sound = ExtResource("24_808sb")
+
+[sub_resource type="Resource" id="Resource_d7s2s"]
+script = ExtResource("3_dgh15")
+line_text = "There is nothing wrong with feeling nice from time to time."
+wait_time = 2.2
+sound = ExtResource("25_3rda7")
+
+[sub_resource type="Resource" id="Resource_t0ww2"]
+script = ExtResource("3_dgh15")
+line_text = "You seem ready to do your work."
+wait_time = 1.0
+sound = ExtResource("26_sidgx")
+
+[sub_resource type="Resource" id="Resource_uck6c"]
+script = ExtResource("3_dgh15")
+line_text = "Stay vigilant, S.H.E.P.H.E.R.D."
+wait_time = 0.5
+sound = ExtResource("27_ewrlk")
+
+[sub_resource type="Resource" id="Resource_x8b8o"]
+script = ExtResource("3_dgh15")
+line_text = "And apologies if you’re colorblind."
+wait_time = 1.0
+sound = ExtResource("28_iognc")
+
+[sub_resource type="Resource" id="Resource_u305i"]
+script = ExtResource("2_ipkoh")
+link_type = 1
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_dgh15")]([SubResource("Resource_efex5"), SubResource("Resource_d7s2s"), SubResource("Resource_t0ww2"), SubResource("Resource_uck6c"), SubResource("Resource_x8b8o")])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a0n6t"]
 vertices = PackedVector2Array(822, -1910, 822, -522, 502, -522, -822, -1910, 502, -202, 182, -202, -502, -522, 182, 182, -182, 182, -182, -202, -502, -202, -822, -522, 4479, -1099, 3260, 1955, 970, -374, 970, -2058, 3655, -3603, 650, -54, -636, 2502, 330, 330, -2505, -3870, -328, -4500, -970, -2058, -3603, -2728, -3770, 1271, -970, -374, -650, -54, -650, -374, -330, -54, -330, 330, 330, -54, 650, -374)
@@ -213,7 +374,7 @@ enemy_type = 0
 script = ExtResource("16_m4dl8")
 spawn_type = 1
 wait_time = 0.0
-enemy_type = 2
+enemy_type = 1
 
 [sub_resource type="Resource" id="Resource_0qslo"]
 script = ExtResource("16_m4dl8")
@@ -257,14 +418,44 @@ spawn_type = 2
 wait_time = 0.0
 enemy_type = 0
 
-[sub_resource type="Resource" id="Resource_kcgqx"]
+[sub_resource type="Resource" id="Resource_g4r2f"]
 script = ExtResource("16_m4dl8")
 spawn_type = 1
+wait_time = 0.0
+enemy_type = 2
+
+[sub_resource type="Resource" id="Resource_4410b"]
+script = ExtResource("16_m4dl8")
+spawn_type = 0
+wait_time = 0.5
+enemy_type = 0
+
+[sub_resource type="Resource" id="Resource_vs440"]
+script = ExtResource("16_m4dl8")
+spawn_type = 1
+wait_time = 0.0
+enemy_type = 2
+
+[sub_resource type="Resource" id="Resource_yeeo6"]
+script = ExtResource("16_m4dl8")
+spawn_type = 0
+wait_time = 0.5
+enemy_type = 0
+
+[sub_resource type="Resource" id="Resource_54cpi"]
+script = ExtResource("16_m4dl8")
+spawn_type = 1
+wait_time = 0.0
+enemy_type = 2
+
+[sub_resource type="Resource" id="Resource_kpan8"]
+script = ExtResource("16_m4dl8")
+spawn_type = 2
 wait_time = 0.0
 enemy_type = 0
 
 [node name="Tutorial" instance=ExtResource("1_7pw3e")]
-objective_chain = Array[ExtResource("2_ipkoh")]([SubResource("Resource_osvm1"), SubResource("Resource_x7qtt"), SubResource("Resource_64r84"), SubResource("Resource_o12do"), SubResource("Resource_m5cui"), SubResource("Resource_onixu"), SubResource("Resource_026mn"), SubResource("Resource_imfvd"), SubResource("Resource_pxvb3"), SubResource("Resource_7vucf"), SubResource("Resource_uaw4o")])
+objective_chain = Array[ExtResource("2_ipkoh")]([SubResource("Resource_osvm1"), SubResource("Resource_x7qtt"), SubResource("Resource_64r84"), SubResource("Resource_o12do"), SubResource("Resource_m5cui"), SubResource("Resource_onixu"), SubResource("Resource_026mn"), SubResource("Resource_imfvd"), SubResource("Resource_pxvb3"), SubResource("Resource_7vucf"), SubResource("Resource_uaw4o"), SubResource("Resource_reqmt"), SubResource("Resource_ewvdg"), SubResource("Resource_1q7ee"), SubResource("Resource_ch6cn"), SubResource("Resource_xt1d4"), SubResource("Resource_bvqxd"), SubResource("Resource_u1d6p"), SubResource("Resource_k8mf0"), SubResource("Resource_bh443"), SubResource("Resource_u305i")])
 
 [node name="Map" parent="." index="0"]
 self_modulate = Color(1, 1, 1, 0.164706)
@@ -278,4 +469,4 @@ layer_1/tile_data = PackedInt32Array(-917508, 1, 0, -851972, 1, 0, -786436, 1, 0
 
 [node name="Spawner" parent="Spawners" index="0" instance=ExtResource("7_2aibp")]
 position = Vector2(0, -1747)
-spawn_list = Array[ExtResource("16_m4dl8")]([SubResource("Resource_gnqbv"), SubResource("Resource_y40lx"), SubResource("Resource_jditr"), SubResource("Resource_lv0gr"), SubResource("Resource_rqhdg"), SubResource("Resource_wva62"), SubResource("Resource_27ppw"), SubResource("Resource_0qslo"), SubResource("Resource_lrny1"), SubResource("Resource_adkft"), SubResource("Resource_125hf"), SubResource("Resource_t07gr"), SubResource("Resource_4oh54"), SubResource("Resource_k5p1i"), SubResource("Resource_kcgqx")])
+spawn_list = Array[ExtResource("16_m4dl8")]([SubResource("Resource_gnqbv"), SubResource("Resource_y40lx"), SubResource("Resource_jditr"), SubResource("Resource_lv0gr"), SubResource("Resource_rqhdg"), SubResource("Resource_wva62"), SubResource("Resource_27ppw"), SubResource("Resource_0qslo"), SubResource("Resource_lrny1"), SubResource("Resource_adkft"), SubResource("Resource_125hf"), SubResource("Resource_t07gr"), SubResource("Resource_4oh54"), SubResource("Resource_k5p1i"), SubResource("Resource_g4r2f"), SubResource("Resource_4410b"), SubResource("Resource_vs440"), SubResource("Resource_yeeo6"), SubResource("Resource_54cpi"), SubResource("Resource_kpan8")])
