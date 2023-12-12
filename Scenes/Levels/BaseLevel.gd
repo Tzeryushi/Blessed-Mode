@@ -120,7 +120,7 @@ func play_cutscene(link:ObjectiveLink) -> void:
 func on_cutscene_finished() -> void:
 	pass
 
-func start_combat(link:ObjectiveLink) -> void:
+func start_combat(_link:ObjectiveLink) -> void:
 	#start combat, wait for spawners to finish
 	if has_combat_started:
 		print("This should never appear!")
@@ -137,11 +137,11 @@ func start_combat(link:ObjectiveLink) -> void:
 	for spawner in spawners:
 		spawner.process_events()
 
-func resume_combat(link:ObjectiveLink) -> void:
+func resume_combat(_link:ObjectiveLink) -> void:
 	print("Resuming with ", spawners.size(), " spawners")
 	are_all_spawners_stopped = false
 	spawner_wait_list.clear()
-	var temp_spawners : Array[Spawner]
+	var temp_spawners : Array[Spawner] = []
 	for spawner in spawners:
 		spawner_wait_list.append(spawner)
 		temp_spawners.append(spawner)

@@ -11,6 +11,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 shake = 0.0
 shake_ceiling = 0.2
 mode_color = 2
+bullet_impact_color = Color(0, 0, 1, 1)
 damage = 2
 
 [node name="Hitbox" parent="." index="0"]

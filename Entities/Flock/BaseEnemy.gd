@@ -19,6 +19,9 @@ extends CharacterBody2D
 @export var bullet_scene : PackedScene
 @export var navigation_agent : NavigationAgent2D
 
+@export var explosion_scene : PackedScene
+@export var explosion_color : Color = Color(1,1,1,1)
+
 var player_ref : Player
 
 signal health_changed(value:int)
@@ -28,7 +31,6 @@ func _ready() -> void:
 	shot_timer.wait_time = shot_cooldown
 	navigation_agent.path_desired_distance = 4.0
 	navigation_agent.target_desired_distance = 4.0
-	
 	call_deferred("reference_setup")
 
 func _physics_process(_delta) -> void:
@@ -67,11 +69,23 @@ func reference_setup() -> void:
 	var tree = get_tree()
 	if tree.has_group("player"):
 		player_ref = tree.get_first_node_in_group("player")
+		player_ref.tree_exiting.connect(clear_body_ref)
 
 func destruct() -> void:
 	Events.combo_up.emit()
+	play_explosion(global_position)
 	defeated.emit(self)
 	queue_free()
+
+func play_explosion(_position:Vector2) -> void:
+	var explosion : ParticleAnimation = explosion_scene.instantiate()
+	explosion.global_position = _position
+	explosion.set_color(explosion_color)
+	get_parent().add_child(explosion)
+	explosion.play()
+
+func clear_body_ref() -> void:
+	player_ref = null
 
 func get_health() -> int:
 	return health

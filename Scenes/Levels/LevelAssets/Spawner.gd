@@ -5,6 +5,7 @@ extends Node2D
 #Levels can choose to pause the spawn timers they contain, and resume them whenever
 #Spawners technically ask the level to spawn an enemy at their location.
 @export var spawn_list : Array[SpawnerInfo]
+@onready var spawn_radius : float = $SpawnRadius.shape.radius
 
 var event_functions : Dictionary = {
 	Globals.SPAWNTYPE.WAIT : wait,
@@ -22,7 +23,7 @@ func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func process_events() -> void:
@@ -38,13 +39,18 @@ func wait(event:SpawnerInfo) -> void:
 	await timer.timeout
 	event_ended.emit()
 
+func get_random_coords(radius:float) -> Vector2:
+	var rad = radius * sqrt(randf())
+	var theta = randf() * 2 * PI
+	return Vector2(rad*cos(theta), rad*sin(theta))
+
 #signals 
 func spawn(event:SpawnerInfo) -> void:
 	#TODO: visual flair!
-	spawn_requested.emit(event.enemy_type, global_position)
+	spawn_requested.emit(event.enemy_type, global_position+get_random_coords(spawn_radius))
 
 ##stop simply does nothing (other than visuals) so the  
-func stop(event:SpawnerInfo) -> void:
+func stop(_event:SpawnerInfo) -> void:
 	#TODO: visual flair!
 	#ideally we want to stop until a function is called by the parent
 	#so, we do nothing. could probably just take this out of the dictionary

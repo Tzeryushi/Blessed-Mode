@@ -15,6 +15,7 @@ laser_length = 2000.0
 shake = 0.46
 shake_ceiling = 0.5
 mode_color = 1
+bullet_impact_color = Color(0, 1, 0, 1)
 damage = 20
 lifetime = 1.0
 

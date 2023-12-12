@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func connect_player(player:Player) -> void:
 	await get_tree().process_frame
-	var tree = get_tree()
+	var _tree = get_tree()
 	player_ref = player
 	assert(player_ref, "Did not successfully pass player info to the HUD!")
 	player_ref.health_changed.connect(_on_health_changed)

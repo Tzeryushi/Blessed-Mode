@@ -2,6 +2,7 @@ class_name BaseBullet
 extends Area2D
 
 @export var visuals_group : CanvasGroup
+@export var particle_scene : PackedScene
 @export var trail : Line2D
 @export var trail_length : int = 15
 @export var shake : float = 0.2
@@ -9,6 +10,7 @@ extends Area2D
 
 @export_category("Bullet Attributes")
 @export var mode_color : Globals.MODECOLOR
+@export var bullet_impact_color : Color = Color(0,0,0,1)
 @export var damage : int = 1
 @export var speed : float = 700.0
 @export var top_speed : float = 700.0
@@ -20,6 +22,7 @@ extends Area2D
 
 var direction : Vector2 = Vector2.ZERO
 var has_hit : bool = false
+var timed_out : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,6 +44,8 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	Shake.add_trauma(shake, shake_ceiling)
 
 func destroy() -> void:
+	if !timed_out:	
+		spawn_blast_particle(global_position)
 	queue_free()
 
 func update_trail() -> void:
@@ -56,10 +61,18 @@ func update_trail() -> void:
 			trail.remove_point(0)
 	pass
 
+func spawn_blast_particle(_position:Vector2) -> void:
+	var blast_particle : ParticleAnimation = particle_scene.instantiate()
+	blast_particle.global_position = _position
+	blast_particle.set_color(bullet_impact_color)
+	get_parent().add_child(blast_particle)
+	blast_particle.play()
+
 func get_mode_color() -> Globals.MODECOLOR:
 	return mode_color
 
 func _on_life_timer_timeout():
+	timed_out = true
 	destroy()
 
 func _on_body_entered(body) -> void:

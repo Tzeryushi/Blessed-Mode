@@ -32,6 +32,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	rotation = direction.angle()
 	
 	var collision_exception_array : Array = []
+	var collision_point_array : Array[Vector2] = []
 	laser_cast.enabled = true
 	laser_cast.force_raycast_update()
 	
@@ -40,6 +41,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 		var body = laser_cast.get_collider()
 		if (body is BaseEnemy or body is Player) and Globals.is_mode_color_effective(get_mode_color(), body.get_mode_color()):
 			collision_exception_array.append(body)
+			collision_point_array.append(laser_cast.get_collision_point())
 			laser_cast.add_exception(body)
 		else:
 			break
@@ -50,6 +52,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	trail.add_point(Vector2.ZERO)
 	if laser_cast.is_colliding():
 		trail.add_point(to_local(laser_cast.get_collision_point()))
+		collision_point_array.append(laser_cast.get_collision_point())
 	else:
 		trail.add_point(Vector2.RIGHT*laser_length)
 	
@@ -60,6 +63,10 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 		enemy.take_damage(damage, get_mode_color())
 	if laser_cast.get_collider() is BaseEnemy or laser_cast.get_collider() is Player:
 		laser_cast.get_collider().take_damage(damage, get_mode_color())
+	
+	#spawn particles
+	for pos in collision_point_array:
+		spawn_blast_particle(pos)
 	
 	#clean out exceptions - probably unnecessary
 	for body in collision_exception_array:

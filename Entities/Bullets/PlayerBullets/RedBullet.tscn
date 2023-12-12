@@ -10,6 +10,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 [node name="RedBullet" instance=ExtResource("1_dme7n")]
 shake = 0.1
 shake_ceiling = 0.3
+bullet_impact_color = Color(1, 0, 0, 1)
 damage = 10
 speed = 1300.0
 top_speed = 2000.0

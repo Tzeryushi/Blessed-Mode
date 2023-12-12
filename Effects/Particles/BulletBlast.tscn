@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhctv03shcywu"]
+
+[ext_resource type="Script" path="res://Effects/Particles/BulletBlast.gd" id="1_xxpxb"]
+[ext_resource type="Material" uid="uid://ckal27bvkvxjx" path="res://Effects/Particles/ParticleResources/BulletSpark.tres" id="2_ouhxo"]
+[ext_resource type="Texture2D" uid="uid://iq8r0l5jrdyg" path="res://Effects/ParticleSources/TinyCircle.svg" id="3_2ly87"]
+[ext_resource type="Material" uid="uid://cpqh5gxee6j4s" path="res://Effects/Particles/ParticleResources/ConcentratedParticle.tres" id="4_b55lk"]
+[ext_resource type="Texture2D" uid="uid://bm4blrjkaxjbr" path="res://Effects/ParticleSources/Explosion1.svg" id="5_1bsir"]
+[ext_resource type="Material" uid="uid://p1oixj5eg5ou" path="res://Effects/Particles/ParticleResources/QuickBoom.tres" id="6_6e1uw"]
+[ext_resource type="Texture2D" uid="uid://cx0m2x30afjxy" path="res://Effects/ParticleSources/SmallThinRing.svg" id="7_65xtx"]
+
+[node name="BulletBlast" type="Node2D"]
+script = ExtResource("1_xxpxb")
+
+[node name="Blast" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+process_material = ExtResource("2_ouhxo")
+texture = ExtResource("3_2ly87")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)
+
+[node name="Splode" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = ExtResource("4_b55lk")
+texture = ExtResource("5_1bsir")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.7
+fixed_fps = 60
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)
+
+[node name="Ring" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = ExtResource("6_6e1uw")
+texture = ExtResource("7_65xtx")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)

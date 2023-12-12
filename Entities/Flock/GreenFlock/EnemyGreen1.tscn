@@ -32,6 +32,7 @@ fire_distance_threshold = 800.0
 acceleration = 15.0
 max_movement_speed = 300.0
 bullet_scene = ExtResource("3_xh043")
+explosion_color = Color(0, 0.462745, 0, 1)
 
 [node name="Hitbox" parent="." index="0"]
 polygon = PackedVector2Array(-26, 18, -26, -18, 5, -35, 36, -18, 36, 18, 5, 35)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfa3otr0r1esl"]
+[gd_scene load_steps=6 format=3 uid="uid://bfa3otr0r1esl"]
 
 [ext_resource type="Script" path="res://Entities/Bullets/BaseBullet.gd" id="1_yv4m2"]
+[ext_resource type="PackedScene" uid="uid://bhctv03shcywu" path="res://Effects/Particles/BulletBlast.tscn" id="2_54nwp"]
 [ext_resource type="Texture2D" uid="uid://bcdtpygg5g5hx" path="res://Effects/ParticleSources/CircleWhite.svg" id="2_oqlqx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g5050"]
@@ -15,8 +16,10 @@ collision_layer = 8
 collision_mask = 6
 script = ExtResource("1_yv4m2")
 visuals_group = NodePath("VisualsGroup")
+particle_scene = ExtResource("2_54nwp")
 trail = NodePath("VisualsGroup/Trail")
 trail_length = 8
+bullet_impact_color = Color(1, 1, 1, 1)
 speed = 1000.0
 top_speed = 1600.0
 acceleration = 10.0

@@ -20,6 +20,7 @@ script = ExtResource("2_pk28a")
 body_damage = 3
 acceleration = 5.0
 max_movement_speed = 1000.0
+explosion_color = Color(0.521569, 0, 0, 1)
 
 [node name="Hitbox" parent="." index="0"]
 position = Vector2(-21, -23)

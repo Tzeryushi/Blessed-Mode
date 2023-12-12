@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://bik0gttvaxkkp"]
+
+[ext_resource type="Script" path="res://Effects/Particles/EnemyExplosion.gd" id="1_rqpyo"]
+[ext_resource type="Texture2D" uid="uid://c6fqq1mdyalwc" path="res://Effects/ParticleSources/LongOval.png" id="2_pkb1k"]
+[ext_resource type="Texture2D" uid="uid://iq8r0l5jrdyg" path="res://Effects/ParticleSources/TinyCircle.svg" id="3_lpadn"]
+[ext_resource type="Texture2D" uid="uid://bcdtpygg5g5hx" path="res://Effects/ParticleSources/CircleWhite.svg" id="4_n1rbv"]
+
+[sub_resource type="Curve" id="Curve_1jwbf"]
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_msdqo"]
+curve = SubResource("Curve_1jwbf")
+
+[sub_resource type="Curve" id="Curve_nyjj7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0583658, 0.469627), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xr2yn"]
+curve = SubResource("Curve_nyjj7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rbmuy"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, -10, 0)
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+damping_curve = SubResource("CurveTexture_msdqo")
+scale_curve = SubResource("CurveTexture_xr2yn")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[sub_resource type="Gradient" id="Gradient_16id2"]
+offsets = PackedFloat32Array(0, 0.105335, 0.641587)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5bcbu"]
+gradient = SubResource("Gradient_16id2")
+
+[sub_resource type="Curve" id="Curve_av7w8"]
+_data = [Vector2(0, 0), 0.0, 2.12636, 0, 0, Vector2(0.335927, 0.578821), 0.0, 0.0, 0, 0, Vector2(1, 0.212239), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_iekxi"]
+curve = SubResource("Curve_av7w8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_18bh5"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 80.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+angular_velocity_min = -137.99
+angular_velocity_max = 183.98
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_iekxi")
+color_ramp = SubResource("GradientTexture1D_5bcbu")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4vgp6"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 60.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+angular_velocity_min = -137.99
+angular_velocity_max = 183.98
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_iekxi")
+color_ramp = SubResource("GradientTexture1D_5bcbu")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[node name="EnemyExplosion" type="Node2D" node_paths=PackedStringArray("boom_particles")]
+script = ExtResource("1_rqpyo")
+boom_particles = [NodePath("Sparks"), NodePath("Splode1"), NodePath("Splode2")]
+
+[node name="Sparks" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_rbmuy")
+texture = ExtResource("2_pkb1k")
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.85
+fixed_fps = 60
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)
+
+[node name="Splode1" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 9
+process_material = SubResource("ParticleProcessMaterial_18bh5")
+texture = ExtResource("3_lpadn")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.8
+fixed_fps = 60
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)
+
+[node name="Splode2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_4vgp6")
+texture = ExtResource("4_n1rbv")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.63
+fixed_fps = 60
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)
