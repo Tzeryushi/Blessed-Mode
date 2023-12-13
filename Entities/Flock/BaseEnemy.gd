@@ -77,9 +77,9 @@ func reference_setup() -> void:
 
 func destruct() -> void:
 	#print("Destruct called on enemy ", self)
-	Events.combo_up.emit()
-	play_explosion(global_position)
 	if !is_defeated:
+		Events.combo_up.emit()
+		play_explosion(global_position)
 		defeated.emit(self)
 		is_defeated = true
 	queue_free()

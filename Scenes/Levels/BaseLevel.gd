@@ -227,7 +227,7 @@ func on_monitored_enemy_defeat(enemy:BaseEnemy) -> void:
 			print("WIN CONDITION! In Enemy Defeat")
 
 func set_score(value:int) -> void:
-	var score_to_add : int = value*score_value*(player.get_combo_count()/combo_threshold)
+	var score_to_add : int = value*score_value*((player.get_combo_count()/combo_threshold)+1)
 	total_score += score_to_add
 	hud.change_score(total_score)
 

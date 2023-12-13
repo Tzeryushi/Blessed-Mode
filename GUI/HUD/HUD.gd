@@ -27,6 +27,7 @@ func connect_player(player:Player) -> void:
 	player_ref.combo_changed.connect(_on_combo_changed)
 	_on_health_changed(player_ref.health, player_ref.max_health)
 	_on_juice_changed(player_ref.juice, player_ref.max_juice, player_ref.can_use_special)
+	(juice_bar.material as ShaderMaterial).set_shader_parameter("strength", 0.0) 
 	pass
 
 func shift_mode_indicator(mode:Globals.MODECOLOR) -> void:

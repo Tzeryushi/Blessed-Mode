@@ -7,6 +7,7 @@ extends ColorRect
 @export var good_messages : Array[String] = []
 @export var bad_messages : Array[String] = []
 @export var message_pre : String = ""
+@export var menu_stab : AudioStream
 
 @onready var results_title := $PanelContainer/VBoxContainer/ResultsTitle
 @onready var combat_time := $PanelContainer/VBoxContainer/CombatTime
@@ -47,24 +48,32 @@ func set_results(_time:int, _slain:int, _score:int, _victorious:bool) -> void:
 		temp_msg = bad_messages.pick_random()
 	outcome.text = outcome_pre + _outcome
 	message.text = message_pre+temp_msg
-	
+
 func animate_results() -> void:	
 	var tween : Tween = create_tween()
 	tween.tween_callback(show)
+	tween.tween_callback(SoundManager.play.bind(menu_stab))
 	tween.tween_method(shake, 0.7, 0.0, 1.0)
 	tween.tween_callback(combat_time.show)
+	tween.tween_callback(SoundManager.play.bind(menu_stab))
 	tween.tween_method(shake, 0.6, 0.0, 1.0)
 	tween.tween_callback(enemies_killed.show)
+	tween.tween_callback(SoundManager.play.bind(menu_stab))
 	tween.tween_method(shake, 0.6, 0.0, 1.0)
 	tween.tween_callback(final_score.show)
+	tween.tween_callback(SoundManager.play.bind(menu_stab))
 	tween.tween_method(shake, 0.6, 0.0, 1.0)
 	tween.tween_callback(outcome.show).set_delay(1.0)
+	tween.tween_callback(SoundManager.play.bind(menu_stab))
 	tween.tween_method(shake, 0.6, 0.0, 0.7)
 	tween.tween_callback(message.show)
+	tween.tween_callback(SoundManager.play.bind(menu_stab))
 	tween.tween_method(shake, 0.6, 0.0, 1.0)
 	tween.tween_callback(menu_button_container.show)
+	tween.tween_callback(SoundManager.play.bind(menu_stab))
 	tween.tween_method(shake, 0.6, 0.0, 0.4)
 	tween.tween_callback(replay_button_container.show)
+	tween.tween_callback(SoundManager.play.bind(menu_stab))
 	tween.tween_method(shake, 0.6, 0.0, 0.4)
 	
 	await tween.finished
@@ -72,7 +81,10 @@ func animate_results() -> void:
 	if victory:
 		tween = create_tween()
 		tween.tween_callback(next_level_button_container.show)
+		tween.tween_callback(SoundManager.play.bind(menu_stab))
 		tween.tween_method(shake, 0.6, 0.0, 0.4)
+	
+	$PanelContainer/VBoxContainer/Buttons/VBoxContainer/MainMenu.grab_focus()
 	
 	pass
 

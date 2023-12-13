@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bk6dasaa78yc7"]
+[gd_scene load_steps=15 format=3 uid="uid://bk6dasaa78yc7"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/BaseLevel.gd" id="1_t4hrk"]
 [ext_resource type="PackedScene" uid="uid://ds7bcbfgwevuw" path="res://Entities/Player/Player.tscn" id="2_gpuq8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/Levels/EndScreen.gd" id="7_8v7ae"]
 [ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="7_lnvte"]
 [ext_resource type="FontFile" uid="uid://bh266l8u8ii6l" path="res://Art/Fonts/Gemsbuck01Black-axn2g.ttf" id="8_hkm6u"]
+[ext_resource type="AudioStream" uid="uid://coe6n13usprm1" path="res://SFX/TempSFX/explosion.wav" id="8_irv24"]
 [ext_resource type="PackedScene" uid="uid://3fiukknm56dq" path="res://Scenes/Cutscenes/CutscenePlayer.tscn" id="9_gkgck"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee0qb"]
@@ -103,6 +104,7 @@ outcome_pre = "[center]Outcome: "
 good_messages = Array[String](["GOOD WORK.", "ACCEPTABLE.", "YOU ARE REDEEMED.", "A FINE VESSEL.", "BLESSED SHEPHERD.", "WELL ACCOMPLISHED.", "IMPRESSIVE.", "UP TO STANDARD."])
 bad_messages = Array[String](["UNACCEPTABLE.", "POOR PERFORMANCE.", "EXERCISE CARE.", "YOU ARE DEAD. PHOOEY.", "OOPSY WOOPSY, SHEPHERD.", "OH WELL. NEXT?", "ARE YOU FEELING O.K.?", "YOU MAY TRY AGAIN."])
 message_pre = "[center]"
+menu_stab = ExtResource("8_irv24")
 
 [node name="PanelContainer" type="PanelContainer" parent="EndScreenLayer/EndScreen"]
 layout_mode = 1
