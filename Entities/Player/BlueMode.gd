@@ -9,6 +9,7 @@ var can_shoot_missiles : bool = true
 func _ready() -> void:
 	super()
 	missile_timer.timeout.connect(missile_timer_timeout)
+	swap_in_sfx = GlobalSfx.player_ship_swap_blue
 
 func _unhandled_input(_event) -> void:
 	if Input.is_action_just_released("special_action"):

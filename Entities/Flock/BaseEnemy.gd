@@ -20,8 +20,12 @@ extends CharacterBody2D
 @export var bullet_scene : PackedScene
 @export var navigation_agent : NavigationAgent2D
 
+@export_category("Visuals and SFX")
 @export var explosion_scene : PackedScene
 @export var explosion_color : Color = Color(1,1,1,1)
+@export var hit_sfx : AudioStream = GlobalSfx.enemy_ship_hit
+@export var destroyed_sfx : AudioStream = GlobalSfx.enemy_ship_destroyed
+@export var ship_on_ship_sfx : AudioStream = GlobalSfx.ship_on_ship_collision
 
 var player_ref : Player
 var is_defeated : bool = false
@@ -64,6 +68,7 @@ func take_damage(_damage:int, _attacking_color:Globals.MODECOLOR=mode_color) -> 
 	var altered_damage = Globals.multiply_by_mode(_damage, _attacking_color, get_mode_color())
 	health = get_health()-altered_damage
 	TextPopper.root_pop_text("[center]-"+str(altered_damage), global_position, 1.0, 1.0, 40, 10, explosion_color)
+	SoundManager.play(hit_sfx)
 	if get_health() <= 0:
 		destruct()
 
@@ -79,6 +84,7 @@ func destruct() -> void:
 	#print("Destruct called on enemy ", self)
 	if !is_defeated:
 		Events.combo_up.emit()
+		SoundManager.play(destroyed_sfx)
 		play_explosion(global_position)
 		defeated.emit(self)
 		is_defeated = true

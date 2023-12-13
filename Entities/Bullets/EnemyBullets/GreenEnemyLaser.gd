@@ -63,6 +63,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 			laser_cast.remove_exception(body)
 	laser_cast.enabled = false
 	monitoring = false
+	SoundManager.play(spawn_sfx)
 	
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(visuals_group, "self_modulate:a", 0.0, life_timer.wait_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)

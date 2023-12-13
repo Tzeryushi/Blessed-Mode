@@ -18,6 +18,7 @@ func _ready() -> void:
 	shield_hitbox.monitorable = false
 	shield_collision.disabled = true
 	shield_normal_scale = shield_sprite.scale
+	swap_in_sfx = GlobalSfx.player_ship_swap_green
 
 func _unhandled_input(_event) -> void:
 	if Input.is_action_just_released("special_action"):

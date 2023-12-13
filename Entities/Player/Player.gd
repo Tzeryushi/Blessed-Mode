@@ -36,8 +36,8 @@ extends Node2D
 
 @export_category("SFX")
 #remember that swap sfx is in ship modes!
-@export var hurt_sfx : AudioStream
-@export var death_sfx : AudioStream
+@export var hurt_sfx : AudioStream = GlobalSfx.player_ship_hit
+@export var death_sfx : AudioStream = GlobalSfx.player_ship_destroyed
 
 #onreadies, pay attention to pathing
 @onready var player_sprite = $SpriteGroup/PlayerSprite

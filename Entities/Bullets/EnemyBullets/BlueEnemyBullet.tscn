@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw01ap17bst3k"]
+[gd_scene load_steps=3 format=3 uid="uid://bw01ap17bst3k"]
 
 [ext_resource type="PackedScene" uid="uid://te32ux48rni8" path="res://Entities/Bullets/PlayerBullets/BlueBullet.tscn" id="1_cs3ht"]
+[ext_resource type="Script" path="res://Entities/Bullets/EnemyBullets/BlueEnemyBullet.gd" id="2_m60hp"]
 
 [node name="BlueEnemyBullet" instance=ExtResource("1_cs3ht")]
 collision_layer = 16
 collision_mask = 5
+script = ExtResource("2_m60hp")
 speed = 500.0
 top_speed = 700.0
 

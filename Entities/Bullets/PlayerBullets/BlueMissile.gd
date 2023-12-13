@@ -14,6 +14,8 @@ var target_body : CharacterBody2D
 
 func _ready():
 	life_timer.wait_time = lifetime
+	spawn_sfx = GlobalSfx.bullet_fire_blue_missile
+	hit_sfx = GlobalSfx.bullet_hit
 
 func _physics_process(_delta) -> void:
 	if target_body:

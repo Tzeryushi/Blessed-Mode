@@ -1,6 +1,6 @@
 extends Node
 
-var bus : String = "Voice"
+var bus : String = "Music"
 var player : AudioStreamPlayer
 
 signal finished
@@ -16,11 +16,16 @@ func player_finished() -> void:
 	finished.emit()
 
 func play(sound:AudioStream) -> void:
+	if sound == player.stream: # or !sound:
+		return
 	player.stream = sound
 	player.play()
 
 func stop() -> void:
 	player.stop()
+
+func reset():
+	player.play(0.0)
 
 func pause() -> void:
 	player.stream_paused = true

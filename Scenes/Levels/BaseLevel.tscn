@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bk6dasaa78yc7"]
+[gd_scene load_steps=16 format=3 uid="uid://bk6dasaa78yc7"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/BaseLevel.gd" id="1_t4hrk"]
 [ext_resource type="PackedScene" uid="uid://ds7bcbfgwevuw" path="res://Entities/Player/Player.tscn" id="2_gpuq8"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://bh266l8u8ii6l" path="res://Art/Fonts/Gemsbuck01Black-axn2g.ttf" id="8_hkm6u"]
 [ext_resource type="AudioStream" uid="uid://coe6n13usprm1" path="res://SFX/TempSFX/explosion.wav" id="8_irv24"]
 [ext_resource type="PackedScene" uid="uid://3fiukknm56dq" path="res://Scenes/Cutscenes/CutscenePlayer.tscn" id="9_gkgck"]
+[ext_resource type="Script" path="res://GUI/GenButton.gd" id="11_yd0ry"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee0qb"]
 bg_color = Color(0.294118, 0.294118, 0.294118, 0.541176)
@@ -214,6 +215,7 @@ theme = SubResource("Theme_1glo0")
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "MAIN
 MENU"
+script = ExtResource("11_yd0ry")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons"]
 layout_mode = 2
@@ -224,6 +226,7 @@ layout_mode = 2
 theme = SubResource("Theme_1glo0")
 text = "REPLAY
 LEVEL"
+script = ExtResource("11_yd0ry")
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons"]
 layout_mode = 2
@@ -235,7 +238,17 @@ theme = SubResource("Theme_1glo0")
 theme_override_colors/font_color = Color(0, 0, 1, 1)
 text = "NEXT
 LEVEL"
+script = ExtResource("11_yd0ry")
 
+[connection signal="focus_entered" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer/MainMenu" to="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer/MainMenu" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer/MainMenu" to="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer/MainMenu" method="_on_mouse_entered"]
 [connection signal="pressed" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer/MainMenu" to="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer/MainMenu" method="_on_pressed"]
+[connection signal="focus_entered" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer2/Replay" to="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer2/Replay" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer2/Replay" to="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer2/Replay" method="_on_mouse_entered"]
 [connection signal="pressed" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer2/Replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer2/Replay" to="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer2/Replay" method="_on_pressed"]
+[connection signal="focus_entered" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer3/NextLevel" to="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer3/NextLevel" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer3/NextLevel" to="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer3/NextLevel" method="_on_mouse_entered"]
 [connection signal="pressed" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer3/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer3/NextLevel" to="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer3/NextLevel" method="_on_pressed"]

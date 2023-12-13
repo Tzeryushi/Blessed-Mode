@@ -8,10 +8,10 @@ extends BaseBullet
 
 func _ready():
 	laser_cast.target_position.x = laser_length
-	
 	#timer calulates laser fade time in this case
 	life_timer.wait_time = lifetime
-	#life_timer.start()
+	spawn_sfx = GlobalSfx.bullet_fire_green
+	hit_sfx = GlobalSfx.bullet_hit
 	
 	
 func _process(_delta) -> void:
@@ -57,6 +57,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 		trail.add_point(Vector2.RIGHT*laser_length)
 	
 	Shake.add_trauma(shake, shake_ceiling)
+	SoundManager.play(spawn_sfx)
 	
 	#handle application of damage
 	for enemy in collision_exception_array:

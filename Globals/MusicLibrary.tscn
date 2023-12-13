@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2lwiwi3nm627"]
+
+[ext_resource type="Script" path="res://Globals/MusicLibrary.gd" id="1_opfdm"]
+[ext_resource type="AudioStream" uid="uid://ce0ou6ed2d5lb" path="res://Music/fallenwindpalaceALT.wav" id="2_x18it"]
+
+[node name="MusicLibrary" type="Node"]
+script = ExtResource("1_opfdm")
+menu_music = ExtResource("2_x18it")
+tutorial_music = ExtResource("2_x18it")
+playing_music = ExtResource("2_x18it")
+victory_music = ExtResource("2_x18it")
+defeat_music = ExtResource("2_x18it")
+epilogue_music = ExtResource("2_x18it")

@@ -15,6 +15,9 @@ extends Node2D
 @export var combo_threshold : int = 5
 @export var next_scene : String = "main_menu"
 
+@export_category("Music")
+@export var level_music : AudioStream = MusicLibrary.playing_music
+
 @onready var enemy_container := $Enemies
 @onready var spawner_container := $Spawners
 @onready var hud := $HUDLayer/HUD
@@ -86,6 +89,8 @@ func _ready():
 		spawner.spawn_requested.connect(spawn_enemy)
 		spawner.reached_breakpoint.connect(on_spawner_stopped)
 		spawner.reached_end_of_list.connect(on_spawner_finished)
+	
+	MusicManager.play(level_music)
 	
 	process_objective_link()
 	#spawn_player()

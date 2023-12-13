@@ -15,6 +15,7 @@ func _ready():
 	main_context.primary_focus_node.grab_focus()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	#set_focus(options_context, false)
+	MusicManager.play(MusicLibrary.menu_music)
 	pass # Replace with function body.
 
 func set_focus(node:Node, value:bool) -> void:

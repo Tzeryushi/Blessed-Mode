@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://te32ux48rni8"]
+[gd_scene load_steps=5 format=3 uid="uid://te32ux48rni8"]
 
 [ext_resource type="PackedScene" uid="uid://bfa3otr0r1esl" path="res://Entities/Bullets/BaseBullet.tscn" id="1_qfct7"]
+[ext_resource type="Script" path="res://Entities/Bullets/PlayerBullets/BlueBullet.gd" id="2_cjhx5"]
 [ext_resource type="Texture2D" uid="uid://iq8r0l5jrdyg" path="res://Effects/ParticleSources/TinyCircle.svg" id="2_icjoj"]
 
 [sub_resource type="Gradient" id="Gradient_y4ab8"]
@@ -8,6 +9,7 @@ offsets = PackedFloat32Array(0.516779, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
 [node name="BlueBullet" instance=ExtResource("1_qfct7")]
+script = ExtResource("2_cjhx5")
 shake = 0.0
 shake_ceiling = 0.2
 mode_color = 2

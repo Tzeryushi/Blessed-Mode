@@ -32,7 +32,6 @@ var timed_out : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	life_timer.wait_time = lifetime
-	SoundManager.play(spawn_sfx)
 
 func _process(_delta) -> void:
 	update_trail()
@@ -48,6 +47,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	direction = _direction.normalized()
 	rotation = direction.angle()
 	Shake.add_trauma(shake, shake_ceiling)
+	SoundManager.play(spawn_sfx)
 
 func destroy() -> void:
 	if !timed_out:	

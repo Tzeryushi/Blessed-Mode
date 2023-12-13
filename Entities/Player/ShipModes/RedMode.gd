@@ -13,6 +13,7 @@ func _ready() -> void:
 	shot_timer.timeout.connect(on_shot_timer_timeout)
 	red_trail.generate = false
 	dash_hitbox.monitoring = false
+	swap_in_sfx = GlobalSfx.player_ship_swap_red
 func _unhandled_input(_event) -> void:
 	if is_rocketing and Input.is_action_just_released("special_action"):
 		end_special_action()
