@@ -30,9 +30,10 @@ func return_player(player:AudioStreamPlayer):
 	# When finished playing a stream, make the player available again.
 	available_players.append(player)
 
-func play(sound:AudioStream):
+func play(sound:AudioStream, volume:float=1.0):
 	var player : AudioStreamPlayer = get_player()
 	player.stream = sound
+	player.volume_db = linear_to_db(volume)
 	player.play()
 
 func play_and_get(sound:AudioStream) -> AudioStreamPlayer:

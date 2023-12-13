@@ -65,8 +65,10 @@ func restart_scene() -> void:
 func transition(is_transitioning_out:bool) -> void:
 	var tween : Tween = get_tree().create_tween()
 	if is_transitioning_out:
+		SoundManager.play(GlobalSfx.transition_start_sfx)
 		tween.tween_method(change_glitch_shader, 0.0, 1.0, 1.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	else:
+		SoundManager.play(GlobalSfx.transition_end_sfx)
 		tween.tween_method(change_glitch_shader, 1.0, 0.0, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	transition_finished.emit()

@@ -52,5 +52,3 @@ func _on_spin_timer_timeout():
 	randomize()
 	var shift_tween : Tween = get_tree().create_tween()
 	shift_tween.tween_property(color_wheel, "rotation", randf_range(-PI, PI), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-
-

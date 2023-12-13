@@ -1,6 +1,7 @@
 class_name BaseBullet
 extends Area2D
 
+@export_category("Visuals")
 @export var visuals_group : CanvasGroup
 @export var particle_scene : PackedScene
 @export var trail : Line2D
@@ -20,6 +21,10 @@ extends Area2D
 @export var life_timer : Timer
 @export var lifetime : float = 2.0
 
+@export_category("SFX")
+@export var spawn_sfx : AudioStream
+@export var hit_sfx : AudioStream
+
 var direction : Vector2 = Vector2.ZERO
 var has_hit : bool = false
 var timed_out : bool = false
@@ -27,6 +32,7 @@ var timed_out : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	life_timer.wait_time = lifetime
+	SoundManager.play(spawn_sfx)
 
 func _process(_delta) -> void:
 	update_trail()
@@ -45,6 +51,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 
 func destroy() -> void:
 	if !timed_out:	
+		SoundManager.play(hit_sfx)
 		spawn_blast_particle(global_position)
 	queue_free()
 

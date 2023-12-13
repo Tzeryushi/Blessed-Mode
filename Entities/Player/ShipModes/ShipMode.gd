@@ -16,9 +16,11 @@ extends Node
 
 @export_category("Visuals")
 @export var ship_sprites : SpriteFrames
-
 @export var mode_color : Globals.MODECOLOR
 @export var mode_name : String = "Default Mode"
+
+@export_category("SFX")
+@export var swap_in_sfx : AudioStream
 #contains "prototype" functions for state-called actions
 
 var player : Player	#set by mode manager
@@ -32,6 +34,7 @@ func _ready() -> void:
 func swap_in() -> void:
 	#print("Swapped in ", mode_name)
 	player.player_sprite.sprite_frames = ship_sprites
+	SoundManager.play(swap_in_sfx, 0.7)
 	player.mode_changed.emit(get_mode_color())
 	pass
 func swap_out() -> void:

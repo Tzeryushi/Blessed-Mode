@@ -31,6 +31,13 @@ extends Node2D
 
 @export_category("VFX Properties")
 @export var ghost_scene : PackedScene
+@export var swap_particles_scene : PackedScene
+@export var death_particles_scene : PackedScene
+
+@export_category("SFX")
+#remember that swap sfx is in ship modes!
+@export var hurt_sfx : AudioStream
+@export var death_sfx : AudioStream
 
 #onreadies, pay attention to pathing
 @onready var player_sprite = $SpriteGroup/PlayerSprite
@@ -46,6 +53,7 @@ var has_killstreak : bool = false
 var is_invincible : bool = false
 var is_dash_invincible : bool = false
 var is_hit_invincible : bool = false
+var is_death_invincible : bool = false
 var can_use_special : bool = true
 var is_in_blessed_mode : bool = false
 
@@ -95,6 +103,7 @@ func engage_blessed_mode() -> void:
 	if is_in_blessed_mode:
 		return
 	is_in_blessed_mode = true
+	set_juice(max_juice)
 	blessed_mode_engaged.emit(true)
 
 func make_single_ghost(ghost_length:float=0.5) -> void:
@@ -138,13 +147,25 @@ func take_damage(_damage:int=1, _attacking_color:Globals.MODECOLOR=get_mode_colo
 	health = get_health()-altered_damage
 	set_combo(0)
 	
+	#SFX and Visuals
+	SoundManager.play(hurt_sfx)
 	Shake.set_camera(player_camera)
 	Shake.add_trauma(0.6)
-	
 	TextPopper.root_pop_text("[center]-"+str(altered_damage), global_position, 1.0, 1.0, 40, 10, Color(0.1,0.1,0.1,1.0))
 	
+	#temp invicibility
 	set_hit_invincibility(true)
 	hit_invincible_timer.start()
+
+func die() -> void:
+	set_death_invincibility(true)
+	#death animation, particles here
+	#stop taking movement and action input
+	SoundManager.play(death_sfx)
+	Shake.add_trauma(1.5)
+	var timer : SceneTreeTimer = get_tree().create_timer(2.0)
+	await timer.timeout
+	defeated.emit()
 
 func get_combo_count() -> int:
 	return combo_count
@@ -167,13 +188,18 @@ func set_health(value:int) -> void:
 	health = clamp(value, 0, max_health)
 	health_changed.emit(health, max_health)
 	if health == 0:
-		defeated.emit()
+		die()
 func set_hit_invincibility(value:bool) -> void:
 	is_hit_invincible = value
-	is_invincible = is_hit_invincible or is_dash_invincible
+	is_invincible = query_is_invincible()
 func set_dash_invincibility(value:bool) -> void:
 	is_dash_invincible = value
-	is_invincible = is_hit_invincible or is_dash_invincible
+	is_invincible = query_is_invincible()
+func set_death_invincibility(value:bool) -> void:
+	is_death_invincible = value
+	is_invincible = query_is_invincible()
+func query_is_invincible() -> bool:
+	return is_hit_invincible or is_dash_invincible or is_death_invincible
 func get_mode_color() -> Globals.MODECOLOR:
 	return current_ship_mode.mode_color
 

@@ -28,6 +28,7 @@ ParticleCompiler="*res://Effects/Particles/ParticleCompiler.gd"
 VoiceManager="*res://Globals/VoiceManager.gd"
 MusicManager="*res://Globals/MusicManager.gd"
 TextPopper="*res://Globals/TextPopper/TextPopper.gd"
+GlobalSfx="*res://Globals/GlobalSFX.tscn"
 
 [debug]
 

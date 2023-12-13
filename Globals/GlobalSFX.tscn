@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://w64laawdimg2"]
+
+[ext_resource type="Script" path="res://Globals/GlobalSFX.gd" id="1_7qspi"]
+[ext_resource type="AudioStream" uid="uid://8ungksj03ylw" path="res://SFX/TempSFX/bullethit_temp.wav" id="2_ub4l1"]
+[ext_resource type="AudioStream" uid="uid://djasud1g6ix7d" path="res://SFX/TempSFX/switch_temp.wav" id="3_j4x11"]
+[ext_resource type="AudioStream" uid="uid://b4g06ft37hko2" path="res://SFX/TempSFX/wavy.wav" id="4_em63n"]
+[ext_resource type="AudioStream" uid="uid://coe6n13usprm1" path="res://SFX/TempSFX/explosion.wav" id="5_e0qv6"]
+
+[node name="GlobalSfx" type="Node2D"]
+script = ExtResource("1_7qspi")
+button_hover_sfx = ExtResource("2_ub4l1")
+button_select_sfx = ExtResource("3_j4x11")
+transition_start_sfx = ExtResource("4_em63n")
+transition_end_sfx = ExtResource("4_em63n")
+pause_sfx = ExtResource("5_e0qv6")
