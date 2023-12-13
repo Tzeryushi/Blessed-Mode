@@ -149,6 +149,7 @@ func resume_combat(_link:ObjectiveLink) -> void:
 func on_spawner_stopped(_spawner:Spawner) -> void:
 	var index : int = spawner_wait_list.find(_spawner)
 	assert(!index < 0, "Spawner stopped outside of monitoring! Nasty!")
+	#print("One spawn finished")
 	spawner_wait_list.remove_at(index)
 	if spawner_wait_list.is_empty():
 		are_all_spawners_stopped = true
@@ -172,14 +173,20 @@ func on_spawner_finished(_spawner:Spawner) -> void:
 func monitor_enemy(enemy:BaseEnemy) -> void:
 	if are_all_enemies_defeated:
 		are_all_enemies_defeated = false
-	enemy.defeated.connect(on_monitored_enemy_defeat)
 	monitored_enemies.append(enemy)
+	#print("Enemy added! " + str(monitored_enemies.size()) + " enemies monitored.")
+	enemy.defeated.connect(on_monitored_enemy_defeat)
+	#print("Enemy " + str(enemy) + " connected.")
 
 func on_monitored_enemy_defeat(enemy:BaseEnemy) -> void:
+	#print("Attempting to remove ", enemy, "; There are ", monitored_enemies.size(), " monitored enemies.")
 	var index = monitored_enemies.find(enemy)
 	if index < 0:
-		print("Enemy removed from list elsewise...scary!")
-	monitored_enemies.remove_at(index)
+		print("Enemy removed from list elsewise...scary! Size is ", monitored_enemies.size(), " enemy is ", enemy)
+	else:
+		monitored_enemies.remove_at(index)
+		#print("Enemy ", enemy, " removed; There are now ", monitored_enemies.size(), " monitored enemies.")
+	
 	if monitored_enemies.is_empty():
 		are_all_enemies_defeated = true
 		if are_all_spawners_stopped:
@@ -193,4 +200,4 @@ func spawn_enemy(enemy_type:Globals.ENEMYTYPE, enemy_position:Vector2) -> void:
 	var new_enemy : BaseEnemy = enemy_scenes[enemy_type].instantiate()
 	new_enemy.global_position = enemy_position
 	enemy_container.add_child(new_enemy)
-	monitor_enemy(new_enemy)
+	call_deferred("monitor_enemy", new_enemy)

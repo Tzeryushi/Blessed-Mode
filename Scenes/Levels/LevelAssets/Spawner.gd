@@ -7,6 +7,8 @@ extends Node2D
 @export var spawn_list : Array[SpawnerInfo]
 @onready var spawn_radius : float = $SpawnRadius.shape.radius
 
+var should_event_wait : bool = true
+
 var event_functions : Dictionary = {
 	Globals.SPAWNTYPE.WAIT : wait,
 	Globals.SPAWNTYPE.ENEMY : spawn,
@@ -29,7 +31,8 @@ func _process(_delta):
 func process_events() -> void:
 	for event in spawn_list:
 		event_functions[event.spawn_type].call(event)
-		if event.spawn_type != Globals.SPAWNTYPE.ENEMY:
+		should_event_wait = !(Globals.SPAWNTYPE.ENEMY and !event.enemy_count>1)
+		if should_event_wait:
 			await event_ended
 	reached_end_of_list.emit(self)
 
@@ -48,12 +51,14 @@ func get_random_coords(radius:float) -> Vector2:
 func spawn(event:SpawnerInfo) -> void:
 	#TODO: visual flair!
 	var timer : SceneTreeTimer
-	if event.enemy_count > 1:
+	if should_event_wait:
 		for i in range(0, event.enemy_count-1):
 			spawn_requested.emit(event.enemy_type, global_position+get_random_coords(spawn_radius))
 			timer = get_tree().create_timer(event.wait_time)
 			await timer.timeout
 	spawn_requested.emit(event.enemy_type, global_position+get_random_coords(spawn_radius))
+	if should_event_wait:
+		event_ended.emit()
 
 ##stop simply does nothing (other than visuals) so the  
 func stop(_event:SpawnerInfo) -> void:

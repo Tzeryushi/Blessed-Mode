@@ -23,6 +23,7 @@ extends CharacterBody2D
 @export var explosion_color : Color = Color(1,1,1,1)
 
 var player_ref : Player
+var is_defeated : bool = false
 
 signal health_changed(value:int)
 signal defeated(enemy:BaseEnemy)
@@ -74,9 +75,12 @@ func reference_setup() -> void:
 		player_ref.tree_exiting.connect(clear_body_ref)
 
 func destruct() -> void:
+	#print("Destruct called on enemy ", self)
 	Events.combo_up.emit()
 	play_explosion(global_position)
-	defeated.emit(self)
+	if !is_defeated:
+		defeated.emit(self)
+		is_defeated = true
 	queue_free()
 
 func play_explosion(_position:Vector2) -> void:
