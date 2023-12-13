@@ -11,12 +11,15 @@ extends Node2D
 ##Used to instantiate the player. Very important!
 @export var player_scene : PackedScene
 @export var objective_chain : Array[ObjectiveLink] = []
+@export var score_value : int = 1367
+@export var combo_threshold : int = 5
+@export var next_scene : String = "main_menu"
 
 @onready var enemy_container := $Enemies
 @onready var spawner_container := $Spawners
 @onready var hud := $HUDLayer/HUD
 @onready var cutscene_player := $CutsceneLayer/CutscenePlayer
-
+@onready var end_screen := $EndScreenLayer/EndScreen
 var player : Player
 var enemy_scenes : Dictionary = {
 	Globals.ENEMYTYPE.RED1 : load("res://Entities/Flock/RedFlock/EnemyRed1.tscn"),
@@ -29,13 +32,30 @@ var link_functions : Dictionary = {
 	Globals.LINKTYPE.PSPAWN : spawn_player,
 	Globals.LINKTYPE.CUTSCENE : play_cutscene,
 	Globals.LINKTYPE.COMBAT : start_combat,
-	Globals.LINKTYPE.RESUMECOMBAT : resume_combat
+	Globals.LINKTYPE.RESUMECOMBAT : resume_combat,
+	Globals.LINKTYPE.STARTSTATS : start_stats,
+	Globals.LINKTYPE.PAUSESTATS : pause_stats,
+	Globals.LINKTYPE.ENDSCREEN : queue_end_screen
 }
 
 ##monitored enemies tracks the enemies in the scene, used in level progression and win conditions
 var monitored_enemies : Array[BaseEnemy] = []
 var spawners : Array[Spawner]
 var spawner_wait_list : Array[Spawner]
+
+#variables for keeping track of elasped game time
+#these are used with the start and pause stats events
+var last_watch_start_time : int = 0
+var watch_update_time: int = 0
+var last_watch_end_time : int = 0
+var elapsed_time_msecs : int = 0
+var is_tracking_time : bool = false
+
+#scorekeeping
+var total_score : int = 0
+var head_count : int = 0
+
+#various tracker bools
 var has_combat_started : bool = false
 var are_all_spawners_stopped : bool = false
 var are_all_spawners_finished : bool = false
@@ -74,6 +94,10 @@ func _ready():
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if is_tracking_time:
+		elapsed_time_msecs += Time.get_ticks_msec() - watch_update_time
+		watch_update_time = Time.get_ticks_msec()
+		hud.change_combat_time(elapsed_time_msecs)
 	pass
 
 func process_objective_link() -> void:
@@ -85,16 +109,17 @@ func process_objective_link() -> void:
 		link_functions[link.link_type].call(link)
 	else:
 		on_link_function_finished()
-
 func on_link_function_finished() -> void:
+	#intermediaries go here
 	link_finished.emit()
-
 func on_link_finished() -> void:
+	#print("Link Finished!")
 	if objective_chain.size() > 0:
 		process_objective_link()
 		return
 	chain_finished.emit()
 	print("Chain Finished!")
+
 
 func transition_in(_link:ObjectiveLink):
 	#run transition logic for scene, should appeal to upper layers for this
@@ -104,11 +129,14 @@ func transition_in(_link:ObjectiveLink):
 	link_function_finished.emit()
 	pass
 
+
 func spawn_player(_link:ObjectiveLink) -> void:
 	player = player_scene.instantiate()
 	add_child(player)
 	hud.connect_player(player)
+	player.defeated.connect(on_player_defeat)
 	link_function_finished.emit()
+
 
 func play_cutscene(link:ObjectiveLink) -> void:
 	#ask the cutscene player to play, return
@@ -116,9 +144,9 @@ func play_cutscene(link:ObjectiveLink) -> void:
 	await cutscene_player.finished
 	link_function_finished.emit()
 	pass
-
 func on_cutscene_finished() -> void:
 	pass
+
 
 func start_combat(_link:ObjectiveLink) -> void:
 	#start combat, wait for spawners to finish
@@ -131,11 +159,13 @@ func start_combat(_link:ObjectiveLink) -> void:
 	
 	are_all_spawners_stopped = false
 	spawner_wait_list.clear()
+	#print("There are ", spawners.size(), " spawners")
 	for spawner in spawners:
 		spawner_wait_list.append(spawner)
+	#print("There are ", spawner_wait_list.size(), " wait spawners")
 	for spawner in spawners:
 		spawner.process_events()
-
+	
 func resume_combat(_link:ObjectiveLink) -> void:
 	are_all_spawners_stopped = false
 	spawner_wait_list.clear()
@@ -145,8 +175,9 @@ func resume_combat(_link:ObjectiveLink) -> void:
 		temp_spawners.append(spawner)
 	for spawner in temp_spawners:
 		spawner.resume_events()
-
+	
 func on_spawner_stopped(_spawner:Spawner) -> void:
+	#print(spawner_wait_list.size(), " wait spawners now, called by ", _spawner)
 	var index : int = spawner_wait_list.find(_spawner)
 	assert(!index < 0, "Spawner stopped outside of monitoring! Nasty!")
 	#print("One spawn finished")
@@ -156,7 +187,7 @@ func on_spawner_stopped(_spawner:Spawner) -> void:
 		all_spawners_stopped.emit()
 		if are_all_enemies_defeated:
 			link_function_finished.emit()
-
+	
 func on_spawner_finished(_spawner:Spawner) -> void:
 	var index : int = spawners.find(_spawner)
 	assert(!index < 0, "Spawner finished outside of monitoring! Nasty!")
@@ -177,9 +208,10 @@ func monitor_enemy(enemy:BaseEnemy) -> void:
 	#print("Enemy added! " + str(monitored_enemies.size()) + " enemies monitored.")
 	enemy.defeated.connect(on_monitored_enemy_defeat)
 	#print("Enemy " + str(enemy) + " connected.")
-
 func on_monitored_enemy_defeat(enemy:BaseEnemy) -> void:
 	#print("Attempting to remove ", enemy, "; There are ", monitored_enemies.size(), " monitored enemies.")
+	head_count += 1
+	set_score(enemy.get_score_value())
 	var index = monitored_enemies.find(enemy)
 	if index < 0:
 		print("Enemy removed from list elsewise...scary! Size is ", monitored_enemies.size(), " enemy is ", enemy)
@@ -194,10 +226,52 @@ func on_monitored_enemy_defeat(enemy:BaseEnemy) -> void:
 		if are_all_spawners_finished:
 			print("WIN CONDITION! In Enemy Defeat")
 
+func set_score(value:int) -> void:
+	var score_to_add : int = value*score_value*(player.get_combo_count()/combo_threshold)
+	total_score += score_to_add
+	hud.change_score(total_score)
+
 ##spawn_enemy is used after receiving signals from spawners to create enemies at global locations
 func spawn_enemy(enemy_type:Globals.ENEMYTYPE, enemy_position:Vector2) -> void:
 	#spawn enemy and add to list of enemies
 	var new_enemy : BaseEnemy = enemy_scenes[enemy_type].instantiate()
 	new_enemy.global_position = enemy_position
 	enemy_container.add_child(new_enemy)
-	call_deferred("monitor_enemy", new_enemy)
+	monitor_enemy(new_enemy)
+
+func start_stats(_link:ObjectiveLink) -> void:
+	last_watch_start_time = Time.get_ticks_msec()
+	watch_update_time = Time.get_ticks_msec()
+	is_tracking_time = true
+	link_function_finished.emit()
+	pass
+
+func pause_stats(_link:ObjectiveLink) -> void:
+	is_tracking_time = false
+	last_watch_end_time = Time.get_ticks_msec()
+	#elapsed_time_msecs += (last_watch_end_time-last_watch_start_time)
+	link_function_finished.emit()
+	pass
+
+func on_player_defeat() -> void:
+	show_end_screen(false)
+
+func queue_end_screen(_link:ObjectiveLink) -> void:
+	show_end_screen(are_all_enemies_defeated)
+
+func show_end_screen(value:bool) -> void:
+	if is_tracking_time:
+		is_tracking_time = false
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	end_screen.set_results(elapsed_time_msecs, head_count, total_score, value)
+	end_screen.animate_results()
+
+
+func _on_main_menu_pressed():
+	Globals.scene_manager.switch_scene("main_menu")
+
+func _on_replay_pressed():
+	Globals.scene_manager.restart_scene()
+
+func _on_next_level_pressed():
+	Globals.scene_manager.switch_scene(next_scene, Globals.AFTEREFFECT.CRT)

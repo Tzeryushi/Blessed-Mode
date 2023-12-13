@@ -29,9 +29,12 @@ func _process(_delta):
 	pass
 
 func process_events() -> void:
+	#var index : int = 0
 	for event in spawn_list:
+		#print("Event is ", event.spawn_type, " index = ", index)
+		#index += 1
+		should_event_wait = !(event.spawn_type == Globals.SPAWNTYPE.ENEMY and !event.enemy_count>1)
 		event_functions[event.spawn_type].call(event)
-		should_event_wait = !(Globals.SPAWNTYPE.ENEMY and !event.enemy_count>1)
 		if should_event_wait:
 			await event_ended
 	reached_end_of_list.emit(self)
@@ -70,5 +73,5 @@ func stop(_event:SpawnerInfo) -> void:
 	pass
 	
 func resume_events() -> void:
-	print(self)
+	#print(self)
 	event_ended.emit()

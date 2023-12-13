@@ -193,5 +193,24 @@ theme_override_constants/outline_size = 18
 theme_override_fonts/normal_font = ExtResource("15_06u5s")
 theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
-text = "[center]15.000.000.000"
+text = "[center]000000000000"
+scroll_active = false
+
+[node name="CombatTime" type="RichTextLabel" parent="."]
+clip_contents = false
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+offset_left = 214.0
+offset_top = 167.0
+offset_right = 646.0
+offset_bottom = 223.0
+theme = ExtResource("14_adb1w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("15_06u5s")
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "[center]CTIME: 00:00:000"
+fit_content = true
 scroll_active = false

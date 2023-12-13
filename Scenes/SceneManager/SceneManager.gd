@@ -9,6 +9,8 @@ var current_scenes : Array[String] = []
 var scene_references : Array[Node] = []
 #var effect_reference : Array[Node2D] = []
 
+var is_switching : bool = false
+
 signal transition_finished
 
 # Called when the node enters the scene tree for the first time.
@@ -39,18 +41,26 @@ func remove_all_scenes() -> void:
 	current_scenes.clear()
 
 func switch_scene(scene_name:String, effect_type:Globals.AFTEREFFECT=Globals.AFTEREFFECT.NONE) -> void:
+	if is_switching:
+		return
+	is_switching = true
 	transition(true)
 	await transition_finished
 	remove_all_scenes()
 	add_scene(scene_name, effect_type)
 	transition(false)
+	is_switching = false
 	
 func restart_scene() -> void:
+	if is_switching:
+		return
+	is_switching = true
 	for child in scene_references:
 		child.queue_free()
 	scene_references.clear()
 	for scene in current_scenes:
 		_load_and_instance(scene)
+	is_switching = false
 
 func transition(is_transitioning_out:bool) -> void:
 	var tween : Tween = get_tree().create_tween()

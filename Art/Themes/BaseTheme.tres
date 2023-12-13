@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://uabuugcc4jy6"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://uabuugcc4jy6"]
 
 [ext_resource type="FontFile" uid="uid://bh266l8u8ii6l" path="res://Art/Fonts/Gemsbuck01Black-axn2g.ttf" id="1_amtb7"]
 
@@ -10,7 +10,20 @@ expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xled"]
-bg_color = Color(0, 0, 0, 0.541176)
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwaon"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
 
 [resource]
 default_font = ExtResource("1_amtb7")
@@ -23,5 +36,6 @@ Button/fonts/font = ExtResource("1_amtb7")
 Button/styles/hover = SubResource("StyleBoxFlat_ee0qb")
 Button/styles/normal = SubResource("StyleBoxFlat_1xled")
 HBoxContainer/constants/separation = 20
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_rwaon")
 RichTextLabel/font_sizes/normal_font_size = 32
 VBoxContainer/constants/separation = 32

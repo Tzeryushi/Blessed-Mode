@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var bullet_spawn_distance : float = 40.0
 @export var fire_distance_threshold : float = 600.0
 @export var shot_cooldown : float = 1.0
+@export var score_value : int = 1
 
 @export_category("Movement Attributes")
 @export var acceleration : float = 2.0
@@ -93,6 +94,8 @@ func play_explosion(_position:Vector2) -> void:
 func clear_body_ref() -> void:
 	player_ref = null
 
+func get_score_value() -> int:
+	return score_value
 func get_health() -> int:
 	return health
 func set_health(value:int) -> void:

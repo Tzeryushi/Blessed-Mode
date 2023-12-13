@@ -1,9 +1,14 @@
 extends Control
 
+@export var score_length : int = 12
+
 @onready var mode_wheel := $ModeHUD/ModeWheel
 @onready var life_bar := $LifeBar
 @onready var juice_bar := $JuiceBar
 @onready var combo_text := $ComboText
+@onready var score := $Score/Count
+@onready var combat_time := $CombatTime
+
 var player_ref : Player = null
 
 func _ready() -> void:
@@ -53,3 +58,24 @@ func _on_blessed_mode_changed(value:bool) -> void:
 
 func _on_combo_changed(combo_value:int) -> void:
 	combo_text.set_combo(combo_value)
+
+func change_score(value:int) -> void:
+	var zeros_to_add : int = score_length - str(value).length()
+	var output_score : String = ""
+	if zeros_to_add > 0:
+		for i in range(zeros_to_add):
+			output_score += "0"
+	score.text = output_score + str(value)
+
+func change_combat_time(time_msecs:int) -> void:
+	combat_time.text = "[center] CTIME: " + get_string_from_msecs(time_msecs)
+
+func get_string_from_msecs(value:int) -> String:
+	if value >= 5999999:
+		return "99:59:999"
+	var total : String
+	var msecs = value%1000
+	var secs = (value%(60*1000))/1000
+	var mins = (value/(60*1000))%100
+	total = "%02d:%02d:%03d" % [mins, secs, msecs]
+	return total

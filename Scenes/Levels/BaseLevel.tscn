@@ -1,15 +1,57 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk6dasaa78yc7"]
+[gd_scene load_steps=14 format=3 uid="uid://bk6dasaa78yc7"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/BaseLevel.gd" id="1_t4hrk"]
 [ext_resource type="PackedScene" uid="uid://ds7bcbfgwevuw" path="res://Entities/Player/Player.tscn" id="2_gpuq8"]
 [ext_resource type="PackedScene" uid="uid://deo1k2y517tdi" path="res://GUI/HUD/HUD.tscn" id="2_sxy01"]
 [ext_resource type="TileSet" uid="uid://bji0xmkb7r0pl" path="res://Scenes/Levels/TilemapAssets/BasicTilemap.tres" id="3_ix43e"]
 [ext_resource type="PackedScene" uid="uid://c1kt45x0yh3ny" path="res://Scenes/PauseMenu/Pause.tscn" id="4_ae0yb"]
+[ext_resource type="Script" path="res://Scenes/Levels/EndScreen.gd" id="7_8v7ae"]
+[ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="7_lnvte"]
+[ext_resource type="FontFile" uid="uid://bh266l8u8ii6l" path="res://Art/Fonts/Gemsbuck01Black-axn2g.ttf" id="8_hkm6u"]
 [ext_resource type="PackedScene" uid="uid://3fiukknm56dq" path="res://Scenes/Cutscenes/CutscenePlayer.tscn" id="9_gkgck"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee0qb"]
+bg_color = Color(0.294118, 0.294118, 0.294118, 0.541176)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xled"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwaon"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_1glo0"]
+default_font = ExtResource("8_hkm6u")
+Button/colors/font_color = Color(0, 1, 0, 1)
+Button/colors/font_hover_color = Color(0.713726, 1, 0.690196, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 12
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("8_hkm6u")
+Button/styles/hover = SubResource("StyleBoxFlat_ee0qb")
+Button/styles/normal = SubResource("StyleBoxFlat_1xled")
+HBoxContainer/constants/separation = 20
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_rwaon")
+RichTextLabel/font_sizes/normal_font_size = 32
+VBoxContainer/constants/separation = 32
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_t4hrk")
 player_scene = ExtResource("2_gpuq8")
+next_scene = "level_1"
 
 [node name="Map" type="NavigationRegion2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.164706)
@@ -40,3 +82,158 @@ layer = 0
 [node name="CutsceneLayer" type="CanvasLayer" parent="."]
 
 [node name="CutscenePlayer" parent="CutsceneLayer" instance=ExtResource("9_gkgck")]
+
+[node name="EndScreenLayer" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="EndScreen" type="ColorRect" parent="EndScreenLayer"]
+visible = false
+self_modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 540)
+script = ExtResource("7_8v7ae")
+combat_pre = "[center]Combat Time: [color=red]"
+enemies_pre = "[center]FLOCK CULLED: [color=red]"
+score_pre = "[center]Final Score: [color=red]"
+outcome_pre = "[center]Outcome: "
+good_messages = Array[String](["GOOD WORK.", "ACCEPTABLE.", "YOU ARE REDEEMED.", "A FINE VESSEL.", "BLESSED SHEPHERD.", "WELL ACCOMPLISHED.", "IMPRESSIVE.", "UP TO STANDARD."])
+bad_messages = Array[String](["UNACCEPTABLE.", "POOR PERFORMANCE.", "EXERCISE CARE.", "YOU ARE DEAD. PHOOEY.", "OOPSY WOOPSY, SHEPHERD.", "OH WELL. NEXT?", "ARE YOU FEELING O.K.?", "YOU MAY TRY AGAIN."])
+message_pre = "[center]"
+
+[node name="PanelContainer" type="PanelContainer" parent="EndScreenLayer/EndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -633.0
+offset_top = -426.0
+offset_right = 633.0
+offset_bottom = 426.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_lnvte")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndScreenLayer/EndScreen/PanelContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResultsTitle" type="RichTextLabel" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]RESULTS"
+fit_content = true
+scroll_active = false
+
+[node name="CombatTime" type="RichTextLabel" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]Combat Time: [color=red]00:00:000[/color]"
+fit_content = true
+scroll_active = false
+
+[node name="Enemies" type="RichTextLabel" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]FLOCK CULLED: [color=red]617[/color]"
+fit_content = true
+scroll_active = false
+
+[node name="FinalScore" type="RichTextLabel" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]Final Score: [color=red]150000000[/color]"
+fit_content = true
+scroll_active = false
+
+[node name="Outcome" type="RichTextLabel" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Outcome: [color=green]Victory[/color] / [color=darkgray]Defeat[/color]"
+fit_content = true
+scroll_active = false
+
+[node name="FinalMessage" type="RichTextLabel" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Good work."
+fit_content = true
+scroll_active = false
+
+[node name="Buttons" type="HBoxContainer" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+
+[node name="MainMenu" type="Button" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer"]
+custom_minimum_size = Vector2(300, 120)
+layout_mode = 2
+theme = SubResource("Theme_1glo0")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "MAIN
+MENU"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+
+[node name="Replay" type="Button" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 120)
+layout_mode = 2
+theme = SubResource("Theme_1glo0")
+text = "REPLAY
+LEVEL"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+
+[node name="NextLevel" type="Button" parent="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer3"]
+custom_minimum_size = Vector2(300, 120)
+layout_mode = 2
+theme = SubResource("Theme_1glo0")
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+text = "NEXT
+LEVEL"
+
+[connection signal="pressed" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer2/Replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="EndScreenLayer/EndScreen/PanelContainer/VBoxContainer/Buttons/VBoxContainer3/NextLevel" to="." method="_on_next_level_pressed"]

@@ -54,6 +54,7 @@ signal juice_changed(value:float, max_juice:float, is_recharging:bool)
 signal mode_changed(mode:Globals.MODECOLOR)
 signal combo_changed(value:int)
 signal blessed_mode_engaged(value:bool)
+signal defeated
 
 func _ready() -> void:
 	current_ship_mode = mode_manager.get_ship_mode()
@@ -145,6 +146,8 @@ func take_damage(_damage:int=1, _attacking_color:Globals.MODECOLOR=get_mode_colo
 	set_hit_invincibility(true)
 	hit_invincible_timer.start()
 
+func get_combo_count() -> int:
+	return combo_count
 func set_combo(value:int) -> void:
 	combo_count = value
 	combo_changed.emit(combo_count)
@@ -164,7 +167,7 @@ func set_health(value:int) -> void:
 	health = clamp(value, 0, max_health)
 	health_changed.emit(health, max_health)
 	if health == 0:
-		Globals.scene_manager.call_deferred("restart_scene")
+		defeated.emit()
 func set_hit_invincibility(value:bool) -> void:
 	is_hit_invincible = value
 	is_invincible = is_hit_invincible or is_dash_invincible
