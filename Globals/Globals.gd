@@ -27,3 +27,13 @@ func get_center_scene() -> Node:
 
 func set_scene_manager(manager:SceneManager) -> void:
 	scene_manager = manager
+
+func get_string_from_msecs(value:int) -> String:
+	if value >= 5999999:
+		return "99:59:999"
+	var total : String
+	var msecs = value%1000
+	var secs = (value%(60*1000))/1000
+	var mins = (value/(60*1000))%100
+	total = "%02d:%02d:%03d" % [mins, secs, msecs]
+	return total

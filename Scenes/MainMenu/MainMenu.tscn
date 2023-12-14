@@ -29,6 +29,7 @@ sfx_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/SFXVol")
 voice_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/VoiceVol")
 
 [node name="MainContext" type="Control" parent="." node_paths=PackedStringArray("primary_focus_node")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -164,6 +165,7 @@ text = ":quit!"
 script = ExtResource("6_kww22")
 
 [node name="OptionsContext" type="Control" parent="." node_paths=PackedStringArray("primary_focus_node")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -361,6 +363,43 @@ custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 text = "RETURN"
 script = ExtResource("6_kww22")
+
+[node name="LevelSelectContext" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_cd3fs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelectContext"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title2" type="RichTextLabel" parent="LevelSelectContext/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "[center]Level Select"
+fit_content = true
+scroll_active = false
+
+[node name="ItemList" type="GridContainer" parent="LevelSelectContext/VBoxContainer"]
+layout_mode = 2
 
 [connection signal="timeout" from="MainContext/ColorWheelSplash/SpinTimer" to="." method="_on_spin_timer_timeout"]
 [connection signal="focus_entered" from="MainContext/VBoxContainer/StoryButton" to="MainContext/VBoxContainer/StoryButton" method="_on_focus_entered"]

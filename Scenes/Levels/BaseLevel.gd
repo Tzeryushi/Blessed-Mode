@@ -14,6 +14,7 @@ extends Node2D
 @export var score_value : int = 1367
 @export var combo_threshold : int = 5
 @export var next_scene : String = "main_menu"
+@export var level_info : LevelInfo
 
 @export_category("Music")
 @export var play_tutorial_music : bool = false
@@ -278,6 +279,11 @@ func show_end_screen(value:bool) -> void:
 		is_tracking_time = false
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	end_screen.set_results(elapsed_time_msecs, head_count, total_score, value)
+	if level_info:
+		if total_score > level_info.top_score:
+			level_info.top_score = total_score
+		if elapsed_time_msecs < level_info.fastest_time:
+			level_info.fastest_time = elapsed_time_msecs
 	if value:
 		end_screen.animate_results(victory_music)
 	else:

@@ -8,6 +8,8 @@ extends Node2D
 @onready var spawn_radius : float = $SpawnRadius.shape.radius
 
 var should_event_wait : bool = true
+var spawn_vector : Vector2 = Vector2.RIGHT
+var turn_angle : float = 5*PI/7
 
 var event_functions : Dictionary = {
 	Globals.SPAWNTYPE.WAIT : wait,
@@ -46,9 +48,12 @@ func wait(event:SpawnerInfo) -> void:
 	event_ended.emit()
 
 func get_random_coords(radius:float) -> Vector2:
-	var rad = radius * sqrt(randf())
+	#var rad = radius * sqrt(randf())
+	spawn_vector = spawn_vector.rotated(turn_angle)
 	var theta = randf() * 2 * PI
-	return Vector2(rad*cos(theta), rad*sin(theta))
+	var length : Vector2 = Vector2.RIGHT*radius
+	length = length.rotated(theta)
+	return spawn_vector*radius
 
 #signals 
 func spawn(event:SpawnerInfo) -> void:
@@ -56,6 +61,7 @@ func spawn(event:SpawnerInfo) -> void:
 	var timer : SceneTreeTimer
 	if should_event_wait:
 		for i in range(0, event.enemy_count-1):
+			
 			spawn_requested.emit(event.enemy_type, global_position+get_random_coords(spawn_radius))
 			timer = get_tree().create_timer(event.wait_time)
 			await timer.timeout

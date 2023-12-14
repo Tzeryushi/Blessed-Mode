@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6gkul1xvx5qn"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelAssets/Spawner.gd" id="1_s2hte"]
-[ext_resource type="Texture2D" uid="uid://bukim46p3y4os" path="res://Effects/ParticleSources/SoftPuff.svg" id="2_h1xyl"]
+[ext_resource type="Texture2D" uid="uid://ta4ef0wbpu04" path="res://Scenes/Levels/LevelAssets/Spawner.svg" id="2_t5aa1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cm7pi"]
-radius = 100.0
+radius = 132.004
 
 [node name="Spawner" type="Node2D" groups=["spawner"]]
 script = ExtResource("1_s2hte")
@@ -15,4 +15,4 @@ shape = SubResource("CircleShape2D_cm7pi")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.435294)
 scale = Vector2(1.78313, 1.78313)
-texture = ExtResource("2_h1xyl")
+texture = ExtResource("2_t5aa1")
