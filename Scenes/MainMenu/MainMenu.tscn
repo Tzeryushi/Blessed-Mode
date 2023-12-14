@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://8cnunv0ts34r"]
+[gd_scene load_steps=15 format=3 uid="uid://8cnunv0ts34r"]
 
 [ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="1_5wjh7"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/MainMenu.gd" id="1_krask"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://Scenes/MainMenu/MenuContext.gd" id="2_cd3fs"]
 [ext_resource type="Texture2D" uid="uid://drsmx1gyivn70" path="res://Art/Icons/ColorWheelSplashCentered.png" id="2_gtoqx"]
 [ext_resource type="Script" path="res://GUI/GenButton.gd" id="6_kww22"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/LevelSelectContext.gd" id="7_88mrv"]
+[ext_resource type="PackedScene" uid="uid://o2eqqkofmgc3" path="res://Scenes/Levels/LevelAssets/LevelBox.tscn" id="7_g6vo4"]
+[ext_resource type="Script" path="res://Scenes/Levels/LevelAssets/LevelInfo.gd" id="8_3hnqh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ft1q"]
 shader = ExtResource("2_b8a7c")
@@ -14,6 +17,36 @@ shader_parameter/width = 42.366
 shader_parameter/outline_color = Color(0.156863, 0.0117647, 0, 0.584314)
 shader_parameter/pixel_size = 4
 shader_parameter/width_speed = 2.0
+
+[sub_resource type="Resource" id="Resource_72u67"]
+script = ExtResource("8_3hnqh")
+level_call = "level_1"
+next_level_call = "level_1"
+display_name = "Level 1"
+top_score = 100
+fastest_time = 5999999
+locked = false
+
+[sub_resource type="Resource" id="Resource_5bpnw"]
+script = ExtResource("8_3hnqh")
+level_call = "level_1"
+next_level_call = "level_1"
+display_name = "Level 1"
+top_score = 100
+fastest_time = 5999999
+locked = true
+
+[sub_resource type="Resource" id="Resource_as774"]
+script = ExtResource("8_3hnqh")
+level_call = "level_1"
+next_level_call = "level_1"
+display_name = "Level 1"
+top_score = 100
+fastest_time = 5999999
+locked = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_vkqsy"]
+color = Color(0, 0, 0, 0)
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider", "voice_slider")]
 layout_mode = 3
@@ -29,7 +62,6 @@ sfx_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/SFXVol")
 voice_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/VoiceVol")
 
 [node name="MainContext" type="Control" parent="." node_paths=PackedStringArray("primary_focus_node")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,12 +140,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -308.0
-offset_top = -450.0
+offset_top = -473.0
 offset_right = 310.0
 offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_5wjh7")
+theme_override_constants/separation = 18
 
 [node name="StoryButton" type="Button" parent="MainContext/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
@@ -134,21 +167,33 @@ layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../StoryButton")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../OptionsButton")
-focus_next = NodePath("../OptionsButton")
+focus_neighbor_bottom = NodePath("../LevelSelect")
+focus_next = NodePath("../LevelSelect")
 focus_previous = NodePath("../StoryButton")
 text = "RUN ./TUTORIAL"
+script = ExtResource("6_kww22")
+
+[node name="LevelSelect" type="Button" parent="MainContext/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../TutorialButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../OptionsButton")
+focus_next = NodePath("../OptionsButton")
+focus_previous = NodePath("../TutorialButton")
+text = "select(level)"
 script = ExtResource("6_kww22")
 
 [node name="OptionsButton" type="Button" parent="MainContext/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../TutorialButton")
+focus_neighbor_top = NodePath("../LevelSelect")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../QuitButton")
 focus_next = NodePath("../QuitButton")
-focus_previous = NodePath("../TutorialButton")
+focus_previous = NodePath("../LevelSelect")
 text = "set --options"
 script = ExtResource("6_kww22")
 
@@ -165,7 +210,6 @@ text = ":quit!"
 script = ExtResource("6_kww22")
 
 [node name="OptionsContext" type="Control" parent="." node_paths=PackedStringArray("primary_focus_node")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -364,20 +408,38 @@ layout_mode = 2
 text = "RETURN"
 script = ExtResource("6_kww22")
 
-[node name="LevelSelectContext" type="Control" parent="."]
+[node name="LevelSelectContext" type="Control" parent="." node_paths=PackedStringArray("primary_focus_node")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 94.0
+offset_right = -94.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_cd3fs")
+script = ExtResource("7_88mrv")
+level_list = Array[ExtResource("8_3hnqh")]([SubResource("Resource_72u67"), SubResource("Resource_5bpnw"), SubResource("Resource_as774")])
+level_box_scene = ExtResource("7_g6vo4")
+primary_focus_node = NodePath("VBoxContainer/MarginContainer/ReturnButton")
+
+[node name="ColorRect4" type="ColorRect" parent="LevelSelectContext"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -357.0
+offset_right = 357.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.415686, 0.415686, 0.415686, 0.568627)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelSelectContext"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -398,8 +460,31 @@ text = "[center]Level Select"
 fit_content = true
 scroll_active = false
 
-[node name="ItemList" type="GridContainer" parent="LevelSelectContext/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="LevelSelectContext/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_vkqsy")
+
+[node name="LevelContainer" type="GridContainer" parent="LevelSelectContext/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelSelectContext/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 400
+
+[node name="ReturnButton" type="Button" parent="LevelSelectContext/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+text = "RETURN TO MAIN MENU"
+script = ExtResource("6_kww22")
 
 [connection signal="timeout" from="MainContext/ColorWheelSplash/SpinTimer" to="." method="_on_spin_timer_timeout"]
 [connection signal="focus_entered" from="MainContext/VBoxContainer/StoryButton" to="MainContext/VBoxContainer/StoryButton" method="_on_focus_entered"]
@@ -410,6 +495,10 @@ layout_mode = 2
 [connection signal="mouse_entered" from="MainContext/VBoxContainer/TutorialButton" to="MainContext/VBoxContainer/TutorialButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="MainContext/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="MainContext/VBoxContainer/TutorialButton" to="MainContext/VBoxContainer/TutorialButton" method="_on_pressed"]
+[connection signal="focus_entered" from="MainContext/VBoxContainer/LevelSelect" to="MainContext/VBoxContainer/LevelSelect" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="MainContext/VBoxContainer/LevelSelect" to="MainContext/VBoxContainer/LevelSelect" method="_on_mouse_entered"]
+[connection signal="pressed" from="MainContext/VBoxContainer/LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="MainContext/VBoxContainer/LevelSelect" to="MainContext/VBoxContainer/LevelSelect" method="_on_pressed"]
 [connection signal="focus_entered" from="MainContext/VBoxContainer/OptionsButton" to="MainContext/VBoxContainer/OptionsButton" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="MainContext/VBoxContainer/OptionsButton" to="MainContext/VBoxContainer/OptionsButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="MainContext/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
@@ -429,3 +518,7 @@ layout_mode = 2
 [connection signal="mouse_entered" from="OptionsContext/HBoxContainer/VBoxContainer3/ReturnButton" to="OptionsContext/HBoxContainer/VBoxContainer3/ReturnButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="OptionsContext/HBoxContainer/VBoxContainer3/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="OptionsContext/HBoxContainer/VBoxContainer3/ReturnButton" to="OptionsContext/HBoxContainer/VBoxContainer3/ReturnButton" method="_on_pressed"]
+[connection signal="focus_entered" from="LevelSelectContext/VBoxContainer/MarginContainer/ReturnButton" to="LevelSelectContext/VBoxContainer/MarginContainer/ReturnButton" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="LevelSelectContext/VBoxContainer/MarginContainer/ReturnButton" to="LevelSelectContext/VBoxContainer/MarginContainer/ReturnButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="LevelSelectContext/VBoxContainer/MarginContainer/ReturnButton" to="." method="_on_level_return_button_pressed"]
+[connection signal="pressed" from="LevelSelectContext/VBoxContainer/MarginContainer/ReturnButton" to="LevelSelectContext/VBoxContainer/MarginContainer/ReturnButton" method="_on_pressed"]

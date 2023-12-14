@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://o2eqqkofmgc3"]
+
+[ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="1_6jcg5"]
+[ext_resource type="Script" path="res://Scenes/Levels/LevelAssets/LevelBox.gd" id="2_gheqp"]
+[ext_resource type="Texture2D" uid="uid://ckoulk561qgpt" path="res://Scenes/MainMenu/LockTransparency.svg" id="3_alubh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jbhn"]
+bg_color = Color(0.137255, 0.137255, 0.137255, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hw5nd"]
+color = Color(0, 0, 0, 0)
+
+[node name="LevelBox" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 200)
+theme = ExtResource("1_6jcg5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_5jbhn")
+script = ExtResource("2_gheqp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_hw5nd")
+
+[node name="Title" type="RichTextLabel" parent="VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]LEVEL 1"
+fit_content = true
+scroll_active = false
+
+[node name="Score" type="RichTextLabel" parent="VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]TOP SCORE:
+[color=green]0"
+fit_content = true
+scroll_active = false
+
+[node name="Time" type="RichTextLabel" parent="VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Fastest time:
+[color=blue]99:59:999"
+fit_content = true
+scroll_active = false
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_hw5nd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_right = 70
+
+[node name="Lock" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_alubh")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

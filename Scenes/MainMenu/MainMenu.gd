@@ -8,6 +8,7 @@ extends Control
 @onready var color_wheel := $MainContext/ColorWheelSplash
 @onready var main_context := $MainContext
 @onready var options_context := $OptionsContext
+@onready var level_select_context := $LevelSelectContext
 
 const center_position : Vector2 = Vector2(0.0, 0.0)
 const left_position : Vector2 = Vector2(-1920.0, 0.0)
@@ -17,6 +18,7 @@ const right_position : Vector2 = Vector2(1920.0, 0.0)
 func _ready():
 	main_context.position = center_position
 	options_context.position = right_position
+	level_select_context.position = left_position
 	main_context.primary_focus_node.grab_focus()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	master_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
@@ -36,6 +38,11 @@ func set_focus(node:Node, value:bool) -> void:
 #main menu buttons
 func _on_story_button_pressed():
 	Globals.scene_manager.switch_scene("level_1", Globals.AFTEREFFECT.CRT)
+func _on_level_select_pressed():
+	level_select_context.primary_focus_node.grab_focus()
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(main_context, "position", right_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.parallel().tween_property(level_select_context, "position", center_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 func _on_options_button_pressed():
 	#set_focus(options_context, true)
 	#set_focus(main_context, false)
@@ -57,6 +64,14 @@ func _on_return_button_pressed():
 	tween.tween_property(main_context, "position", center_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.parallel().tween_property(options_context, "position", right_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 
+#level select menu
+func _on_level_return_button_pressed():
+	main_context.primary_focus_node.grab_focus()
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(main_context, "position", center_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.parallel().tween_property(level_select_context, "position", left_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	pass # Replace with function body.
+
 #other
 func _on_spin_timer_timeout():
 	randomize()
@@ -71,3 +86,6 @@ func _on_sfx_vol_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"),linear_to_db(value))
 func _on_voice_vol_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Voice"),linear_to_db(value))
+
+
+
