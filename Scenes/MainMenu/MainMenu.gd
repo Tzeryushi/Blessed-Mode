@@ -1,5 +1,10 @@
 extends Control
 
+@export var master_slider : HSlider
+@export var music_slider : HSlider
+@export var sfx_slider : HSlider
+@export var voice_slider : HSlider
+
 @onready var color_wheel := $MainContext/ColorWheelSplash
 @onready var main_context := $MainContext
 @onready var options_context := $OptionsContext
@@ -14,7 +19,11 @@ func _ready():
 	options_context.position = right_position
 	main_context.primary_focus_node.grab_focus()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
-	#set_focus(options_context, false)
+	master_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
+	sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
+	voice_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Voice")))
+	
 	MusicManager.play(MusicLibrary.menu_music)
 	pass # Replace with function body.
 
@@ -53,3 +62,12 @@ func _on_spin_timer_timeout():
 	randomize()
 	var shift_tween : Tween = get_tree().create_tween()
 	shift_tween.tween_property(color_wheel, "rotation", randf_range(-PI, PI), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+
+func _on_master_vol_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"),linear_to_db(value))
+func _on_music_vol_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),linear_to_db(value))
+func _on_sfx_vol_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"),linear_to_db(value))
+func _on_voice_vol_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Voice"),linear_to_db(value))

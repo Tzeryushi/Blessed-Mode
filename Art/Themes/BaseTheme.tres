@@ -1,10 +1,8 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://uabuugcc4jy6"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://uabuugcc4jy6"]
 
 [ext_resource type="FontFile" uid="uid://bh266l8u8ii6l" path="res://Art/Fonts/Gemsbuck01Black-axn2g.ttf" id="1_amtb7"]
-[ext_resource type="Texture2D" uid="uid://c6fqq1mdyalwc" path="res://Effects/ParticleSources/LongOval.png" id="2_p61hk"]
-[ext_resource type="Texture2D" uid="uid://bm4blrjkaxjbr" path="res://Effects/ParticleSources/Explosion1.svg" id="3_38t25"]
-[ext_resource type="Texture2D" uid="uid://eurtvvai6pcd" path="res://Effects/ParticleSources/Explosion2.svg" id="4_naaud"]
-[ext_resource type="Texture2D" uid="uid://dtpcpnu4wmqmh" path="res://Effects/ParticleSources/Explosion3.svg" id="5_bxh04"]
+[ext_resource type="Texture2D" uid="uid://50kcqkhvbfdl" path="res://Effects/ParticleSources/CircleWhiteMid.svg" id="2_pl22v"]
+[ext_resource type="Texture2D" uid="uid://ll78s464ngwx" path="res://Effects/ParticleSources/CircleWhiteSmaller.svg" id="3_1ltyb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee0qb"]
 bg_color = Color(0.294118, 0.294118, 0.294118, 0.541176)
@@ -20,15 +18,6 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_oubmc"]
-frames = 3
-frame_0/texture = ExtResource("3_38t25")
-frame_0/duration = 0.3
-frame_1/texture = ExtResource("4_naaud")
-frame_1/duration = 0.3
-frame_2/texture = ExtResource("5_bxh04")
-frame_2/duration = 0.3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvq7t"]
 content_margin_left = 5.0
@@ -56,8 +45,8 @@ Button/fonts/font = ExtResource("1_amtb7")
 Button/styles/hover = SubResource("StyleBoxFlat_ee0qb")
 Button/styles/normal = SubResource("StyleBoxFlat_1xled")
 HBoxContainer/constants/separation = 20
-HSlider/icons/grabber = ExtResource("2_p61hk")
-HSlider/icons/grabber_highlight = SubResource("AnimatedTexture_oubmc")
+HSlider/icons/grabber = ExtResource("2_pl22v")
+HSlider/icons/grabber_highlight = ExtResource("3_1ltyb")
 HSlider/styles/slider = SubResource("StyleBoxFlat_dvq7t")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_rwaon")
 RichTextLabel/font_sizes/normal_font_size = 32

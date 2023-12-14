@@ -476,6 +476,7 @@ enemy_count = 1
 
 [node name="Tutorial" instance=ExtResource("1_7pw3e")]
 objective_chain = Array[ExtResource("2_ipkoh")]([SubResource("Resource_osvm1"), SubResource("Resource_x7qtt"), SubResource("Resource_64r84"), SubResource("Resource_o12do"), SubResource("Resource_m5cui"), SubResource("Resource_onixu"), SubResource("Resource_026mn"), SubResource("Resource_imfvd"), SubResource("Resource_pxvb3"), SubResource("Resource_7vucf"), SubResource("Resource_uaw4o"), SubResource("Resource_reqmt"), SubResource("Resource_ewvdg"), SubResource("Resource_1q7ee"), SubResource("Resource_ch6cn"), SubResource("Resource_xt1d4"), SubResource("Resource_bvqxd"), SubResource("Resource_u1d6p"), SubResource("Resource_k8mf0"), SubResource("Resource_bh443"), SubResource("Resource_u305i")])
+play_tutorial_music = true
 
 [node name="Map" parent="." index="0"]
 z_index = -8

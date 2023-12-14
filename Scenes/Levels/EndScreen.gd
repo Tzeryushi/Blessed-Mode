@@ -49,7 +49,7 @@ func set_results(_time:int, _slain:int, _score:int, _victorious:bool) -> void:
 	outcome.text = outcome_pre + _outcome
 	message.text = message_pre+temp_msg
 
-func animate_results() -> void:	
+func animate_results(music:AudioStream) -> void:	
 	var tween : Tween = create_tween()
 	tween.tween_callback(show)
 	tween.tween_callback(SoundManager.play.bind(menu_stab))
@@ -65,6 +65,7 @@ func animate_results() -> void:
 	tween.tween_method(shake, 0.6, 0.0, 0.7)
 	tween.tween_callback(outcome.show).set_delay(0.5)
 	tween.tween_callback(SoundManager.play.bind(menu_stab))
+	tween.tween_callback(MusicManager.play.bind(music))
 	tween.tween_method(shake, 0.6, 0.0, 0.4)
 	tween.tween_callback(message.show)
 	tween.tween_callback(SoundManager.play.bind(menu_stab))

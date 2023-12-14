@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2lwiwi3nm627"]
+[gd_scene load_steps=6 format=3 uid="uid://c2lwiwi3nm627"]
 
 [ext_resource type="Script" path="res://Globals/MusicLibrary.gd" id="1_opfdm"]
+[ext_resource type="AudioStream" uid="uid://di3r0k4uht43f" path="res://Music/heatedVolcanoBattle.wav" id="2_ijaj0"]
 [ext_resource type="AudioStream" uid="uid://ce0ou6ed2d5lb" path="res://Music/fallenwindpalaceALT.wav" id="2_x18it"]
+[ext_resource type="AudioStream" uid="uid://b4g06ft37hko2" path="res://SFX/TempSFX/wavy.wav" id="4_cx7gf"]
+[ext_resource type="AudioStream" uid="uid://c3j8dfkdegbh7" path="res://SFX/TempSFX/skizz.wav" id="5_uu2a7"]
 
 [node name="MusicLibrary" type="Node"]
 script = ExtResource("1_opfdm")
-menu_music = ExtResource("2_x18it")
+menu_music = ExtResource("2_ijaj0")
 tutorial_music = ExtResource("2_x18it")
-playing_music = ExtResource("2_x18it")
-victory_music = ExtResource("2_x18it")
-defeat_music = ExtResource("2_x18it")
+playing_music = ExtResource("2_ijaj0")
+victory_music = ExtResource("4_cx7gf")
+defeat_music = ExtResource("5_uu2a7")
 epilogue_music = ExtResource("2_x18it")

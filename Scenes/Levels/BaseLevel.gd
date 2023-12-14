@@ -16,8 +16,11 @@ extends Node2D
 @export var next_scene : String = "main_menu"
 
 @export_category("Music")
+@export var play_tutorial_music : bool = false
 @export var level_music : AudioStream = MusicLibrary.playing_music
-
+@export var tutorial_music : AudioStream = MusicLibrary.tutorial_music
+@export var victory_music : AudioStream = MusicLibrary.victory_music
+@export var defeat_music : AudioStream = MusicLibrary.defeat_music
 
 @onready var enemy_container := $Enemies
 @onready var spawner_container := $Spawners
@@ -91,7 +94,10 @@ func _ready():
 		spawner.reached_breakpoint.connect(on_spawner_stopped)
 		spawner.reached_end_of_list.connect(on_spawner_finished)
 	
-	MusicManager.play(level_music)
+	if play_tutorial_music:
+		MusicManager.play(tutorial_music)
+	else:
+		MusicManager.play(level_music)
 	
 	process_objective_link()
 	#spawn_player()
@@ -267,12 +273,15 @@ func queue_end_screen(_link:ObjectiveLink) -> void:
 	show_end_screen(are_all_enemies_defeated)
 
 func show_end_screen(value:bool) -> void:
+	MusicManager.stop()
 	if is_tracking_time:
 		is_tracking_time = false
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	end_screen.set_results(elapsed_time_msecs, head_count, total_score, value)
-	end_screen.animate_results()
-
+	if value:
+		end_screen.animate_results(victory_music)
+	else:
+		end_screen.animate_results(defeat_music)
 
 func _on_main_menu_pressed():
 	Globals.scene_manager.switch_scene("main_menu")
