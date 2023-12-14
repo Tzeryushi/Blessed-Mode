@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ds7bcbfgwevuw"]
+[gd_scene load_steps=32 format=3 uid="uid://ds7bcbfgwevuw"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_xoc56"]
 [ext_resource type="Script" path="res://Entities/Player/States/PlayerStateManager.gd" id="2_6hjy0"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://doncmumsjcdyl" path="res://Effects/Particles/SwapBoom.tscn" id="3_sbcdv"]
 [ext_resource type="Script" path="res://Entities/Player/ShipModes/RedMode.gd" id="4_5e48n"]
 [ext_resource type="Script" path="res://Entities/Player/States/MoveState.gd" id="4_rbr0h"]
+[ext_resource type="AudioStream" uid="uid://51gr5cfnumtf" path="res://Voices/BlessedMode.wav" id="5_jx8kq"]
 [ext_resource type="Script" path="res://Entities/Player/ModeManager.gd" id="6_absnu"]
 [ext_resource type="Script" path="res://Entities/Player/BlueMode.gd" id="7_qbroj"]
 [ext_resource type="PackedScene" uid="uid://dxeyrbigqnylh" path="res://Effects/Particles/BlessedParticles.tscn" id="7_xdf0m"]
@@ -66,6 +67,7 @@ hit_invincible_time = 0.3
 ghost_scene = ExtResource("2_wrykh")
 swap_particles_scene = ExtResource("3_sbcdv")
 death_particles_scene = ExtResource("3_lsq6r")
+blessed_mode_voice = ExtResource("5_jx8kq")
 
 [node name="SpriteGroup" type="CanvasGroup" parent="."]
 material = SubResource("ShaderMaterial_fbdrk")

@@ -38,6 +38,7 @@ extends Node2D
 #remember that swap sfx is in ship modes!
 @export var hurt_sfx : AudioStream = GlobalSfx.player_ship_hit
 @export var death_sfx : AudioStream = GlobalSfx.player_ship_destroyed
+@export var blessed_mode_voice : AudioStream
 
 #onreadies, pay attention to pathing
 @onready var player_sprite = $SpriteGroup/PlayerSprite
@@ -105,6 +106,8 @@ func engage_blessed_mode() -> void:
 		return
 	is_in_blessed_mode = true
 	blessed_particles.play()
+	TextPopper.root_jolt_text("[center][rainbow]BLESSED MODE", global_position, 80.0, 1.0, 1.0, 50, 10, Color(1,1,1,1.0))
+	VoiceManager.play(blessed_mode_voice)
 	set_juice(max_juice)
 	blessed_mode_engaged.emit(true)
 
@@ -224,4 +227,5 @@ func _on_hit_invincible_timer_timeout():
 func _on_blessed_timer_timeout():
 	is_in_blessed_mode = false
 	blessed_particles.stop()
+	TextPopper.root_jolt_text("[center]UNBLESSED", global_position, 80.0, 1.0, 1.0, 50, 10, Color(0.1,0.1,0.1,1.0))
 	blessed_mode_engaged.emit(false)
