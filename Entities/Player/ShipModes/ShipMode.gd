@@ -17,6 +17,7 @@ extends Node
 @export_category("Visuals")
 @export var ship_sprites : SpriteFrames
 @export var mode_color : Globals.MODECOLOR
+@export var ship_color : Color = Color(1,1,1,1)
 @export var mode_name : String = "Default Mode"
 
 @export_category("SFX")
@@ -35,6 +36,10 @@ func swap_in() -> void:
 	#print("Swapped in ", mode_name)
 	player.player_sprite.sprite_frames = ship_sprites
 	SoundManager.play(swap_in_sfx, 0.7)
+	var swap_parts : ParticleAnimation = player.swap_particles_scene.instantiate()
+	add_child(swap_parts)
+	swap_parts.set_color(ship_color)
+	swap_parts.play()
 	player.mode_changed.emit(get_mode_color())
 	pass
 func swap_out() -> void:

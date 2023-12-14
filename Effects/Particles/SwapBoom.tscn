@@ -1,0 +1,89 @@
+[gd_scene load_steps=14 format=3 uid="uid://doncmumsjcdyl"]
+
+[ext_resource type="Script" path="res://Effects/Particles/EnemyExplosion.gd" id="1_c6isj"]
+[ext_resource type="Texture2D" uid="uid://c6fqq1mdyalwc" path="res://Effects/ParticleSources/LongOval.png" id="2_imn8s"]
+[ext_resource type="Texture2D" uid="uid://quoia6l5jmlu" path="res://Effects/ParticleSources/LargeThinRing.svg" id="3_rs21w"]
+
+[sub_resource type="Curve" id="Curve_imeun"]
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8ya7s"]
+curve = SubResource("Curve_imeun")
+
+[sub_resource type="Curve" id="Curve_tj245"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0142672, 1), 0.0, 0.0, 0, 0, Vector2(0.363165, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_eyoi6"]
+curve = SubResource("Curve_tj245")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ra01"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, -10, 0)
+spread = 180.0
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
+gravity = Vector3(0, 98, 0)
+damping_min = 80.0
+damping_max = 80.0
+damping_curve = SubResource("CurveTexture_8ya7s")
+scale_min = 0.5
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_eyoi6")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[sub_resource type="Gradient" id="Gradient_dshgl"]
+offsets = PackedFloat32Array(0, 0.105335, 0.362517)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4jkpd"]
+gradient = SubResource("Gradient_dshgl")
+
+[sub_resource type="Curve" id="Curve_nvbkb"]
+_data = [Vector2(0, 0), 0.0, 2.12636, 0, 0, Vector2(0.238651, 0.931753), 0.0, 0.0, 0, 0, Vector2(0.841764, 0.153742), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_y74hc"]
+curve = SubResource("Curve_nvbkb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lr36b"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0, 0, 0)
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.4
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_y74hc")
+color_ramp = SubResource("GradientTexture1D_4jkpd")
+
+[node name="SwapBoom" type="Node2D" node_paths=PackedStringArray("boom_particles")]
+script = ExtResource("1_c6isj")
+boom_particles = [NodePath("Flair"), NodePath("Pulse")]
+
+[node name="Flair" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_3ra01")
+texture = ExtResource("2_imn8s")
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)
+local_coords = true
+
+[node name="Pulse" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_lr36b")
+texture = ExtResource("3_rs21w")
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)
+local_coords = true

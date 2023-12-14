@@ -23,6 +23,7 @@ extends CharacterBody2D
 @export_category("Visuals and SFX")
 @export var explosion_scene : PackedScene
 @export var explosion_color : Color = Color(1,1,1,1)
+@export var spawn_scene : PackedScene
 @export var hit_sfx : AudioStream = GlobalSfx.enemy_ship_hit
 @export var destroyed_sfx : AudioStream = GlobalSfx.enemy_ship_destroyed
 @export var ship_on_ship_sfx : AudioStream = GlobalSfx.ship_on_ship_collision
@@ -96,6 +97,12 @@ func play_explosion(_position:Vector2) -> void:
 	explosion.set_color(explosion_color)
 	get_parent().add_child(explosion)
 	explosion.play()
+
+func play_spawn_particles() -> void:
+	var spawn_parts : ParticleAnimation = spawn_scene.instantiate()
+	spawn_parts.set_color(explosion_color)
+	add_child(spawn_parts)
+	spawn_parts.play()
 
 func clear_body_ref() -> void:
 	player_ref = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dahjqd457dkb6"]
+[gd_scene load_steps=24 format=3 uid="uid://dahjqd457dkb6"]
 
 [ext_resource type="PackedScene" uid="uid://bk6dasaa78yc7" path="res://Scenes/Levels/BaseLevel.tscn" id="1_hw8bb"]
 [ext_resource type="Script" path="res://Structures/ObjectiveLink.gd" id="2_phtdw"]
@@ -69,6 +69,13 @@ wait_time = 0.0
 combat_type = 1
 cutscene_list = Array[ExtResource("3_20ehw")]([])
 
+[sub_resource type="Resource" id="Resource_chfwn"]
+script = ExtResource("2_phtdw")
+link_type = 0
+wait_time = 4.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([])
+
 [sub_resource type="Resource" id="Resource_0melf"]
 script = ExtResource("2_phtdw")
 link_type = 8
@@ -104,7 +111,7 @@ enemy_type = 0
 enemy_count = 1
 
 [node name="Level1" instance=ExtResource("1_hw8bb")]
-objective_chain = Array[ExtResource("2_phtdw")]([SubResource("Resource_fe3xg"), SubResource("Resource_e4qu8"), SubResource("Resource_jvhh5"), SubResource("Resource_30lil"), SubResource("Resource_7kuar"), SubResource("Resource_fc6ri"), SubResource("Resource_0melf")])
+objective_chain = Array[ExtResource("2_phtdw")]([SubResource("Resource_fe3xg"), SubResource("Resource_e4qu8"), SubResource("Resource_jvhh5"), SubResource("Resource_30lil"), SubResource("Resource_7kuar"), SubResource("Resource_fc6ri"), SubResource("Resource_chfwn"), SubResource("Resource_0melf")])
 
 [node name="Map" parent="." index="0"]
 navigation_polygon = SubResource("NavigationPolygon_8eory")

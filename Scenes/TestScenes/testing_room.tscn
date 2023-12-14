@@ -40,46 +40,60 @@ layer = 0
 
 [node name="EnemyBlue1" parent="." instance=ExtResource("5_ukktj")]
 position = Vector2(-1140, -496)
+spawn_scene = null
 
 [node name="EnemyGreen2" parent="." instance=ExtResource("6_qg6a2")]
 position = Vector2(-607, 282)
 laser_charge_time = 4.0
+spawn_scene = null
 
 [node name="EnemyGreen3" parent="." instance=ExtResource("6_qg6a2")]
 position = Vector2(-686, 541)
 laser_charge_time = 4.0
+spawn_scene = null
 
 [node name="EnemyBlue2" parent="." instance=ExtResource("5_ukktj")]
 position = Vector2(-1109, -359)
+spawn_scene = null
 
 [node name="Pause" parent="." instance=ExtResource("7_de4rm")]
 
 [node name="EnemyRed1" parent="." instance=ExtResource("8_0y62u")]
 position = Vector2(910, -212)
+spawn_scene = null
 
 [node name="EnemyRed2" parent="." instance=ExtResource("8_0y62u")]
 position = Vector2(1126, -204)
+spawn_scene = null
 
 [node name="EnemyRed3" parent="." instance=ExtResource("8_0y62u")]
 position = Vector2(963, -52)
+spawn_scene = null
 
 [node name="EnemyRed4" parent="." instance=ExtResource("8_0y62u")]
 position = Vector2(1307, -121)
+spawn_scene = null
 
 [node name="EnemyRed5" parent="." instance=ExtResource("8_0y62u")]
 position = Vector2(1110, -28)
+spawn_scene = null
 
 [node name="EnemyRed6" parent="." instance=ExtResource("8_0y62u")]
 position = Vector2(744, 663)
+spawn_scene = null
 
 [node name="EnemyRed7" parent="." instance=ExtResource("8_0y62u")]
 position = Vector2(984, 663)
+spawn_scene = null
 
 [node name="EnemyRed8" parent="." instance=ExtResource("8_0y62u")]
 position = Vector2(1198, 692)
+spawn_scene = null
 
 [node name="EnemyRed9" parent="." instance=ExtResource("8_0y62u")]
 position = Vector2(1456, 705)
+spawn_scene = null
 
 [node name="EnemyRed10" parent="." instance=ExtResource("8_0y62u")]
 position = Vector2(1664, 652)
+spawn_scene = null

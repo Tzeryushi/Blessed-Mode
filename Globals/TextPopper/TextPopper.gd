@@ -3,9 +3,6 @@ extends Node2D
 @onready var pop_block := preload("res://Globals/TextPopper/TextPop.tscn")
 @onready var jolt_block := preload("res://Globals/TextPopper/TextJolt.tscn")
 
-func _ready():
-	print(jolt_block)
-
 func pop_text(text:String, _position:Vector2, calling_node:Node, size:float=1.0, time:float=1.0, font_size:int=30, outline_size:int=4, color:Color=Color(0.2,0.2,0.2,0.2)) -> void:
 	var popper = pop_block.instantiate()
 	calling_node.add_child(popper)

@@ -80,7 +80,7 @@ func quit_game() -> void:
 	get_tree().quit()
 
 func _load_and_instance(scene_name:String) -> void:
-	print(scene_name)
+	#print(scene_name)
 	assert(scenes.has(scene_name), "SceneManager: Bad scene_name string! Key not in dictionary.")
 	var scene_instance = load(scenes[scene_name]).instantiate()
 	add_child(scene_instance)

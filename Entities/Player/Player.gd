@@ -41,6 +41,7 @@ extends Node2D
 
 #onreadies, pay attention to pathing
 @onready var player_sprite = $SpriteGroup/PlayerSprite
+@onready var blessed_particles = $BlessedParticles
 @onready var health : int = max_health : get = get_health, set = set_health
 @onready var juice : float = max_juice : set = set_juice
 
@@ -103,6 +104,7 @@ func engage_blessed_mode() -> void:
 	if is_in_blessed_mode:
 		return
 	is_in_blessed_mode = true
+	blessed_particles.play()
 	set_juice(max_juice)
 	blessed_mode_engaged.emit(true)
 
@@ -161,8 +163,12 @@ func die() -> void:
 	set_death_invincibility(true)
 	#death animation, particles here
 	#stop taking movement and action input
+	var death_parts : ParticleAnimation = death_particles_scene.instantiate()
+	add_child(death_parts)
+	death_parts.play()
+	player_sprite.hide()
 	SoundManager.play(death_sfx)
-	Shake.add_trauma(1.5)
+	Shake.add_trauma(1,1)
 	var timer : SceneTreeTimer = get_tree().create_timer(2.0)
 	await timer.timeout
 	defeated.emit()
@@ -217,4 +223,5 @@ func _on_hit_invincible_timer_timeout():
 	set_hit_invincibility(false)
 func _on_blessed_timer_timeout():
 	is_in_blessed_mode = false
+	blessed_particles.stop()
 	blessed_mode_engaged.emit(false)

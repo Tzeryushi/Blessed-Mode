@@ -1,3 +1,4 @@
+class_name BoomParticles
 extends ParticleAnimation
 
 @export var boom_particles : Array[GPUParticles2D] = []

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ds7bcbfgwevuw"]
+[gd_scene load_steps=31 format=3 uid="uid://ds7bcbfgwevuw"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_xoc56"]
 [ext_resource type="Script" path="res://Entities/Player/States/PlayerStateManager.gd" id="2_6hjy0"]
@@ -6,10 +6,13 @@
 [ext_resource type="SpriteFrames" uid="uid://bam4o0be7jx0h" path="res://Entities/Player/PlayerSprites/RedSpriteFrames.tres" id="2_x5h3b"]
 [ext_resource type="Script" path="res://Entities/Player/States/IdleState.gd" id="3_itbs4"]
 [ext_resource type="Shader" path="res://Effects/Shaders/Outline.gdshader" id="3_k7mvo"]
+[ext_resource type="PackedScene" uid="uid://cxmixbtrekh7u" path="res://Effects/Particles/PlayerDeathNova.tscn" id="3_lsq6r"]
+[ext_resource type="PackedScene" uid="uid://doncmumsjcdyl" path="res://Effects/Particles/SwapBoom.tscn" id="3_sbcdv"]
 [ext_resource type="Script" path="res://Entities/Player/ShipModes/RedMode.gd" id="4_5e48n"]
 [ext_resource type="Script" path="res://Entities/Player/States/MoveState.gd" id="4_rbr0h"]
 [ext_resource type="Script" path="res://Entities/Player/ModeManager.gd" id="6_absnu"]
 [ext_resource type="Script" path="res://Entities/Player/BlueMode.gd" id="7_qbroj"]
+[ext_resource type="PackedScene" uid="uid://dxeyrbigqnylh" path="res://Effects/Particles/BlessedParticles.tscn" id="7_xdf0m"]
 [ext_resource type="Script" path="res://Entities/Player/GreenMode.gd" id="8_3rm7t"]
 [ext_resource type="PackedScene" uid="uid://cu8nfgjkwxb20" path="res://Entities/Bullets/PlayerBullets/RedBullet.tscn" id="8_beqr1"]
 [ext_resource type="SpriteFrames" uid="uid://blxt3ycyrxym1" path="res://Entities/Player/PlayerSprites/GreenSpriteFrames.tres" id="9_2ghl3"]
@@ -61,6 +64,8 @@ max_health = 40
 juice_regen_rate = 0.07
 hit_invincible_time = 0.3
 ghost_scene = ExtResource("2_wrykh")
+swap_particles_scene = ExtResource("3_sbcdv")
+death_particles_scene = ExtResource("3_lsq6r")
 
 [node name="SpriteGroup" type="CanvasGroup" parent="."]
 material = SubResource("ShaderMaterial_fbdrk")
@@ -68,6 +73,8 @@ material = SubResource("ShaderMaterial_fbdrk")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="SpriteGroup"]
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_x5h3b")
+
+[node name="BlessedParticles" parent="." instance=ExtResource("7_xdf0m")]
 
 [node name="Hitbox" type="Area2D" parent="."]
 visible = false
@@ -109,6 +116,7 @@ bullet_scene = ExtResource("8_beqr1")
 bullet_spawn_distance = 40.0
 shot_timer = NodePath("RedTimer")
 ship_sprites = ExtResource("2_x5h3b")
+ship_color = Color(1, 0, 0, 1)
 mode_name = "Red"
 
 [node name="RedTimer" type="Timer" parent="ModeManager/Red"]
@@ -143,6 +151,7 @@ bullet_spawn_distance = 48.0
 shot_timer = NodePath("GreenTimer")
 ship_sprites = ExtResource("9_2ghl3")
 mode_color = 1
+ship_color = Color(0, 1, 0, 1)
 mode_name = "Green"
 
 [node name="GreenTimer" type="Timer" parent="ModeManager/Green"]
@@ -174,6 +183,7 @@ bullet_spawn_distance = 35.0
 shot_timer = NodePath("BlueTimer")
 ship_sprites = ExtResource("11_47w8v")
 mode_color = 2
+ship_color = Color(0, 0, 1, 1)
 mode_name = "Blue"
 
 [node name="BlueTimer" type="Timer" parent="ModeManager/Blue"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhl2vb5p2xx6p"]
+[gd_scene load_steps=9 format=3 uid="uid://dhl2vb5p2xx6p"]
 
 [ext_resource type="Script" path="res://Entities/Flock/BaseEnemy.gd" id="1_4nhy6"]
 [ext_resource type="PackedScene" uid="uid://cavd0ctnmul3e" path="res://Entities/Bullets/EnemyBullets/RedEnemyBullet.tscn" id="2_1leni"]
 [ext_resource type="PackedScene" uid="uid://bik0gttvaxkkp" path="res://Effects/Particles/EnemyExplosion.tscn" id="3_7kou4"]
 [ext_resource type="Shader" path="res://Effects/Shaders/Outline.gdshader" id="3_vlqqi"]
 [ext_resource type="Texture2D" uid="uid://brbs2fcftaaqj" path="res://Entities/Flock/FlockSprites/EnemyRedBasic.svg" id="3_vqkig"]
+[ext_resource type="PackedScene" uid="uid://cskqwarvj77nb" path="res://Effects/Particles/SpawnParticles.tscn" id="4_x65vx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yowbj"]
 shader = ExtResource("3_vlqqi")
@@ -35,6 +36,7 @@ shot_timer = NodePath("ShotTimer")
 bullet_scene = ExtResource("2_1leni")
 navigation_agent = NodePath("NavigationAgent2D")
 explosion_scene = ExtResource("3_7kou4")
+spawn_scene = ExtResource("4_x65vx")
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-22, 36, -22, -36, 40, 0)

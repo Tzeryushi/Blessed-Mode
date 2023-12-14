@@ -18,6 +18,7 @@ extends Node2D
 @export_category("Music")
 @export var level_music : AudioStream = MusicLibrary.playing_music
 
+
 @onready var enemy_container := $Enemies
 @onready var spawner_container := $Spawners
 @onready var hud := $HUDLayer/HUD
@@ -242,6 +243,7 @@ func spawn_enemy(enemy_type:Globals.ENEMYTYPE, enemy_position:Vector2) -> void:
 	var new_enemy : BaseEnemy = enemy_scenes[enemy_type].instantiate()
 	new_enemy.global_position = enemy_position
 	enemy_container.add_child(new_enemy)
+	new_enemy.play_spawn_particles()
 	monitor_enemy(new_enemy)
 
 func start_stats(_link:ObjectiveLink) -> void:

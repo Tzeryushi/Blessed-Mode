@@ -25,6 +25,7 @@ grow_vertical = 2
 script = ExtResource("1_krask")
 
 [node name="MainContext" type="Control" parent="." node_paths=PackedStringArray("primary_focus_node")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -206,21 +207,123 @@ offset_bottom = -78.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_5wjh7")
+theme_override_constants/separation = 40
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OptionsContext/HBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_5wjh7")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="OptionsContext/HBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_5wjh7")
+theme_override_constants/separation = 20
+
+[node name="Title2" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/shadow_outline_size = 14
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Master Volume"
+fit_content = true
+scroll_active = false
+
+[node name="MasterVol" type="HSlider" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+
+[node name="MarginContainer4" type="MarginContainer" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Title3" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/shadow_outline_size = 14
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Music Volume"
+fit_content = true
+scroll_active = false
+
+[node name="MasterVol2" type="HSlider" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+
+[node name="MarginContainer3" type="MarginContainer" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Title4" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/shadow_outline_size = 14
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]SFX Volume"
+fit_content = true
+scroll_active = false
+
+[node name="MasterVol3" type="HSlider" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+
+[node name="MarginContainer2" type="MarginContainer" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Title5" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/shadow_outline_size = 14
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Voice Volume
+"
+fit_content = true
+scroll_active = false
+
+[node name="MasterVol4" type="HSlider" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("1_5wjh7")
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="OptionsContext/HBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_5wjh7")
 alignment = 2
 
