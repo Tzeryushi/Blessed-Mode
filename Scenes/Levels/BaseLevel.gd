@@ -15,6 +15,7 @@ extends Node2D
 @export var combo_threshold : int = 5
 @export var next_scene : String = "main_menu"
 @export var level_info : LevelInfo
+@export var next_level_info : LevelInfo
 
 @export_category("Music")
 @export var play_tutorial_music : bool = false
@@ -99,6 +100,10 @@ func _ready():
 		MusicManager.play(tutorial_music)
 	else:
 		MusicManager.play(level_music)
+	
+	if level_info:
+		if level_info.locked:	#unlock level if locked
+			level_info.locked = false
 	
 	process_objective_link()
 	#spawn_player()
@@ -296,4 +301,11 @@ func _on_replay_pressed():
 	Globals.scene_manager.restart_scene()
 
 func _on_next_level_pressed():
-	Globals.scene_manager.switch_scene(next_scene, Globals.AFTEREFFECT.CRT)
+	var next : String = ""
+	if next_level_info:
+		next = next_level_info.level_call
+	elif level_info:
+		next = level_info.next_level_call
+	else:
+		next = next_scene
+	Globals.scene_manager.switch_scene(next, Globals.AFTEREFFECT.CRT)
