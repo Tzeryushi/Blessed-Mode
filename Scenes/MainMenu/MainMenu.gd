@@ -26,6 +26,10 @@ func _ready():
 	sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
 	voice_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Voice")))
 	
+	options_context.hide()
+	level_select_context.hide()
+	main_context.show()
+	
 	MusicManager.play(MusicLibrary.menu_music)
 	pass # Replace with function body.
 
@@ -39,17 +43,24 @@ func set_focus(node:Node, value:bool) -> void:
 func _on_story_button_pressed():
 	Globals.scene_manager.switch_scene("level_1", Globals.AFTEREFFECT.CRT)
 func _on_level_select_pressed():
+	level_select_context.show()
 	level_select_context.primary_focus_node.grab_focus()
+	
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(main_context, "position", right_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.parallel().tween_property(level_select_context, "position", center_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_callback(main_context.hide)
+
 func _on_options_button_pressed():
 	#set_focus(options_context, true)
 	#set_focus(main_context, false)
+	options_context.show()
 	options_context.primary_focus_node.grab_focus()
+	
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(main_context, "position", left_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.parallel().tween_property(options_context, "position", center_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_callback(main_context.hide)
 func _on_quit_button_pressed():
 	Globals.scene_manager.quit_game()
 func _on_tutorial_button_pressed():
@@ -59,17 +70,21 @@ func _on_tutorial_button_pressed():
 func _on_return_button_pressed():
 	#set_focus(options_context, false)
 	#set_focus(main_context, true)
+	main_context.show()
 	main_context.primary_focus_node.grab_focus()
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(main_context, "position", center_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.parallel().tween_property(options_context, "position", right_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_callback(options_context.hide)
 
 #level select menu
 func _on_level_return_button_pressed():
+	main_context.show()
 	main_context.primary_focus_node.grab_focus()
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(main_context, "position", center_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.parallel().tween_property(level_select_context, "position", left_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_callback(level_select_context.hide)
 	pass # Replace with function body.
 
 #other
@@ -89,3 +104,10 @@ func _on_voice_vol_value_changed(value):
 
 
 
+
+
+func _on_full_screen_button_toggled(toggled_on):
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

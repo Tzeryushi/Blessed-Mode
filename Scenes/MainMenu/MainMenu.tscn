@@ -33,6 +33,20 @@ music_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/MusicVol")
 sfx_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/SFXVol")
 voice_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/VoiceVol")
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4473.0
+offset_top = 222.0
+offset_right = 4473.0
+offset_bottom = -660.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.415686, 0.415686, 0.415686, 0.568627)
+
 [node name="MainContext" type="Control" parent="." node_paths=PackedStringArray("primary_focus_node")]
 layout_mode = 1
 anchors_preset = 15
@@ -51,20 +65,6 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -357.0
 offset_right = 357.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.415686, 0.415686, 0.415686, 0.568627)
-
-[node name="ColorRect2" type="ColorRect" parent="MainContext"]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -4473.0
-offset_top = 222.0
-offset_right = 4473.0
-offset_bottom = -660.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.415686, 0.415686, 0.415686, 0.568627)
@@ -197,8 +197,8 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -357.0
-offset_right = 357.0
+offset_left = -303.0
+offset_right = 303.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.415686, 0.415686, 0.415686, 0.568627)
@@ -474,6 +474,34 @@ size_flags_horizontal = 3
 theme = ExtResource("1_5wjh7")
 alignment = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsContext/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title6" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer3/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 11.36
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/shadow_outline_size = 14
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Fullscreen:"
+fit_content = true
+scroll_active = false
+
+[node name="FullScreenButton" type="CheckButton" parent="OptionsContext/HBoxContainer/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_5wjh7")
+
 [node name="BaseButton" type="Button" parent="OptionsContext/HBoxContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
@@ -592,6 +620,7 @@ script = ExtResource("6_kww22")
 [connection signal="value_changed" from="OptionsContext/HBoxContainer/VBoxContainer2/MusicVol" to="." method="_on_music_vol_value_changed"]
 [connection signal="value_changed" from="OptionsContext/HBoxContainer/VBoxContainer2/SFXVol" to="." method="_on_sfx_vol_value_changed"]
 [connection signal="value_changed" from="OptionsContext/HBoxContainer/VBoxContainer2/VoiceVol" to="." method="_on_voice_vol_value_changed"]
+[connection signal="toggled" from="OptionsContext/HBoxContainer/VBoxContainer3/HBoxContainer/FullScreenButton" to="." method="_on_full_screen_button_toggled"]
 [connection signal="focus_entered" from="OptionsContext/HBoxContainer/VBoxContainer3/BaseButton" to="OptionsContext/HBoxContainer/VBoxContainer3/BaseButton" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="OptionsContext/HBoxContainer/VBoxContainer3/BaseButton" to="OptionsContext/HBoxContainer/VBoxContainer3/BaseButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="OptionsContext/HBoxContainer/VBoxContainer3/BaseButton" to="OptionsContext/HBoxContainer/VBoxContainer3/BaseButton" method="_on_pressed"]

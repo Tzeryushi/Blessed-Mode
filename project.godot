@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.0627451, 0.0627451, 0.0627451, 1)
 boot_splash/image="res://Art/Icons/ColorWheelSplashCentered.png"
 config/icon="res://Art/Icons/ColorWheelIcon.svg"
+config/windows_native_icon="res://Art/Icons/icon.ico"
 
 [autoload]
 
