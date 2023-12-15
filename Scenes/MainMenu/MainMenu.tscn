@@ -456,6 +456,10 @@ theme_override_constants/margin_right = 400
 [node name="ReturnButton" type="Button" parent="LevelSelectContext/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 theme = ExtResource("1_5wjh7")
 text = "RETURN TO MAIN MENU"
 script = ExtResource("6_kww22")
