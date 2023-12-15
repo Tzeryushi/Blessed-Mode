@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=2 format=3 uid="uid://cq34cotmriqy0"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/LevelAssets/LevelInfo.gd" id="1_n0biq"]
+
+[resource]
+script = ExtResource("1_n0biq")
+level_call = "t0sD"
+next_level_call = "level_1"
+display_name = "T0, Sector D"
+top_score = 100
+fastest_time = 5999999
+locked = true

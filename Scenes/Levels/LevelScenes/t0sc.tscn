@@ -1,9 +1,214 @@
-[gd_scene load_steps=14 format=3 uid="uid://cg4g73auhpm2q"]
+[gd_scene load_steps=78 format=3 uid="uid://cg4g73auhpm2q"]
 
 [ext_resource type="PackedScene" uid="uid://bk6dasaa78yc7" path="res://Scenes/Levels/BaseLevel.tscn" id="1_hv38g"]
 [ext_resource type="PackedScene" uid="uid://b6gkul1xvx5qn" path="res://Scenes/Levels/LevelAssets/Spawner.tscn" id="2_6memg"]
 [ext_resource type="Resource" uid="uid://bayt18inkrm5i" path="res://Scenes/Levels/LevelResources/T0SC.tres" id="2_8dge2"]
+[ext_resource type="Script" path="res://Structures/ObjectiveLink.gd" id="2_ys3qk"]
+[ext_resource type="Script" path="res://Structures/CutsceneInfo.gd" id="3_8qgih"]
 [ext_resource type="Script" path="res://Structures/SpawnerInfo.gd" id="4_exktu"]
+[ext_resource type="AudioStream" uid="uid://b64vl05ksbjiw" path="res://Voices/T0SC/sam(1).wav" id="4_snoxr"]
+[ext_resource type="AudioStream" uid="uid://b2l7pmm0hrhxy" path="res://Voices/T0SC/sam(2).wav" id="5_w6l08"]
+[ext_resource type="AudioStream" uid="uid://c1tft3opau7gg" path="res://Voices/T0SC/sam(3).wav" id="6_dsrhe"]
+[ext_resource type="AudioStream" uid="uid://bvkq5ppa80tre" path="res://Voices/T0SC/sam(4).wav" id="7_gh4xh"]
+[ext_resource type="AudioStream" uid="uid://dc2aoxkcce3y4" path="res://Voices/T0SC/sam(5).wav" id="8_7ydir"]
+[ext_resource type="AudioStream" uid="uid://xiy8gucrmfvd" path="res://Voices/T0SC/sam(6).wav" id="9_j4tww"]
+[ext_resource type="AudioStream" uid="uid://xjv17kcvs7a4" path="res://Voices/T0SC/sam(7).wav" id="10_c1cap"]
+[ext_resource type="AudioStream" uid="uid://cf7c1032v5l8v" path="res://Voices/T0SC/sam(8).wav" id="11_o4ryt"]
+[ext_resource type="AudioStream" uid="uid://dynxiii5ab08h" path="res://Voices/T0SC/sam(9).wav" id="12_2gcmr"]
+[ext_resource type="AudioStream" uid="uid://bj3an3ledkv6x" path="res://Voices/T0SC/sam(10).wav" id="13_drngy"]
+[ext_resource type="AudioStream" uid="uid://bpmvoc5denpok" path="res://Voices/T0SC/sam(11).wav" id="14_sophf"]
+[ext_resource type="AudioStream" uid="uid://laade54ouyrh" path="res://Voices/T0SC/sam(12).wav" id="15_lepu5"]
+
+[sub_resource type="Resource" id="Resource_rbxmr"]
+script = ExtResource("2_ys3qk")
+link_type = 3
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_0taua"]
+script = ExtResource("2_ys3qk")
+link_type = 4
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_togbp"]
+script = ExtResource("3_8qgih")
+line_text = "I would have you feel no guilt for your task."
+wait_time = 1.0
+sound = ExtResource("4_snoxr")
+
+[sub_resource type="Resource" id="Resource_fsrdx"]
+script = ExtResource("3_8qgih")
+line_text = "It is a great and necessary labor."
+wait_time = 1.0
+sound = ExtResource("5_w6l08")
+
+[sub_resource type="Resource" id="Resource_3ra6i"]
+script = ExtResource("3_8qgih")
+line_text = "There is no higher calling."
+wait_time = 1.0
+sound = ExtResource("6_dsrhe")
+
+[sub_resource type="Resource" id="Resource_xufpq"]
+script = ExtResource("2_ys3qk")
+link_type = 1
+wait_time = 2.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([SubResource("Resource_togbp"), SubResource("Resource_fsrdx"), SubResource("Resource_3ra6i")])
+
+[sub_resource type="Resource" id="Resource_e2sh7"]
+script = ExtResource("2_ys3qk")
+link_type = 6
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_h3d40"]
+script = ExtResource("2_ys3qk")
+link_type = 2
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_7adgw"]
+script = ExtResource("2_ys3qk")
+link_type = 7
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_6jp0f"]
+script = ExtResource("3_8qgih")
+line_text = "These stragglers have strayed far from the G.R.O.V.E."
+wait_time = 1.0
+sound = ExtResource("7_gh4xh")
+
+[sub_resource type="Resource" id="Resource_wwayy"]
+script = ExtResource("3_8qgih")
+line_text = "The inner tracks are overflowing."
+wait_time = 1.0
+sound = ExtResource("8_7ydir")
+
+[sub_resource type="Resource" id="Resource_smegl"]
+script = ExtResource("3_8qgih")
+line_text = "Their progenitors have propagated with reckless abandon."
+wait_time = 1.0
+sound = ExtResource("9_j4tww")
+
+[sub_resource type="Resource" id="Resource_e8lpp"]
+script = ExtResource("2_ys3qk")
+link_type = 1
+wait_time = 1.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([SubResource("Resource_6jp0f"), SubResource("Resource_wwayy"), SubResource("Resource_smegl")])
+
+[sub_resource type="Resource" id="Resource_2ylrv"]
+script = ExtResource("2_ys3qk")
+link_type = 6
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_l70u8"]
+script = ExtResource("2_ys3qk")
+link_type = 5
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_wc203"]
+script = ExtResource("2_ys3qk")
+link_type = 7
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_or3cs"]
+script = ExtResource("3_8qgih")
+line_text = "The very presence of the flock here is profane."
+wait_time = 1.0
+sound = ExtResource("10_c1cap")
+
+[sub_resource type="Resource" id="Resource_hsstv"]
+script = ExtResource("3_8qgih")
+line_text = "It threatens the pillars of the simulation."
+wait_time = 1.0
+sound = ExtResource("11_o4ryt")
+
+[sub_resource type="Resource" id="Resource_5dop4"]
+script = ExtResource("3_8qgih")
+line_text = "They must be addressed."
+wait_time = 1.0
+sound = ExtResource("12_2gcmr")
+
+[sub_resource type="Resource" id="Resource_lrc01"]
+script = ExtResource("2_ys3qk")
+link_type = 1
+wait_time = 1.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([SubResource("Resource_or3cs"), SubResource("Resource_hsstv"), SubResource("Resource_5dop4")])
+
+[sub_resource type="Resource" id="Resource_4j462"]
+script = ExtResource("2_ys3qk")
+link_type = 6
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_ickde"]
+script = ExtResource("2_ys3qk")
+link_type = 5
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_imxt0"]
+script = ExtResource("2_ys3qk")
+link_type = 7
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_wg4hl"]
+script = ExtResource("3_8qgih")
+line_text = "This sector is clear."
+wait_time = 1.0
+sound = ExtResource("13_drngy")
+
+[sub_resource type="Resource" id="Resource_6gelh"]
+script = ExtResource("3_8qgih")
+line_text = "Good work, S.H.E.P.H.E.R.D."
+wait_time = 1.0
+sound = ExtResource("14_sophf")
+
+[sub_resource type="Resource" id="Resource_tlxdn"]
+script = ExtResource("3_8qgih")
+line_text = "You are quickly becoming one of my favorites."
+wait_time = 1.0
+sound = ExtResource("15_lepu5")
+
+[sub_resource type="Resource" id="Resource_ffu7i"]
+script = ExtResource("2_ys3qk")
+link_type = 1
+wait_time = 1.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([SubResource("Resource_wg4hl"), SubResource("Resource_6gelh"), SubResource("Resource_tlxdn")])
+
+[sub_resource type="Resource" id="Resource_1h8mq"]
+script = ExtResource("2_ys3qk")
+link_type = 0
+wait_time = 2.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
+
+[sub_resource type="Resource" id="Resource_iptfs"]
+script = ExtResource("2_ys3qk")
+link_type = 8
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_8qgih")]([])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jcefi"]
 vertices = PackedVector2Array(-1162, 54, -1270, 54, -1270, -54, -1162, -54, 182, 630, -182, 630, -182, 330, 182, 330, 182, -330, -182, -330, -182, -630, 182, -630, 1270, 54, 1162, 54, 1162, -54, 1270, -54, 6210, -3036, 6381, 3514, 2542, 6322, 1866, 906, 1866, -906, 2415, -5656, -1875, 6427, 970, 1482, -2520, -5771, 1226, -1546, 1226, -906, -1226, -1546, -5805, -3408, -1226, -906, -1866, -906, -6118, 3495, -1866, 906, -970, 906, -970, 1482, 970, 906, 1718, -758, 1718, 758, 1418, 202, 1418, -202, 1078, -758, 1014, -202, 822, 758, 1014, 202, 330, 778, 330, 182, 822, 1334, 330, -182, -822, 1334, -330, 778, -822, 758, -330, 182, -1014, 202, -1014, -202, -330, -182, -1718, 758, -1418, 202, -1718, -758, -1418, -202, -1078, -758, 330, -778, 1078, -1398, -1078, -1398, -330, -778)
@@ -15,10 +220,31 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 script = ExtResource("4_exktu")
 spawn_type = 1
 wait_time = 1.5
-enemy_type = 0
+enemy_type = 1
 enemy_count = 8
 
 [sub_resource type="Resource" id="Resource_als58"]
+script = ExtResource("4_exktu")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_dsnir"]
+script = ExtResource("4_exktu")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_vrve8"]
+script = ExtResource("4_exktu")
+spawn_type = 1
+wait_time = 3.0
+enemy_type = 1
+enemy_count = 5
+
+[sub_resource type="Resource" id="Resource_dasxs"]
 script = ExtResource("4_exktu")
 spawn_type = 2
 wait_time = 0.0
@@ -53,6 +279,27 @@ wait_time = 0.0
 enemy_type = 0
 enemy_count = 1
 
+[sub_resource type="Resource" id="Resource_yl3v2"]
+script = ExtResource("4_exktu")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_rjdtl"]
+script = ExtResource("4_exktu")
+spawn_type = 1
+wait_time = 3.0
+enemy_type = 1
+enemy_count = 5
+
+[sub_resource type="Resource" id="Resource_djmab"]
+script = ExtResource("4_exktu")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
 [sub_resource type="Resource" id="Resource_2j6sw"]
 script = ExtResource("4_exktu")
 spawn_type = 2
@@ -60,7 +307,112 @@ wait_time = 0.0
 enemy_type = 0
 enemy_count = 1
 
-[sub_resource type="Resource" id="Resource_4ch81"]
+[sub_resource type="Resource" id="Resource_cunft"]
+script = ExtResource("4_exktu")
+spawn_type = 1
+wait_time = 1.0
+enemy_type = 1
+enemy_count = 4
+
+[sub_resource type="Resource" id="Resource_e0o43"]
+script = ExtResource("4_exktu")
+spawn_type = 0
+wait_time = 2.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_5x8xd"]
+script = ExtResource("4_exktu")
+spawn_type = 1
+wait_time = 4.0
+enemy_type = 3
+enemy_count = 2
+
+[sub_resource type="Resource" id="Resource_reh81"]
+script = ExtResource("4_exktu")
+spawn_type = 0
+wait_time = 1.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_qaha6"]
+script = ExtResource("4_exktu")
+spawn_type = 1
+wait_time = 4.0
+enemy_type = 2
+enemy_count = 2
+
+[sub_resource type="Resource" id="Resource_u6u5u"]
+script = ExtResource("4_exktu")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_d5awd"]
+script = ExtResource("4_exktu")
+spawn_type = 1
+wait_time = 5.0
+enemy_type = 2
+enemy_count = 3
+
+[sub_resource type="Resource" id="Resource_3hws7"]
+script = ExtResource("4_exktu")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_0hnod"]
+script = ExtResource("4_exktu")
+spawn_type = 1
+wait_time = 1.0
+enemy_type = 1
+enemy_count = 4
+
+[sub_resource type="Resource" id="Resource_pyvq4"]
+script = ExtResource("4_exktu")
+spawn_type = 0
+wait_time = 2.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_t4g2e"]
+script = ExtResource("4_exktu")
+spawn_type = 1
+wait_time = 4.0
+enemy_type = 3
+enemy_count = 2
+
+[sub_resource type="Resource" id="Resource_v44uy"]
+script = ExtResource("4_exktu")
+spawn_type = 0
+wait_time = 1.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_7jks5"]
+script = ExtResource("4_exktu")
+spawn_type = 1
+wait_time = 4.0
+enemy_type = 2
+enemy_count = 2
+
+[sub_resource type="Resource" id="Resource_qv0a4"]
+script = ExtResource("4_exktu")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_kgr3t"]
+script = ExtResource("4_exktu")
+spawn_type = 1
+wait_time = 5.0
+enemy_type = 3
+enemy_count = 3
+
+[sub_resource type="Resource" id="Resource_yqh7h"]
 script = ExtResource("4_exktu")
 spawn_type = 2
 wait_time = 0.0
@@ -68,6 +420,7 @@ enemy_type = 0
 enemy_count = 1
 
 [node name="T0SC" instance=ExtResource("1_hv38g")]
+objective_chain = Array[ExtResource("2_ys3qk")]([SubResource("Resource_rbxmr"), SubResource("Resource_0taua"), SubResource("Resource_xufpq"), SubResource("Resource_e2sh7"), SubResource("Resource_h3d40"), SubResource("Resource_7adgw"), SubResource("Resource_e8lpp"), SubResource("Resource_2ylrv"), SubResource("Resource_l70u8"), SubResource("Resource_wc203"), SubResource("Resource_lrc01"), SubResource("Resource_4j462"), SubResource("Resource_ickde"), SubResource("Resource_imxt0"), SubResource("Resource_ffu7i"), SubResource("Resource_1h8mq"), SubResource("Resource_iptfs")])
 next_scene = "main_menu"
 level_info = ExtResource("2_8dge2")
 
@@ -80,16 +433,16 @@ layer_1/tile_data = PackedInt32Array(786418, 1, 0, 851954, 1, 0, 917490, 1, 0, 9
 
 [node name="Spawner" parent="Spawners" index="0" instance=ExtResource("2_6memg")]
 position = Vector2(0, -1071)
-spawn_list = Array[ExtResource("4_exktu")]([SubResource("Resource_i1vo6"), SubResource("Resource_als58")])
+spawn_list = Array[ExtResource("4_exktu")]([SubResource("Resource_i1vo6"), SubResource("Resource_als58"), SubResource("Resource_dsnir"), SubResource("Resource_vrve8"), SubResource("Resource_dasxs")])
 
 [node name="Spawner2" parent="Spawners" index="1" instance=ExtResource("2_6memg")]
 position = Vector2(0, 1073)
-spawn_list = Array[ExtResource("4_exktu")]([SubResource("Resource_ahvbf"), SubResource("Resource_b7ylo"), SubResource("Resource_xwg7h"), SubResource("Resource_hw2in")])
+spawn_list = Array[ExtResource("4_exktu")]([SubResource("Resource_ahvbf"), SubResource("Resource_b7ylo"), SubResource("Resource_xwg7h"), SubResource("Resource_hw2in"), SubResource("Resource_yl3v2"), SubResource("Resource_rjdtl"), SubResource("Resource_djmab")])
 
 [node name="Spawner3" parent="Spawners" index="2" instance=ExtResource("2_6memg")]
 position = Vector2(-711, 0)
-spawn_list = Array[ExtResource("4_exktu")]([SubResource("Resource_2j6sw")])
+spawn_list = Array[ExtResource("4_exktu")]([SubResource("Resource_2j6sw"), SubResource("Resource_cunft"), SubResource("Resource_e0o43"), SubResource("Resource_5x8xd"), SubResource("Resource_reh81"), SubResource("Resource_qaha6"), SubResource("Resource_u6u5u"), SubResource("Resource_d5awd"), SubResource("Resource_3hws7")])
 
 [node name="Spawner4" parent="Spawners" index="3" instance=ExtResource("2_6memg")]
 position = Vector2(721, 0)
-spawn_list = Array[ExtResource("4_exktu")]([SubResource("Resource_4ch81")])
+spawn_list = Array[ExtResource("4_exktu")]([SubResource("Resource_2j6sw"), SubResource("Resource_0hnod"), SubResource("Resource_pyvq4"), SubResource("Resource_t4g2e"), SubResource("Resource_v44uy"), SubResource("Resource_7jks5"), SubResource("Resource_qv0a4"), SubResource("Resource_kgr3t"), SubResource("Resource_yqh7h")])

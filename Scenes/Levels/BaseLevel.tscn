@@ -53,7 +53,11 @@ VBoxContainer/constants/separation = 32
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_t4hrk")
 player_scene = ExtResource("2_gpuq8")
+objective_chain = null
+score_value = null
+combo_threshold = null
 next_scene = "level_1"
+play_tutorial_music = null
 
 [node name="Map" type="NavigationRegion2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.164706)

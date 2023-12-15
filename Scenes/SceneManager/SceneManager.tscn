@@ -23,6 +23,7 @@ scenes = {
 "t0sA": "res://Scenes/Levels/LevelScenes/Level1.tscn",
 "t0sB": "res://Scenes/Levels/LevelScenes/t0sb.tscn",
 "t0sC": "res://Scenes/Levels/LevelScenes/t0sc.tscn",
+"t0sD": "res://Scenes/Levels/LevelScenes/t0sd.tscn",
 "testing_room": "res://Scenes/TestScenes/testing_room.tscn",
 "tutorial": "res://Scenes/Levels/Tutorial.tscn"
 }

@@ -33,7 +33,8 @@ var player : Player
 var enemy_scenes : Dictionary = {
 	Globals.ENEMYTYPE.RED1 : load("res://Entities/Flock/RedFlock/EnemyRed1.tscn"),
 	Globals.ENEMYTYPE.GREEN1 : load("res://Entities/Flock/GreenFlock/EnemyGreen1.tscn"),
-	Globals.ENEMYTYPE.BLUE1 : load("res://Entities/Flock/BlueFlock/EnemyBlue1.tscn")
+	Globals.ENEMYTYPE.BLUE1 : load("res://Entities/Flock/BlueFlock/EnemyBlue1.tscn"),
+	Globals.ENEMYTYPE.RED2 : load("res://Entities/Flock/RedFlock/EnemyRed2.tscn")
 	}
 ##contains callables for objective links
 var link_functions : Dictionary = {
@@ -255,6 +256,7 @@ func _on_request_spawn(enemy_type:Globals.ENEMYTYPE, enemy_position:Vector2) -> 
 ##spawn_enemy is used after receiving signals from spawners to create enemies at global locations
 func spawn_enemy(enemy_type:Globals.ENEMYTYPE, enemy_position:Vector2) -> void:
 	#spawn enemy and add to list of enemies
+	assert(!enemy_type == Globals.ENEMYTYPE.NONE, "NONE selected for enemy spawn")
 	var new_enemy : BaseEnemy = enemy_scenes[enemy_type].instantiate()
 	new_enemy.global_position = enemy_position
 	enemy_container.call_deferred("add_child", new_enemy)
