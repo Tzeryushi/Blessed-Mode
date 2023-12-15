@@ -1,6 +1,13 @@
 extends MenuContext
 
-@export var level_list : Array[LevelInfo] = []
+@onready var level_list : Array[LevelInfo] = [
+	preload("res://Scenes/Levels/LevelResources/T0SA.tres"),
+	preload("res://Scenes/Levels/LevelResources/T0SB.tres"),
+	preload("res://Scenes/Levels/LevelResources/T0SC.tres"),
+	preload("res://Scenes/Levels/LevelResources/T0SD.tres"),
+	preload("res://Scenes/Levels/LevelResources/T0SE.tres"),
+	preload("res://Scenes/Levels/LevelResources/T0SF.tres")
+]
 @export var level_box_scene : PackedScene
 
 @onready var level_container := $VBoxContainer/LevelContainer

@@ -290,9 +290,9 @@ func show_end_screen(value:bool) -> void:
 	end_screen.set_results(elapsed_time_msecs, head_count, total_score, value)
 	if level_info:
 		if total_score > level_info.top_score:
-			level_info.top_score = total_score
-		if elapsed_time_msecs < level_info.fastest_time:
-			level_info.fastest_time = elapsed_time_msecs
+			level_info.set_top_score(total_score)
+		if elapsed_time_msecs < level_info.fastest_time and value:
+			level_info.set_fastest_time(elapsed_time_msecs)
 	if value:
 		end_screen.animate_results(victory_music)
 		if next_level_info:

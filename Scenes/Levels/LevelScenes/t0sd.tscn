@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://c041cjl606nkm"]
+[gd_scene load_steps=72 format=3 uid="uid://c041cjl606nkm"]
 
 [ext_resource type="PackedScene" uid="uid://bk6dasaa78yc7" path="res://Scenes/Levels/BaseLevel.tscn" id="1_2f8tu"]
 [ext_resource type="Script" path="res://Structures/ObjectiveLink.gd" id="2_krper"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://22da16a3sqir" path="res://Voices/T0SD/sam(10).wav" id="13_umrgy"]
 [ext_resource type="AudioStream" uid="uid://683amalaxcn0" path="res://Voices/T0SD/sam(11).wav" id="14_h1lnh"]
 [ext_resource type="AudioStream" uid="uid://ciknyy3mmrgel" path="res://Voices/T0SD/sam(12).wav" id="15_a5gyo"]
+[ext_resource type="Resource" uid="uid://cq34cotmriqy0" path="res://Scenes/Levels/LevelResources/T0SD.tres" id="16_sqre8"]
 
 [sub_resource type="Resource" id="Resource_p1nna"]
 script = ExtResource("2_krper")
@@ -378,6 +379,7 @@ enemy_count = 1
 
 [node name="T0SD" instance=ExtResource("1_2f8tu")]
 objective_chain = Array[ExtResource("2_krper")]([SubResource("Resource_p1nna"), SubResource("Resource_4sxi4"), SubResource("Resource_xvom4"), SubResource("Resource_k8iwt"), SubResource("Resource_4u3fq"), SubResource("Resource_c2vyu"), SubResource("Resource_m8djc"), SubResource("Resource_rgy8r"), SubResource("Resource_mtkrl"), SubResource("Resource_omd0l"), SubResource("Resource_0u0fa"), SubResource("Resource_34h4y"), SubResource("Resource_53fpk"), SubResource("Resource_6b3a2"), SubResource("Resource_8jd7v"), SubResource("Resource_0dhus")])
+level_info = ExtResource("16_sqre8")
 
 [node name="Map" parent="." index="0"]
 navigation_polygon = SubResource("NavigationPolygon_tnq0k")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://8cnunv0ts34r"]
+[gd_scene load_steps=11 format=3 uid="uid://8cnunv0ts34r"]
 
 [ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="1_5wjh7"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/MainMenu.gd" id="1_krask"]
@@ -8,12 +8,6 @@
 [ext_resource type="Script" path="res://GUI/GenButton.gd" id="6_kww22"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/LevelSelectContext.gd" id="7_88mrv"]
 [ext_resource type="PackedScene" uid="uid://o2eqqkofmgc3" path="res://Scenes/Levels/LevelAssets/LevelBox.tscn" id="7_g6vo4"]
-[ext_resource type="Resource" uid="uid://c82nwa302p7oa" path="res://Scenes/Levels/LevelResources/T0SA.tres" id="8_re8em"]
-[ext_resource type="Resource" uid="uid://g0gyun2m2lbd" path="res://Scenes/Levels/LevelResources/T0SB.tres" id="9_2y8q6"]
-[ext_resource type="Resource" uid="uid://bayt18inkrm5i" path="res://Scenes/Levels/LevelResources/T0SC.tres" id="10_jpdoi"]
-[ext_resource type="Resource" uid="uid://cq34cotmriqy0" path="res://Scenes/Levels/LevelResources/T0SD.tres" id="11_7vcbw"]
-[ext_resource type="Resource" uid="uid://cd83gb2xt2404" path="res://Scenes/Levels/LevelResources/T0SE.tres" id="12_ffhyo"]
-[ext_resource type="Resource" uid="uid://d35o7e84bwufm" path="res://Scenes/Levels/LevelResources/T0SF.tres" id="13_cdak1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ft1q"]
 shader = ExtResource("2_b8a7c")
@@ -396,7 +390,6 @@ offset_right = -94.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_88mrv")
-level_list = Array[Resource("res://Scenes/Levels/LevelAssets/LevelInfo.gd")]([ExtResource("8_re8em"), ExtResource("9_2y8q6"), ExtResource("10_jpdoi"), ExtResource("11_7vcbw"), ExtResource("12_ffhyo"), ExtResource("13_cdak1")])
 level_box_scene = ExtResource("7_g6vo4")
 primary_focus_node = NodePath("VBoxContainer/MarginContainer/ReturnButton")
 
