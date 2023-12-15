@@ -9,4 +9,4 @@ next_level_call = "level_1"
 display_name = "T0, Sector C"
 top_score = 100
 fastest_time = 5999999
-locked = false
+locked = true

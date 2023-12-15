@@ -10,12 +10,12 @@ extends Resource
 
 func set_top_score(value:int) -> void:
 	top_score = value
-	print("Changed top score of ", display_name, " to ", top_score)
+	#print("Changed top score of ", display_name, " to ", top_score)
 
 func set_fastest_time(value:int) -> void:
 	fastest_time = value
-	print("Changed fastest time of ", display_name, " to ", fastest_time)
+	#print("Changed fastest time of ", display_name, " to ", fastest_time)
 
 func set_locked(value:bool) -> void:
 	locked = value
-	print("Changed locked of ", display_name, " to ", (locked))
+	#print("Changed locked of ", display_name, " to ", (locked))
