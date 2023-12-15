@@ -1,26 +1,27 @@
-[gd_scene load_steps=14 format=3 uid="uid://w64laawdimg2"]
+[gd_scene load_steps=15 format=3 uid="uid://w64laawdimg2"]
 
 [ext_resource type="Script" path="res://Globals/GlobalSFX.gd" id="1_7qspi"]
 [ext_resource type="AudioStream" uid="uid://8ungksj03ylw" path="res://SFX/TempSFX/bullethit_temp.wav" id="2_ub4l1"]
-[ext_resource type="AudioStream" uid="uid://djasud1g6ix7d" path="res://SFX/TempSFX/switch_temp.wav" id="3_j4x11"]
-[ext_resource type="AudioStream" uid="uid://b4g06ft37hko2" path="res://SFX/TempSFX/wavy.wav" id="4_em63n"]
+[ext_resource type="AudioStream" uid="uid://dbmdo4uvnn4dx" path="res://SFX/transition_1.wav" id="4_uk8a6"]
+[ext_resource type="AudioStream" uid="uid://dvyqbr5vjhbvi" path="res://SFX/transition_2.wav" id="5_2axvu"]
 [ext_resource type="AudioStream" uid="uid://coe6n13usprm1" path="res://SFX/TempSFX/explosion.wav" id="5_e0qv6"]
+[ext_resource type="AudioStream" uid="uid://cnpdfec3d6nut" path="res://SFX/pause.wav" id="6_6xk22"]
 [ext_resource type="AudioStream" uid="uid://c3j8dfkdegbh7" path="res://SFX/TempSFX/skizz.wav" id="6_w0nkf"]
 [ext_resource type="AudioStream" uid="uid://c5ap1beac8yj7" path="res://SFX/TempSFX/synth(1).wav" id="7_rbb0b"]
 [ext_resource type="AudioStream" uid="uid://bdybrrmygbeqr" path="res://SFX/TempSFX/synth(2).wav" id="8_fr0ws"]
 [ext_resource type="AudioStream" uid="uid://kam8pbm1lssj" path="res://SFX/TempSFX/synth.wav" id="9_ik4d5"]
 [ext_resource type="AudioStream" uid="uid://cb2ounwg1d1sy" path="res://SFX/TempSFX/laserShoot.wav" id="10_88e7s"]
 [ext_resource type="AudioStream" uid="uid://dbqht7ej05w2c" path="res://SFX/TempSFX/hitHurt.wav" id="11_7eama"]
-[ext_resource type="AudioStream" uid="uid://he3wo8fpw61m" path="res://SFX/TempSFX/laserShoot(1).wav" id="12_cbpvt"]
 [ext_resource type="AudioStream" uid="uid://c5tfp03t6u7yf" path="res://SFX/TempSFX/explosion(1).wav" id="12_fxhjp"]
+[ext_resource type="AudioStream" uid="uid://dmkspx2522rlm" path="res://SFX/bullet_fire_green_1.wav" id="14_otw0s"]
 
 [node name="GlobalSfx" type="Node"]
 script = ExtResource("1_7qspi")
 button_hover_sfx = ExtResource("2_ub4l1")
-button_select_sfx = ExtResource("3_j4x11")
-transition_start_sfx = ExtResource("4_em63n")
-transition_end_sfx = ExtResource("4_em63n")
-pause_sfx = ExtResource("5_e0qv6")
+button_select_sfx = ExtResource("6_6xk22")
+transition_start_sfx = ExtResource("4_uk8a6")
+transition_end_sfx = ExtResource("5_2axvu")
+pause_sfx = ExtResource("6_6xk22")
 player_ship_hit = ExtResource("5_e0qv6")
 player_ship_destroyed = ExtResource("6_w0nkf")
 player_ship_swap_red = ExtResource("7_rbb0b")
@@ -31,6 +32,6 @@ bullet_hit_red = ExtResource("11_7eama")
 bullet_fire_blue = ExtResource("10_88e7s")
 bullet_hit_blue = ExtResource("11_7eama")
 bullet_fire_blue_missile = ExtResource("10_88e7s")
-bullet_fire_green = ExtResource("12_cbpvt")
+bullet_fire_green = ExtResource("14_otw0s")
 bullet_hit = ExtResource("11_7eama")
 enemy_ship_destroyed = ExtResource("12_fxhjp")
