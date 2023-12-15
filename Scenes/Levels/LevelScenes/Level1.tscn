@@ -120,7 +120,7 @@ sound = ExtResource("8_tab35")
 [sub_resource type="Resource" id="Resource_ujwcp"]
 script = ExtResource("3_20ehw")
 line_text = "SIMULATED HEURISTIC ERROR PURGATION"
-wait_time = 1.0
+wait_time = 0.3
 sound = ExtResource("9_xe6ka")
 
 [sub_resource type="Resource" id="Resource_nrdce"]
