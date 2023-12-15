@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Globals/GlobalSFX.gd" id="1_7qspi"]
 [ext_resource type="AudioStream" uid="uid://8ungksj03ylw" path="res://SFX/TempSFX/bullethit_temp.wav" id="2_ub4l1"]
-[ext_resource type="AudioStream" uid="uid://dbmdo4uvnn4dx" path="res://SFX/transition_1.wav" id="4_uk8a6"]
-[ext_resource type="AudioStream" uid="uid://dvyqbr5vjhbvi" path="res://SFX/transition_2.wav" id="5_2axvu"]
+[ext_resource type="AudioStream" uid="uid://bwrqlmlqlqw0g" path="res://SFX/transition_1_master.wav" id="4_qugom"]
+[ext_resource type="AudioStream" uid="uid://di0a0bpfa8275" path="res://SFX/transition_2_master.wav" id="5_4vhga"]
 [ext_resource type="AudioStream" uid="uid://coe6n13usprm1" path="res://SFX/TempSFX/explosion.wav" id="5_e0qv6"]
 [ext_resource type="AudioStream" uid="uid://cnpdfec3d6nut" path="res://SFX/pause.wav" id="6_6xk22"]
 [ext_resource type="AudioStream" uid="uid://c3j8dfkdegbh7" path="res://SFX/TempSFX/skizz.wav" id="6_w0nkf"]
@@ -19,8 +19,8 @@
 script = ExtResource("1_7qspi")
 button_hover_sfx = ExtResource("2_ub4l1")
 button_select_sfx = ExtResource("6_6xk22")
-transition_start_sfx = ExtResource("4_uk8a6")
-transition_end_sfx = ExtResource("5_2axvu")
+transition_start_sfx = ExtResource("4_qugom")
+transition_end_sfx = ExtResource("5_4vhga")
 pause_sfx = ExtResource("6_6xk22")
 player_ship_hit = ExtResource("5_e0qv6")
 player_ship_destroyed = ExtResource("6_w0nkf")
