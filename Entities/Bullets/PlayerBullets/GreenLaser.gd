@@ -57,7 +57,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 		trail.add_point(Vector2.RIGHT*laser_length)
 	
 	Shake.add_trauma(shake, shake_ceiling)
-	SoundManager.play(spawn_sfx)
+	SoundManager.play(spawn_sfx, 1.2)
 	
 	#handle application of damage
 	for enemy in collision_exception_array:

@@ -3,9 +3,11 @@ extends ShipMode
 @export var rocket_acceleration : float = 90.0
 @export var rocket_max_speed : float = 2000.0
 @export var rocket_damage : int = 10
+@export var dash_hit_particles : PackedScene
 
 @onready var red_trail = $RedTrail
 @onready var dash_hitbox = $DashHitbox
+@onready var dash_collision_sfx : AudioStream = GlobalSfx.player_red_dash_collision
 
 var is_rocketing : bool = false
 
@@ -69,4 +71,9 @@ func end_special_action() -> void:
 func _on_dash_hitbox_body_entered(body):
 	if body is BaseEnemy:
 		body.take_damage(rocket_damage, get_mode_color())
+		SoundManager.play(dash_collision_sfx)
 		Shake.add_trauma(0.4, 1.5)
+		var dash_part : ParticleAnimation = dash_hit_particles.instantiate()
+		add_child(dash_part)
+		(dash_part as ParticleAnimation).set_color(Color(1.0,0.3,0.3,0.9))
+		(dash_part as ParticleAnimation).play()
