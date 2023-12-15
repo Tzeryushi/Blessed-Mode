@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://8cnunv0ts34r"]
+[gd_scene load_steps=13 format=3 uid="uid://8cnunv0ts34r"]
 
 [ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="1_5wjh7"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/MainMenu.gd" id="1_krask"]
@@ -8,7 +8,8 @@
 [ext_resource type="Script" path="res://GUI/GenButton.gd" id="6_kww22"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/LevelSelectContext.gd" id="7_88mrv"]
 [ext_resource type="PackedScene" uid="uid://o2eqqkofmgc3" path="res://Scenes/Levels/LevelAssets/LevelBox.tscn" id="7_g6vo4"]
-[ext_resource type="Script" path="res://Scenes/Levels/LevelAssets/LevelInfo.gd" id="8_3hnqh"]
+[ext_resource type="Resource" uid="uid://c82nwa302p7oa" path="res://Scenes/Levels/LevelResources/T0SA.tres" id="8_re8em"]
+[ext_resource type="Resource" uid="uid://g0gyun2m2lbd" path="res://Scenes/Levels/LevelResources/T0SB.tres" id="9_2y8q6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ft1q"]
 shader = ExtResource("2_b8a7c")
@@ -17,33 +18,6 @@ shader_parameter/width = 42.366
 shader_parameter/outline_color = Color(0.156863, 0.0117647, 0, 0.584314)
 shader_parameter/pixel_size = 4
 shader_parameter/width_speed = 2.0
-
-[sub_resource type="Resource" id="Resource_72u67"]
-script = ExtResource("8_3hnqh")
-level_call = "level_1"
-next_level_call = "level_1"
-display_name = "Level 1"
-top_score = 100
-fastest_time = 5999999
-locked = false
-
-[sub_resource type="Resource" id="Resource_5bpnw"]
-script = ExtResource("8_3hnqh")
-level_call = "level_1"
-next_level_call = "level_1"
-display_name = "Level 1"
-top_score = 100
-fastest_time = 5999999
-locked = true
-
-[sub_resource type="Resource" id="Resource_as774"]
-script = ExtResource("8_3hnqh")
-level_call = "level_1"
-next_level_call = "level_1"
-display_name = "Level 1"
-top_score = 100
-fastest_time = 5999999
-locked = true
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_vkqsy"]
 color = Color(0, 0, 0, 0)
@@ -418,7 +392,7 @@ offset_right = -94.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_88mrv")
-level_list = Array[ExtResource("8_3hnqh")]([SubResource("Resource_72u67"), SubResource("Resource_5bpnw"), SubResource("Resource_as774")])
+level_list = Array[Resource("res://Scenes/Levels/LevelAssets/LevelInfo.gd")]([ExtResource("8_re8em"), ExtResource("9_2y8q6")])
 level_box_scene = ExtResource("7_g6vo4")
 primary_focus_node = NodePath("VBoxContainer/MarginContainer/ReturnButton")
 

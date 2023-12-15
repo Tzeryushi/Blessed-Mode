@@ -249,13 +249,15 @@ func set_score(value:int) -> void:
 	total_score += score_to_add
 	hud.change_score(total_score)
 
+func _on_request_spawn(enemy_type:Globals.ENEMYTYPE, enemy_position:Vector2) -> void:
+	call_deferred("spawn_enemy", enemy_type, enemy_position)
+
 ##spawn_enemy is used after receiving signals from spawners to create enemies at global locations
 func spawn_enemy(enemy_type:Globals.ENEMYTYPE, enemy_position:Vector2) -> void:
 	#spawn enemy and add to list of enemies
 	var new_enemy : BaseEnemy = enemy_scenes[enemy_type].instantiate()
 	new_enemy.global_position = enemy_position
-	enemy_container.add_child(new_enemy)
-	new_enemy.play_spawn_particles()
+	enemy_container.call_deferred("add_child", new_enemy)
 	monitor_enemy(new_enemy)
 
 func start_stats(_link:ObjectiveLink) -> void:
@@ -291,6 +293,8 @@ func show_end_screen(value:bool) -> void:
 			level_info.fastest_time = elapsed_time_msecs
 	if value:
 		end_screen.animate_results(victory_music)
+		if next_level_info:
+			next_level_info.locked = false
 	else:
 		end_screen.animate_results(defeat_music)
 
@@ -308,4 +312,7 @@ func _on_next_level_pressed():
 		next = level_info.next_level_call
 	else:
 		next = next_scene
-	Globals.scene_manager.switch_scene(next, Globals.AFTEREFFECT.CRT)
+	if next == "main_menu":
+		Globals.scene_manager.switch_scene(next)
+	else:
+		Globals.scene_manager.switch_scene(next, Globals.AFTEREFFECT.CRT)

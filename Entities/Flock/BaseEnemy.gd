@@ -80,6 +80,7 @@ func reference_setup() -> void:
 	if tree.has_group("player"):
 		player_ref = tree.get_first_node_in_group("player")
 		player_ref.tree_exiting.connect(clear_body_ref)
+	play_spawn_particles()
 
 func destruct() -> void:
 	#print("Destruct called on enemy ", self)
@@ -102,6 +103,7 @@ func play_spawn_particles() -> void:
 	var spawn_parts : ParticleAnimation = spawn_scene.instantiate()
 	spawn_parts.set_color(explosion_color)
 	add_child(spawn_parts)
+	spawn_parts.global_position = global_position
 	spawn_parts.play()
 
 func clear_body_ref() -> void:

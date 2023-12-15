@@ -492,5 +492,5 @@ layer_1/tile_data = PackedInt32Array(-917508, 1, 0, -851972, 1, 0, -786436, 1, 0
 z_index = -5
 
 [node name="Spawner" parent="Spawners" index="0" instance=ExtResource("7_2aibp")]
-position = Vector2(0, -1747)
+position = Vector2(0, -1726)
 spawn_list = Array[ExtResource("16_m4dl8")]([SubResource("Resource_gnqbv"), SubResource("Resource_y40lx"), SubResource("Resource_jditr"), SubResource("Resource_lv0gr"), SubResource("Resource_rqhdg"), SubResource("Resource_wva62"), SubResource("Resource_27ppw"), SubResource("Resource_0qslo"), SubResource("Resource_lrny1"), SubResource("Resource_adkft"), SubResource("Resource_125hf"), SubResource("Resource_t07gr"), SubResource("Resource_4oh54"), SubResource("Resource_k5p1i"), SubResource("Resource_g4r2f"), SubResource("Resource_4410b"), SubResource("Resource_vs440"), SubResource("Resource_yeeo6"), SubResource("Resource_54cpi"), SubResource("Resource_kpan8")])

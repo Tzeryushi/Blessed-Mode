@@ -15,21 +15,21 @@ voice/3/pan = 0.0
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_c78rr"]
 resource_name = "Amplify"
-volume_db = -6.84
+volume_db = -3.06
 
 [resource]
-bus/0/volume_db = -12.4553
+bus/0/volume_db = -13.5162
 bus/1/name = &"SFX"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = -9.92555
+bus/1/volume_db = 0.0
 bus/1/send = &"Master"
 bus/2/name = &"Music"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = -11.1453
+bus/2/volume_db = 0.0
 bus/2/send = &"Master"
 bus/3/name = &"Voice"
 bus/3/solo = false

@@ -21,15 +21,15 @@ func set_locked(value:bool) -> void:
 	score_label.visible = not value
 	time_label.visible = not value
 
-func set_level(name:String) -> void:
+func set_level(_name:String) -> void:
 	if not is_inside_tree():
 		await ready
-	level_title.text = "[center]" + name
+	level_title.text = "[center]" + _name
 
-func set_level_call(call:String) -> void:
+func set_level_call(_call:String) -> void:
 	if not is_inside_tree():
 		await ready
-	level_call = call
+	level_call = _call
 
 func set_score(score:int) -> void:
 	if not is_inside_tree():

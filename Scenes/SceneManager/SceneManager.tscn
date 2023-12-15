@@ -20,6 +20,8 @@ scenes = {
 "crt_overlay": "res://Scenes/EffectScenes/CRTOverlay.tscn",
 "level_1": "res://Scenes/Levels/LevelScenes/Level1.tscn",
 "main_menu": "res://Scenes/MainMenu/MainMenu.tscn",
+"t0sA": "res://Scenes/Levels/LevelScenes/Level1.tscn",
+"t0sB": "res://Scenes/Levels/LevelScenes/t0sb.tscn",
 "testing_room": "res://Scenes/TestScenes/testing_room.tscn",
 "tutorial": "res://Scenes/Levels/Tutorial.tscn"
 }

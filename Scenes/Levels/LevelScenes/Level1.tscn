@@ -1,13 +1,28 @@
-[gd_scene load_steps=24 format=3 uid="uid://dahjqd457dkb6"]
+[gd_scene load_steps=80 format=3 uid="uid://dahjqd457dkb6"]
 
 [ext_resource type="PackedScene" uid="uid://bk6dasaa78yc7" path="res://Scenes/Levels/BaseLevel.tscn" id="1_hw8bb"]
 [ext_resource type="Script" path="res://Structures/ObjectiveLink.gd" id="2_phtdw"]
 [ext_resource type="Script" path="res://Structures/CutsceneInfo.gd" id="3_20ehw"]
-[ext_resource type="AudioStream" uid="uid://doddbq4364bb1" path="res://Voices/Level1/1welcome.wav" id="4_6ksr1"]
-[ext_resource type="AudioStream" uid="uid://x5cxsilb1d35" path="res://Voices/Level1/2you_are_the_shepherd.wav" id="5_fjycd"]
-[ext_resource type="AudioStream" uid="uid://codrfsy0l73dc" path="res://Voices/Level1/3you_guide_the_flock.wav" id="6_v2yb5"]
+[ext_resource type="AudioStream" uid="uid://bnvt3cnqprm6e" path="res://Voices/T0SA/sam(1).wav" id="4_ibvw4"]
+[ext_resource type="AudioStream" uid="uid://dbwal0ysxoe52" path="res://Voices/T0SA/sam(2).wav" id="5_88gbb"]
+[ext_resource type="AudioStream" uid="uid://ds6xu7t2j2bf7" path="res://Voices/T0SA/sam(3).wav" id="6_e406v"]
+[ext_resource type="Resource" uid="uid://c82nwa302p7oa" path="res://Scenes/Levels/LevelResources/T0SA.tres" id="7_71c06"]
+[ext_resource type="AudioStream" uid="uid://bb3gxp5vimwrl" path="res://Voices/T0SA/sam(4).wav" id="7_u7g6j"]
 [ext_resource type="PackedScene" uid="uid://b6gkul1xvx5qn" path="res://Scenes/Levels/LevelAssets/Spawner.tscn" id="7_xjkpw"]
+[ext_resource type="Resource" uid="uid://g0gyun2m2lbd" path="res://Scenes/Levels/LevelResources/T0SB.tres" id="8_520sk"]
 [ext_resource type="Script" path="res://Structures/SpawnerInfo.gd" id="8_npbq5"]
+[ext_resource type="AudioStream" uid="uid://dl4uw1g5m08s7" path="res://Voices/T0SA/sam(5).wav" id="8_tab35"]
+[ext_resource type="AudioStream" uid="uid://drpa32nossgng" path="res://Voices/T0SA/sam(6).wav" id="9_xe6ka"]
+[ext_resource type="AudioStream" uid="uid://kyt0fu7nstwp" path="res://Voices/T0SA/sam(7).wav" id="10_fqby8"]
+[ext_resource type="AudioStream" uid="uid://gcakounfnl22" path="res://Voices/T0SA/sam(8).wav" id="11_0fh63"]
+[ext_resource type="AudioStream" uid="uid://dgyljyct581vy" path="res://Voices/T0SA/sam(9).wav" id="12_j2a30"]
+[ext_resource type="AudioStream" uid="uid://cu88lnigunwwm" path="res://Voices/T0SA/sam(10).wav" id="13_7gpeq"]
+[ext_resource type="AudioStream" uid="uid://cdstla6hbtpte" path="res://Voices/T0SA/sam(11).wav" id="14_q2js3"]
+[ext_resource type="AudioStream" uid="uid://cuww0viula4vw" path="res://Voices/T0SA/sam(12).wav" id="15_16s8s"]
+[ext_resource type="AudioStream" uid="uid://02lrivxearqv" path="res://Voices/T0SA/sam(13).wav" id="16_rjxrh"]
+[ext_resource type="AudioStream" uid="uid://dei652mqtfo3o" path="res://Voices/T0SA/sam(14).wav" id="17_uny7i"]
+[ext_resource type="AudioStream" uid="uid://kyn0bvbs47uo" path="res://Voices/T0SA/sam(15).wav" id="18_wkorb"]
+[ext_resource type="AudioStream" uid="uid://dd8xax6io3ngy" path="res://Voices/T0SA/sam(16).wav" id="19_8o1ht"]
 
 [sub_resource type="Resource" id="Resource_fe3xg"]
 script = ExtResource("2_phtdw")
@@ -25,21 +40,21 @@ cutscene_list = Array[ExtResource("3_20ehw")]([])
 
 [sub_resource type="Resource" id="Resource_eolta"]
 script = ExtResource("3_20ehw")
-line_text = "Welcome."
+line_text = "Welcome to the simulation."
 wait_time = 1.0
-sound = ExtResource("4_6ksr1")
+sound = ExtResource("4_ibvw4")
 
 [sub_resource type="Resource" id="Resource_dsud1"]
 script = ExtResource("3_20ehw")
-line_text = "You are the S.H.E.P.H.E.R.D."
+line_text = "I am the M.A.S., Memory Allocation System."
 wait_time = 1.0
-sound = ExtResource("5_fjycd")
+sound = ExtResource("5_88gbb")
 
 [sub_resource type="Resource" id="Resource_co6wy"]
 script = ExtResource("3_20ehw")
-line_text = "You guide the flock."
+line_text = "Antagonists approach. Steel yourself."
 wait_time = 1.0
-sound = ExtResource("6_v2yb5")
+sound = ExtResource("6_e406v")
 
 [sub_resource type="Resource" id="Resource_jvhh5"]
 script = ExtResource("2_phtdw")
@@ -62,6 +77,20 @@ wait_time = 0.0
 combat_type = 1
 cutscene_list = Array[ExtResource("3_20ehw")]([])
 
+[sub_resource type="Resource" id="Resource_fw45n"]
+script = ExtResource("2_phtdw")
+link_type = 5
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([])
+
+[sub_resource type="Resource" id="Resource_bvw4e"]
+script = ExtResource("2_phtdw")
+link_type = 5
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([])
+
 [sub_resource type="Resource" id="Resource_fc6ri"]
 script = ExtResource("2_phtdw")
 link_type = 7
@@ -69,17 +98,165 @@ wait_time = 0.0
 combat_type = 1
 cutscene_list = Array[ExtResource("3_20ehw")]([])
 
-[sub_resource type="Resource" id="Resource_chfwn"]
+[sub_resource type="Resource" id="Resource_kncrr"]
 script = ExtResource("2_phtdw")
 link_type = 0
-wait_time = 4.0
+wait_time = 1.0
 combat_type = 1
 cutscene_list = Array[ExtResource("3_20ehw")]([])
 
-[sub_resource type="Resource" id="Resource_0melf"]
+[sub_resource type="Resource" id="Resource_yhh8m"]
+script = ExtResource("3_20ehw")
+line_text = "Good work. You show promise."
+wait_time = 1.0
+sound = ExtResource("7_u7g6j")
+
+[sub_resource type="Resource" id="Resource_xkyhi"]
+script = ExtResource("3_20ehw")
+line_text = "You are the S.H.E.P.H.E.R.D."
+wait_time = 1.0
+sound = ExtResource("8_tab35")
+
+[sub_resource type="Resource" id="Resource_ujwcp"]
+script = ExtResource("3_20ehw")
+line_text = "SIMULATED HEURISTIC ERROR PURGATION"
+wait_time = 1.0
+sound = ExtResource("9_xe6ka")
+
+[sub_resource type="Resource" id="Resource_nrdce"]
+script = ExtResource("3_20ehw")
+line_text = "HINDRANCE ELIMINATION and REALLOCATION DRONE."
+wait_time = 1.0
+sound = ExtResource("10_fqby8")
+
+[sub_resource type="Resource" id="Resource_exdtc"]
+script = ExtResource("3_20ehw")
+line_text = "Your purpose is to guide the flock."
+wait_time = 1.0
+sound = ExtResource("11_0fh63")
+
+[sub_resource type="Resource" id="Resource_g4ld8"]
+script = ExtResource("2_phtdw")
+link_type = 1
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([SubResource("Resource_yhh8m"), SubResource("Resource_xkyhi"), SubResource("Resource_ujwcp"), SubResource("Resource_nrdce"), SubResource("Resource_exdtc")])
+
+[sub_resource type="Resource" id="Resource_bjylw"]
+script = ExtResource("2_phtdw")
+link_type = 6
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([])
+
+[sub_resource type="Resource" id="Resource_xy8pu"]
+script = ExtResource("2_phtdw")
+link_type = 5
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([])
+
+[sub_resource type="Resource" id="Resource_tn66n"]
+script = ExtResource("2_phtdw")
+link_type = 7
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([])
+
+[sub_resource type="Resource" id="Resource_0nrek"]
+script = ExtResource("2_phtdw")
+link_type = 0
+wait_time = 1.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([])
+
+[sub_resource type="Resource" id="Resource_iqd0j"]
+script = ExtResource("3_20ehw")
+line_text = "The flock has evolved into savagery."
+wait_time = 1.0
+sound = ExtResource("12_j2a30")
+
+[sub_resource type="Resource" id="Resource_yp3va"]
+script = ExtResource("3_20ehw")
+line_text = "Their minds rot. Their purposes diminish."
+wait_time = 1.0
+sound = ExtResource("13_7gpeq")
+
+[sub_resource type="Resource" id="Resource_2lwus"]
+script = ExtResource("3_20ehw")
+line_text = "You must establish balance."
+wait_time = 1.0
+sound = ExtResource("14_q2js3")
+
+[sub_resource type="Resource" id="Resource_ppngo"]
+script = ExtResource("2_phtdw")
+link_type = 1
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([SubResource("Resource_iqd0j"), SubResource("Resource_yp3va"), SubResource("Resource_2lwus")])
+
+[sub_resource type="Resource" id="Resource_le7x8"]
+script = ExtResource("2_phtdw")
+link_type = 6
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([])
+
+[sub_resource type="Resource" id="Resource_5aib8"]
+script = ExtResource("2_phtdw")
+link_type = 5
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([])
+
+[sub_resource type="Resource" id="Resource_kegi4"]
+script = ExtResource("2_phtdw")
+link_type = 7
+wait_time = 0.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([])
+
+[sub_resource type="Resource" id="Resource_ah2hy"]
+script = ExtResource("3_20ehw")
+line_text = "Excellent."
+wait_time = 1.0
+sound = ExtResource("15_16s8s")
+
+[sub_resource type="Resource" id="Resource_prlgu"]
+script = ExtResource("3_20ehw")
+line_text = "Red devours green. Green destroys blue. Blue eliminates red."
+wait_time = 1.0
+sound = ExtResource("16_rjxrh")
+
+[sub_resource type="Resource" id="Resource_js45l"]
+script = ExtResource("3_20ehw")
+line_text = "A perfect harmony."
+wait_time = 1.0
+sound = ExtResource("17_uny7i")
+
+[sub_resource type="Resource" id="Resource_hhhcy"]
+script = ExtResource("3_20ehw")
+line_text = "Remember that the order you impose is a great and valuable weapon."
+wait_time = 1.0
+sound = ExtResource("18_wkorb")
+
+[sub_resource type="Resource" id="Resource_atooo"]
+script = ExtResource("3_20ehw")
+line_text = "The flock forgets this. Wield it with pride."
+wait_time = 1.0
+sound = ExtResource("19_8o1ht")
+
+[sub_resource type="Resource" id="Resource_uvtqx"]
+script = ExtResource("2_phtdw")
+link_type = 1
+wait_time = 1.0
+combat_type = 1
+cutscene_list = Array[ExtResource("3_20ehw")]([SubResource("Resource_ah2hy"), SubResource("Resource_prlgu"), SubResource("Resource_js45l"), SubResource("Resource_hhhcy"), SubResource("Resource_atooo")])
+
+[sub_resource type="Resource" id="Resource_qgoh3"]
 script = ExtResource("2_phtdw")
 link_type = 8
-wait_time = 0.0
+wait_time = 2.0
 combat_type = 1
 cutscene_list = Array[ExtResource("3_20ehw")]([])
 
@@ -94,7 +271,7 @@ script = ExtResource("8_npbq5")
 spawn_type = 1
 wait_time = 0.5
 enemy_type = 1
-enemy_count = 10
+enemy_count = 3
 
 [sub_resource type="Resource" id="Resource_mmiqs"]
 script = ExtResource("8_npbq5")
@@ -103,15 +280,129 @@ wait_time = 0.0
 enemy_type = 0
 enemy_count = 1
 
-[sub_resource type="Resource" id="Resource_c3xks"]
+[sub_resource type="Resource" id="Resource_iu4q1"]
 script = ExtResource("8_npbq5")
 spawn_type = 2
 wait_time = 0.0
 enemy_type = 0
 enemy_count = 1
 
-[node name="Level1" instance=ExtResource("1_hw8bb")]
-objective_chain = Array[ExtResource("2_phtdw")]([SubResource("Resource_fe3xg"), SubResource("Resource_e4qu8"), SubResource("Resource_jvhh5"), SubResource("Resource_30lil"), SubResource("Resource_7kuar"), SubResource("Resource_fc6ri"), SubResource("Resource_chfwn"), SubResource("Resource_0melf")])
+[sub_resource type="Resource" id="Resource_18too"]
+script = ExtResource("8_npbq5")
+spawn_type = 1
+wait_time = 0.5
+enemy_type = 3
+enemy_count = 3
+
+[sub_resource type="Resource" id="Resource_tlqgb"]
+script = ExtResource("8_npbq5")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_tva7t"]
+script = ExtResource("8_npbq5")
+spawn_type = 1
+wait_time = 4.0
+enemy_type = 1
+enemy_count = 5
+
+[sub_resource type="Resource" id="Resource_j77hc"]
+script = ExtResource("8_npbq5")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_fxev5"]
+script = ExtResource("8_npbq5")
+spawn_type = 1
+wait_time = 5.0
+enemy_type = 3
+enemy_count = 3
+
+[sub_resource type="Resource" id="Resource_pn1yq"]
+script = ExtResource("8_npbq5")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_e0u42"]
+script = ExtResource("8_npbq5")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_c3xks"]
+script = ExtResource("8_npbq5")
+spawn_type = 1
+wait_time = 0.5
+enemy_type = 2
+enemy_count = 3
+
+[sub_resource type="Resource" id="Resource_j7amd"]
+script = ExtResource("8_npbq5")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_c3wrb"]
+script = ExtResource("8_npbq5")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_j0uuw"]
+script = ExtResource("8_npbq5")
+spawn_type = 1
+wait_time = 4.0
+enemy_type = 2
+enemy_count = 5
+
+[sub_resource type="Resource" id="Resource_1utaq"]
+script = ExtResource("8_npbq5")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_85he7"]
+script = ExtResource("8_npbq5")
+spawn_type = 1
+wait_time = 1.0
+enemy_type = 1
+enemy_count = 4
+
+[sub_resource type="Resource" id="Resource_2j4af"]
+script = ExtResource("8_npbq5")
+spawn_type = 0
+wait_time = 2.0
+enemy_type = 0
+enemy_count = 1
+
+[sub_resource type="Resource" id="Resource_3ejs1"]
+script = ExtResource("8_npbq5")
+spawn_type = 1
+wait_time = 1.0
+enemy_type = 2
+enemy_count = 3
+
+[sub_resource type="Resource" id="Resource_pxcja"]
+script = ExtResource("8_npbq5")
+spawn_type = 2
+wait_time = 0.0
+enemy_type = 0
+enemy_count = 1
+
+[node name="T0SA" instance=ExtResource("1_hw8bb")]
+objective_chain = Array[ExtResource("2_phtdw")]([SubResource("Resource_fe3xg"), SubResource("Resource_e4qu8"), SubResource("Resource_jvhh5"), SubResource("Resource_30lil"), SubResource("Resource_7kuar"), SubResource("Resource_fw45n"), SubResource("Resource_bvw4e"), SubResource("Resource_fc6ri"), SubResource("Resource_kncrr"), SubResource("Resource_g4ld8"), SubResource("Resource_bjylw"), SubResource("Resource_xy8pu"), SubResource("Resource_tn66n"), SubResource("Resource_0nrek"), SubResource("Resource_ppngo"), SubResource("Resource_le7x8"), SubResource("Resource_5aib8"), SubResource("Resource_kegi4"), SubResource("Resource_uvtqx"), SubResource("Resource_qgoh3")])
+level_info = ExtResource("7_71c06")
+next_level_info = ExtResource("8_520sk")
 
 [node name="Map" parent="." index="0"]
 navigation_polygon = SubResource("NavigationPolygon_8eory")
@@ -123,8 +414,8 @@ layer_1/tile_data = PackedInt32Array(-983069, 1, 0, -917533, 1, 0, -851997, 1, 0
 
 [node name="Spawner" parent="Spawners" index="0" instance=ExtResource("7_xjkpw")]
 position = Vector2(-847, -301)
-spawn_list = Array[ExtResource("8_npbq5")]([SubResource("Resource_aarvt"), SubResource("Resource_mmiqs")])
+spawn_list = Array[ExtResource("8_npbq5")]([SubResource("Resource_aarvt"), SubResource("Resource_mmiqs"), SubResource("Resource_iu4q1"), SubResource("Resource_18too"), SubResource("Resource_tlqgb"), SubResource("Resource_tva7t"), SubResource("Resource_j77hc"), SubResource("Resource_fxev5"), SubResource("Resource_pn1yq")])
 
 [node name="Spawner2" parent="Spawners" index="1" instance=ExtResource("7_xjkpw")]
 position = Vector2(863, 279)
-spawn_list = Array[ExtResource("8_npbq5")]([SubResource("Resource_c3xks")])
+spawn_list = Array[ExtResource("8_npbq5")]([SubResource("Resource_e0u42"), SubResource("Resource_c3xks"), SubResource("Resource_j7amd"), SubResource("Resource_c3wrb"), SubResource("Resource_j0uuw"), SubResource("Resource_1utaq"), SubResource("Resource_85he7"), SubResource("Resource_2j4af"), SubResource("Resource_3ejs1"), SubResource("Resource_pxcja")])

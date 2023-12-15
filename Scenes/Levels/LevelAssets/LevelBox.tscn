@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://o2eqqkofmgc3"]
+[gd_scene load_steps=7 format=3 uid="uid://o2eqqkofmgc3"]
 
 [ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="1_6jcg5"]
 [ext_resource type="Script" path="res://Scenes/Levels/LevelAssets/LevelBox.gd" id="2_gheqp"]
 [ext_resource type="Texture2D" uid="uid://ckoulk561qgpt" path="res://Scenes/MainMenu/LockTransparency.svg" id="3_alubh"]
+[ext_resource type="FontFile" uid="uid://c22ki2fe4smkl" path="res://Art/Fonts/Nihonium113.ttf" id="3_twocn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jbhn"]
 bg_color = Color(0.137255, 0.137255, 0.137255, 1)
@@ -33,7 +34,10 @@ theme_override_styles/separator = SubResource("StyleBoxLine_hw5nd")
 clip_contents = false
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 40
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_twocn")
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center]LEVEL 1"
 fit_content = true
@@ -42,6 +46,10 @@ scroll_active = false
 [node name="Score" type="RichTextLabel" parent="VBoxContainer"]
 clip_contents = false
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_twocn")
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center]TOP SCORE:
 [color=green]0"
@@ -51,6 +59,10 @@ scroll_active = false
 [node name="Time" type="RichTextLabel" parent="VBoxContainer"]
 clip_contents = false
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_twocn")
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center]Fastest time:
 [color=blue]99:59:999"

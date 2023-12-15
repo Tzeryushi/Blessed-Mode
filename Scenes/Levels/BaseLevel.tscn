@@ -66,6 +66,7 @@ format = 2
 layer_0/name = "Wall"
 layer_0/z_index = 12
 layer_1/name = "Floor"
+layer_1/modulate = Color(0.396078, 0.396078, 0.396078, 1)
 layer_1/z_index = -12
 layer_1/navigation_enabled = false
 layer_1/tile_data = PackedInt32Array()
