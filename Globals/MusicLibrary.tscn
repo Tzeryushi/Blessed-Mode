@@ -1,17 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2lwiwi3nm627"]
+[gd_scene load_steps=8 format=3 uid="uid://c2lwiwi3nm627"]
 
 [ext_resource type="Script" path="res://Globals/MusicLibrary.gd" id="1_opfdm"]
-[ext_resource type="AudioStream" uid="uid://csogvh3pouyeh" path="res://Music/menu_variant_1_mastering.ogg" id="2_jlx0c"]
+[ext_resource type="AudioStream" uid="uid://dnxdjvg8ukem0" path="res://Music/menu_MASTER.ogg" id="2_rth12"]
+[ext_resource type="AudioStream" uid="uid://bofd7f2t57x60" path="res://Music/tutorial_MASTER.ogg" id="3_ecuw5"]
 [ext_resource type="AudioStream" uid="uid://c72j4o2aygbp" path="res://Music/gameplay_variant_1.mp3" id="3_yao8l"]
-[ext_resource type="AudioStream" uid="uid://b4g06ft37hko2" path="res://SFX/TempSFX/wavy.wav" id="4_cx7gf"]
-[ext_resource type="AudioStream" uid="uid://dypm8sa8v66gq" path="res://Music/gameplay_variant_1_mastering.ogg" id="4_ke1h4"]
-[ext_resource type="AudioStream" uid="uid://c3j8dfkdegbh7" path="res://SFX/TempSFX/skizz.wav" id="5_uu2a7"]
+[ext_resource type="AudioStream" uid="uid://dgw5813bkcdxo" path="res://Music/gameplay_MASTER.ogg" id="4_7fpfu"]
+[ext_resource type="AudioStream" uid="uid://c3ora36c32j3e" path="res://Music/victory_MASTER.ogg" id="5_4eb7l"]
+[ext_resource type="AudioStream" uid="uid://wfmapolqepmg" path="res://Music/defeat_MASTER.ogg" id="6_3eclh"]
 
 [node name="MusicLibrary" type="Node"]
 script = ExtResource("1_opfdm")
-menu_music = ExtResource("2_jlx0c")
-tutorial_music = ExtResource("3_yao8l")
-playing_music = ExtResource("4_ke1h4")
-victory_music = ExtResource("4_cx7gf")
-defeat_music = ExtResource("5_uu2a7")
+menu_music = ExtResource("2_rth12")
+tutorial_music = ExtResource("3_ecuw5")
+playing_music = ExtResource("4_7fpfu")
+victory_music = ExtResource("5_4eb7l")
+defeat_music = ExtResource("6_3eclh")
 epilogue_music = ExtResource("3_yao8l")
