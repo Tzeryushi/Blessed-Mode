@@ -73,7 +73,7 @@ func _on_dash_hitbox_body_entered(body):
 	if body is BaseEnemy:
 		body.take_damage(rocket_damage, get_mode_color())
 		SoundManager.play(dash_collision_sfx)
-		Shake.add_trauma(0.4, 1.5)
+		Shake.add_trauma(0.4, 1.1)
 		var dash_part : ParticleAnimation = dash_hit_particles.instantiate()
 		add_child(dash_part)
 		(dash_part as ParticleAnimation).set_color(Color(1.0,0.3,0.3,0.9))

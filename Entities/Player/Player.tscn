@@ -108,6 +108,7 @@ swap_array = [NodePath("Red"), NodePath("Green"), NodePath("Blue")]
 swap_timer = NodePath("SwapTimer")
 
 [node name="Red" type="Node2D" parent="ModeManager" node_paths=PackedStringArray("shot_timer") groups=["redmode"]]
+visible = false
 script = ExtResource("4_5e48n")
 rocket_damage = 20
 dash_hit_particles = ExtResource("14_fqo44")

@@ -1,13 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://1pr5tvrc3vww"]
+[gd_scene load_steps=6 format=3 uid="uid://1pr5tvrc3vww"]
 
 [ext_resource type="PackedScene" uid="uid://djnebbcu5ui4u" path="res://Entities/Flock/BlueFlock/EnemyBlue1.tscn" id="1_o82om"]
 [ext_resource type="PackedScene" uid="uid://cq08q8vvrbdbn" path="res://Entities/Bullets/EnemyBullets/BlueEnemyMissileFly.tscn" id="2_6xs0s"]
 [ext_resource type="Script" path="res://Entities/Flock/BlueFlock/EnemyBlue2.gd" id="2_25xlw"]
+[ext_resource type="Texture2D" uid="uid://d3kf1vw2ros8y" path="res://Entities/Flock/FlockSprites/EnemyBlueAdv.svg" id="4_np7j7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fj5uc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_np7j7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="EnemyBlue2" instance=ExtResource("1_o82om")]
 script = ExtResource("2_25xlw")
 turn_speed = 0.03
 missile_scene = ExtResource("2_6xs0s")
-fire_distance_threshold = 500.0
-shot_cooldown = 0.2
+missile_release_time = 1.0
+bullet_spawn_distance = 60.0
+fire_distance_threshold = 800.0
+shot_cooldown = 0.1
 score_value = 2
+acceleration = 3.5
+max_movement_speed = 550.0
+
+[node name="Hitbox" parent="." index="0"]
+polygon = PackedVector2Array(-32, 0, -0.585388, -31.4146, -12, -42, 9, -62, 30, -41, 19.6698, -30.7254, 36, -15, 51, -15, 51, 15, 36, 15, 19.571, 30.8205, 30, 41, 9, 62, -12, 42, -1.12501, 30.875)
+
+[node name="EnemySprite" parent="VisualsGroup" index="1"]
+sprite_frames = SubResource("SpriteFrames_fj5uc")

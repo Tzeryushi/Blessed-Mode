@@ -8,7 +8,7 @@ radius = 159.003
 
 [node name="BlueEnemyMissileFly" instance=ExtResource("1_vuk44")]
 script = ExtResource("2_yty35")
-speed = 400.0
+speed = 200.0
 top_speed = 800.0
 
 [node name="Hitbox" parent="." index="0"]
