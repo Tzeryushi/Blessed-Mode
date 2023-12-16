@@ -7,8 +7,8 @@ extends ColorRect
 @export var good_messages : Array[String] = []
 @export var bad_messages : Array[String] = []
 @export var message_pre : String = ""
-@export var menu_stab : AudioStream
 
+@onready var menu_stab : AudioStream = GlobalSfx.menu_stab_sfx
 @onready var results_title := $PanelContainer/VBoxContainer/ResultsTitle
 @onready var combat_time := $PanelContainer/VBoxContainer/CombatTime
 @onready var enemies_killed := $PanelContainer/VBoxContainer/Enemies

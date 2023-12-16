@@ -37,11 +37,13 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	direction = _direction.normalized()
 	rotation = direction.angle()
 	randomize()
+	SoundManager.play(spawn_sfx)
 	var rand_position = global_position + (direction.rotated(randf_range(-PI,PI))*float_distance)
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", rand_position, float_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	await tween.finished
 	Shake.add_trauma(shake, shake_ceiling)
+	
 	seek()
 
 func seek() -> void:

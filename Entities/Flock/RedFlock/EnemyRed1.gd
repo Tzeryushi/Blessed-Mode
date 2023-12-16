@@ -1,3 +1,4 @@
+class_name EnemyRed
 extends BaseEnemy
 
 func set_movement_values(_delta:float) -> void:

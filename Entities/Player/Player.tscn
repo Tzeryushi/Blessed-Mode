@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ds7bcbfgwevuw"]
+[gd_scene load_steps=33 format=3 uid="uid://ds7bcbfgwevuw"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_xoc56"]
 [ext_resource type="Script" path="res://Entities/Player/States/PlayerStateManager.gd" id="2_6hjy0"]
@@ -21,6 +21,7 @@
 [ext_resource type="SpriteFrames" uid="uid://d01oxu78mo703" path="res://Entities/Player/PlayerSprites/BlueSpriteFrames.tres" id="11_47w8v"]
 [ext_resource type="Script" path="res://Entities/Player/Reticle.gd" id="12_rg2be"]
 [ext_resource type="PackedScene" uid="uid://te32ux48rni8" path="res://Entities/Bullets/PlayerBullets/BlueBullet.tscn" id="13_edsgn"]
+[ext_resource type="PackedScene" uid="uid://cskqwarvj77nb" path="res://Effects/Particles/SpawnParticles.tscn" id="14_fqo44"]
 [ext_resource type="PackedScene" uid="uid://bf0qecyc6hadi" path="res://Entities/Bullets/PlayerBullets/BlueMissile.tscn" id="15_1fav8"]
 [ext_resource type="Texture2D" uid="uid://bm071hdbldvpq" path="res://Entities/Player/PlayerSprites/ShieldRingWhite.svg" id="15_wc4d4"]
 [ext_resource type="PackedScene" uid="uid://cou1lncdkg7t7" path="res://Effects/Visual Effects/GenericTrail.tscn" id="18_a2ex0"]
@@ -35,7 +36,7 @@ shader_parameter/inside = false
 shader_parameter/add_margins = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bcwqn"]
-radius = 17.0
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftxv2"]
 radius = 15.0
@@ -79,7 +80,6 @@ sprite_frames = ExtResource("2_x5h3b")
 [node name="BlessedParticles" parent="." instance=ExtResource("7_xdf0m")]
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -108,8 +108,10 @@ swap_array = [NodePath("Red"), NodePath("Green"), NodePath("Blue")]
 swap_timer = NodePath("SwapTimer")
 
 [node name="Red" type="Node2D" parent="ModeManager" node_paths=PackedStringArray("shot_timer") groups=["redmode"]]
+visible = false
 script = ExtResource("4_5e48n")
 rocket_damage = 20
+dash_hit_particles = ExtResource("14_fqo44")
 acceleration = 60.0
 decceleration = 8.0
 max_movement_speed = 1000.0
@@ -181,7 +183,7 @@ acceleration = 35.0
 decceleration = 15.0
 special_depletion_rate = 1.5
 bullet_scene = ExtResource("13_edsgn")
-bullet_spawn_distance = 35.0
+bullet_spawn_distance = 45.0
 shot_timer = NodePath("BlueTimer")
 ship_sprites = ExtResource("11_47w8v")
 mode_color = 2

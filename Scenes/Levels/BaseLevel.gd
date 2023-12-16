@@ -1,3 +1,4 @@
+class_name BaseLevel
 extends Node2D
 
 #BaseLevels contain references to all spawnable enemy types
@@ -33,7 +34,10 @@ var player : Player
 var enemy_scenes : Dictionary = {
 	Globals.ENEMYTYPE.RED1 : load("res://Entities/Flock/RedFlock/EnemyRed1.tscn"),
 	Globals.ENEMYTYPE.GREEN1 : load("res://Entities/Flock/GreenFlock/EnemyGreen1.tscn"),
-	Globals.ENEMYTYPE.BLUE1 : load("res://Entities/Flock/BlueFlock/EnemyBlue1.tscn")
+	Globals.ENEMYTYPE.BLUE1 : load("res://Entities/Flock/BlueFlock/EnemyBlue1.tscn"),
+	Globals.ENEMYTYPE.RED2 : load("res://Entities/Flock/RedFlock/EnemyRed2.tscn"),
+	Globals.ENEMYTYPE.GREEN2 : load("res://Entities/Flock/GreenFlock/EnemyGreen2.tscn"),
+	Globals.ENEMYTYPE.BLUE2 : load("res://Entities/Flock/BlueFlock/EnemyBlue2.tscn")
 	}
 ##contains callables for objective links
 var link_functions : Dictionary = {
@@ -255,6 +259,7 @@ func _on_request_spawn(enemy_type:Globals.ENEMYTYPE, enemy_position:Vector2) -> 
 ##spawn_enemy is used after receiving signals from spawners to create enemies at global locations
 func spawn_enemy(enemy_type:Globals.ENEMYTYPE, enemy_position:Vector2) -> void:
 	#spawn enemy and add to list of enemies
+	assert(!enemy_type == Globals.ENEMYTYPE.NONE, "NONE selected for enemy spawn")
 	var new_enemy : BaseEnemy = enemy_scenes[enemy_type].instantiate()
 	new_enemy.global_position = enemy_position
 	enemy_container.call_deferred("add_child", new_enemy)
@@ -288,9 +293,9 @@ func show_end_screen(value:bool) -> void:
 	end_screen.set_results(elapsed_time_msecs, head_count, total_score, value)
 	if level_info:
 		if total_score > level_info.top_score:
-			level_info.top_score = total_score
-		if elapsed_time_msecs < level_info.fastest_time:
-			level_info.fastest_time = elapsed_time_msecs
+			level_info.set_top_score(total_score)
+		if elapsed_time_msecs < level_info.fastest_time and value:
+			level_info.set_fastest_time(elapsed_time_msecs)
 	if value:
 		end_screen.animate_results(victory_music)
 		if next_level_info:

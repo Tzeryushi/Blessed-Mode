@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://quoia6l5jmlu" path="res://Effects/ParticleSources/LargeThinRing.svg" id="4_ug3ve"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itavq"]
-radius = 283.016
+radius = 281.349
 
 [node name="BlueEnemyMissile" node_paths=PackedStringArray("seek_area") instance=ExtResource("1_158nn")]
 collision_layer = 16

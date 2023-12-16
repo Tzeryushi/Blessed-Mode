@@ -48,7 +48,8 @@ func swap_out() -> void:
 func process_frame(_delta:float) -> void:
 	pass
 func process_physics(_delta:float) -> void:
-	player.move_and_slide()
+	if !player.is_death_invincible:
+		player.move_and_slide()
 
 func get_mode_color() -> Globals.MODECOLOR:
 	return mode_color
@@ -63,7 +64,7 @@ func move(_direction:Vector2, _delta:float) -> void:
 	player.velocity.x = move_toward(player.velocity.x, max_movement_speed*_direction.x, acceleration)
 	player.velocity.y = move_toward(player.velocity.y, max_movement_speed*_direction.y, acceleration)
 func shoot(_direction:Vector2, _mouse_location:Vector2) -> void:
-	if !can_shoot: return
+	if !can_shoot or player.is_death_invincible: return
 	#handle timer logic
 	can_shoot = false
 	shot_timer.start()

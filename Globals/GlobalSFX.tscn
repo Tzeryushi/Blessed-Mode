@@ -1,37 +1,54 @@
-[gd_scene load_steps=15 format=3 uid="uid://w64laawdimg2"]
+[gd_scene load_steps=25 format=3 uid="uid://w64laawdimg2"]
 
 [ext_resource type="Script" path="res://Globals/GlobalSFX.gd" id="1_7qspi"]
-[ext_resource type="AudioStream" uid="uid://8ungksj03ylw" path="res://SFX/TempSFX/bullethit_temp.wav" id="2_ub4l1"]
+[ext_resource type="AudioStream" uid="uid://b248hye72rcxs" path="res://SFX/GUISFX/click(2).wav" id="2_icsiy"]
 [ext_resource type="AudioStream" uid="uid://bwrqlmlqlqw0g" path="res://SFX/transition_1_master.wav" id="4_qugom"]
 [ext_resource type="AudioStream" uid="uid://di0a0bpfa8275" path="res://SFX/transition_2_master.wav" id="5_4vhga"]
 [ext_resource type="AudioStream" uid="uid://coe6n13usprm1" path="res://SFX/TempSFX/explosion.wav" id="5_e0qv6"]
 [ext_resource type="AudioStream" uid="uid://cnpdfec3d6nut" path="res://SFX/pause.wav" id="6_6xk22"]
+[ext_resource type="AudioStream" uid="uid://dxfy42708n2ly" path="res://SFX/GUISFX/explosion(4).wav" id="6_ui806"]
 [ext_resource type="AudioStream" uid="uid://c3j8dfkdegbh7" path="res://SFX/TempSFX/skizz.wav" id="6_w0nkf"]
 [ext_resource type="AudioStream" uid="uid://c5ap1beac8yj7" path="res://SFX/TempSFX/synth(1).wav" id="7_rbb0b"]
 [ext_resource type="AudioStream" uid="uid://bdybrrmygbeqr" path="res://SFX/TempSFX/synth(2).wav" id="8_fr0ws"]
-[ext_resource type="AudioStream" uid="uid://kam8pbm1lssj" path="res://SFX/TempSFX/synth.wav" id="9_ik4d5"]
-[ext_resource type="AudioStream" uid="uid://cb2ounwg1d1sy" path="res://SFX/TempSFX/laserShoot.wav" id="10_88e7s"]
+[ext_resource type="AudioStream" uid="uid://clwrk8wsod2nw" path="res://SFX/ShipSFX/green_mode.wav" id="10_27jxh"]
 [ext_resource type="AudioStream" uid="uid://dbqht7ej05w2c" path="res://SFX/TempSFX/hitHurt.wav" id="11_7eama"]
+[ext_resource type="AudioStream" uid="uid://dfce6ic1k008w" path="res://SFX/ShipSFX/blessed_start.wav" id="11_k23ww"]
+[ext_resource type="AudioStream" uid="uid://cgxn6vrkq4fa6" path="res://SFX/ShipSFX/laserShoot(4).wav" id="12_8mxxk"]
 [ext_resource type="AudioStream" uid="uid://c5tfp03t6u7yf" path="res://SFX/TempSFX/explosion(1).wav" id="12_fxhjp"]
+[ext_resource type="AudioStream" uid="uid://wxlem5tqnjvh" path="res://SFX/ShipSFX/red_dash_collision.wav" id="12_hr0td"]
+[ext_resource type="AudioStream" uid="uid://dg4ocl5s08tsa" path="res://SFX/ShipSFX/blue_shoot.wav" id="14_j08sl"]
 [ext_resource type="AudioStream" uid="uid://dmkspx2522rlm" path="res://SFX/bullet_fire_green_1.wav" id="14_otw0s"]
+[ext_resource type="AudioStream" uid="uid://ckfjhlyxrm56a" path="res://SFX/ShipSFX/laserShoot(3).wav" id="15_16msm"]
+[ext_resource type="AudioStream" uid="uid://bjjamx5iritpw" path="res://SFX/ShipSFX/laserShoot(5).wav" id="16_cwf25"]
+[ext_resource type="AudioStream" uid="uid://3fuc6psqw2kv" path="res://SFX/ShipSFX/ship_on_ship.wav" id="20_3nnmg"]
+[ext_resource type="AudioStream" uid="uid://cc82nwantrahm" path="res://SFX/EnemySFX/lay_mine.wav" id="21_2d3uh"]
+[ext_resource type="AudioStream" uid="uid://beyk7adgnadic" path="res://SFX/EnemySFX/mine_tracking.wav" id="22_e8ymf"]
+[ext_resource type="AudioStream" uid="uid://doc6kv5hdo8v5" path="res://SFX/EnemySFX/enemy_shoot.wav" id="23_tlphr"]
 
 [node name="GlobalSfx" type="Node"]
 script = ExtResource("1_7qspi")
-button_hover_sfx = ExtResource("2_ub4l1")
+button_hover_sfx = ExtResource("2_icsiy")
 button_select_sfx = ExtResource("6_6xk22")
 transition_start_sfx = ExtResource("4_qugom")
 transition_end_sfx = ExtResource("5_4vhga")
 pause_sfx = ExtResource("6_6xk22")
+menu_stab_sfx = ExtResource("6_ui806")
 player_ship_hit = ExtResource("5_e0qv6")
 player_ship_destroyed = ExtResource("6_w0nkf")
 player_ship_swap_red = ExtResource("7_rbb0b")
 player_ship_swap_blue = ExtResource("8_fr0ws")
-player_ship_swap_green = ExtResource("9_ik4d5")
-bullet_fire_red = ExtResource("10_88e7s")
+player_ship_swap_green = ExtResource("10_27jxh")
+player_blessed_mode = ExtResource("11_k23ww")
+player_red_dash_collision = ExtResource("12_hr0td")
+bullet_fire_red = ExtResource("12_8mxxk")
 bullet_hit_red = ExtResource("11_7eama")
-bullet_fire_blue = ExtResource("10_88e7s")
-bullet_hit_blue = ExtResource("11_7eama")
-bullet_fire_blue_missile = ExtResource("10_88e7s")
+bullet_fire_blue = ExtResource("14_j08sl")
+bullet_hit_blue = ExtResource("15_16msm")
+bullet_fire_blue_missile = ExtResource("16_cwf25")
 bullet_fire_green = ExtResource("14_otw0s")
 bullet_hit = ExtResource("11_7eama")
 enemy_ship_destroyed = ExtResource("12_fxhjp")
+ship_on_ship_collision = ExtResource("20_3nnmg")
+enemy_mine_laid = ExtResource("21_2d3uh")
+enemy_mine_tracking = ExtResource("22_e8ymf")
+enemy_bullet_spawn = ExtResource("23_tlphr")

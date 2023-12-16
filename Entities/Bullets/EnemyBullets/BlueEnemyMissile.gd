@@ -1,3 +1,4 @@
+class_name BlueEnemyMissile
 extends BaseBullet
 
 #will move out randomly from from center point for a time
@@ -11,9 +12,12 @@ extends BaseBullet
 @export var turning_acceleration : float = 3.0
 
 var target_body : Player
+var mine_laid_sfx : AudioStream = GlobalSfx.enemy_mine_laid
+var mine_tracking_sfx : AudioStream = GlobalSfx.enemy_mine_tracking
 
 func _ready():
 	life_timer.wait_time = lifetime
+	spawn_sfx = GlobalSfx.enemy_bullet_spawn
 
 func _physics_process(_delta) -> void:
 	if target_body:
@@ -37,6 +41,7 @@ func spawn(_position:Vector2, _direction:Vector2) -> void:
 	randomize()
 	var rand_position = global_position + (direction.rotated(randf_range(-PI,PI))*float_distance)
 	var tween : Tween = get_tree().create_tween()
+	SoundManager.play(mine_laid_sfx)
 	tween.tween_property(self, "global_position", rand_position, float_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	direction = Vector2.ZERO
 	await tween.finished
@@ -51,6 +56,7 @@ func seek() -> void:
 			life_timer.start()
 		return
 	if target_array.front() and target_array.front() is Player and target_array.front().get_mode_color() == Globals.MODECOLOR.RED:
+		SoundManager.play(mine_tracking_sfx, 0.6)
 		target_body = target_array.front()
 		target_body.tree_exiting.connect(clear_body_ref)
 

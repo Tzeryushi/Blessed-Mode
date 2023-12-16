@@ -120,7 +120,7 @@ sound = ExtResource("8_tab35")
 [sub_resource type="Resource" id="Resource_ujwcp"]
 script = ExtResource("3_20ehw")
 line_text = "SIMULATED HEURISTIC ERROR PURGATION"
-wait_time = 1.0
+wait_time = 0.3
 sound = ExtResource("9_xe6ka")
 
 [sub_resource type="Resource" id="Resource_nrdce"]
@@ -261,10 +261,11 @@ combat_type = 1
 cutscene_list = Array[ExtResource("3_20ehw")]([])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8eory"]
-vertices = PackedVector2Array(-778, 374, -950, 374, -950, 202, -778, 202, 950, -202, 778, -202, 778, -374, 950, -374, -2418, -3669, -3577, -3981, -1686, -4754, -4637, -612, -5223, -1937, -3541, -2680, -1930, -1098, -1930, 1098, 1930, 1098, 1930, -1098, 5330, 1119, 5413, 3292, 2667, 4844, 3019, -4504, 5790, -2999, -2415, -3657, -1057, 4576, -4128, 3197, -5047, 1465, -1801, 5171, 1782, 950, -1782, 950, -630, 522, 1098, -54, -1098, 522, 1098, -522, 1782, -950, -1782, -950, 630, -522, 630, -54, -630, 54, -1098, 54)
+vertices = PackedVector2Array(-798, 354, -930, 354, -930, 222, -798, 222, 930, -222, 798, -222, 798, -354, 930, -354, -2401, -3685, -3515, -3984, -1682, -4734, -4616, -614, -5197, -1927, -3530, -2663, -1950, -1118, -1950, 1118, 1950, 1118, 1950, -1118, 5310, 1118, 5393, 3281, 2663, 4824, 3015, -4484, 5768, -2988, -2393, -3650, -1064, 4555, -4112, 3184, -5026, 1461, -1801, 5145, 1762, 930, -1762, 930, -610, 542, 1118, -34, -1118, 542, 1118, -542, 1762, -930, -1762, -930, 610, -542, 610, -34, -610, 34, -1118, 34)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10), PackedInt32Array(11, 12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19, 20), PackedInt32Array(21, 22, 18, 17, 10), PackedInt32Array(10, 17, 14, 23), PackedInt32Array(15, 16, 20, 24, 25, 26), PackedInt32Array(24, 27, 25), PackedInt32Array(15, 26, 11), PackedInt32Array(14, 13, 23), PackedInt32Array(10, 23, 8), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(32, 30, 29), PackedInt32Array(31, 33, 34, 28), PackedInt32Array(35, 34, 33, 36), PackedInt32Array(37, 31, 30, 38), PackedInt32Array(32, 29, 35, 39), PackedInt32Array(38, 39, 35, 36, 37)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-3609, -3979, -2426, -3661, -3546, -2689, -5236, -1943, -4647, -611, -5058, 1467, -4137, 3203, -1802, 5184, -1054, 4586, 2670, 4855, 5424, 3299, 5340, 1119, 5801, -3005, 3023, -4514, -1688, -4765)])
 source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 30.0
 
 [sub_resource type="Resource" id="Resource_aarvt"]
 script = ExtResource("8_npbq5")

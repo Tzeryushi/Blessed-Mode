@@ -38,6 +38,7 @@ extends Node2D
 #remember that swap sfx is in ship modes!
 @export var hurt_sfx : AudioStream = GlobalSfx.player_ship_hit
 @export var death_sfx : AudioStream = GlobalSfx.player_ship_destroyed
+@export var blessed_mode_sfx : AudioStream = GlobalSfx.player_blessed_mode
 @export var blessed_mode_voice : AudioStream
 
 #onreadies, pay attention to pathing
@@ -108,6 +109,7 @@ func engage_blessed_mode() -> void:
 	blessed_particles.play()
 	TextPopper.root_jolt_text("[center][rainbow]BLESSED MODE", global_position, 80.0, 1.0, 1.0, 50, 10, Color(1,1,1,1.0))
 	VoiceManager.play(blessed_mode_voice)
+	SoundManager.play(blessed_mode_sfx, 0.6)
 	set_juice(max_juice)
 	blessed_mode_engaged.emit(true)
 
@@ -219,6 +221,7 @@ func _on_hitbox_area_entered(_area) -> void:
 func _on_hitbox_body_entered(body) -> void:
 	#we manage this from the player class for clarity, don't @ me
 	if body.is_in_group("enemy") and body is BaseEnemy:
+		Shake.add_trauma(0.2)
 		take_damage(body.body_damage, body.get_mode_color())
 	pass # Replace with function body.
 
