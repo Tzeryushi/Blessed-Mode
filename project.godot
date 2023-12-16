@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Blessed Mode"
+config/name="Blessed Sheep"
+config/description="You are the S.H.E.P.H.E.R.D. You guide the flock."
+config/version="1.0"
 run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.0627451, 0.0627451, 0.0627451, 1)
