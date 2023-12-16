@@ -1,3 +1,4 @@
+class_name BlueEnemyMissile
 extends BaseBullet
 
 #will move out randomly from from center point for a time

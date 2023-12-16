@@ -37,8 +37,9 @@ func move(_direction:Vector2, _delta:float) -> void:
 	player.velocity.y = move_toward(player.velocity.y, max_movement_speed*_direction.y, acceleration)
 
 func shoot(_direction:Vector2, _mouse_location:Vector2) -> void:
-	if !can_shoot: return
+	if !can_shoot or player.is_death_invincible: return
 	if is_rocketing: return
+	
 	#handle timer logic
 	can_shoot = false
 	shot_timer.start()

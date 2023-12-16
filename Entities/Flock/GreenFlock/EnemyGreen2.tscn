@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://yjoqvbpdbc6s"]
+
+[ext_resource type="PackedScene" uid="uid://cu6kx0jojqcgl" path="res://Entities/Flock/GreenFlock/EnemyGreen1.tscn" id="1_lx547"]
+[ext_resource type="Texture2D" uid="uid://bn8fu0e8tumd3" path="res://Entities/Flock/FlockSprites/EnemyGreenAdv.svg" id="2_ehpaw"]
+[ext_resource type="Script" path="res://Entities/Flock/GreenFlock/EnemyGreen2.gd" id="2_u4tow"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ypdg2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ehpaw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyGreen2" instance=ExtResource("1_lx547")]
+script = ExtResource("2_u4tow")
+laser_charge_time = 4.0
+health = 80
+body_damage = 4
+bullet_spawn_distance = 65.0
+fire_distance_threshold = 750.0
+score_value = 2
+max_movement_speed = 400.0
+
+[node name="Hitbox" parent="." index="0"]
+polygon = PackedVector2Array(-47, 25, -47, -25, -3, -50, 43, -26, 43, 26, -1, 50)
+
+[node name="EnemySprite" parent="VisualsGroup" index="1"]
+sprite_frames = SubResource("SpriteFrames_ypdg2")
+
+[node name="SightCast" type="RayCast2D" parent="." index="6"]
+exclude_parent = false
+target_position = Vector2(2000, 0)
+collision_mask = 5

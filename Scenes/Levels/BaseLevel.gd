@@ -1,3 +1,4 @@
+class_name BaseLevel
 extends Node2D
 
 #BaseLevels contain references to all spawnable enemy types
@@ -34,7 +35,9 @@ var enemy_scenes : Dictionary = {
 	Globals.ENEMYTYPE.RED1 : load("res://Entities/Flock/RedFlock/EnemyRed1.tscn"),
 	Globals.ENEMYTYPE.GREEN1 : load("res://Entities/Flock/GreenFlock/EnemyGreen1.tscn"),
 	Globals.ENEMYTYPE.BLUE1 : load("res://Entities/Flock/BlueFlock/EnemyBlue1.tscn"),
-	Globals.ENEMYTYPE.RED2 : load("res://Entities/Flock/RedFlock/EnemyRed2.tscn")
+	Globals.ENEMYTYPE.RED2 : load("res://Entities/Flock/RedFlock/EnemyRed2.tscn"),
+	Globals.ENEMYTYPE.GREEN2 : load("res://Entities/Flock/GreenFlock/EnemyGreen2.tscn"),
+	Globals.ENEMYTYPE.BLUE2 : load("res://Entities/Flock/BlueFlock/EnemyBlue2.tscn")
 	}
 ##contains callables for objective links
 var link_functions : Dictionary = {

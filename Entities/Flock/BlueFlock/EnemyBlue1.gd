@@ -1,3 +1,4 @@
+class_name BlueEnemy
 extends BaseEnemy
 
 @export var missile_scene : PackedScene
@@ -29,5 +30,5 @@ func set_movement_values(_delta:float) -> void:
 func fire_missile() -> void:
 	var bullet : BaseBullet = missile_scene.instantiate()
 	get_parent().add_child(bullet)
-	bullet.spawn(global_position, Vector2.RIGHT)
+	bullet.spawn(global_position, Vector2.RIGHT.rotated(global_rotation))
 	missile_timer.start()

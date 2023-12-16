@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://1pr5tvrc3vww"]
+
+[ext_resource type="PackedScene" uid="uid://djnebbcu5ui4u" path="res://Entities/Flock/BlueFlock/EnemyBlue1.tscn" id="1_o82om"]
+[ext_resource type="PackedScene" uid="uid://cq08q8vvrbdbn" path="res://Entities/Bullets/EnemyBullets/BlueEnemyMissileFly.tscn" id="2_6xs0s"]
+[ext_resource type="Script" path="res://Entities/Flock/BlueFlock/EnemyBlue2.gd" id="2_25xlw"]
+
+[node name="EnemyBlue2" instance=ExtResource("1_o82om")]
+script = ExtResource("2_25xlw")
+turn_speed = 0.03
+missile_scene = ExtResource("2_6xs0s")
+fire_distance_threshold = 500.0
+shot_cooldown = 0.2
+score_value = 2

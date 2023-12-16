@@ -1,3 +1,4 @@
+class_name GreenEnemy
 extends BaseEnemy
 
 @export var laser_sights : Line2D

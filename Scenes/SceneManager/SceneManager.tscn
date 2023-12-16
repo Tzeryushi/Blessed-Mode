@@ -18,12 +18,15 @@ main_scene = "main_menu"
 scenes = {
 "base_level": "res://Scenes/Levels/BaseLevel.tscn",
 "crt_overlay": "res://Scenes/EffectScenes/CRTOverlay.tscn",
+"final_scene": "res://Scenes/FinalScene.tscn",
 "level_1": "res://Scenes/Levels/LevelScenes/Level1.tscn",
 "main_menu": "res://Scenes/MainMenu/MainMenu.tscn",
 "t0sA": "res://Scenes/Levels/LevelScenes/Level1.tscn",
 "t0sB": "res://Scenes/Levels/LevelScenes/t0sb.tscn",
 "t0sC": "res://Scenes/Levels/LevelScenes/t0sc.tscn",
 "t0sD": "res://Scenes/Levels/LevelScenes/t0sd.tscn",
+"t0sE": "res://Scenes/Levels/LevelScenes/t0se.tscn",
+"t0sF": "res://Scenes/Levels/LevelScenes/t0sf.tscn",
 "testing_room": "res://Scenes/TestScenes/testing_room.tscn",
 "tutorial": "res://Scenes/Levels/Tutorial.tscn"
 }
