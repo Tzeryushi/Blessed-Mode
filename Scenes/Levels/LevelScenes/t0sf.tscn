@@ -461,14 +461,14 @@ script = ExtResource("20_k33my")
 spawn_type = 1
 wait_time = 3.0
 enemy_type = 2
-enemy_count = 3
+enemy_count = 2
 
 [sub_resource type="Resource" id="Resource_ytm4b"]
 script = ExtResource("20_k33my")
 spawn_type = 1
 wait_time = 4.0
 enemy_type = 3
-enemy_count = 4
+enemy_count = 3
 
 [sub_resource type="Resource" id="Resource_a4dk8"]
 script = ExtResource("20_k33my")

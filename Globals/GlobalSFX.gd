@@ -6,6 +6,7 @@ extends Node
 @export var transition_start_sfx : AudioStream
 @export var transition_end_sfx : AudioStream
 @export var pause_sfx : AudioStream
+@export var menu_stab_sfx : AudioStream
 
 @export_category("Player Sounds")
 @export var player_ship_hit : AudioStream

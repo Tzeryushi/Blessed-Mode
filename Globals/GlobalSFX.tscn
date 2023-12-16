@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://w64laawdimg2"]
+[gd_scene load_steps=25 format=3 uid="uid://w64laawdimg2"]
 
 [ext_resource type="Script" path="res://Globals/GlobalSFX.gd" id="1_7qspi"]
 [ext_resource type="AudioStream" uid="uid://b248hye72rcxs" path="res://SFX/GUISFX/click(2).wav" id="2_icsiy"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://di0a0bpfa8275" path="res://SFX/transition_2_master.wav" id="5_4vhga"]
 [ext_resource type="AudioStream" uid="uid://coe6n13usprm1" path="res://SFX/TempSFX/explosion.wav" id="5_e0qv6"]
 [ext_resource type="AudioStream" uid="uid://cnpdfec3d6nut" path="res://SFX/pause.wav" id="6_6xk22"]
+[ext_resource type="AudioStream" uid="uid://dxfy42708n2ly" path="res://SFX/GUISFX/explosion(4).wav" id="6_ui806"]
 [ext_resource type="AudioStream" uid="uid://c3j8dfkdegbh7" path="res://SFX/TempSFX/skizz.wav" id="6_w0nkf"]
 [ext_resource type="AudioStream" uid="uid://c5ap1beac8yj7" path="res://SFX/TempSFX/synth(1).wav" id="7_rbb0b"]
 [ext_resource type="AudioStream" uid="uid://bdybrrmygbeqr" path="res://SFX/TempSFX/synth(2).wav" id="8_fr0ws"]
@@ -31,6 +32,7 @@ button_select_sfx = ExtResource("6_6xk22")
 transition_start_sfx = ExtResource("4_qugom")
 transition_end_sfx = ExtResource("5_4vhga")
 pause_sfx = ExtResource("6_6xk22")
+menu_stab_sfx = ExtResource("6_ui806")
 player_ship_hit = ExtResource("5_e0qv6")
 player_ship_destroyed = ExtResource("6_w0nkf")
 player_ship_swap_red = ExtResource("7_rbb0b")

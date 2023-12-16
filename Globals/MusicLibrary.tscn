@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://Globals/MusicLibrary.gd" id="1_opfdm"]
 [ext_resource type="AudioStream" uid="uid://csogvh3pouyeh" path="res://Music/menu_variant_1_mastering.ogg" id="2_jlx0c"]
 [ext_resource type="AudioStream" uid="uid://c72j4o2aygbp" path="res://Music/gameplay_variant_1.mp3" id="3_yao8l"]
-[ext_resource type="AudioStream" uid="uid://b4g06ft37hko2" path="res://SFX/TempSFX/wavy.wav" id="4_cx7gf"]
 [ext_resource type="AudioStream" uid="uid://dypm8sa8v66gq" path="res://Music/gameplay_variant_1_mastering.ogg" id="4_ke1h4"]
-[ext_resource type="AudioStream" uid="uid://c3j8dfkdegbh7" path="res://SFX/TempSFX/skizz.wav" id="5_uu2a7"]
+[ext_resource type="AudioStream" uid="uid://rxwkqycebk31" path="res://Music/victory_variant_1.wav" id="5_fpqmu"]
+[ext_resource type="AudioStream" uid="uid://c1xe4ahh6qu2l" path="res://Music/defeat_variant_1.wav" id="6_4dekv"]
 
 [node name="MusicLibrary" type="Node"]
 script = ExtResource("1_opfdm")
 menu_music = ExtResource("2_jlx0c")
 tutorial_music = ExtResource("3_yao8l")
 playing_music = ExtResource("4_ke1h4")
-victory_music = ExtResource("4_cx7gf")
-defeat_music = ExtResource("5_uu2a7")
+victory_music = ExtResource("5_fpqmu")
+defeat_music = ExtResource("6_4dekv")
 epilogue_music = ExtResource("3_yao8l")
