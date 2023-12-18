@@ -302,6 +302,7 @@ func show_end_screen(value:bool) -> void:
 			next_level_info.locked = false
 	else:
 		end_screen.animate_results(defeat_music)
+	SaveLoader.file_save()
 
 func _on_main_menu_pressed():
 	Globals.scene_manager.switch_scene("main_menu")

@@ -13,6 +13,10 @@ extends MenuContext
 @onready var level_container := $VBoxContainer/LevelContainer
 
 func _ready() -> void:
+	if !SaveLoader.test_for_save():
+		#make a new save if one doesn't exist
+		SaveLoader.file_save()
+	SaveLoader.file_load()
 	var level_box : LevelBox
 	for level in level_list:
 		level_box = level_box_scene.instantiate()

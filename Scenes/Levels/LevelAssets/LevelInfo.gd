@@ -19,3 +19,11 @@ func set_fastest_time(value:int) -> void:
 func set_locked(value:bool) -> void:
 	locked = value
 	#print("Changed locked of ", display_name, " to ", (locked))
+
+func get_value_dict() -> Dictionary:
+	return {"top_score":top_score, "fastest_time":fastest_time, "locked":locked}
+
+func set_from_dict(value_dict:Dictionary) -> void:
+	top_score = value_dict["top_score"]
+	fastest_time = value_dict["fastest_time"]
+	locked = value_dict["locked"]

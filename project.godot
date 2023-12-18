@@ -33,6 +33,7 @@ MusicManager="*res://Globals/MusicManager.gd"
 TextPopper="*res://Globals/TextPopper/TextPopper.gd"
 GlobalSfx="*res://Globals/GlobalSFX.tscn"
 MusicLibrary="*res://Globals/MusicLibrary.tscn"
+SaveLoader="*res://Globals/SaveLoader.gd"
 
 [debug]
 
