@@ -9,12 +9,21 @@ extends Node2D
 @onready var stream_player := $AudioStreamPlayer
 signal finished
 
+var should_skip_line : bool = false
+var can_skip_current_line : bool = false
 
+func _unhandled_input(_event) -> void:
+	if Input.is_action_just_pressed("skip_cutscene") and can_skip_current_line:
+		should_skip_line = true
+		VoiceManager.stop()
+		
 
 func play_cutscene(info_array:Array[CutsceneInfo]) -> void:
 	show()
 	box.modulate.a = 0.0
+	should_skip_line = false
 	for line in info_array:
+		can_skip_current_line = line.can_be_skipped
 		scene_text.text = "[center]" + line.line_text
 		var tween : Tween = get_tree().create_tween()
 		tween.tween_property(box, "modulate:a", 1.0, fadein_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -24,8 +33,9 @@ func play_cutscene(info_array:Array[CutsceneInfo]) -> void:
 		#await streamer.finished
 		VoiceManager.play(line.sound)
 		await VoiceManager.finished
-		var timer : SceneTreeTimer = get_tree().create_timer(line.wait_time-fadeout_time)
-		await timer.timeout
+		if !should_skip_line:
+			var timer : SceneTreeTimer = get_tree().create_timer(line.wait_time-fadeout_time)
+			await timer.timeout
 		tween = get_tree().create_tween()
 		tween.tween_property(box, "modulate:a", 0.0, fadeout_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		await tween.finished

@@ -21,6 +21,7 @@ func play(sound:AudioStream) -> void:
 
 func stop() -> void:
 	player.stop()
+	finished.emit()
 
 func pause() -> void:
 	player.stream_paused = true

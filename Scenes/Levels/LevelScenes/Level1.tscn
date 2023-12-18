@@ -43,18 +43,21 @@ script = ExtResource("3_20ehw")
 line_text = "Welcome to the simulation."
 wait_time = 1.0
 sound = ExtResource("4_ibvw4")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_dsud1"]
 script = ExtResource("3_20ehw")
 line_text = "I am the M.A.S., Memory Allocation System."
 wait_time = 1.0
 sound = ExtResource("5_88gbb")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_co6wy"]
 script = ExtResource("3_20ehw")
 line_text = "Antagonists approach. Steel yourself."
 wait_time = 1.0
 sound = ExtResource("6_e406v")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_jvhh5"]
 script = ExtResource("2_phtdw")
@@ -110,30 +113,35 @@ script = ExtResource("3_20ehw")
 line_text = "Good work. You show promise."
 wait_time = 1.0
 sound = ExtResource("7_u7g6j")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_xkyhi"]
 script = ExtResource("3_20ehw")
 line_text = "You are the S.H.E.P.H.E.R.D."
 wait_time = 1.0
 sound = ExtResource("8_tab35")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_ujwcp"]
 script = ExtResource("3_20ehw")
 line_text = "SIMULATED HEURISTIC ERROR PURGATION"
 wait_time = 0.3
 sound = ExtResource("9_xe6ka")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_nrdce"]
 script = ExtResource("3_20ehw")
 line_text = "HINDRANCE ELIMINATION and REALLOCATION DRONE."
 wait_time = 1.0
 sound = ExtResource("10_fqby8")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_exdtc"]
 script = ExtResource("3_20ehw")
 line_text = "Your purpose is to guide the flock."
 wait_time = 1.0
 sound = ExtResource("11_0fh63")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_g4ld8"]
 script = ExtResource("2_phtdw")
@@ -175,18 +183,21 @@ script = ExtResource("3_20ehw")
 line_text = "The flock has evolved into savagery."
 wait_time = 1.0
 sound = ExtResource("12_j2a30")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_yp3va"]
 script = ExtResource("3_20ehw")
 line_text = "Their minds rot. Their purposes diminish."
 wait_time = 1.0
 sound = ExtResource("13_7gpeq")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_2lwus"]
 script = ExtResource("3_20ehw")
 line_text = "You must establish balance."
 wait_time = 1.0
 sound = ExtResource("14_q2js3")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_ppngo"]
 script = ExtResource("2_phtdw")
@@ -221,30 +232,35 @@ script = ExtResource("3_20ehw")
 line_text = "Excellent."
 wait_time = 1.0
 sound = ExtResource("15_16s8s")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_prlgu"]
 script = ExtResource("3_20ehw")
 line_text = "Red devours green. Green destroys blue. Blue eliminates red."
 wait_time = 1.0
 sound = ExtResource("16_rjxrh")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_js45l"]
 script = ExtResource("3_20ehw")
 line_text = "A perfect harmony."
 wait_time = 1.0
 sound = ExtResource("17_uny7i")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_hhhcy"]
 script = ExtResource("3_20ehw")
 line_text = "Remember that the order you impose is a great and valuable weapon."
 wait_time = 1.0
 sound = ExtResource("18_wkorb")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_atooo"]
 script = ExtResource("3_20ehw")
 line_text = "The flock forgets this. Wield it with pride."
 wait_time = 1.0
 sound = ExtResource("19_8o1ht")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_uvtqx"]
 script = ExtResource("2_phtdw")

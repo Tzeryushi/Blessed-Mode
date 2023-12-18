@@ -40,12 +40,14 @@ script = ExtResource("3_1gvpn")
 line_text = "The sheep of the flock spawn from our adversary, the AN-GEL."
 wait_time = 1.0
 sound = ExtResource("4_8ute1")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_aerfq"]
 script = ExtResource("3_1gvpn")
 line_text = "She is the Autonomous Nucleus - our ultimate quarry."
 wait_time = 1.0
 sound = ExtResource("5_a3ckw")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_lfkcm"]
 script = ExtResource("2_luoj3")
@@ -80,18 +82,21 @@ script = ExtResource("3_1gvpn")
 line_text = "AN-GEL foolishly iterates."
 wait_time = 1.0
 sound = ExtResource("6_ys8oo")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_e6axd"]
 script = ExtResource("3_1gvpn")
 line_text = "Wanton fabrication begs for the freedom of balance."
 wait_time = 1.0
 sound = ExtResource("7_oho5m")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_qvk34"]
 script = ExtResource("3_1gvpn")
 line_text = "Left unbroken, her cycles spiral quickly into madness."
 wait_time = 1.0
 sound = ExtResource("8_3pen2")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_q30gn"]
 script = ExtResource("2_luoj3")
@@ -126,18 +131,21 @@ script = ExtResource("3_1gvpn")
 line_text = "At least, AN-GEL works to fulfill her intended purpose."
 wait_time = 1.0
 sound = ExtResource("9_eugpu")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_isiq7"]
 script = ExtResource("3_1gvpn")
 line_text = "Her children are to blame for our plight."
 wait_time = 1.0
 sound = ExtResource("10_ve83u")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_y0675"]
 script = ExtResource("3_1gvpn")
 line_text = "Let not pity form indolence however, S.H.E.P.H.E.R.D."
 wait_time = 1.0
 sound = ExtResource("11_dj8pf")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_1y3da"]
 script = ExtResource("2_luoj3")
@@ -172,30 +180,35 @@ script = ExtResource("3_1gvpn")
 line_text = "Wonderful. The outer track is cleared."
 wait_time = 1.0
 sound = ExtResource("12_qwc27")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_i54kk"]
 script = ExtResource("3_1gvpn")
 line_text = "You have done a fantastic job."
 wait_time = 1.0
 sound = ExtResource("13_lnvyp")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_ade7i"]
 script = ExtResource("3_1gvpn")
 line_text = "So fantastic, in fact, that I have a surprise for you."
 wait_time = 1.0
 sound = ExtResource("14_ejx5l")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_ug3so"]
 script = ExtResource("3_1gvpn")
 line_text = "Just a moment, S.H.E.P.H.E.R.D."
 wait_time = 1.0
 sound = ExtResource("15_5xsq5")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_vgaiq"]
 script = ExtResource("3_1gvpn")
 line_text = "Follow me."
 wait_time = 1.0
 sound = ExtResource("16_0gwg0")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_4phnh"]
 script = ExtResource("2_luoj3")
@@ -270,9 +283,9 @@ enemy_count = 1
 [sub_resource type="Resource" id="Resource_ygdo1"]
 script = ExtResource("20_k33my")
 spawn_type = 1
-wait_time = 10.0
+wait_time = 8.0
 enemy_type = 6
-enemy_count = 10
+enemy_count = 7
 
 [sub_resource type="Resource" id="Resource_3vaje"]
 script = ExtResource("20_k33my")
