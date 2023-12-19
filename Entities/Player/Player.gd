@@ -50,6 +50,8 @@ extends Node2D
 var current_ship_mode : ShipMode
 var combo_count : int = 0 : set = set_combo
 
+const DEADZONE : float = 0.23
+
 #flags
 var is_shooting : bool = false
 var has_killstreak : bool = false
@@ -59,6 +61,7 @@ var is_hit_invincible : bool = false
 var is_death_invincible : bool = false
 var can_use_special : bool = true
 var is_in_blessed_mode : bool = false
+var is_using_controller : bool = false
 
 signal health_changed(value:int, max_health:int)
 signal juice_changed(value:float, max_juice:float, is_recharging:bool)
@@ -75,10 +78,22 @@ func _ready() -> void:
 	blessed_mode_timer.wait_time = blessed_mode_time
 	Shake.set_camera(player_camera)
 	Events.combo_up.connect(_on_combo_up)
-	
+	InputMap.action_set_deadzone("aim_up", DEADZONE)
+	InputMap.action_set_deadzone("aim_down", DEADZONE)
+	InputMap.action_set_deadzone("aim_left", DEADZONE)
+	InputMap.action_set_deadzone("aim_right", DEADZONE)
+	InputMap.action_set_deadzone("move_up", DEADZONE)
+	InputMap.action_set_deadzone("move_down", DEADZONE)
+	InputMap.action_set_deadzone("move_left", DEADZONE)
+	InputMap.action_set_deadzone("move_right", DEADZONE)
+
+func _input(_event) -> void:
+	if _event is InputEventMouseMotion:
+		is_using_controller = false
+
 func _unhandled_input(_event) -> void:
-	#if _event is InputEventMouseMotion:
-	#	look_at(get_global_mouse_position())
+	if Input.get_axis("aim_up","aim_down") != 0.0 or Input.get_axis("aim_left","aim_right") != 0.0:
+		is_using_controller = true 
 	#if Input.is_action_just_pressed("shoot"):
 		#print(MainPort.main_subviewport.get_mouse_position() - get_global_transform_with_canvas().origin, get_global_mouse_position())
 	state_manager.process_input(_event)
@@ -90,14 +105,21 @@ func _process(_delta) -> void:
 	make_single_ghost(0.02*min(combo_count,20))
 	
 	#camera operations
-	reticle.update_reticle_position()
+	if is_using_controller:
+		reticle.update_reticle_position_controller(global_position, rotation)
+	else:
+		reticle.update_reticle_position_mouse()
 	player_camera.position = (reticle.position*cursor_ratio).limit_length(max_camera_length)
 	if is_in_blessed_mode:
 		set_juice(juice+blessed_regen_rate)
 
 func _physics_process(_delta) -> void:
 	#make_single_ghost()
-	look_at(get_global_mouse_position())
+	if is_using_controller:
+		var aim_vector : Vector2 = Vector2(Input.get_axis("aim_left", "aim_right"), Input.get_axis("aim_up", "aim_down"))
+		look_at((aim_vector)+global_position)
+	else:
+		look_at(get_global_mouse_position())
 	state_manager.process_physics(_delta)
 	current_ship_mode.process_physics(_delta)
 

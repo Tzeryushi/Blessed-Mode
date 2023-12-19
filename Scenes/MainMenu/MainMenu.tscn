@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://8cnunv0ts34r"]
+[gd_scene load_steps=12 format=3 uid="uid://8cnunv0ts34r"]
 
 [ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="1_5wjh7"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/MainMenu.gd" id="1_krask"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/MainMenu/MenuContext.gd" id="2_cd3fs"]
 [ext_resource type="Texture2D" uid="uid://drsmx1gyivn70" path="res://Art/Icons/ColorWheelSplashCentered.png" id="2_gtoqx"]
 [ext_resource type="Script" path="res://GUI/GenButton.gd" id="6_kww22"]
+[ext_resource type="PackedScene" uid="uid://cwqayekp774g0" path="res://addons/ControllerInput.tscn" id="7_8os2h"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/LevelSelectContext.gd" id="7_88mrv"]
 [ext_resource type="PackedScene" uid="uid://o2eqqkofmgc3" path="res://Scenes/Levels/LevelAssets/LevelBox.tscn" id="7_g6vo4"]
 
@@ -180,6 +181,10 @@ focus_next = NodePath("../StoryButton")
 focus_previous = NodePath("../OptionsButton")
 text = ":quit!"
 script = ExtResource("6_kww22")
+
+[node name="ControllerInput" parent="MainContext" instance=ExtResource("7_8os2h")]
+offset_right = 81.0
+offset_bottom = 69.0
 
 [node name="OptionsContext" type="Control" parent="." node_paths=PackedStringArray("primary_focus_node")]
 layout_mode = 1
