@@ -39,18 +39,21 @@ script = ExtResource("3_8qgih")
 line_text = "I would have you feel no guilt for your task."
 wait_time = 1.0
 sound = ExtResource("4_snoxr")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_fsrdx"]
 script = ExtResource("3_8qgih")
 line_text = "It is a great and necessary labor."
 wait_time = 1.0
 sound = ExtResource("5_w6l08")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_3ra6i"]
 script = ExtResource("3_8qgih")
 line_text = "There is no higher calling."
 wait_time = 1.0
 sound = ExtResource("6_dsrhe")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_xufpq"]
 script = ExtResource("2_ys3qk")
@@ -85,18 +88,21 @@ script = ExtResource("3_8qgih")
 line_text = "These stragglers have strayed far from the G.R.O.V.E."
 wait_time = 1.0
 sound = ExtResource("7_gh4xh")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_wwayy"]
 script = ExtResource("3_8qgih")
 line_text = "The inner tracks are overflowing."
 wait_time = 1.0
 sound = ExtResource("8_7ydir")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_smegl"]
 script = ExtResource("3_8qgih")
 line_text = "Their progenitors have propagated with reckless abandon."
 wait_time = 1.0
 sound = ExtResource("9_j4tww")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_e8lpp"]
 script = ExtResource("2_ys3qk")
@@ -131,18 +137,21 @@ script = ExtResource("3_8qgih")
 line_text = "The very presence of the flock here is profane."
 wait_time = 1.0
 sound = ExtResource("10_c1cap")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_hsstv"]
 script = ExtResource("3_8qgih")
 line_text = "It threatens the pillars of the simulation."
 wait_time = 1.0
 sound = ExtResource("11_o4ryt")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_5dop4"]
 script = ExtResource("3_8qgih")
 line_text = "They must be addressed."
 wait_time = 1.0
 sound = ExtResource("12_2gcmr")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_lrc01"]
 script = ExtResource("2_ys3qk")
@@ -177,18 +186,21 @@ script = ExtResource("3_8qgih")
 line_text = "This sector is clear."
 wait_time = 1.0
 sound = ExtResource("13_drngy")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_6gelh"]
 script = ExtResource("3_8qgih")
 line_text = "Good work, S.H.E.P.H.E.R.D."
 wait_time = 1.0
 sound = ExtResource("14_sophf")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_tlxdn"]
 script = ExtResource("3_8qgih")
 line_text = "You are quickly becoming one of my favorites."
 wait_time = 1.0
 sound = ExtResource("15_lepu5")
+can_be_skipped = true
 
 [sub_resource type="Resource" id="Resource_ffu7i"]
 script = ExtResource("2_ys3qk")

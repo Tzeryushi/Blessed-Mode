@@ -21,10 +21,15 @@ func _ready():
 	level_select_context.position = left_position
 	main_context.primary_focus_node.grab_focus()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
-	master_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
-	music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
-	sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
-	voice_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Voice")))
+	
+	#load settings
+	if !SaveLoader.test_for_settings_save():
+		master_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+		music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
+		sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
+		voice_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Voice")))
+		save_options()
+	load_options()
 	
 	options_context.hide()
 	level_select_context.hide()
@@ -77,8 +82,22 @@ func _on_return_button_pressed():
 	tween.parallel().tween_property(options_context, "position", right_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_callback(options_context.hide)
 
+func save_options() -> void:
+	var options_data : Dictionary = {"master_vol":master_slider.value, "music_vol":music_slider.value,
+	"sfx_vol":sfx_slider.value, "voice_vol":voice_slider.value}
+	SaveLoader.settings_save(options_data)
+
+func load_options() -> void:
+	#save structure in save_options function
+	var options_data : Dictionary = SaveLoader.settings_load()
+	master_slider.value = options_data["master_vol"]
+	music_slider.value = options_data["music_vol"]
+	sfx_slider.value = options_data["sfx_vol"]
+	voice_slider.value = options_data["voice_vol"]
+
 #level select menu
 func _on_level_return_button_pressed():
+	save_options()
 	main_context.show()
 	main_context.primary_focus_node.grab_focus()
 	var tween : Tween = get_tree().create_tween()
@@ -93,6 +112,7 @@ func _on_spin_timer_timeout():
 	var shift_tween : Tween = get_tree().create_tween()
 	shift_tween.tween_property(color_wheel, "rotation", randf_range(-PI, PI), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 
+#options receivers
 func _on_master_vol_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"),linear_to_db(value))
 func _on_music_vol_value_changed(value):
@@ -101,10 +121,6 @@ func _on_sfx_vol_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"),linear_to_db(value))
 func _on_voice_vol_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Voice"),linear_to_db(value))
-
-
-
-
 
 func _on_full_screen_button_toggled(toggled_on):
 	if toggled_on:
