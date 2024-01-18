@@ -357,7 +357,7 @@ theme_override_constants/shadow_outline_size = 8
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "[center]Made in Godot 4.2!"
+text = "[center]Made in [color=green]Godot 4.2!"
 fit_content = true
 scroll_active = false
 
@@ -367,6 +367,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_5wjh7")
 theme_override_constants/separation = 20
+
+[node name="MarginContainer5" type="MarginContainer" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
 [node name="Title2" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
 clip_contents = false
@@ -379,7 +383,7 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 12
 theme_override_constants/shadow_outline_size = 14
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center]Master Volume"
 fit_content = true
@@ -390,10 +394,6 @@ layout_mode = 2
 theme = ExtResource("1_5wjh7")
 max_value = 1.0
 step = 0.05
-
-[node name="MarginContainer4" type="MarginContainer" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
 
 [node name="Title3" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
 clip_contents = false
@@ -406,7 +406,7 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 12
 theme_override_constants/shadow_outline_size = 14
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center]Music Volume"
 fit_content = true
@@ -417,10 +417,6 @@ layout_mode = 2
 theme = ExtResource("1_5wjh7")
 max_value = 1.0
 step = 0.05
-
-[node name="MarginContainer3" type="MarginContainer" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
 
 [node name="Title4" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
 clip_contents = false
@@ -433,7 +429,7 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 12
 theme_override_constants/shadow_outline_size = 14
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center]SFX Volume"
 fit_content = true
@@ -444,10 +440,6 @@ layout_mode = 2
 theme = ExtResource("1_5wjh7")
 max_value = 1.0
 step = 0.05
-
-[node name="MarginContainer2" type="MarginContainer" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
 
 [node name="Title5" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
 clip_contents = false
@@ -460,7 +452,7 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 12
 theme_override_constants/shadow_outline_size = 14
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center]Voice Volume
 "
@@ -473,12 +465,97 @@ theme = ExtResource("1_5wjh7")
 max_value = 1.0
 step = 0.05
 
+[node name="MarginContainer4" type="MarginContainer" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Title6" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/shadow_outline_size = 14
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]CRT Intensity
+"
+fit_content = true
+scroll_active = false
+
+[node name="VoiceVol2" type="HSlider" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+max_value = 1.0
+step = 0.05
+
+[node name="Title23" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/shadow_outline_size = 14
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]Screen Roll
+"
+fit_content = true
+scroll_active = false
+
 [node name="VBoxContainer3" type="VBoxContainer" parent="OptionsContext/HBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_5wjh7")
-alignment = 2
+
+[node name="Title6" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer3"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/shadow_outline_size = 14
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]Controls:"
+fit_content = true
+scroll_active = false
+
+[node name="Title10" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer3"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_5wjh7")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[center]Move: WASD or Left Stick
+Aim: Mouse or Right Stick
+Shoot: LMB or Right Trigger
+Shift Mode: Shift or Left Trigger
+Special: Space or Right Shoulder
+Pause: Esc or Start
+Skip Cutscene: Tab or Back"
+fit_content = true
+scroll_active = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="OptionsContext/HBoxContainer/VBoxContainer3"]
 layout_mode = 2

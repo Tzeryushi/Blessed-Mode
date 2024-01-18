@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CRT_Settings" load_steps=2 format=3 uid="uid://dx0b4t7tx7u6"]
+
+[ext_resource type="Script" path="res://Scenes/EffectScenes/CRT_Settings.gd" id="1_fhge0"]
+
+[resource]
+script = ExtResource("1_fhge0")
+is_roll_on = true
+intensity = 1.0

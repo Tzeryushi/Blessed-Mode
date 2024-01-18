@@ -1,5 +1,38 @@
 extends CanvasLayer
 
+@export var crt_resource : CRT_Settings
+
+@onready var crt_material = $ColorRect.material
+
+func _ready() -> void:
+	Events.update_effects.connect(update_effects)
+	update_effects()
+
+func _exit_tree() -> void:
+	Events.update_effects.disconnect(update_effects)
+
+func update_effects() -> void:
+	set_values(crt_resource.intensity, crt_resource.is_roll_on)
+
+func set_values(intensity:float=1.0,should_roll:bool=true) -> void:
+	var clamped_intensity = clampf(intensity,0.0,1.0)
+	crt_material = crt_material as ShaderMaterial
+	
+	#handling roll
+	crt_material.set_shader_parameter("shader_parameter/roll", should_roll)
+	crt_material.set_shader_parameter("shader_parameter/roll_speed", 0.8)
+	crt_material.set_shader_parameter("shader_parameter/roll_size", 8.97)
+	crt_material.set_shader_parameter("shader_parameter/roll_variation", 5)
+	
+	#handling intensity
+	crt_material.set_shader_parameter("shader_parameter/distort_intensity", lerpf(0.0, 0.023, clamped_intensity))
+	crt_material.set_shader_parameter("shader_parameter/noise_opacity", lerpf(0.0, 0.0232, clamped_intensity))
+	crt_material.set_shader_parameter("shader_parameter/static_noise_intensity", lerpf(0.0, 0.06, clamped_intensity))
+	crt_material.set_shader_parameter("shader_parameter/aberration", lerpf(0.0, 0.01, clamped_intensity))
+	crt_material.set_shader_parameter("shader_parameter/warp_amount", lerpf(0.0, 0.266, clamped_intensity))
+	crt_material.set_shader_parameter("shader_parameter/vignette_intensity", lerpf(0.0, 0.1, clamped_intensity))
+	crt_material.set_shader_parameter("shader_parameter/vignette_opacity", lerpf(0.0, 0.676, clamped_intensity))
+
 #original values:
 #overlay on
 #scanlines opacity 0.595
