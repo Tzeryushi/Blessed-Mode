@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://8cnunv0ts34r"]
+[gd_scene load_steps=13 format=3 uid="uid://8cnunv0ts34r"]
 
 [ext_resource type="Theme" uid="uid://uabuugcc4jy6" path="res://Art/Themes/BaseTheme.tres" id="1_5wjh7"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/MainMenu.gd" id="1_krask"]
+[ext_resource type="Resource" uid="uid://dx0b4t7tx7u6" path="res://Scenes/EffectScenes/DefaultSettings.tres" id="2_2o3hs"]
 [ext_resource type="Shader" path="res://Effects/Shaders/SpriteOutline.gdshader" id="2_b8a7c"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/MenuContext.gd" id="2_cd3fs"]
 [ext_resource type="Texture2D" uid="uid://drsmx1gyivn70" path="res://Art/Icons/ColorWheelSplashCentered.png" id="2_gtoqx"]
@@ -21,7 +22,7 @@ shader_parameter/width_speed = 2.0
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_vkqsy"]
 color = Color(0, 0, 0, 0)
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider", "voice_slider")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider", "voice_slider", "intensity_slider", "roll_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +34,9 @@ master_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/MasterVol"
 music_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/MusicVol")
 sfx_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/SFXVol")
 voice_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/VoiceVol")
+intensity_slider = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/Intensity")
+roll_button = NodePath("OptionsContext/HBoxContainer/VBoxContainer2/HBoxContainer2/ScreenRollButton")
+crt_resource = ExtResource("2_2o3hs")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 1
@@ -184,8 +188,6 @@ script = ExtResource("6_kww22")
 
 [node name="ControllerInput" parent="MainContext" instance=ExtResource("7_8os2h")]
 visible = false
-offset_right = 81.0
-offset_bottom = 69.0
 
 [node name="OptionsContext" type="Control" parent="." node_paths=PackedStringArray("primary_focus_node")]
 layout_mode = 1
@@ -487,15 +489,22 @@ text = "[center]CRT Intensity
 fit_content = true
 scroll_active = false
 
-[node name="VoiceVol2" type="HSlider" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+[node name="Intensity" type="HSlider" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("1_5wjh7")
 max_value = 1.0
 step = 0.05
+value = 1.0
 
-[node name="Title23" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="OptionsContext/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title23" type="RichTextLabel" parent="OptionsContext/HBoxContainer/VBoxContainer2/HBoxContainer2"]
 clip_contents = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 11.7
 theme = ExtResource("1_5wjh7")
 theme_override_colors/default_color = Color(1, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -506,10 +515,16 @@ theme_override_constants/shadow_outline_size = 14
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center]Screen Roll
+text = "[center]Screen Roll:
 "
 fit_content = true
 scroll_active = false
+
+[node name="ScreenRollButton" type="CheckButton" parent="OptionsContext/HBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_5wjh7")
+button_pressed = true
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="OptionsContext/HBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
@@ -551,7 +566,7 @@ text = "[center]Move: WASD or Left Stick
 Aim: Mouse or Right Stick
 Shoot: LMB or Right Trigger
 Shift Mode: Shift or Left Trigger
-Special: Space or Right Shoulder
+Special: Space or Shoulder Buttons
 Pause: Esc or Start
 Skip Cutscene: Tab or Back"
 fit_content = true
@@ -703,6 +718,8 @@ script = ExtResource("6_kww22")
 [connection signal="value_changed" from="OptionsContext/HBoxContainer/VBoxContainer2/MusicVol" to="." method="_on_music_vol_value_changed"]
 [connection signal="value_changed" from="OptionsContext/HBoxContainer/VBoxContainer2/SFXVol" to="." method="_on_sfx_vol_value_changed"]
 [connection signal="value_changed" from="OptionsContext/HBoxContainer/VBoxContainer2/VoiceVol" to="." method="_on_voice_vol_value_changed"]
+[connection signal="value_changed" from="OptionsContext/HBoxContainer/VBoxContainer2/Intensity" to="." method="_on_intensity_value_changed"]
+[connection signal="toggled" from="OptionsContext/HBoxContainer/VBoxContainer2/HBoxContainer2/ScreenRollButton" to="." method="_on_screen_roll_button_toggled"]
 [connection signal="toggled" from="OptionsContext/HBoxContainer/VBoxContainer3/HBoxContainer/FullScreenButton" to="." method="_on_full_screen_button_toggled"]
 [connection signal="focus_entered" from="OptionsContext/HBoxContainer/VBoxContainer3/BaseButton" to="OptionsContext/HBoxContainer/VBoxContainer3/BaseButton" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="OptionsContext/HBoxContainer/VBoxContainer3/BaseButton" to="OptionsContext/HBoxContainer/VBoxContainer3/BaseButton" method="_on_mouse_entered"]

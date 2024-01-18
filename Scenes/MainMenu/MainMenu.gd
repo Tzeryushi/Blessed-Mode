@@ -4,6 +4,10 @@ extends Control
 @export var music_slider : HSlider
 @export var sfx_slider : HSlider
 @export var voice_slider : HSlider
+@export var intensity_slider : HSlider
+@export var roll_button : CheckButton
+
+@export var crt_resource : CRT_Settings
 
 @onready var color_wheel := $MainContext/ColorWheelSplash
 @onready var main_context := $MainContext
@@ -28,6 +32,11 @@ func _ready():
 		music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
 		sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
 		voice_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Voice")))
+		intensity_slider.value = 1.0
+		roll_button.button_pressed = true
+		crt_resource.intensity = 1.0
+		crt_resource.is_roll_on = true
+		Events.update_effects.emit()
 		save_options()
 	load_options()
 	
@@ -75,6 +84,7 @@ func _on_tutorial_button_pressed():
 func _on_return_button_pressed():
 	#set_focus(options_context, false)
 	#set_focus(main_context, true)
+	save_options()
 	main_context.show()
 	main_context.primary_focus_node.grab_focus()
 	var tween : Tween = get_tree().create_tween()
@@ -84,7 +94,7 @@ func _on_return_button_pressed():
 
 func save_options() -> void:
 	var options_data : Dictionary = {"master_vol":master_slider.value, "music_vol":music_slider.value,
-	"sfx_vol":sfx_slider.value, "voice_vol":voice_slider.value}
+	"sfx_vol":sfx_slider.value, "voice_vol":voice_slider.value, "intensity":crt_resource.intensity, "roll_on":crt_resource.is_roll_on}
 	SaveLoader.settings_save(options_data)
 
 func load_options() -> void:
@@ -94,10 +104,14 @@ func load_options() -> void:
 	music_slider.value = options_data["music_vol"]
 	sfx_slider.value = options_data["sfx_vol"]
 	voice_slider.value = options_data["voice_vol"]
+	intensity_slider.value = options_data["intensity"]
+	crt_resource.intensity = options_data["intensity"]
+	roll_button.button_pressed = options_data["roll_on"]
+	crt_resource.is_roll_on = options_data["roll_on"]
+	Events.update_effects.emit()
 
 #level select menu
 func _on_level_return_button_pressed():
-	save_options()
 	main_context.show()
 	main_context.primary_focus_node.grab_focus()
 	var tween : Tween = get_tree().create_tween()
@@ -121,6 +135,12 @@ func _on_sfx_vol_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"),linear_to_db(value))
 func _on_voice_vol_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Voice"),linear_to_db(value))
+func _on_intensity_value_changed(value):
+	crt_resource.intensity = value
+	Events.update_effects.emit()
+func _on_screen_roll_button_toggled(toggled_on):
+	crt_resource.is_roll_on = toggled_on
+	Events.update_effects.emit()
 
 func _on_full_screen_button_toggled(toggled_on):
 	if toggled_on:

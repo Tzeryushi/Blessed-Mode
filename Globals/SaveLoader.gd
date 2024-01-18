@@ -23,7 +23,6 @@ func verify_dir(path:String) -> void:
 
 func test_for_save(path:String=(SAVE_DIR+SAVE_FILE_NAME)) -> bool:
 	return FileAccess.file_exists(path)
-	pass
 
 func test_for_settings_save() -> bool:
 	return test_for_save(SAVE_DIR+SETTINGS_FILE_NAME)
@@ -34,7 +33,7 @@ func file_save(path:String=(SAVE_DIR+SAVE_FILE_NAME)) -> void:
 		print(FileAccess.get_open_error())
 		return
 	
-	var track0_levels : Dictionary
+	var track0_levels : Dictionary = {}
 	for level in level_list:
 		track0_levels[level.level_call] = level.get_value_dict()
 	

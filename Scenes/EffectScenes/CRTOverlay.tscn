@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://6qujdhm2pn43"]
+[gd_scene load_steps=5 format=3 uid="uid://6qujdhm2pn43"]
 
 [ext_resource type="Shader" path="res://Scenes/MainShader.gdshader" id="1_fnd6g"]
 [ext_resource type="Script" path="res://Scenes/EffectScenes/CRTOverlay.gd" id="1_y8bxm"]
+[ext_resource type="Resource" uid="uid://dx0b4t7tx7u6" path="res://Scenes/EffectScenes/DefaultSettings.tres" id="2_1q6xc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b4x2e"]
 shader = ExtResource("1_fnd6g")
@@ -30,6 +31,7 @@ shader_parameter/vignette_opacity = 0.676
 [node name="CRTOverlay" type="CanvasLayer"]
 layer = 3
 script = ExtResource("1_y8bxm")
+crt_resource = ExtResource("2_1q6xc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_b4x2e")

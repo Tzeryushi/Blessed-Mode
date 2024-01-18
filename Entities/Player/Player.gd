@@ -116,7 +116,7 @@ func _process(_delta) -> void:
 func _physics_process(_delta) -> void:
 	#make_single_ghost()
 	if is_using_controller:
-		var aim_vector : Vector2 = Vector2(Input.get_axis("aim_left", "aim_right"), Input.get_axis("aim_up", "aim_down"))
+		var aim_vector : Vector2 = Vector2(Input.get_axis("aim_left", "aim_right"), Input.get_axis("aim_up", "aim_down")).normalized()
 		look_at((aim_vector)+global_position)
 	else:
 		look_at(get_global_mouse_position())
