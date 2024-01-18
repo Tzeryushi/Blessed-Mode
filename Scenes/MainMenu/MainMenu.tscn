@@ -183,6 +183,7 @@ text = ":quit!"
 script = ExtResource("6_kww22")
 
 [node name="ControllerInput" parent="MainContext" instance=ExtResource("7_8os2h")]
+visible = false
 offset_right = 81.0
 offset_bottom = 69.0
 
