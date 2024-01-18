@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_DIR = "res://saves/"
+const SAVE_DIR = "./saves/"
 const SAVE_FILE_NAME = "save.json"
 const SEC_KEY = "089SADFH"
 
